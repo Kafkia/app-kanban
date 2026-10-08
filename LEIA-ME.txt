@@ -6,7 +6,8 @@ O QUE É
   processo P1 a P8, Ordem de produção, Cartões, Kanban PA e Usinados, CD e Fábrica em 3D),
   instalável no celular e no notebook.
 - Todos usam a mesma base online: estoque apontado, ordens e parâmetros aparecem para a equipe inteira.
-- ACESSO SÓ COM PIN: sem PIN válido nenhum dado aparece.
+- ACESSO SÓ COM PIN PESSOAL: só as pessoas cadastradas entram (Rafael Kandi, Kelvin Troes,
+  Cristiano Silva, Alex Bertino e o administrador). Sem PIN válido nenhum dado aparece.
 - SEM dados da AEMCO neste site: itens, faixas e estoques só descem da base online depois do PIN.
 
 PUBLICAR NO GITHUB PAGES (repositório app-kanban)
@@ -19,17 +20,17 @@ BASE ONLINE (uma vez só)
 1. Supabase (mesmo projeto do 5S) > SQL Editor > cole o arquivo supabase_kanban.sql > Run.
    No resultado aparece o CÓDIGO DE INSTALAÇÃO (8 caracteres). Anote.
 2. Abra o app > tela "Primeira instalação" > seu nome + código de instalação +
-   PIN do administrador + PIN da equipe (diferentes, mínimo 4 caracteres).
-   O código deixa de valer assim que os PINs são gravados.
+   seu PIN de administrador (6 a 12 números). O código deixa de valer assim que o admin é criado.
 3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev08.json
    (fica na pasta Aretia > 03 - Kanban — NÃO suba esse arquivo no GitHub) > Publicar para todos.
-4. Passe o PIN da equipe só para quem opera o Kanban (PCP, líderes, almoxarifado).
+4. ☁ > Pessoas com acesso > cadastre o PIN de cada pessoa (digite ou "Gerar PIN") e entregue
+   pessoalmente. O nome da pessoa fica gravado em tudo o que ela apontar.
 
 INSTALAR
 - Android (Chrome): menu ⋮ > "Instalar app" ou "Adicionar à tela inicial".
 - iPhone (Safari): Compartilhar > "Adicionar à Tela de Início".
 - Notebook (Chrome/Edge): ícone de instalar na barra de endereço.
-No 1º uso cada aparelho pede o nome e o PIN (equipe ou administrador).
+No 1º uso cada aparelho pede o PIN pessoal (o nome vem junto com o PIN).
 
 USO DIÁRIO
 - O botão ☁ (canto inferior direito) mostra a situação: azul = sincronizado, amarelo = enviando, vermelho = sem internet.
@@ -46,7 +47,8 @@ PROGRAMAÇÃO DIGITAL DOS CARTÕES (aba Programação)
 
 SEGURANÇA
 - PIN errado 10 vezes em 15 minutos bloqueia aquele acesso por 15 minutos.
-- Trocar PINs: ☁ > Administrador > Trocar PIN da equipe / do admin.
+- Cada pessoa troca o próprio PIN em ☁ > Trocar meu PIN.
+- Administrador: ☁ > Pessoas com acesso > novo PIN, mudar acesso ou remover a pessoa.
 - "Sair deste aparelho" apaga o PIN e os dados guardados naquele aparelho.
 
 NOVA REVISÃO DA BASE

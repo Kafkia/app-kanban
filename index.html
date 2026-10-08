@@ -3503,25 +3503,23 @@ async function askPin(msg){
   return new Promise(res => {
     const b = card(`${HEAD}
       <h2>Entrar</h2>
-      <p class="kb-sub">Acesso restrito: digite o <b>PIN</b> informado pelo coordenador do Kanban. Sem PIN, nenhum dado aparece.</p>
+      <p class="kb-sub">Acesso restrito às pessoas cadastradas. Digite o <b>seu PIN pessoal</b> — ele identifica você nos cartões e apontamentos.</p>
       ${msg ? `<p class="kb-err">${msg}</p>` : ""}
-      <label>Seu nome<input id="kb-nome" autocomplete="name" value="${escH(ST.nome)}" placeholder="Ex.: Kelvin – PCP"></label>
-      <label>PIN<input id="kb-pin" type="password" inputmode="numeric" autocomplete="off"></label>
+      <label>Seu PIN<input id="kb-pin" type="password" inputmode="numeric" autocomplete="off"></label>
       <p class="kb-msg" id="kb-msg"></p>
       <button class="kb-btn" id="kb-ok">Entrar</button>`);
     const go = async () => {
-      const pin = $("kb-pin").value.trim(), nome = $("kb-nome").value.trim();
-      if (!nome){ $("kb-msg").textContent = "Informe seu nome — ele aparece nos cartões e apontamentos."; $("kb-nome").focus(); return; }
+      const pin = $("kb-pin").value.trim();
       if (!pin){ $("kb-pin").focus(); return; }
       $("kb-msg").textContent = "Verificando…"; $("kb-ok").disabled = true;
       try{
-        const p = await rpc("kb_check_pin", { p_pin: pin });
-        if (p === "admin" || p === "equipe"){
-          ST.pin = pin; ST.nome = nome; ST.papel = p;
-          LS.set("kb-pin", pin); LS.set("kb-nome", nome); LS.set("kb-papel", p);
+        const r = await rpc("kb_login", { p_pin: pin });
+        if (r && (r.papel === "admin" || r.papel === "equipe")){
+          ST.pin = pin; ST.nome = r.nome; ST.papel = r.papel;
+          LS.set("kb-pin", pin); LS.set("kb-nome", r.nome); LS.set("kb-papel", r.papel);
           res(true);
         } else {
-          $("kb-msg").innerHTML = p === "bloqueado" ? '<b class="kb-err">Muitas tentativas erradas. Aguarde 15 minutos.</b>' : '<b class="kb-err">PIN incorreto.</b>';
+          $("kb-msg").innerHTML = r && r.erro === "bloqueado" ? '<b class="kb-err">Muitas tentativas erradas. Aguarde 15 minutos.</b>' : '<b class="kb-err">PIN não cadastrado.</b>';
           $("kb-ok").disabled = false;
         }
       }catch(e){
@@ -3530,33 +3528,33 @@ async function askPin(msg){
       }
     };
     $("kb-ok").onclick = go;
-    b.querySelectorAll("input").forEach(i => i.onkeydown = e => { if (e.key === "Enter") go(); });
-    setTimeout(() => (ST.nome ? $("kb-pin") : $("kb-nome")).focus(), 50);
+    $("kb-pin").onkeydown = e => { if (e.key === "Enter") go(); };
+    setTimeout(() => $("kb-pin").focus(), 50);
   });
 }
-/* primeira instalação: o código gerado pelo script SQL autoriza a definir os dois PINs */
+/* primeira instalação: o código gerado pelo script SQL autoriza criar o administrador */
 function askSetup(){
   return new Promise(res => {
     const b = card(`${HEAD}
       <h2>Primeira instalação</h2>
-      <p class="kb-sub">A base online ainda não tem PINs. Digite o <b>código de instalação</b> que apareceu no Supabase ao rodar o script e defina os dois PINs. Depois disso, o app só abre com PIN.</p>
-      <label>Seu nome<input id="kb-nome" autocomplete="name" value="${escH(ST.nome)}"></label>
+      <p class="kb-sub">Digite o <b>código de instalação</b> que apareceu no Supabase e crie o <b>seu PIN de administrador</b> (6 a 12 números). Depois, em ☁ › Pessoas com acesso, você cadastra o PIN de cada pessoa.</p>
+      <label>Seu nome<input id="kb-nome" autocomplete="name" value="${escH(ST.nome)}" placeholder="Ex.: João Bosco"></label>
       <label>Código de instalação<input id="kb-cod" autocomplete="off" spellcheck="false" style="text-transform:uppercase"></label>
-      <label>PIN do administrador (publica a base e troca PINs)<input id="kb-pa" type="password" inputmode="numeric" autocomplete="new-password"></label>
-      <label>PIN da equipe (PCP e chão de fábrica)<input id="kb-pe" type="password" inputmode="numeric" autocomplete="new-password"></label>
+      <label>Seu PIN (6 a 12 números)<input id="kb-p1" type="password" inputmode="numeric" autocomplete="new-password"></label>
+      <label>Repita o PIN<input id="kb-p2" type="password" inputmode="numeric" autocomplete="new-password"></label>
       <p class="kb-msg" id="kb-msg"></p>
-      <button class="kb-btn" id="kb-ok">Definir PINs e entrar</button>`);
+      <button class="kb-btn" id="kb-ok">Criar administrador e entrar</button>`);
     const go = async () => {
-      const nome = $("kb-nome").value.trim(), cod = $("kb-cod").value.trim().toUpperCase(), a = $("kb-pa").value.trim(), e = $("kb-pe").value.trim();
+      const nome = $("kb-nome").value.trim(), cod = $("kb-cod").value.trim().toUpperCase(), p = $("kb-p1").value.trim();
       const msg = t => { $("kb-msg").innerHTML = '<b class="kb-err">' + t + '</b>'; };
-      if (!nome) return msg("Informe seu nome.");
+      if (nome.length < 2) return msg("Informe seu nome.");
       if (!cod) return msg("Informe o código de instalação.");
-      if (a.length < 4 || e.length < 4) return msg("Os PINs precisam de pelo menos 4 caracteres.");
-      if (a === e) return msg("O PIN do administrador precisa ser diferente do PIN da equipe.");
+      if (!/^[0-9]{6,12}$/.test(p)) return msg("O PIN precisa ter de 6 a 12 números.");
+      if (p !== $("kb-p2").value.trim()) return msg("Os dois PINs não conferem.");
       $("kb-ok").disabled = true; $("kb-msg").textContent = "Gravando…";
       try{
-        const r = await rpc("kb_ativar_pins", { p_pin: cod, p_equipe: e, p_admin: a });
-        if (r && r.ok){ ST.pin = a; ST.nome = nome; ST.papel = "admin"; LS.set("kb-pin", a); LS.set("kb-nome", nome); LS.set("kb-papel", "admin"); res(true); return; }
+        const r = await rpc("kb_instalar", { p_codigo: cod, p_nome: nome, p_pin: p });
+        if (r && r.ok){ ST.pin = p; ST.nome = r.nome; ST.papel = "admin"; LS.set("kb-pin", p); LS.set("kb-nome", r.nome); LS.set("kb-papel", "admin"); res(true); return; }
         msg(r && r.erro === "bloqueado" ? "Muitas tentativas erradas. Aguarde 15 minutos." : r && r.erro === "pin" ? "Código de instalação incorreto." : "Não gravou: " + escH(r && r.erro));
       }catch(err){ msg("Sem conexão com a base online."); }
       $("kb-ok").disabled = false;
@@ -3602,7 +3600,7 @@ async function loadMaster(){
   if (ST.online){
     try{
       const r = await rpc("kb_master_rev", { p_pin: ST.pin });
-      if (r && r.erro === "pin"){ LS.del("kb-pin"); ST.pin = null; await askPin("O PIN mudou. Digite o PIN atual."); return loadMaster(); }
+      if (r && r.erro === "pin"){ LS.del("kb-pin"); ST.pin = null; await askPin("Seu PIN mudou ou o acesso foi retirado. Digite o PIN atual."); return loadMaster(); }
       if (r && r.erro === "bloqueado"){ if (cached) return cached; card(`${HEAD}<p class="kb-err">Acesso bloqueado por 15 minutos (tentativas demais).</p>`); return null; }
       if (r && r.vazio){
         if (ST.papel === "admin"){ pubForm(false); return null; }
@@ -3697,20 +3695,20 @@ async function syncNow(){
     while (ST.out.length){
       const lote = ST.out.slice(0, 200);
       const r = await rpc("kb_push", { p_pin: ST.pin, p_ops: lote, p_user: quem() });
-      if (r && r.erro){ ST.erro = r.erro; if (r.erro === "pin"){ ST.syncing = false; LS.del("kb-pin"); ST.pin = null; await askPin("O PIN mudou. Digite o PIN atual."); hideGate(); badge(); return syncNow(); } break; }
+      if (r && r.erro){ ST.erro = r.erro; if (r.erro === "pin"){ ST.syncing = false; LS.del("kb-pin"); ST.pin = null; await askPin("Seu PIN mudou ou o acesso foi retirado. Digite o PIN atual."); hideGate(); badge(); return syncNow(); } break; }
       ST.out.splice(0, lote.length); persist();
     }
     const r = await rpc("kb_pull", { p_pin: ST.pin, p_since: ST.since || null });
     if (r && r.erro){ ST.erro = r.erro;
       if (r.erro === "pin"){ ST.syncing = false; LS.del("kb-pin"); ST.pin = null;
-        await askPin("O PIN mudou. Digite o PIN atual."); hideGate(); badge(); return syncNow(); } }
+        await askPin("Seu PIN mudou ou o acesso foi retirado. Digite o PIN atual."); hideGate(); badge(); return syncNow(); } }
     else if (r){
       const pend = new Set(ST.out.map(o => o.path));
       for (const d of r.docs || []){
         if (pend.has(d.p)) continue;                      // alteração local ainda não enviada: vale a local
         ST.docs[d.p] = { d: d.d, x: d.x, t: d.t }; notify(d.p);
       }
-      ST.since = r.agora; if (r.papel && r.papel !== ST.papel){ ST.papel = r.papel; LS.set("kb-papel", r.papel); }
+      ST.since = r.agora; if (r.papel && r.papel !== ST.papel){ ST.papel = r.papel; LS.set("kb-papel", r.papel); } if (r.nome && r.nome !== ST.nome){ ST.nome = r.nome; LS.set("kb-nome", r.nome); }
       persist(); ST.last = new Date(); ST.online = true;
       bkAuto();
     }
@@ -3773,7 +3771,8 @@ function panel(){
       <div class="kb-row"><button class="kb-btn alt" id="kb-bk">${ST.bkDir ? "Trocar pasta" : "Escolher pasta"}</button>${ST.bkDir ? '<button class="kb-btn alt" id="kb-bkn">Gravar agora</button>' : ""}</div><p class="kb-sub">${escH(ST.bkMsg || (ST.bkDir ? "Pasta: " + ST.bkDir.name : ""))}</p>` : ""}
     ${adm ? `<h3>Administrador</h3>
       <div class="kb-row"><button class="kb-btn alt" id="kb-pub2">Publicar nova base (.json)</button></div>
-      <div class="kb-row"><button class="kb-btn alt" id="kb-pe">Trocar PIN da equipe</button><button class="kb-btn alt" id="kb-pa">Trocar PIN do admin</button></div>` : ""}
+      <div class="kb-row"><button class="kb-btn alt" id="kb-us">Pessoas com acesso (PINs)</button></div>` : ""}
+    <div class="kb-row"><button class="kb-btn alt" id="kb-mp">Trocar meu PIN</button></div>
     <div class="kb-row"><button class="kb-btn alt" id="kb-out">Sair deste aparelho</button></div>
     <p class="kb-msg" id="kb-msg"></p>`);
   $("kb-x").onclick = hideGate;
@@ -3785,13 +3784,63 @@ function panel(){
   if ($("kb-bk")) $("kb-bk").onclick = async () => { try{ const d = await window.showDirectoryPicker({ id: "bkkanban", mode: "readwrite" }); ST.bkDir = d; await kvSet("bkdir", d); await bkWrite(); panel(); }catch(e){} };
   if ($("kb-bkn")) $("kb-bkn").onclick = async () => { const p = await ST.bkDir.requestPermission({ mode: "readwrite" }); if (p === "granted") await bkWrite(); panel(); };
   if ($("kb-pub2")) $("kb-pub2").onclick = () => pubForm(true);
-  if ($("kb-pe")) $("kb-pe").onclick = () => pinForm("equipe");
-  if ($("kb-pa")) $("kb-pa").onclick = () => pinForm("admin");
+  if ($("kb-us")) $("kb-us").onclick = usersPanel;
+  $("kb-mp").onclick = meuPin;
 }
-function pinForm(qual){
+/* ---------------- pessoas com acesso (só administrador) ---------------- */
+const SUGERIDOS = ["Rafael Kandi", "Kelvin Troes", "Cristiano Silva", "Alex Bertino"];
+const pinRand = () => { const a = new Uint32Array(1); crypto.getRandomValues(a); return String(100000 + a[0] % 900000); };
+const errTxt = e => ({ novo: "PIN inválido: use de 6 a 12 números.", repetido: "Esse PIN já é de outra pessoa — escolha outro.", nome: "Informe o nome.", proprio: "Você não pode tirar o próprio acesso de administrador.", admin: "Só o administrador faz isso.", pin: "Seu PIN não vale mais — entre de novo.", bloqueado: "Muitas tentativas erradas. Aguarde 15 minutos." })[e] || ("Não gravou: " + escH(e));
+async function usersPanel(msg){
+  card(`${HEAD}<h2>Pessoas com acesso</h2><p class="kb-sub">Carregando…</p>`);
+  let lista = [];
+  try{ const r = await rpc("kb_usuarios_listar", { p_pin: ST.pin }); if (r && r.erro){ card(`${HEAD}<p class="kb-err">${errTxt(r.erro)}</p><div class="kb-row"><button class="kb-btn alt" id="kb-back">Voltar</button></div>`); $("kb-back").onclick = panel; return; } lista = r.usuarios || []; }
+  catch(e){ card(`${HEAD}<p class="kb-err">Sem conexão com a base online.</p><div class="kb-row"><button class="kb-btn alt" id="kb-back">Voltar</button></div>`); $("kb-back").onclick = panel; return; }
+  const tem = new Set(lista.map(u => u.nome));
+  const falta = SUGERIDOS.filter(n => !tem.has(n));
   card(`${HEAD}
-    <h2>Trocar PIN ${qual === "admin" ? "do administrador" : "da equipe"}</h2>
-    <p class="kb-sub">${qual === "admin" ? "Use um PIN que só você conheça." : "Depois da troca, todos os aparelhos da equipe vão pedir o PIN novo."} Mínimo 4 caracteres.</p>
+    <h2>Pessoas com acesso</h2>
+    <p class="kb-sub">Só quem está nesta lista abre o app. Cada pessoa tem o próprio PIN (6 a 12 números) e o nome dela fica gravado no que apontar.</p>
+    ${msg ? `<p class="kb-msg"><b>${escH(msg)}</b></p>` : ""}
+    ${lista.map(u => `<div class="kb-kv"><span>${escH(u.nome)}${u.nome === ST.nome ? " (você)" : ""}</span><b>${u.papel === "admin" ? "administrador" : "equipe"}
+      <button class="kb-btn alt" style="padding:2px 8px;margin-left:6px" data-ed="${escH(u.nome)}" data-pp="${u.papel}">PIN</button>
+      ${u.nome !== ST.nome ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-rm="${escH(u.nome)}">Remover</button>` : ""}</b></div>`).join("")}
+    <h3>Cadastrar ou trocar PIN</h3>
+    ${falta.length ? `<div class="kb-row">${falta.map(n => `<button class="kb-btn alt" style="padding:4px 10px" data-sg="${escH(n)}">+ ${escH(n)}</button>`).join("")}</div>` : ""}
+    <label>Nome<input id="kb-un" autocomplete="off" placeholder="Nome e sobrenome"></label>
+    <label>PIN (6 a 12 números)<input id="kb-up" inputmode="numeric" autocomplete="off" placeholder="digite ou clique em Gerar"></label>
+    <label>Acesso<select id="kb-ur"><option value="equipe">Equipe — aponta estoque, programa e conclui cartões</option><option value="admin">Administrador — também publica base e gerencia PINs</option></select></label>
+    <div class="kb-row"><button class="kb-btn alt" id="kb-ug">Gerar PIN</button><button class="kb-btn" id="kb-us2">Salvar</button><button class="kb-btn alt" id="kb-back">Voltar</button></div>
+    <p class="kb-msg" id="kb-msg"></p>
+    <p class="kb-sub">Anote o PIN e entregue pessoalmente. Depois de salvo, ele não aparece mais — se a pessoa esquecer, gere outro.</p>`);
+  $("kb-back").onclick = panel;
+  document.querySelectorAll("[data-sg]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.sg; $("kb-ur").value = "equipe"; $("kb-up").focus(); });
+  document.querySelectorAll("[data-ed]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.ed; $("kb-ur").value = b.dataset.pp; $("kb-up").value = ""; $("kb-up").focus(); });
+  $("kb-ug").onclick = () => { $("kb-up").value = pinRand(); };
+  const rmArm = {};
+  document.querySelectorAll("[data-rm]").forEach(b => b.onclick = async () => {
+    const n = b.dataset.rm;
+    if (!rmArm[n]){ rmArm[n] = true; b.textContent = "Confirmar remoção"; return; }
+    try{ const r = await rpc("kb_usuario_remover", { p_pin: ST.pin, p_nome: n }); if (r && r.erro){ $("kb-msg").innerHTML = '<b class="kb-err">' + errTxt(r.erro) + '</b>'; return; } usersPanel(n + " não tem mais acesso."); }
+    catch(e){ $("kb-msg").innerHTML = '<b class="kb-err">Sem conexão com a base online.</b>'; }
+  });
+  $("kb-us2").onclick = async () => {
+    const nome = $("kb-un").value.trim(), pin = $("kb-up").value.trim(), papel = $("kb-ur").value;
+    const m = t => { $("kb-msg").innerHTML = '<b class="kb-err">' + t + '</b>'; };
+    if (nome.length < 2) return m("Informe o nome.");
+    if (!/^[0-9]{6,12}$/.test(pin)) return m("PIN inválido: use de 6 a 12 números.");
+    $("kb-us2").disabled = true;
+    try{ const r = await rpc("kb_usuario_salvar", { p_pin: ST.pin, p_nome: nome, p_novo: pin, p_papel: papel });
+      if (r && r.ok){ if (nome === ST.nome){ ST.pin = pin; LS.set("kb-pin", pin); } usersPanel(nome + ": PIN salvo."); return; }
+      m(errTxt(r && r.erro)); }
+    catch(e){ m("Sem conexão com a base online."); }
+    $("kb-us2").disabled = false;
+  };
+}
+function meuPin(){
+  card(`${HEAD}
+    <h2>Trocar meu PIN</h2>
+    <p class="kb-sub">${escH(ST.nome)} — novo PIN com 6 a 12 números. Vale para todos os seus aparelhos.</p>
     <label>Novo PIN<input id="kb-n1" type="password" inputmode="numeric" autocomplete="new-password"></label>
     <label>Repita o novo PIN<input id="kb-n2" type="password" inputmode="numeric" autocomplete="new-password"></label>
     <p class="kb-msg" id="kb-msg"></p>
@@ -3799,12 +3848,12 @@ function pinForm(qual){
   $("kb-back").onclick = panel;
   $("kb-go").onclick = async () => {
     const v = $("kb-n1").value.trim(), m = t => { $("kb-msg").innerHTML = '<b class="kb-err">' + t + '</b>'; };
-    if (v.length < 4) return m("Mínimo 4 caracteres.");
+    if (!/^[0-9]{6,12}$/.test(v)) return m("Use de 6 a 12 números.");
     if (v !== $("kb-n2").value.trim()) return m("Os dois campos não conferem.");
     $("kb-go").disabled = true;
-    try{ const r = await rpc("kb_set_pin", { p_pin: ST.pin, p_qual: qual, p_novo: v });
-      if (r && r.ok){ if (qual === "admin"){ ST.pin = v; LS.set("kb-pin", v); } $("kb-msg").textContent = "PIN trocado. Avise quem usa o app."; setTimeout(panel, 1200); return; }
-      m(r && r.erro === "novo" ? "PIN inválido (mínimo 4 caracteres e diferente do outro PIN)." : "Não trocou: " + escH(r && r.erro)); }
+    try{ const r = await rpc("kb_meu_pin", { p_pin: ST.pin, p_novo: v });
+      if (r && r.ok){ ST.pin = v; LS.set("kb-pin", v); $("kb-msg").textContent = "PIN trocado."; setTimeout(panel, 1000); return; }
+      m(errTxt(r && r.erro)); }
     catch(e){ m("Sem conexão com a base online."); }
     $("kb-go").disabled = false;
   };
