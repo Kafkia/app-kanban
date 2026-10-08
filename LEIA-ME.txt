@@ -1,0 +1,56 @@
+APP KANBAN AEMCO – versão instalável (PWA) – Rev08
+=====================================================
+
+O QUE É
+- O mesmo app de operação do Kanban (Visão geral, Quadros, Programação digital dos cartões por
+  processo P1 a P8, Ordem de produção, Cartões, Kanban PA e Usinados, CD e Fábrica em 3D),
+  instalável no celular e no notebook.
+- Todos usam a mesma base online: estoque apontado, ordens e parâmetros aparecem para a equipe inteira.
+- ACESSO SÓ COM PIN: sem PIN válido nenhum dado aparece.
+- SEM dados da AEMCO neste site: itens, faixas e estoques só descem da base online depois do PIN.
+
+PUBLICAR NO GITHUB PAGES (repositório app-kanban)
+1. Crie o repositório "app-kanban" (público) na conta Kafkia.
+2. "uploading an existing file" > arraste TUDO desta pasta (index.html, sw.js, manifest.webmanifest,
+   LEIA-ME.txt e a pasta icons) > Commit changes.
+3. Settings > Pages > Branch: main / (root) > Save.  Link: https://kafkia.github.io/app-kanban/
+
+BASE ONLINE (uma vez só)
+1. Supabase (mesmo projeto do 5S) > SQL Editor > cole o arquivo supabase_kanban.sql > Run.
+   No resultado aparece o CÓDIGO DE INSTALAÇÃO (8 caracteres). Anote.
+2. Abra o app > tela "Primeira instalação" > seu nome + código de instalação +
+   PIN do administrador + PIN da equipe (diferentes, mínimo 4 caracteres).
+   O código deixa de valer assim que os PINs são gravados.
+3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev08.json
+   (fica na pasta Aretia > 03 - Kanban — NÃO suba esse arquivo no GitHub) > Publicar para todos.
+4. Passe o PIN da equipe só para quem opera o Kanban (PCP, líderes, almoxarifado).
+
+INSTALAR
+- Android (Chrome): menu ⋮ > "Instalar app" ou "Adicionar à tela inicial".
+- iPhone (Safari): Compartilhar > "Adicionar à Tela de Início".
+- Notebook (Chrome/Edge): ícone de instalar na barra de endereço.
+No 1º uso cada aparelho pede o nome e o PIN (equipe ou administrador).
+
+USO DIÁRIO
+- O botão ☁ (canto inferior direito) mostra a situação: azul = sincronizado, amarelo = enviando, vermelho = sem internet.
+- Sem internet o app continua funcionando; o que for apontado sobe sozinho quando a conexão voltar.
+- Backup: no notebook, ☁ > Backup no OneDrive > escolha OneDrive > Aretia > 03 - Kanban.
+
+PROGRAMAÇÃO DIGITAL DOS CARTÕES (aba Programação)
+- Escolha o processo (P1 a P8). A fila mostra os cartões liberados pelo consumo.
+- Programe por dia (manual ou "Programar fila automaticamente"), respeitando a capacidade
+  do processo (TC, setup, horas/dia, postos — editáveis e salvos para todos).
+- Chão de fábrica: Iniciar e Concluir. Na última etapa da rota, Concluir dá entrada no
+  supermercado; nas intermediárias (ex.: Pintura) o cartão segue para a fila do processo seguinte.
+- Exporta para Excel (CSV) e PDF (Imprimir).
+
+SEGURANÇA
+- PIN errado 10 vezes em 15 minutos bloqueia aquele acesso por 15 minutos.
+- Trocar PINs: ☁ > Administrador > Trocar PIN da equipe / do admin.
+- "Sair deste aparelho" apaga o PIN e os dados guardados naquele aparelho.
+
+NOVA REVISÃO DA BASE
+- Quando houver uma base nova (base_kanban_RevXX.json), o admin abre ☁ > "Publicar nova base".
+  Todos os aparelhos recebem o aviso "Nova base publicada" e recarregam.
+
+Fonte: Lean Way Consulting.
