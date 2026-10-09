@@ -1189,7 +1189,7 @@ aside.side nav button .ic{width:18px;text-align:center;font-size:14px;opacity:.9
 aside.side nav button .cnt{margin-left:auto;font:600 11px var(--mono);background:rgba(255,255,255,.16);border-radius:9px;padding:1px 7px}
 .sidefoot{margin-top:auto;padding:12px 14px;border-top:1px solid rgba(255,255,255,.14);font-size:11.5px;opacity:.72;display:flex;flex-direction:column;gap:5px}
 main.mainarea{min-width:0;display:flex;flex-direction:column}
-header.bar{position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--line);padding:10px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header.bar{height:auto;overflow:visible;border-radius:0;position:sticky;top:0;z-index:5;background:var(--panel);border-bottom:1px solid var(--line);padding:10px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 header.bar h1{font:600 20px var(--display);letter-spacing:.03em;margin:0}
 header.bar .crumb{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 header.bar .spacer{flex:1}
@@ -1206,6 +1206,65 @@ header.bar .spacer{flex:1}
   .content{padding:16px}
 }
 section.pane{padding-top:4px}
+/* ---------- Painel executivo ---------- */
+.ovhero{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-left:5px solid var(--gold)}
+.ovhero h2{font-size:26px}
+.ovgeral{display:flex;align-items:center;gap:10px}
+.ovgeral span{font:700 48px/1 var(--display)}
+.ovgeral small{font-size:12.5px;color:var(--muted);line-height:1.25}
+.ovflag{font:700 14px var(--body);letter-spacing:.04em;text-transform:uppercase}
+.ovrow{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ovnums{display:flex;flex-direction:column;gap:10px;flex:1;min-width:200px;font-size:15px}
+.ovnums small{display:block;color:var(--muted);font-size:12.5px;margin-left:18px}
+.ovdot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:7px;vertical-align:-1px}
+.ovsem{display:flex;flex-direction:column;gap:6px}
+.ovsemh{display:flex;justify-content:space-between;align-items:baseline;font-size:14px}
+.ovstack{display:flex;height:34px;border-radius:6px;overflow:hidden;gap:2px;background:var(--panel)}
+.ovstack span{display:flex;align-items:center;justify-content:center;color:#fff;font:700 13px var(--mono);min-width:3px;cursor:default}
+.ovstack span[style*="--ky"],.ovstack span[style*="--empty"]{color:#15223B}
+.ovleg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted)}
+.ovleg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.ovleg b{color:var(--ink)}
+.ovbar,.ovitem{display:flex;flex-direction:column;gap:4px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.ovbl{display:flex;justify-content:space-between;gap:10px;font-size:14px;flex-wrap:wrap}
+.ovbl span{color:var(--muted);font-size:13px}
+.ovbl span b{color:var(--ink)}
+.ovtrack{display:flex;height:14px;border-radius:4px;overflow:hidden;gap:2px;background:var(--panel)}
+.ovtrack i{display:block;height:100%}
+.ovdesc{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+details.ovdet summary{cursor:pointer;list-style:none;font-size:15px}
+details.ovdet summary::before{content:"▸ ";color:var(--gold)}
+details.ovdet[open] summary::before{content:"▾ "}
+/* ---------- navegação no celular: barra inferior fixa + título destacado ---------- */
+.mnav{display:none}
+.mback{display:none}
+@media (max-width:900px){
+  header.bar{padding:8px 12px;gap:10px;box-shadow:0 2px 8px rgba(10,20,40,.08);height:auto;overflow:visible;flex-wrap:nowrap;border-radius:0;background:var(--panel)}
+  header.bar>div:not(.spacer){flex:1;min-width:0}
+  header.bar h1{font-size:19px!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  header.bar .spacer{display:none}
+  header.bar .chip,header.bar .leanai{display:none}
+  header.bar h1{font-size:21px;line-height:1.1}
+  header.bar .crumb{font-size:11px}
+  .mtoggle{display:flex;align-items:center;gap:6px;font:600 14px var(--body);padding:7px 11px;border-radius:8px;background:var(--panel2);border-color:transparent}
+  .mtoggle::after{content:"Menu"}
+  .content{padding:14px 12px calc(92px + env(safe-area-inset-bottom,0px))}
+  .mnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--navy);padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 16px rgba(0,0,0,.18)}
+  .mnav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:transparent;border:0;color:#fff;opacity:.7;font:600 11px var(--body);padding:6px 2px;border-radius:8px;border-top:3px solid transparent;cursor:pointer;min-height:54px}
+  .mnav button .ic{font-size:19px;line-height:1}
+  .mnav button[aria-current="page"]{opacity:1;background:rgba(255,255,255,.14);border-top-color:var(--gold)}
+  .mback{display:block;position:fixed;inset:0;background:rgba(10,20,40,.45);z-index:19}
+  .mback[hidden]{display:none}
+  aside.side{width:min(82vw,300px);left:0!important;transform:translateX(-110%);transition:transform .2s}
+  aside.side.open{transform:none}
+  aside.side nav button{padding:12px 12px;font-size:15px}
+  #kb-fab{bottom:calc(76px + env(safe-area-inset-bottom,0px))!important}
+  #kb-new{bottom:140px!important}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .ovhero h2{font-size:22px}
+  .ovgeral span{font-size:40px}
+}
+
 
 .brandlogos{display:flex;gap:6px;margin-bottom:8px}
 .brandlogos img{height:22px;background:#fff;border-radius:4px;padding:3px 6px}
@@ -1398,6 +1457,8 @@ label.chk input{width:16px;height:16px;min-width:16px}
 </div>
 </main>
 </div>
+<nav class="mnav" id="mnav" aria-label="Navegação principal"></nav>
+<div class="mback" id="mback" hidden></div>
 <div class="tvwrap" id="tv" hidden></div>
 <div class="toast" id="toast" hidden></div>
 
@@ -1677,58 +1738,125 @@ function excPanel7(lab,L,unid,cd){
    <p class="note">O kanban não repõe o que está acima do máximo: essas peças saem pelo consumo e não voltam.${cd?' “Já vendido” = parte do excesso coberta pela carteira em aberto de 01/10/2026 — sai com os pedidos e não precisa ser retirada.':''}</p></div>`;
 }
 
+/* ---------- Painel executivo (Rev08b): leitura direta, sem jargão ---------- */
+const OVC={g:'var(--kg)',y:'var(--ky)',r:'var(--kr)',b:'var(--kb)',n:'var(--empty)'};
+function saude(p){ return p>=80?{c:OVC.g,t:'Saudável',ic:'●'}:(p>=50?{c:OVC.y,t:'Atenção',ic:'▲'}:{c:OVC.r,t:'Crítico',ic:'■'}); }
+function donut(p,cor,lab){
+  const r=54, C=2*Math.PI*r, v=Math.max(0,Math.min(100,p));
+  return `<svg viewBox="0 0 140 140" width="132" height="132" role="img" aria-label="${esc(lab)}: ${f0(v)}% abastecido" style="flex:none">
+   <circle cx="70" cy="70" r="${r}" fill="none" stroke="var(--panel2)" stroke-width="16"/>
+   <circle cx="70" cy="70" r="${r}" fill="none" stroke="${cor}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${(C*v/100).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 70 70)"/>
+   <text x="70" y="70" text-anchor="middle" font-family="var(--display)" font-size="34" font-weight="700" fill="var(--ink)">${f0(v)}%</text>
+   <text x="70" y="90" text-anchor="middle" font-size="12" fill="var(--muted)">abastecido</text></svg>`;
+}
+function saudeCard(titulo,sub,T,nVerm,unid){
+  const p=T.alvo?T.util/T.alvo*100:0, s=saude(p);
+  const frase=p>=80?'O supermercado está bem abastecido.':(p>=50?'Parte importante do supermercado ainda precisa ser fabricada.':'Menos da metade do supermercado está abastecida — prioridade alta.');
+  return `<div class="panel ovcard" style="border-top:5px solid ${s.c}">
+   <div class="head"><h3>${titulo}</h3><span class="ovflag" style="color:${s.c}">${s.ic} ${s.t}</span></div>
+   <div class="ovrow">${donut(p,s.c,titulo)}
+    <div class="ovnums">
+     <div><span class="ovdot" style="background:${OVC.g}"></span><b>${f0(T.util)} pç</b> abastecidas <small>de ${f0(T.alvo)} pç que o supermercado deve ter</small></div>
+     <div><span class="ovdot" style="background:${OVC.r}"></span><b>${f0(T.falta)} pç</b> faltam fabricar <small>${f0(nVerm)} ${unid} na faixa vermelha</small></div>
+     <div><span class="ovdot" style="background:${OVC.b}"></span><b>${f0(T.exc)} pç</b> sobrando acima do máximo <small>${pctE(T.exc,T.est)} do estoque atual${T.vend?` · ${f0(T.vend)} pç já vendidas`:''}</small></div>
+    </div></div>
+   <p class="note">${sub} ${frase}</p></div>`;
+}
+const ST_INFO=[["Vermelho","r","■","Vermelha","risco de faltar — produzir já"],["Amarelo","y","▲","Amarela","programar a reposição"],["Verde","g","●","Verde","abastecido — não fazer nada"],["Acima do máx","b","◆","Acima do máximo","sobrando — não produzir"],["sem dado","n","○","Sem estoque apontado","conferir no inventário"]];
+function semaforo(lab,c){
+  const tot=ST_INFO.reduce((t,x)=>t+(c[x[0]]||0),0)||1;
+  return `<div class="ovsem"><div class="ovsemh"><b>${lab}</b><span class="note">${f0(tot)} itens</span></div>
+   <div class="ovstack" role="img" aria-label="${esc(lab)}: ${ST_INFO.map(x=>x[3]+' '+(c[x[0]]||0)).join(', ')}">
+    ${ST_INFO.map(x=>{ const n=c[x[0]]||0; if(!n) return ''; const w=n/tot*100;
+      return `<span style="flex:${n};background:${OVC[x[1]]}" title="${x[3]}: ${f0(n)} itens (${f0(w)}%) — ${x[4]}">${w>=7?f0(n):''}</span>`; }).join('')}
+   </div><div class="note">${ST_INFO.map(x=>`${x[2]} ${f0(c[x[0]]||0)} ${x[3].toLowerCase()}`).join(' · ')}</div></div>`;
+}
+function semLegend(){
+  return `<div class="ovleg">${ST_INFO.map(x=>`<span><i style="background:${OVC[x[1]]}"></i><b>${x[2]} ${x[3]}</b> — ${x[4]}</span>`).join('')}</div>`;
+}
+function famBars(lab,L,dica){
+  const R=L.filter(o=>o.alvo>0).sort((a,b)=>b.falta-a.falta);
+  const mx=Math.max(1,...R.map(o=>o.alvo));
+  return `<div class="panel"><div class="head"><h3>${lab}</h3><span class="note">faltam ${f0(R.reduce((s,o)=>s+o.falta,0))} pç</span></div>
+   ${R.map(o=>{ const p=o.alvo?o.util/o.alvo*100:0;
+     return `<div class="ovbar" title="${esc(o.fam)} — deve ter ${f0(o.alvo)} pç · tem ${f0(o.util)} pç na faixa · faltam ${f0(o.falta)} pç">
+      <div class="ovbl"><b>${esc(o.fam)}</b><span>${o.falta>0?`faltam <b>${f0(o.falta)}</b> pç`:'<b style="color:var(--kg)">completo</b>'} · ${f0(p)}% abastecido</span></div>
+      <div class="ovtrack" style="width:${Math.max(6,o.alvo/mx*100).toFixed(1)}%"><i style="width:${p.toFixed(1)}%;background:${OVC.g}"></i><i style="width:${(100-p).toFixed(1)}%;background:${OVC.r}"></i></div></div>`; }).join('')}
+   <div class="ovleg"><span><i style="background:${OVC.g}"></i>abastecido</span><span><i style="background:${OVC.r}"></i>falta fabricar</span><span class="note">${dica}</span></div></div>`;
+}
+function excBars(lab,L,cd){
+  const R=L.filter(o=>o.exc>0).sort((a,b)=>b.exc-a.exc);
+  if(!R.length) return `<div class="panel"><h3>${lab}</h3><p class="note">Nada acima do máximo.</p></div>`;
+  const mx=Math.max(1,...R.map(o=>o.exc)), tot=R.reduce((s,o)=>s+o.exc,0), vend=R.reduce((s,o)=>s+o.vend,0);
+  return `<div class="panel"><div class="head"><h3>${lab}</h3><span class="note">${f0(tot)} pç sobrando${cd?` · ${f0(vend)} já vendidas`:''}</span></div>
+   ${R.map(o=>{ const w=o.exc/mx*100, v=cd?Math.min(o.vend,o.exc):0;
+     return `<div class="ovbar" title="${esc(o.fam)} — ${f0(o.exc)} pç acima do máximo (${pctE(o.exc,o.est)} do estoque)${cd?` · ${f0(v)} pç já vendidas na carteira`:''}">
+      <div class="ovbl"><b>${esc(o.fam)}</b><span><b>${f0(o.exc)}</b> pç · ${pctE(o.exc,o.est)} do estoque${cd&&v?` · ${f0(v)} vendidas`:''}</span></div>
+      <div class="ovtrack" style="width:${Math.max(4,w).toFixed(1)}%">${cd&&v?`<i style="width:${(v/o.exc*100).toFixed(1)}%;background:var(--kb-soft);box-shadow:inset 0 0 0 2px ${OVC.b}"></i>`:''}<i style="flex:1;background:${OVC.b}"></i></div></div>`; }).join('')}
+   <div class="ovleg"><span><i style="background:${OVC.b}"></i>acima do máximo — sai com o consumo, não repor</span>${cd?`<span><i style="background:var(--kb-soft);box-shadow:inset 0 0 0 2px ${OVC.b}"></i>já vendido (carteira em aberto)</span>`:''}</div></div>`;
+}
+function riscoList(lab,rows){
+  const L=rows.filter(r=>r.st==="Vermelho"&&r.M>0).map(r=>({r,f:Math.max(0,r.M-estReal(r))})).sort((a,b)=>b.f-a.f).slice(0,8);
+  return `<div class="panel"><div class="head"><h3>${lab}</h3><span class="note">maior falta primeiro</span></div>
+   ${L.length?L.map(({r,f})=>{ const e=estReal(r), p=r.M?Math.min(100,e/r.M*100):0;
+     return `<div class="ovitem"><div class="ovbl"><b>${esc(r.cod)}</b><span>faltam <b>${f0(f)}</b> pç</span></div>
+      <div class="note ovdesc">${esc(String(r.desc).slice(0,70))}</div>
+      <div class="ovtrack" style="width:100%;height:10px" title="tem ${f0(e)} de ${f0(r.M)} pç"><i style="width:${p.toFixed(1)}%;background:${OVC.r}"></i><i style="flex:1;background:var(--panel2)"></i></div></div>`; }).join('')
+     :'<p class="note">Nenhum item na faixa vermelha.</p>'}</div>`;
+}
 function renderOV(){
-  const PA=calcPA(), US=calcUS(), cu=capUsinagem();
+  const PA=calcPA(), US=calcUS();
   const tP=aggPA(PA), tU=aggUS(US.filter(r=>r.manter));
   const cP=countSt(PA), cU=countSt(US.filter(r=>r.manter));
   const sts=["Vermelho","Amarelo","Verde","Acima do máx","sem dado"];
-  const open=ORD.filter(o=>o.status!=="concluída").length;
-  const moved=DATA.slots.filter(s=>s[8]&&s[8]!==s[7]).length, freed=DATA.rel.length;
   const kP=PA.filter(r=>r.cls!=="MTO"), kU=US.filter(r=>r.manter&&r.cls!=="MTO");
-  const rP=prontAgg(kP), rU=prontAgg(kU), gP=prontBy(kP,'fam'), gU=prontBy(kU,'grp');
-  const rM=prontAgg(kP.filter(r=>r.cls==="MTS"));
-  const fP=famAgg(PA,'fam'), fU=famAgg(US.filter(r=>r.manter||estReal(r)>0),'grp');
+  const fP=famAgg(PA,'fam');
   const uFora=US.filter(r=>!(r.manter&&r.cls!=="MTO")).map(r=>Object.assign({},r,{M:0}));
-  const fU2=famAgg(US.filter(r=>r.manter&&r.cls!=="MTO").concat(uFora),'grp');
+  const fU2=famAgg(kU.concat(uFora),'grp');
+  const geral=(fP.T.util+fU2.T.util)/Math.max(1,fP.T.alvo+fU2.T.alvo)*100;
   document.getElementById('p-ov').innerHTML=`
-  ${kpiStrip(fP.T,fU2.T)}
-  <div class="panel" style="border-left:5px solid var(--gold)"><p><b>Gargalo da usinagem: ${cu.garg?esc(cu.garg.g+' — '+cu.garg.d):'—'}</b> · ${cu.garg?f0(cu.garg.oc*100):'—'}% de ocupação · EPEI ${f2(cu.ep)} dias · lote mínimo ${f0(lotminUS())} pç.</p></div>
+  <div class="panel ovhero"><div><h2>Como estão os supermercados hoje</h2>
+    <p class="note">Posição de estoque de <b>${esc(DATA.dataest)}</b> ou o último apontamento feito pelo app. <b style="color:var(--kg)">Verde</b> = abastecido · <b style="color:var(--kr)">vermelho</b> = falta fabricar · <b style="color:var(--kb)">azul</b> = sobrando acima do máximo.</p></div>
+   <div class="ovgeral"><span style="color:${saude(geral).c}">${f0(geral)}%</span><small>abastecido no total<br>(CD + Usinados)</small></div></div>
   <div class="grid2">
-   ${statBlock(tP,"Supermercado CD · PA","LT 0,5 d · todas as famílias","cartões",`${tP.mts} SKUs MTS (Make to Stock) + ${tP.n-tP.mts} ponto de pedido (comprados) · cardans, tubos e proteções sob pedido · ${f0(tP.pos)} posições de porta-paletes (V ${f0(tP.pv)} · A ${f0(tP.pa)} · R ${f0(tP.pr)}).`)}
-   ${statBlock(tU,"Supermercado Usinados · AUS","LT 0,5 d · semiacabados nível 1–2","cartões",`${tU.mts} SKUs MTS + ${tU.n-tU.mts} ponto de pedido · ${f0(tU.um)} cartões em ${f0(tU.can)} canais. Fica no supermercado quem é componente comum (2+ pais), vendido direto, a estrutura filha do cardan e o que o Kandi anotou para manter; tubos e proteções vão sob pedido — o resto por FIFO.`)}
+   ${saudeCard("Supermercado do CD · produto acabado","Produtos prontos para expedir.",fP.T,cP["Vermelho"]||0,"itens")}
+   ${saudeCard("Supermercado de Usinados · AUS","Peças usinadas que abastecem a montagem.",fU2.T,cU["Vermelho"]||0,"itens")}
+  </div>
+  <div class="panel"><div class="head"><h3>Semáforo dos itens</h3><span class="note">quantos itens estão em cada faixa</span></div>
+   ${semaforo("CD · produto acabado",cP)}${semaforo("Usinados · AUS",cU)}${semLegend()}</div>
+  <div class="grid2">
+   ${famBars("Onde falta fabricar · CD",fP.L,"barra maior = família com mais peças no supermercado")}
+   ${famBars("Onde falta fabricar · Usinados",fU2.L,"barra maior = grupo com mais peças no supermercado")}
   </div>
   <div class="grid2">
-   ${prontPanel("Prontidão do supermercado do CD",rP,"produto acabado",`Inclui os ${f0(rP.n-rM.n)} itens comprados revendidos (ponto de pedido); só os ${f0(rM.n)} MTS: ${f0(rM.pron)}% pronto, faltam ${f0(rM.falta)} pç e ${f0(rM.exc)} pç acima do máximo.`)}
-   ${prontPanel("Prontidão do supermercado de Usinados",rU,"semiacabados")}
+   ${excBars("Onde está sobrando · CD",fP.L,true)}
+   ${excBars("Onde está sobrando · Usinados",fU2.L,false)}
   </div>
-  ${famChart("Lacuna por família — CD",fP.L,"SKUs")}
-  ${famChart("Lacuna por grupo — Usinados",fU2.L,"SKUs")}
-  ${excPanel7("Acima do máximo — o que retirar do CD",fP.L,"SKUs",true)}
-  ${excPanel7("Acima do máximo — o que retirar dos Usinados",fU2.L,"SKUs",false)}
-  <div class="grid3">
-   <div class="panel"><h3>Status do estoque · PA</h3>${sts.map(s=>`<div class="prow">${spill(s)}<b style="font-family:var(--mono)">${f0(cP[s]||0)}</b></div>`).join('')}<p class="note">Estoque do PA = posição de ${DATA.dataest} até alguém apontar pelo app.</p></div>
-   <div class="panel"><h3>Status do estoque · Usinados</h3>${sts.map(s=>`<div class="prow">${spill(s)}<b style="font-family:var(--mono)">${f0(cU[s]||0)}</b></div>`).join('')}<p class="note">Estoque dos usinados = saldo do depósito AUS na posição de ${DATA.dataest} até alguém apontar pelo app.</p></div>
-   <div class="panel"><h3>Lead times e programação</h3>
-    <div class="prow"><span>LT manufatura (usinagem → expedição)</span><b style="font-family:var(--mono)">${f1(P.ltman)} d</b></div>
-    <div class="prow"><span>LT pós-usinados (amarela PA) · usinados</span><b style="font-family:var(--mono)">${f1(P.ltpa)} d · ${f1(ltus())} d</b></div>
-    <div class="prow"><span>LT total (pedido → expedição)</span><b style="font-family:var(--mono)">${f1(P.lttot)} d</b></div>
-    <div class="prow"><span>Ordens abertas</span><b style="font-family:var(--mono)">${f0(open)}</b></div>
-    <div class="prow"><span>Takt CM1 (terminais em processo)</span><b style="font-family:var(--mono)">${f1(cu.takt1)} s</b></div>
-    <div class="prow"><span>Takt CM2 (cardans)</span><b style="font-family:var(--mono)">${f1(cu.takt2)} s</b></div>
-    <div class="prow"><span>Posições do CD que mudam de item</span><b style="font-family:var(--mono)">${f0(moved)}</b></div>
-    <div class="prow"><span>Posições liberadas (item virou MTO)</span><b style="font-family:var(--mono)">${f0(freed)}</b></div>
-    <div class="prow"><span>Itens Kanban sem lugar no CD atual</span><b style="font-family:var(--mono)">${f0(DATA.over.length)}</b></div></div>
+  <div class="grid2">
+   ${riscoList("Itens em risco de faltar · CD",kP)}
+   ${riscoList("Itens em risco de faltar · Usinados",kU)}
+  </div>
+  <details class="panel ovdet"><summary><b>Detalhes técnicos</b> <span class="note">— faixas Kanban, tabelas por família e correlação BOM × vendas (para o time do projeto)</span></summary>
+  <div style="display:flex;flex-direction:column;gap:18px;margin-top:12px">
+  <div class="grid2">
+   ${statBlock(tP,"Supermercado CD · PA","faixas Kanban","cartões",`${tP.mts} SKUs MTS (Make to Stock) + ${tP.n-tP.mts} ponto de pedido (comprados) · cardans, tubos e proteções sob pedido · ${f0(tP.pos)} posições de porta-paletes (V ${f0(tP.pv)} · A ${f0(tP.pa)} · R ${f0(tP.pr)}).`)}
+   ${statBlock(tU,"Supermercado Usinados · AUS","faixas Kanban","cartões",`${tU.mts} SKUs MTS + ${tU.n-tU.mts} ponto de pedido · ${f0(tU.um)} cartões em ${f0(tU.can)} canais.`)}
+  </div>
+  ${excPanel7("Acima do máximo — tabela por família · CD",fP.L,"SKUs",true)}
+  ${excPanel7("Acima do máximo — tabela por grupo · Usinados",fU2.L,"SKUs",false)}
+  <div class="grid2">
+   <div class="panel"><h3>Status do estoque · PA</h3>${sts.map(s=>`<div class="prow">${spill(s)}<b style="font-family:var(--mono)">${f0(cP[s]||0)}</b></div>`).join('')}</div>
+   <div class="panel"><h3>Status do estoque · Usinados</h3>${sts.map(s=>`<div class="prow">${spill(s)}<b style="font-family:var(--mono)">${f0(cU[s]||0)}</b></div>`).join('')}</div>
   </div>
   <div class="grid2">
    <div class="panel"><h3>Correlação BOM × vendas 12 meses — SKUs vendidos</h3>
     <div class="tw"><table><thead><tr><th>Tipo</th><th class="num">SKUs</th><th class="num">Volume</th><th class="num">MTS</th><th class="num">Ponto de pedido</th><th class="num">MTO</th></tr></thead><tbody>
-    ${DATA.tipsum.map(t=>`<tr><td>${esc(t[0])}</td><td class="num">${f0(t[1])}</td><td class="num">${f0(t[2])}</td><td class="num">${f0(t[3])}</td><td class="num">${f0(t[4])}</td><td class="num">${f0(t[5])}</td></tr>`).join('')}</tbody></table></div>
-    <p class="note">Classes da Rev02: fabricado que era “MTO + buffer” virou MTO; comprado/MP (Matéria-Prima) virou “ponto de pedido”. A venda direta do semiacabado soma na demanda do supermercado de Usinados.</p></div>
+    ${DATA.tipsum.map(t=>`<tr><td>${esc(t[0])}</td><td class="num">${f0(t[1])}</td><td class="num">${f0(t[2])}</td><td class="num">${f0(t[3])}</td><td class="num">${f0(t[4])}</td><td class="num">${f0(t[5])}</td></tr>`).join('')}</tbody></table></div></div>
    <div class="panel"><h3>Semiacabados de nível 1–2 com demanda</h3>
     <div class="tw"><table><thead><tr><th>Grupo</th><th class="num">SKUs</th><th class="num">Volume 12M</th><th class="num">Venda direta</th><th class="num">MTS</th><th class="num">Ponto de pedido</th><th class="num">MTO</th></tr></thead><tbody>
-    ${DATA.semsum.map(t=>`<tr><td>${esc(t[0])}</td><td class="num">${f0(t[1])}</td><td class="num">${f0(t[2])}</td><td class="num">${f0(t[3])}</td><td class="num">${f0(t[4])}</td><td class="num">${f0(t[5])}</td><td class="num">${f0(t[6])}</td></tr>`).join('')}</tbody></table></div>
-    <p class="note">Volume = consumo pela BOM dos PA vendidos (quantidade acumulada por nível) + venda direta.</p></div>
-  </div>`;
+    ${DATA.semsum.map(t=>`<tr><td>${esc(t[0])}</td><td class="num">${f0(t[1])}</td><td class="num">${f0(t[2])}</td><td class="num">${f0(t[3])}</td><td class="num">${f0(t[4])}</td><td class="num">${f0(t[5])}</td><td class="num">${f0(t[6])}</td></tr>`).join('')}</tbody></table></div></div>
+  </div></div></details>
+  <p class="note" style="text-align:right">Lean Up · Fonte: Lean Way Consulting.</p>`;
 }
 
 const FL={pa:{q:"",fam:"",cls:"",st:"",lim:1e9,esc:"sm"},us:{q:"",grp:"",cls:"",st:"",lim:1e9,esc:"sm"}};
@@ -3372,11 +3500,11 @@ function renderPD(){
 }
 /* ---------- navegação (shell SaaS) ---------- */
 const NAV=[
- [1,"ov","Visão geral","◱"],[1,"qd","Quadros Kanban","▦"],[1,"pr","Programação","▶"],[1,"op","Ordem de produção","🗓"],[1,"kc","Cartões","▤"],[1,"im","Importar dados","⇪"],
+ [1,"ov","Painel","◱"],[1,"qd","Quadros Kanban","▦"],[1,"pr","Programação","▶"],[1,"op","Ordem de produção","🗓"],[1,"kc","Cartões","▤"],[1,"im","Importar dados","⇪"],
  [2,"cd","CD em 3D","◨"],[2,"fb","Fábrica em 3D","⛭"],[2,"pa","Kanban PA","●"],[2,"us","Kanban Usinados","◐"],
  [3,"par","Parâmetros","⚙"],[3,"pd","Premissas","!"],
 ];
-const TITLES={ov:["Operação","Visão geral"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
+const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
  cd:["Supermercados","CD em 3D"],fb:["Supermercados","Fábrica em 3D"],pa:["Supermercados","Kanban de PA"],us:["Supermercados","Kanban de Usinados"],
  par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
 function buildNav(){
@@ -3385,7 +3513,15 @@ function buildNav(){
       `<button data-p="${n[1]}"><span class="ic">${n[3]}</span>${n[2]}<span class="cnt" id="cnt-${n[1]}" hidden></span></button>`).join('');
   }
   document.querySelectorAll('aside.side nav button').forEach(b=>b.onclick=()=>{ go(b.dataset.p); document.getElementById('side').classList.remove('open'); });
-  document.getElementById('mtog').onclick=()=>document.getElementById('side').classList.toggle('open');
+  const side=document.getElementById('side'), mb=document.getElementById('mback');
+  const menu=(o)=>{ side.classList.toggle('open',o); if(mb) mb.hidden=!o; };
+  document.getElementById('mtog').onclick=()=>menu(!side.classList.contains('open'));
+  if(mb) mb.onclick=()=>menu(false);
+  document.querySelectorAll('aside.side nav button').forEach(b=>b.addEventListener('click',()=>{ menu(false); window.scrollTo(0,0); }));
+  const MN=[["ov","Painel","◱"],["qd","Quadros","▦"],["pr","Programar","▶"],["kc","Cartões","▤"]];
+  const mn=document.getElementById('mnav');
+  if(mn){ mn.innerHTML=MN.map(([id,l,ic])=>`<button data-m="${id}"><span class="ic">${ic}</span>${l}</button>`).join('')+`<button data-m="mais"><span class="ic">☰</span>Mais</button>`;
+    mn.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(b.dataset.m==="mais") menu(true); else { menu(false); go(b.dataset.m); window.scrollTo(0,0); } }); }
   document.getElementById('tvbtn').onclick=()=>openTV(QD.proc);
   document.getElementById('rev').textContent="Kanban · posição "+(DATA.dataest||"");
 }
@@ -3404,6 +3540,8 @@ function chips(){
 function go(tab,soft){
   TAB=tab; try{ localStorage.setItem("aemco-kd4-tab",tab); }catch(e){}
   document.querySelectorAll('aside.side nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.p===tab?"page":"false"));
+  const mainIds=["ov","qd","pr","kc"];
+  document.querySelectorAll('#mnav button').forEach(b=>b.setAttribute('aria-current',(b.dataset.m===tab||(b.dataset.m==="mais"&&!mainIds.includes(tab)))?"page":"false"));
   document.querySelectorAll('section.pane').forEach(s=>s.hidden=(s.id!=='p-'+tab));
   const t=TITLES[tab]||["",""]; document.getElementById('crumb').textContent=t[0]; document.getElementById('ptitle').textContent=t[1];
   const sy=window.scrollY;
