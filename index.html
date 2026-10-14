@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev08"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev09"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1468,7 +1468,7 @@ const GRUPOREC = {"Terminais em processo":"Usinagem","Embreagens":"Usinagem","Tu
 const CLS_PA_BUF="Ponto de pedido (comprado)", CLS_US_BUF="Ponto de pedido (buffer)";
 const DEF = {cardsov:1, kcomp:1, dias:250, tod:21, par:0.25, ref:0.008, eppa:1, ltman:1, ltpa:0.5, lttot:2, ltcru:1, ltforn:150, setu:30, setp:10, tcp:44, epfb:5, trocas:2, fastY:1,
   tcpa:{"Terminais":89,"Cardans":667,"outros":89}, tcus:164.5,
-  maq:DATA.cap.map(c=>c[2]), tc:DATA.cap.map(c=>c[3]), share:DATA.cap.map(c=>c[4]), rest:DATA.cap.map(c=>c[5]!==false), postos:1};
+  maq:DATA.cap.map(c=>c[2]), tc:DATA.cap.map(c=>c[3]), share:DATA.cap.map(c=>c[4]), rest:DATA.cap.map(c=>c[5]!==false), postos:1, sop:1, hz0:(DATA.sopdef||{}).hz0??1, hzn:(DATA.sopdef||{}).hzn??6, z:(DATA.sopdef||{}).z??1.0, pg:5};
 const SIG = [["BVO","Grupo de tornos que usina orelha e interno — recurso mais carregado da usinagem (gargalo)"],["Medemiru","目で見る — “ver com os olhos”: gestão em que a situação se lê em segundos"],["AP","Avaliação de Potencialidades (diagnóstico Lean Way)"],["AX / AY","Curva A com demanda regular (X) ou oscilante (Y) — itens de atendimento rápido"],["Heijunka","Quadro de nivelamento: sequencia a produção em janelas de tempo"],["TV","Painel de gestão à vista exposto no processo"],["ABC","Curva ABC (classificação por volume acumulado)"],["XYZ","Regularidade da demanda (X regular, Y oscilante, Z esporádica)"],["MTS","Make to Stock (produzir para estoque, com Kanban)"],["MTO","Make to Order (produzir sob pedido)"],["PA","Produto Acabado"],["CD","Centro de Distribuição"],["AUS","Almoxarifado de Usinados (supermercado de semiacabados)"],["LT","Lead Time (tempo de reposição / atravessamento)"],["EPEI","Every Part Every Interval (intervalo em que todo item é produzido uma vez)"],["TOD","Tempo Operacional Disponível"],["TNP","Tempo Necessário para a Produção"],["TC","Tempo de Ciclo"],["MTTR","Mean Time To Repair (tempo médio de reparo)"],["BOM","Bill of Materials (estrutura de produto)"],["MP","Matéria-Prima"],["KLT","Caixa plástica padronizada para peças pequenas"],["OP","Ordem de Produção"],["PCP","Planejamento e Controle da Produção"],["SKU","Stock Keeping Unit (código do item)"],["V / A / R","Faixas Verde / Amarela / Vermelha"],["BVO · BRO · CNC · CFU","Grupos da usinagem: usinar orelha · brochadeira · CNC (Comando Numérico Computadorizado) canal · furadeira"],["GBO","Gráfico de Balanceamento de Operadores (Yamazumi)"],["VSM","Value Stream Mapping (Mapa do Fluxo de Valor)"],["LW","Lean Way (método do WS – Workshop – Sistemas Puxados)"],["NF","Nota Fiscal"]];
 const clone = o => JSON.parse(JSON.stringify(o));
 let P = clone(DEF);
@@ -1485,10 +1485,17 @@ const lotePint=()=>Math.ceil(P.setp*60/P.tcp);   // lote de UMA campanha de cor 
 const lotminPA=()=>1;                            // CORRECAO Rev03: pintura troca por COR, nao por item
 const lotminUS=()=>Math.ceil(P.setu*60/Math.min(...P.tc.filter(x=>x>0)));
 const hr=(x)=>Math.floor(x+0.5);
+/* Rev09: demanda pelo S&OP (horizonte escolhido) + reserva estatística contra variação */
+const NM=()=>P.dias/12;
+function hzr(){ const n=(DATA.sopm||[]).length; const a=Math.min(Math.max(0,Math.round(P.hz0||0)),Math.max(0,n-1)); const b=Math.min(Math.max(1,Math.round(P.hzn||1)),n-a); return [a,b]; }
+function hzMean(s){ if(!s) return null; const [a,b]=hzr(); let t=0; for(let i=a;i<a+b;i++) t+=(+s[i]||0); return t/b; }
+function hzLabel(){ const m=DATA.sopm||[]; if(!m.length) return "—"; const [a,b]=hzr(); const L=x=>{ const [y,mm]=x.split("-"); return ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+mm-1]+"/"+y.slice(2); }; return L(m[a])+" a "+L(m[a+b-1]); }
+function reserva(cv,D,expo){ return (P.z>0&&cv>0&&D>0)?P.z*cv*D*Math.sqrt(NM()*Math.max(0,expo)):0; }
 const dias=(h)=>h/(P.tod*(P.postos||1));   // Rev05: carga em dias de operação
+function dtermAt(){ const ds=(DATA.capinfo||{}).dtermS; if(P.sop!==0&&ds){ const m=hzMean(ds); if(m>0) return m*12; } return DATA.dterm; }
 function capUsinagem(){
-  const Dd=DATA.dterm/P.dias;
-  const nsku=DATA.us.filter(r=>DATA.grp[r[2]]==="Terminais em processo"&&r[5]!=="MTO").length;   // Rev07: a lista traz também itens MTO com saldo
+  const DT=dtermAt(), Dd=DT/P.dias;
+  const nsku=DATA.us.filter(r=>DATA.grp[r[2]]==="Terminais em processo"&&r[5]!=="MTO"&&!String((DATA.fontes||[])[r[22]]||"").startsWith("Revisão Kandi 09/10: componente")).length;   // Rev09b: ponto de pedido provisório fica fora do ciclo de setup   // Rev07: a lista traz também itens MTO com saldo
   const g=DATA.cap.map((c,i)=>{
     const tod=P.maq[i]*P.tod*3600, tnp=Dd*P.tc[i]*P.share[i], avail=tod-tnp;
     const setups=Math.max(0,Math.floor(avail/(P.setu*60))), sk=Math.ceil(nsku*P.share[i]);
@@ -1499,7 +1506,7 @@ function capUsinagem(){
   const ativos=g.filter(x=>x.rest&&x.ep!=null);
   const garg=ativos.length?ativos.reduce((a,b)=>b.oc>a.oc?b:a):null;
   const ep=Math.max(1,...ativos.map(x=>x.ep));
-  return {g,Dd,nsku,ep,garg,semfolga:false,takt1:P.tod*3600*P.dias/DATA.dterm,takt2:P.tod*3600*P.dias/DATA.volcardan};
+  return {g,Dd,nsku,ep,garg,semfolga:false,dterm:DT,takt1:P.tod*3600*P.dias/DT,takt2:P.tod*3600*P.dias/DATA.volcardan};
 }
 const STK={pa:{},us:{}};
 let SIM=false; try{ SIM=localStorage.getItem("aemco-kd3-sim")==="1"; }catch(e){}   // Rev05: com saldo real de 23/09 a simulacao nasce desligada
@@ -1518,7 +1525,7 @@ function cardsOf(M,V,A,q){ if(!(M>0)||!(q>0)) return [0,0,0,0]; const n=Math.max
 function calcPA(){
   const sd=P.par+P.ref, lm=lotminPA(), CU=capUsinagem();
   return DATA.pa.map(x=>{
-    const [cod,desc,fi,si,abc,xyz,cls00,vol,nnf,cap,snap,ti,endA,endN,ruaN,rec,peso,q,ci,fast0,roi,proc,ppc,cart,aloc,nota,ofi,clsm]=x;
+    const [cod,desc,fi,si,abc,xyz,cls00,vol,nnf,cap,snap,ti,endA,endN,ruaN,rec,peso,q,ci,fast0,roi,proc,ppc,cart,aloc,nota,ofi,clsm,cv,sop,fdi]=x;
     const fam=DATA.fams[fi], sub=DATA.subs[si], tipo=DATA.tipos[ti], comp=ti===2;
     const orig=(DATA.fontes||[])[ofi]||"";
     // Rev07: P.kcomp=0 devolve aos comprados a classe do modelo quando só a Sugestão do Estudo os mudou
@@ -1526,14 +1533,17 @@ function calcPA(){
     const cls=cls0==="MTO + buffer CD"?(comp?CLS_PA_BUF:"MTO"):cls0;
     const sov=(P.cardsov!==0)&&cls==="MTS"&&(fam==="Cardans"||fam==="Cardans telescópico");
     const fast=(!comp)&&cls==="MTS"&&!sov&&abc==="A"&&(xyz==="X"||(P.fastY&&xyz==="Y"));
-    const D=vol/P.dias, LT=comp?(fam==="Cruzetas"?P.ltcru:P.ltman):P.ltpa;
+    const sm=P.sop!==0?hzMean(sop):null;
+    const D=(sm>0)?sm/NM():vol/P.dias, LT=comp?(fam==="Cruzetas"?P.ltcru:P.ltman):P.ltpa;
+    const fdem=P.sop===0?"Histórico 12M (S&OP desligado)":(sm>0?"S&OP":(sop?"Histórico (S&OP zerado no horizonte)":"Histórico (fora do S&OP)"));
     const lmin=comp?1:(fast?lotminUS():lm), ep=fast?CU.ep:P.eppa;
-    const V=(cls==="MTS"&&!sov)?Math.max(D*ep,lmin):0, A=(cls==="MTO"||sov)?0:D*LT, R=cls==="MTO"?0:D*sd, M=V+A+R;
+    const SS=cls==="MTO"?0:reserva(cv,D,LT+(cls==="MTS"?ep:0));
+    const V=(cls==="MTS"&&!sov)?Math.max(D*ep,lmin):0, A=(cls==="MTO"||sov)?0:D*LT, R=cls==="MTO"?0:D*sd+SS, M=V+A+R;
     let pm=null,pv=null,pa=null,pr=null;
     if(cap>0&&M>0){pm=Math.max(1,Math.ceil(M/cap-1e-9)); pv=hr(pm*V/M); pa=hr(pm*A/M); pr=Math.max(0,pm-pv-pa);}
     const [nk,kv,ka,kr]=cardsOf(M,V,A,q);
     const tc=P.tcpa[fam]!=null?P.tcpa[fam]:P.tcpa.outros;
-    const r={k:"pa",cod,desc,fam,sub,abc,xyz,cls0,cls,vol,nnf,cap,snap,tipo,comp,endA,endN,ruaN,rec,peso,q,cont:DATA.conts[ci],D,LT,ep,lmin,V,A,R,M,pm,pv,pa,pr,nk,kv,ka,kr,tc,cob:D>0?M/D:0,
+    const r={k:"pa",cod,desc,fam,sub,abc,xyz,cls0,cls,vol,SS,cv,fdem,pg:cls==="MTO"?null:Math.ceil(D*(P.pg||0)),Dh:vol/P.dias,dm:D*NM(),nnf,cap,snap,tipo,comp,endA,endN,ruaN,rec,peso,q,cont:DATA.conts[ci],D,LT,ep,lmin,V,A,R,M,pm,pv,pa,pr,nk,kv,ka,kr,tc,cob:D>0?M/D:0,
       fast,sov,role:(DATA.roles[roi]||""),proc,cart:cart||0,aloc:aloc||0,nota:nota||"",orig,clsm,ppc:comp&&fam==="Cruzetas"?D*P.ltforn*(1+P.par):null};
     r.est=estPA(r); r.st=status(cls,r.est,r); r.ocup=(r.est!=null&&cap>0)?Math.ceil(r.est/cap):null;
     return r;
@@ -1542,13 +1552,17 @@ function calcPA(){
 function calcUS(){
   const cu=capUsinagem(); const sd=P.par+P.ref, lm=lotminUS(), LT0=ltus();
   return DATA.us.map(x=>{
-    const [cod,desc,gi,abc,xyz,cls0,vol,vdir,npais,peso,pais,q,ci,deep,man,moi,shf,volsm,snap,ltx,ext,nota,ofi,clsm]=x; const grp=DATA.grp[gi];
+    const [cod,desc,gi,abc,xyz,cls0,vol,vdir,npais,peso,pais,q,ci,deep,man,moi,shf,volsm,snap,ltx,ext,nota,ofi,clsm,cv,sop,vh,vdh]=x; const grp=DATA.grp[gi];
     const cls=cls0==="MTO + buffer"?CLS_US_BUF:cls0;
     const usin=(grp==="Terminais em processo"||grp==="Embreagens");
-    const D=volsm/P.dias, ep=usin?cu.ep:1, lmin=usin?lm:1, LT=ltx>0?ltx:LT0;   // Rev07: processo externo com LT próprio
-    const V=cls==="MTS"?Math.max(D*ep,lmin):0, A=cls==="MTO"?0:D*LT, R=cls==="MTO"?0:D*sd, M=V+A+R;
+    const vsmh=(vh!=null)?Math.max((vh*(1-(shf||0))+(vdh||0)*(shf||0)),(vdh||0)):volsm;   // Rev09: volume histórico do supermercado
+    const sm=P.sop!==0?hzMean(sop):null;
+    const D=(sop&&P.sop!==0)?(sm||0)/NM():vsmh/P.dias, ep=usin?cu.ep:1, lmin=usin?lm:1, LT=ltx>0?ltx:LT0;   // Rev07: processo externo com LT próprio
+    const fdem=P.sop===0?"Histórico 12M (S&OP desligado)":"S&OP explodido pela estrutura (BOM)";
+    const SS=cls==="MTO"?0:reserva(cv,D,LT+(cls==="MTS"?ep:0));
+    const V=cls==="MTS"?Math.max(D*ep,lmin):0, A=cls==="MTO"?0:D*LT, R=cls==="MTO"?0:D*sd+SS, M=V+A+R;
     const [nk,kv,ka,kr]=cardsOf(M,V,A,q);
-    const r={k:"us",cod,desc,grp,abc,xyz,cls,vol,vdir,npais,peso,pais,q,cont:DATA.conts[ci],deep,D,LT,ep,lmin,V,A,R,M,nk,kv,ka,kr,canais:Math.ceil(nk/(deep||1)),cob:D>0?M/D:0,rec:GRUPOREC[grp]||"Outros",tc:usin?P.tcus:null,usin,
+    const r={k:"us",cod,desc,grp,abc,xyz,cls,vol,SS,cv,fdem,pg:null,Dh:vsmh/P.dias,dm:D*NM(),vdir,npais,peso,pais,q,cont:DATA.conts[ci],deep,D,LT,ep,lmin,V,A,R,M,nk,kv,ka,kr,canais:Math.ceil(nk/(deep||1)),cob:D>0?M/D:0,rec:GRUPOREC[grp]||"Outros",tc:usin?P.tcus:null,usin,
       manter:!!man&&(M>0||!!nota),motivo:(DATA.mot[moi]||""),shf,volsm,voltot:vol,snap,ext:ext||"",nota:nota||"",orig:(DATA.fontes||[])[ofi]||"",clsm,ltx};
     r.est=estUS(r); r.st=status(cls,r.est,r);
     return r;
@@ -1816,7 +1830,8 @@ function renderOV(){
   const geral=(fP.T.util+fU2.T.util)/Math.max(1,fP.T.alvo+fU2.T.alvo)*100;
   document.getElementById('p-ov').innerHTML=`
   <div class="panel ovhero"><div><h2>Como estão os supermercados hoje</h2>
-    <p class="note">Posição de estoque de <b>${esc(DATA.dataest)}</b> ou o último apontamento feito pelo app. <b style="color:var(--kg)">Verde</b> = abastecido · <b style="color:var(--kr)">vermelho</b> = falta fabricar · <b style="color:var(--kb)">azul</b> = sobrando acima do máximo.</p></div>
+    <p class="note">Posição de estoque de <b>${esc(DATA.dataest)}</b> ou o último apontamento feito pelo app. <b style="color:var(--kg)">Verde</b> = abastecido · <b style="color:var(--kr)">vermelho</b> = falta fabricar · <b style="color:var(--kb)">azul</b> = sobrando acima do máximo.</p>
+    <p class="note">Máximos dimensionados pela <b>${P.sop!==0?'demanda do S&OP ('+hzLabel()+')':'demanda histórica 12M'}</b>${P.z>0?' com reserva contra variação (z = '+f2(P.z)+')':' sem reserva contra variação'} — ajuste em Parâmetros.</p></div>
    <div class="ovgeral"><span style="color:${saude(geral).c}">${f0(geral)}%</span><small>abastecido no total<br>(CD + Usinados)</small></div></div>
   <div class="grid2">
    ${saudeCard("Supermercado do CD · produto acabado","Produtos prontos para expedir.",fP.T,cP["Vermelho"]||0,"itens")}
@@ -1877,7 +1892,7 @@ function renderList(kind){
   const el=document.getElementById('p-'+kind);
   const unit='cartões';
   let h=`<div class="head"><h2>${us?'Kanban de Usinados — supermercado AUS (Almoxarifado de Usinados)':'Kanban de PA — supermercado do CD'}</h2><span class="note">${rows.length} SKUs · ordenado pelo estoque máximo</span></div>
-  <p class="note">${us?`Demanda = venda direta + consumo pela BOM (Bill of Materials). Amarela = D × LT ${f1(ltus())} d. Verde = máx(D × EPEI ; lote mínimo): usinagem com EPEI pelo método LW (Lean Way) e lote mínimo de ${lotminUS()} pç (setup ${P.setu} min ÷ menor TC do roteiro); demais grupos 1 dia. A demanda usada é só a <b>parcela que não sai acabada direto do CD</b>. Cada quadradinho é um cartão/contêiner (vermelho, amarelo, verde).`:`Amarela = D × ${f1(P.ltpa)} d (reposição a partir dos usinados). Verde = máx(D × 1 dia ; sem lote mínimo por item — a pintura troca por CAMPANHA de cor, não por SKU). Itens <b>AX/AY</b> (atendimento rápido) guardam o próprio lote de usinagem aqui (EPEI ${f1(capUsinagem().ep)} d), por isso saem do supermercado de Usinados. Vermelha = D × (parada + refugo). Cartões = contêineres; posições = porta-paletes com a capacidade “Max.” do Mapa Lógico (vermelho embaixo, verde em cima; traço preto = estoque atual).`}</p>
+  <p class="note"><b>Demanda: ${P.sop!==0?'S&OP '+hzLabel():'histórico 12M'}</b>${P.z>0?' · vermelha inclui reserva contra variação (z '+f2(P.z)+')':''}${!us&&P.pg>0?' · pedido acima de '+P.pg+' dias de demanda = pedido especial (fora do supermercado)':''}. ${us?`Demanda = venda direta + consumo pela BOM (Bill of Materials). Amarela = D × LT ${f1(ltus())} d. Verde = máx(D × EPEI ; lote mínimo): usinagem com EPEI pelo método LW (Lean Way) e lote mínimo de ${lotminUS()} pç (setup ${P.setu} min ÷ menor TC do roteiro); demais grupos 1 dia. A demanda usada é só a <b>parcela que não sai acabada direto do CD</b>. Cada quadradinho é um cartão/contêiner (vermelho, amarelo, verde).`:`Amarela = D × ${f1(P.ltpa)} d (reposição a partir dos usinados). Verde = máx(D × 1 dia ; sem lote mínimo por item — a pintura troca por CAMPANHA de cor, não por SKU). Itens <b>AX/AY</b> (atendimento rápido) guardam o próprio lote de usinagem aqui (EPEI ${f1(capUsinagem().ep)} d), por isso saem do supermercado de Usinados. Vermelha = D × (parada + refugo). Cartões = contêineres; posições = porta-paletes com a capacidade “Max.” do Mapa Lógico (vermelho embaixo, verde em cima; traço preto = estoque atual).`}</p>
   <div class="stats">
    <div class="stat m"><div class="l">${unit} máx</div><div class="v">${f0(t.um)}</div><div class="s">${f0(t.M)} pç</div></div>
    <div class="stat g"><div class="l">${unit} verde</div><div class="v">${f0(t.uv)}</div><div class="s">${f0(t.V)} pç</div></div>
@@ -1897,17 +1912,17 @@ function renderList(kind){
    <button class="btn" id="${kind}-csv">Salvar CSV</button>
   </div>
   <div class="tw tall"><table><thead><tr><th>Código</th><th>Descrição</th><th>${us?'Grupo':'Família · tipo'}</th><th>ABC·XYZ</th><th>Classe</th>
-   <th class="num">D pç/dia</th><th class="num">LT</th><th class="num">EPEI</th><th class="num">Verde</th><th class="num">Amarela</th><th class="num">Vermelha</th><th class="num">Máx</th><th class="num">Cob. d</th>
+   <th class="num">D pç/dia</th><th class="num">Reserva</th><th class="num">LT</th><th class="num">EPEI</th><th class="num">Verde</th><th class="num">Amarela</th><th class="num">Vermelha</th><th class="num">Máx</th><th class="num">Cob. d</th>
    <th class="num">Lote mín.</th><th class="num">Pç/cartão</th><th class="num">Cartões V/A/R</th><th>Cartões</th>
    ${us?'<th>Por que está no supermercado</th><th class="num">Canais</th>':'<th>Papel no CD</th><th class="num">Cap./pos.</th><th class="num">Pos. V/A/R</th><th>Posições</th><th class="num">Ocup. hoje</th><th>End. proposto</th>'}
-   <th class="num">Estoque</th><th>Status</th></tr></thead><tbody>`;
+   <th class="num">${us?'':'Pedido especial acima de'}</th><th class="num">Estoque</th><th>Status</th></tr></thead><tbody>`;
   for(const r of rows.slice(0,f.lim)){
     h+=`<tr><td>${fotoImg(r.cod,28)}<b>${esc(r.cod)}</b></td><td class="desc">${esc(r.desc)}</td><td>${us?esc(r.grp):esc(r.fam)+'<br><span class="note">'+esc(r.sub)+' · '+esc(r.tipo)+'</span>'}</td><td>${r.abc}·${r.xyz}</td><td>${pill(r.cls)}${origTag(r)}</td>
-    <td class="num">${f1(r.D)}</td><td class="num">${f1(r.LT)}</td><td class="num">${f1(r.ep)}</td><td class="num cg">${f0(r.V)}</td><td class="num cy">${f0(r.A)}</td><td class="num cr">${f0(r.R)}</td><td class="num"><b>${f0(r.M)}</b></td><td class="num">${f1(r.cob)}</td>
+    <td class="num" title="${esc(r.fdem)} · histórico ${f1(r.Dh)} pç/dia">${f1(r.D)}${r.fdem&&r.fdem.startsWith('Histórico')?'<br><span class="note">hist.</span>':''}</td><td class="num cr" title="reserva contra variação (CV ${f2(r.cv)})">${f0(r.SS)}</td><td class="num">${f1(r.LT)}</td><td class="num">${f1(r.ep)}</td><td class="num cg">${f0(r.V)}</td><td class="num cy">${f0(r.A)}</td><td class="num cr">${f0(r.R)}</td><td class="num"><b>${f0(r.M)}</b></td><td class="num">${f1(r.cob)}</td>
     <td class="num">${f0(r.lmin)}</td><td class="num">${f0(r.q)}</td><td class="num">${r.nk} = ${r.kv}/${r.ka}/${r.kr}</td><td>${contGraphic(r)}</td>
     ${us?`<td class="note">${esc(r.motivo)}${r.ext?`<br><b style="color:var(--ky)">Processo externo: ${esc(r.ext)}</b>`:''}${r.shf>0?`<br><span class="note">${f0(r.shf*100)}% do volume já sai acabado no CD</span>`:''}</td><td class="num">${f0(r.canais)}</td>`
         :`<td class="note">${r.fast?'<b style="color:var(--kg)">Atendimento rápido AX/AY</b>':esc(r.role||'Kanban')}</td><td class="num">${f0(r.cap)}</td><td class="num">${r.pm==null?'—':`${r.pm} = ${r.pv}/${r.pa}/${r.pr}`}</td><td>${r.pm==null?'<span class="note">posição inteira</span>':palGraphic(r)}</td><td class="num">${r.ocup==null?'—':r.ocup}</td><td class="note">${esc(r.endN||'sem posição')}</td>`}
-    <td class="num">${f0(r.est)}${!us&&r.cart>0?`<br><span class="note">carteira ${f0(r.cart)}</span>`:''}</td><td>${spill(r.st)}</td></tr>`;
+    <td class="num">${r.pg?f0(r.pg)+' pç':''}</td><td class="num">${f0(r.est)}${!us&&r.cart>0?`<br><span class="note">carteira ${f0(r.cart)}</span>`:''}</td><td>${spill(r.st)}</td></tr>`;
   }
   h+=`</tbody></table></div><p class="note">${rows.length} SKU(s) listados — a tabela mostra todos, use o scroll horizontal e vertical.</p>`;
   el.innerHTML=h;
@@ -1915,10 +1930,10 @@ function renderList(kind){
   bind(kind+'-q','q','input'); bind(kind+'-cls','cls','change'); bind(kind+'-st','st','change'); bind(kind+'-esc','esc','change');
   if(us) bind('us-grp','grp','change'); else { bind('pa-fam','fam','change'); }
   document.getElementById(kind+'-csv').onclick=()=>{
-    const H=us?["codigo","descricao","grupo","abc","xyz","classe","D_dia","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","canais","estoque","status","processo_externo","origem_classe","classe_modelo","anotacao_kandi"]
-              :["codigo","descricao","familia","subfamilia","tipo","abc","xyz","classe","D_dia","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","cap_pos","pos_max","pos_v","pos_a","pos_r","ocup_hoje","end_proposto","estoque","status","carteira_0110","origem_classe","classe_modelo","anotacao_kandi"];
-    const val=r=>us?[r.cod,r.desc,r.grp,r.abc,r.xyz,r.cls,r.D,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.canais,r.est??"",r.st,r.ext,r.orig,r.clsm,r.nota]
-                   :[r.cod,r.desc,r.fam,r.sub,r.tipo,r.abc,r.xyz,r.cls,r.D,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.cap??"",r.pm??"",r.pv??"",r.pa??"",r.pr??"",r.ocup??"",r.endN,r.est??"",r.st,r.cart,r.orig,r.clsm,r.nota];
+    const H=us?["codigo","descricao","grupo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","canais","estoque","status","processo_externo","origem_classe","classe_modelo","anotacao_kandi"]
+              :["codigo","descricao","familia","subfamilia","tipo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","cap_pos","pos_max","pos_v","pos_a","pos_r","ocup_hoje","end_proposto","pedido_especial_acima_de","estoque","status","carteira_0110","origem_classe","classe_modelo","anotacao_kandi"];
+    const val=r=>us?[r.cod,r.desc,r.grp,r.abc,r.xyz,r.cls,r.D,r.fdem,r.Dh,r.cv??"",r.SS,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.canais,r.est??"",r.st,r.ext,r.orig,r.clsm,r.nota]
+                   :[r.cod,r.desc,r.fam,r.sub,r.tipo,r.abc,r.xyz,r.cls,r.D,r.fdem,r.Dh,r.cv??"",r.SS,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.cap??"",r.pm??"",r.pv??"",r.pa??"",r.pr??"",r.ocup??"",r.endN,r.pg??"",r.est??"",r.st,r.cart,r.orig,r.clsm,r.nota];
     const txt=[H.join(";")].concat(rows.map(r=>val(r).map(v=>typeof v==="number"?nf2.format(v).replace(/\./g,""):String(v).replace(/;/g,",")).join(";"))).join("\n");
     saveFile(us?"kanban_usinados_aemco.csv":"kanban_pa_aemco.csv","﻿"+txt);
   };
@@ -2294,7 +2309,11 @@ async function cleanOld(){
 /* ---------- Parâmetros e método ---------- */
 function renderPar(){
   const cu=capUsinagem();
-  const g=[["dias","Dias úteis por ano","Coleta PCP"],["tod","TOD – Tempo Operacional Disponível (h/dia)","Coleta PCP"],
+  const g=[["sop","Demanda pelo S&OP: 1 = sim · 0 = histórico 12M (NF set/25–ago/26)","Rev09 · arquivo SOP 2026 e SOP 2027 Aemco"],
+   ["hz0","Início do horizonte do S&OP (0 = set/26 · 1 = out/26 · 4 = jan/27)","Rev09 · recalcular todo mês"],["hzn","Meses do horizonte (média)","Rev09 · padrão 6 meses"],
+   ["z","Reserva contra variação: fator z (0 = sem reserva · 1,28 ≈ 90% · 1,65 ≈ 95%)","Rev09 · R += z × CV × D × √(dias/mês × (LT + EPEI))"],
+   ["pg","Pedido especial: linha de pedido acima de N dias de demanda média sai do supermercado (0 = desliga)","Rev09 · decidido 13/10 · prazo combinado com o Comercial"],
+   ["dias","Dias úteis por ano","Coleta PCP"],["tod","TOD – Tempo Operacional Disponível (h/dia)","Coleta PCP"],
    ["ltman","LT manufatura – usinagem até expedição (d)","Definido 17/09/26"],["ltpa","LT pós-usinados – amarela do PA (d)","Definido 17/09/26 · LT dos usinados = manufatura − pós-usinados"],["lttot","LT total – pedido até expedição (d)","Prazo do item MTO"],["ltcru","LT de reposição de cruzetas compradas (d)","Mapa CD – CD ← almoxarifado"],["ltforn","LT do FORNECEDOR de cruzetas (d) – ponto de pedido de compra","Informado: 150 dias"],["fastY","Atendimento rápido: 1 = AX e AY · 0 = só AX","Decisão de escopo"],["kcomp","Comprados seguem o Estudo do Kandi: 1 = sim (MTO) · 0 = volta ao modelo","Rev07 · 67 comprados de alta saída"],
    ["par","Parada típica – MTTR/TOD (dias)","Premissa até levantar o MTTR (Mean Time To Repair)"],["ref","Refugo (fração → dias)","VSM: 0,8% = 0,008"],["eppa","EPEI do PA (dias)","Campanha diária por cor na Pintura"],
    ["setu","Setup da usinagem (min/SKU)","Informado"],["setp","Setup da pintura (min/troca de cor)","Informado"],["tcp","TC da pintura (s/pç)","GBO CM2 – Limpeza e Pintura"],["tcus","TC do roteiro de usinagem (s/pç)","Cartão: tempo de produção do contêiner (40 + 19 + 28×50% + 91,5)"],
@@ -2314,7 +2333,7 @@ function renderPar(){
     ${Object.keys(P.tcpa).map((f,i)=>`<div class="prow"><label for="tp-${i}">${f==="outros"?"Demais famílias":esc(f)}<small>${f==="Cardans"?"VSM: montagem 490 + preparação 88 + pintura 44 + embalagem 45":"VSM: pintura 44 + embalagem 45"}</small></label><input class="in" id="tp-${i}" data-f="${esc(f)}" type="number" step="any" min="0" value="${P.tcpa[f]}"></div>`).join('')}
    </div>
    <div class="panel"><h2>Capacidade da usinagem (método LW)</h2>
-    <p class="note">Demanda de terminais em processo: ${f0(DATA.dterm)} pç/ano = ${f0(cu.Dd)} pç/dia · ${cu.nsku} SKUs com Kanban · takt CM1 ${f1(cu.takt1)} s · takt CM2 ${f1(cu.takt2)} s.</p>
+    <p class="note">Horizonte de demanda: <b>${P.sop!==0?'S&OP '+hzLabel():'histórico 12M'}</b>. Demanda de terminais em processo: ${f0(cu.dterm)} pç/ano = ${f0(cu.Dd)} pç/dia · ${cu.nsku} SKUs com Kanban · takt CM1 ${f1(cu.takt1)} s · takt CM2 ${f1(cu.takt2)} s.</p>
     <div class="tw"><table><thead><tr><th>Grupo</th><th class="num">Máquinas</th><th class="num">TC (s)</th><th class="num">% SKUs</th><th class="num">TNP (h)</th><th class="num">Ocupação</th><th class="num">Setups/dia</th><th class="num">EPEI (d)</th><th class="num">Lote mín.</th></tr></thead><tbody>
     ${cu.g.map((x,i)=>`<tr style="${cu.garg&&cu.garg.g===x.g?'background:var(--gold-soft)':''}"><td><b>${x.g}</b>${cu.garg&&cu.garg.g===x.g?' · <span class="tag">gargalo</span>':''}<br><span class="note">${esc(x.d)}</span></td><td class="num"><input class="in" id="mq-${i}" type="number" min="0" step="1" value="${P.maq[i]}" style="width:60px"></td><td class="num"><input class="in" id="tc-${i}" type="number" min="0" step="any" value="${P.tc[i]}" style="width:66px"></td><td class="num">${f0(P.share[i]*100)}%</td><td class="num">${f1(x.tnp)}</td><td class="num">${x.rest?f0(x.oc*100)+'%':'—'}</td><td class="num">${x.rest?f0(x.setups):'—'}</td><td class="num">${x.rest?(x.ep==null?'—':f2(x.ep)):'<span class="note">fora da restrição</span>'}</td><td class="num">${f0(x.lm)}</td></tr>`).join('')}
     </tbody></table></div>
@@ -2334,13 +2353,16 @@ Verde       = máx(D × EPEI ; lote mínimo)</div>
      <li>Antes (Rev00/Rev01), “MTO + buffer CD” era um item sem Kanban com pequeno estoque no CD — regra da Skala, onde o CD ficava longe e a reposição passava do prazo do cliente. Com lead time de 2 dias, esse pulmão foi para os usinados.</li>
     </ul>
     <h2 style="margin-top:8px">Como as faixas são calculadas</h2>
-    <div class="formula">D        = volume 12M ÷ ${P.dias} dias      (usinados: venda direta + BOM)
+    <div class="formula">D        = ${P.sop!==0?'média mensal do S&OP ('+hzLabel()+') ÷ '+f1(P.dias/12)+' dias/mês':'volume 12M ÷ '+P.dias+' dias'}   (usinados: S&OP dos PA explodido pela BOM + venda direta)
+           itens sem S&OP no horizonte usam o histórico 12M
 VERDE    = máx(D × EPEI ; lote mínimo)       (só MTS)
 VERDE do item rápido (AX/AY) = D × EPEI da usinagem — o lote já fica acabado no CD
 AMARELA  = D × LT   (PA ${P.ltpa} d · usinados ${ltus()} d · comprados LT próprio)
 PONTO DE PEDIDO DE COMPRA = D × LT do fornecedor × (1 + segurança)   (cruzetas: ${P.ltforn} d)
-VERMELHA = D × (${P.par} + ${P.ref}) dias de segurança
+VERMELHA = D × (${P.par} + ${P.ref}) + RESERVA
+RESERVA  = z × CV × D × √(${f1(P.dias/12)} × (LT + EPEI))   z = ${P.z} · CV = variação mensal do item (12M, limitado a 0,15–1,0)
 MÁX      = V + A + R
+PEDIDO ESPECIAL = linha de pedido > ${P.pg} × D  → atende por OP sob pedido (prazo combinado), não pelo supermercado
 Cartões  = ⌈MÁX ÷ pç por contêiner⌉ · V e A arredondadas · R = saldo
 Posições = ⌈MÁX ÷ “Max.” da posição⌉</div>
     <h2 style="margin-top:8px">Siglas</h2>
@@ -2348,7 +2370,7 @@ Posições = ⌈MÁX ÷ “Max.” da posição⌉</div>
    </div>
   </div>`;
   const commit=()=>{ saveParams(); toast("Parâmetros atualizados — todas as abas recalculadas"); renderPar(); };
-  g.forEach(([k])=>{ const e=document.getElementById('g-'+k); e.onchange=()=>{ const v=+e.value; if(!(v>=0)||((k==="dias"||k==="tcp"||k==="tod")&&v<=0)){ e.value=P[k]; toast("Use um número válido (maior que zero)"); return; } P[k]=v; commit(); }; });
+  g.forEach(([k])=>{ const e=document.getElementById('g-'+k); e.onchange=()=>{ const v=+e.value; if(!(v>=0)||((k==="dias"||k==="tcp"||k==="tod"||k==="hzn")&&v<=0)){ e.value=P[k]; toast("Use um número válido (maior que zero)"); return; } P[k]=v; commit(); }; });
   el.querySelectorAll('input[data-f]').forEach(e=>e.onchange=()=>{ const v=+e.value; if(!(v>=0)) return; P.tcpa[e.dataset.f]=v; commit(); });
   cu.g.forEach((x,i)=>{ document.getElementById('mq-'+i).onchange=e=>{ P.maq[i]=Math.max(0,+e.target.value||0); commit(); }; document.getElementById('tc-'+i).onchange=e=>{ const v=+e.target.value; if(v>0){ P.tc[i]=v; commit(); } else toast("TC precisa ser maior que zero"); }; });
   document.getElementById('par-reset').onclick=()=>{ P=clone(DEF); commit(); };
@@ -3926,7 +3948,7 @@ function panel(){
   $("kb-mp").onclick = meuPin;
 }
 /* ---------------- pessoas com acesso (só administrador) ---------------- */
-const SUGERIDOS = ["Rafael Kandi", "Kelvin Troes", "Cristiano Silva", "Alex Bertino"];
+const SUGERIDOS = ["Rafael Kandi", "Kelvin Troes", "Cristiano Silva", "Alex Bertino", "Luis Colombo", "Neto Colombo", "Hugo Matsuo"];
 const pinRand = () => { const a = new Uint32Array(1); crypto.getRandomValues(a); return String(100000 + a[0] % 900000); };
 const errTxt = e => ({ novo: "PIN inválido: use de 6 a 12 números.", repetido: "Esse PIN já é de outra pessoa — escolha outro.", nome: "Informe o nome.", proprio: "Você não pode tirar o próprio acesso de administrador.", admin: "Só o administrador faz isso.", pin: "Seu PIN não vale mais — entre de novo.", bloqueado: "Muitas tentativas erradas. Aguarde 15 minutos." })[e] || ("Não gravou: " + escH(e));
 async function usersPanel(msg){

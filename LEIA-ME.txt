@@ -1,4 +1,4 @@
-APP KANBAN AEMCO – versão instalável (PWA) – Rev08
+APP KANBAN AEMCO – versão instalável (PWA) – Rev09
 =====================================================
 
 O QUE É
@@ -21,7 +21,7 @@ BASE ONLINE (uma vez só)
    No resultado aparece o CÓDIGO DE INSTALAÇÃO (8 caracteres). Anote.
 2. Abra o app > tela "Primeira instalação" > seu nome + código de instalação +
    seu PIN de administrador (6 a 12 números). O código deixa de valer assim que o admin é criado.
-3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev08.json
+3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev09.json
    (fica na pasta Aretia > 03 - Kanban — NÃO suba esse arquivo no GitHub) > Publicar para todos.
 4. ☁ > Pessoas com acesso > cadastre o PIN de cada pessoa (digite ou "Gerar PIN") e entregue
    pessoalmente. O nome da pessoa fica gravado em tudo o que ela apontar.
