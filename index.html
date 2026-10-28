@@ -1520,14 +1520,20 @@ const quemNome=u=>String(u||'').split(' · ')[0];
 /* última importação de um tipo: metadados gravados no doc ou, na falta, o maior carimbo dos itens */
 function ultimaImp(tipo){
   const m=STK.meta[tipo]; const it=STK[tipo]||{}; const n=Object.keys(it).length;
-  if(m&&m.t) return {t:m.t,u:m.u||'',n:m.n||n,zer:m.zer||0,fonte:m.fonte||''};
-  let t=null,u='';
-  for(const v of Object.values(it)){ if(v&&v.t&&(!t||v.t>t)){ t=v.t; u=v.u||''; } }
-  return t?{t,u,n,zer:0,fonte:''}:null;
+  let dep=0;   // ajustes feitos depois da importação (apontamento manual, entrada de cartão)
+  if(m&&m.t){ for(const v of Object.values(it)){ if(v&&v.t&&v.t>m.t) dep++; } return {t:m.t,u:m.u||'',n:m.n||n,zer:m.zer||0,fonte:m.fonte||'',dep}; }
+  // sem metadados (importação feita antes da Rev11): o dia com mais itens carimbados é a importação; o resto são ajustes
+  const byDay={}; for(const v of Object.values(it)){ if(!v||!v.t) continue; const d=v.t.slice(0,10); (byDay[d]=byDay[d]||[]).push(v); }
+  const days=Object.keys(byDay).sort(); if(!days.length) return null;
+  const best=days.reduce((a,d)=>byDay[d].length>=byDay[a].length?d:a,days[0]);
+  const L=byDay[best]; let t=null; const cu={}; L.forEach(v=>{ if(!t||v.t>t) t=v.t; cu[v.u||'']=(cu[v.u||'']||0)+1; });
+  const u=Object.entries(cu).sort((x,y)=>y[1]-x[1])[0][0];
+  for(const v of Object.values(it)){ if(v&&v.t&&v.t>t) dep++; }
+  return {t,u,n:L.length,zer:0,fonte:'',dep};
 }
 function estLabel(){
   const pa=ultimaImp('pa'), us=ultimaImp('us'), ct=ultimaImp('cart');
-  const f=(x,lab)=>x?`<b>${lab}</b> apontado em <b>${fmtDT(x.t,true)}</b>${x.u?' por '+esc(quemNome(x.u)):''} (${f0(x.n)} itens)`:`<b>${lab}</b> sem apontamento — posição de ${esc(DATA.dataest)}`;
+  const f=(x,lab)=>x?`<b>${lab}</b> importado do ERP em <b>${fmtDT(x.t,true)}</b>${x.u?' por '+esc(quemNome(x.u)):''} (${f0(x.n)} itens${x.dep?`, +${f0(x.dep)} ajuste(s) manual(is) depois`:''})`:`<b>${lab}</b> sem importação — posição de ${esc(DATA.dataest)}`;
   const mto=pa&&STK.meta.pa&&STK.meta.pa.mtoPc>0?` (+${f0(STK.meta.pa.mtoPc)} pç de itens MTO sem Kanban, fora do painel)`:'';
   return `${f(pa,'CD')}${mto} · ${f(us,'Usinados')} · <b>Carteira</b> ${ct?`importada em <b>${fmtDT(ct.t,true)}</b> (${f0(ct.n)} itens)`:`da base de ${esc(DATA.dataest)} — importe a carteira em “Importar dados”`}. Itens sem linha nas importações mantêm a posição de ${esc(DATA.dataest)}.`;
 }
@@ -1614,12 +1620,13 @@ async function initCaps(){
 async function writeStock(tipo,changes,meta){
   const t=new Date().toISOString(); const itens={}; for(const [c,q] of Object.entries(changes)) itens[c]={q:Math.max(0,Math.round(q)),t,u:UID||""};
   const store=STK[tipo]; Object.assign(store,itens);
-  const m=Object.assign({t,u:UID||"",n:Object.keys(changes).length},meta||{}); STK.meta[tipo]=m;
+  const m=meta?Object.assign({t,u:UID||"",n:Object.keys(changes).length},meta):null; if(m) STK.meta[tipo]=m;   // só a importação do ERP marca a data da posição
   if(!DB){ rerender(); return true; }
   if(!WRITE_OK){ toast("Seu acesso é só leitura: peça permissão de interação ao dono do app"); return false; }
   const ref=DB.doc(tipo==="cart"?"kanban/carteira":"kanban/estoque_"+tipo);
-  try{ await ref.update({itens,meta:m}); }
-  catch(e){ try{ const s=await ref.get(); if(!s.exists){ await ref.set({itens,meta:m}); } else throw e; } catch(e2){ if(e2.code==="invalid_argument"){ WRITE_OK=false; toast("Seu acesso é só leitura: o estoque não foi gravado"); } else toast("Não gravou ("+e2.code+"). Tente de novo."); return false; } }
+  const payload=m?{itens,meta:m}:{itens};
+  try{ await ref.update(payload); }
+  catch(e){ try{ const s=await ref.get(); if(!s.exists){ await ref.set(payload); } else throw e; } catch(e2){ if(e2.code==="invalid_argument"){ WRITE_OK=false; toast("Seu acesso é só leitura: o estoque não foi gravado"); } else toast("Não gravou ("+e2.code+"). Tente de novo."); return false; } }
   return true;
 }
 async function saveParams(){
@@ -1864,7 +1871,7 @@ function finPanel(PA){
   const {T,L}=finAgg(PA), mx=Math.max(1,...L.map(f=>f.livre));
   const K=PA.filter(r=>(r.M>0||estReal(r)>0)); const poucas=K.filter(r=>r.preco>0&&r.nnf<5).length, semp=K.filter(r=>!(r.preco>0)).length;
   const pa=ultimaImp('pa');
-  return `<div class="panel" style="border-top:5px solid var(--ky)"><div class="head"><h3>Resumo financeiro · CD (produto acabado) <span class="tag" style="background:var(--ky);color:#15223B">ESTIMATIVA</span></h3><span class="note">estoque ${pa?'apontado em '+fmtDT(pa.t):'da posição de '+esc(DATA.dataest)}</span></div>
+  return `<div class="panel" style="border-top:5px solid var(--ky)"><div class="head"><h3>Resumo financeiro · CD (produto acabado) <span class="tag" style="background:var(--ky);color:#15223B">ESTIMATIVA</span></h3><span class="note">estoque ${pa?'importado em '+fmtDT(pa.t):'da posição de '+esc(DATA.dataest)}</span></div>
    <p class="note"><b>Como o valor foi estimado:</b> cada item vale o seu <b>preço médio de venda</b> nas notas fiscais de set/25 a ago/26 (faturamento ÷ quantidade faturada). <b>Não é custo</b>: o valor a custo é menor e o ganho real de caixa também. ${f0(K.length)} itens valorados${poucas?`, ${f0(poucas)} deles com menos de 5 NFs no período (preço menos confiável)`:''}${semp?`, ${f0(semp)} sem preço (fora da soma)`:''}. Para valor a custo, basta importar o custo médio do ERP (pedido em aberto).</p>
    <div class="fin">
     <div><small>Estoque no CD hoje</small><b>${brl(T.est)}</b><small>estimativa a preço de venda</small></div>
