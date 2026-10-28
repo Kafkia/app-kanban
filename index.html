@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev10"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev11"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1116,7 +1116,7 @@ p{margin:0;max-width:80ch}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 @media (max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .stat{border-top:4px solid var(--line);padding-top:6px;min-width:0}
-.stat.g{border-color:var(--kg)} .stat.y{border-color:var(--ky)} .stat.r{border-color:var(--kr)} .stat.m{border-color:var(--navy)}
+.stat.g{border-color:var(--kg)} .stat.y{border-color:var(--ky)} .stat.r{border-color:var(--kr)} .stat.m{border-color:var(--navy)} .stat.b{border-color:var(--kb)}
 .stat .v{font:600 22px var(--mono);font-variant-numeric:tabular-nums;line-height:1.15}
 .stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .stat .s{font-size:12px;color:var(--muted)}
@@ -1231,6 +1231,12 @@ section.pane{padding-top:4px}
 .ovbl span b{color:var(--ink)}
 .ovtrack{display:flex;height:14px;border-radius:4px;overflow:hidden;gap:2px;background:var(--panel)}
 .ovtrack i{display:block;height:100%}
+.ovwrap{position:relative;min-height:22px;display:flex;align-items:center}
+.ovwrap .ovtrack{height:22px}
+.ovval{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:12.5px;color:#fff;text-shadow:0 0 3px rgba(0,0,0,.85),0 0 1px rgba(0,0,0,.9);white-space:nowrap;pointer-events:none}
+.ovval b{color:#fff}
+.ovwrap.narrow .ovval{transform:translateY(-50%);color:var(--ink);text-shadow:none}
+.ovwrap.narrow .ovval b{color:var(--ink)}
 .ovdesc{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 details.ovdet summary{cursor:pointer;list-style:none;font-size:15px}
 details.ovdet summary::before{content:"▸ ";color:var(--gold)}
@@ -1506,7 +1512,27 @@ function capUsinagem(){
   const ep=Math.max(1,...ativos.map(x=>x.ep));
   return {g,Dd,nsku,ep,garg,semfolga:false,dterm:DT,takt1:P.tod*3600*P.dias/DT,takt2:P.tod*3600*P.dias/DATA.volcardan};
 }
-const STK={pa:{},us:{}};
+const STK={pa:{},us:{},cart:{},meta:{pa:null,us:null,cart:null}};   // Rev11: carteira importada + metadados das importações
+let HIST={};                                                            // Rev11: histórico diário do abastecimento (coleção "historico")
+const DT_ISO=(s)=>{ const m=String(s||'').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m?`${m[3]}-${m[2]}-${m[1]}`:null; };
+const fmtDT=(iso,hora)=>{ if(!iso) return '—'; const d=new Date(iso); if(isNaN(d)) return String(iso); return d.toLocaleDateString('pt-BR')+(hora?' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}):''); };
+const quemNome=u=>String(u||'').split(' · ')[0];
+/* última importação de um tipo: metadados gravados no doc ou, na falta, o maior carimbo dos itens */
+function ultimaImp(tipo){
+  const m=STK.meta[tipo]; const it=STK[tipo]||{}; const n=Object.keys(it).length;
+  if(m&&m.t) return {t:m.t,u:m.u||'',n:m.n||n,zer:m.zer||0,fonte:m.fonte||''};
+  let t=null,u='';
+  for(const v of Object.values(it)){ if(v&&v.t&&(!t||v.t>t)){ t=v.t; u=v.u||''; } }
+  return t?{t,u,n,zer:0,fonte:''}:null;
+}
+function estLabel(){
+  const pa=ultimaImp('pa'), us=ultimaImp('us'), ct=ultimaImp('cart');
+  const f=(x,lab)=>x?`<b>${lab}</b> apontado em <b>${fmtDT(x.t,true)}</b>${x.u?' por '+esc(quemNome(x.u)):''} (${f0(x.n)} itens)`:`<b>${lab}</b> sem apontamento — posição de ${esc(DATA.dataest)}`;
+  const mto=pa&&STK.meta.pa&&STK.meta.pa.mtoPc>0?` (+${f0(STK.meta.pa.mtoPc)} pç de itens MTO sem Kanban, fora do painel)`:'';
+  return `${f(pa,'CD')}${mto} · ${f(us,'Usinados')} · <b>Carteira</b> ${ct?`importada em <b>${fmtDT(ct.t,true)}</b> (${f0(ct.n)} itens)`:`da base de ${esc(DATA.dataest)} — importe a carteira em “Importar dados”`}. Itens sem linha nas importações mantêm a posição de ${esc(DATA.dataest)}.`;
+}
+function estCurto(){ const pa=ultimaImp('pa'), us=ultimaImp('us'); const t=[pa&&pa.t,us&&us.t].filter(Boolean).sort().pop(); return t?'estoque '+fmtDT(t):'posição '+(DATA.dataest||''); }
+function cartOf(cod,base){ const c=STK.cart[cod]; if(STK.meta.cart||Object.keys(STK.cart).length){ return c&&typeof c.q==="number"?c.q:0; } return base||0; }
 let SIM=false; try{ SIM=localStorage.getItem("aemco-kd3-sim")==="1"; }catch(e){}   // Rev05: com saldo real de 23/09 a simulacao nasce desligada
 function hashf(s){ let h=2166136261; for(let i=0;i<String(s).length;i++){ h^=String(s).charCodeAt(i); h=Math.imul(h,16777619);} return ((h>>>0)%997)/997; }
 function simEst(r){ return Math.round(r.M*(0.04+0.92*hashf(r.cod))); }
@@ -1542,7 +1568,7 @@ function calcPA(){
     const [nk,kv,ka,kr]=cardsOf(M,V,A,q);
     const tc=P.tcpa[fam]!=null?P.tcpa[fam]:P.tcpa.outros;
     const r={k:"pa",cod,desc,fam,sub,abc,xyz,cls0,cls,vol,SS,cv,fdem,preco:preco||0,pg:cls==="MTO"?null:Math.ceil(D*(P.pg||0)),Dh:vol/P.dias,dm:D*NM(),nnf,cap,snap,tipo,comp,endA,endN,ruaN,rec,peso,q,cont:DATA.conts[ci],D,LT,ep,lmin,V,A,R,M,pm,pv,pa,pr,nk,kv,ka,kr,tc,cob:D>0?M/D:0,
-      fast,sov,role:(DATA.roles[roi]||""),proc,cart:cart||0,aloc:aloc||0,nota:nota||"",orig,clsm,ppc:comp&&fam==="Cruzetas"?D*P.ltforn*(1+P.par):null};
+      fast,sov,role:(DATA.roles[roi]||""),proc,cart:cartOf(cod,cart),cart0:cart||0,aloc:aloc||0,nota:nota||"",orig,clsm,ppc:comp&&fam==="Cruzetas"?D*P.ltforn*(1+P.par):null};
     r.est=estPA(r); r.st=status(cls,r.est,r); r.ocup=(r.est!=null&&cap>0)?Math.ceil(r.est/cap):null;
     return r;
   });
@@ -1577,27 +1603,30 @@ async function initCaps(){
   if(!DB){ setSync("modo local · dados não compartilhados"); initFotos(); cartInit(); return; }
   setSync("sincronizando…");
   try{ if(USER&&USER.can){ const c=await USER.can("data.write"); if(c===false){ WRITE_OK=false; } } }catch(e){}
-  DB.doc("kanban/estoque_pa").onSnapshot(s=>{ STK.pa=(s.exists&&s.data().itens)||{}; setSync("compartilhado · atualizado "+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})); rerender(); }, e=>setSync("sem sincronização ("+e.code+")"));
-  DB.doc("kanban/estoque_us").onSnapshot(s=>{ STK.us=(s.exists&&s.data().itens)||{}; rerender(); }, ()=>{});
+  DB.doc("kanban/estoque_pa").onSnapshot(s=>{ const d=s.exists?s.data():{}; STK.pa=d.itens||{}; STK.meta.pa=d.meta||null; setSync("compartilhado · atualizado "+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})); rerender(); }, e=>setSync("sem sincronização ("+e.code+")"));
+  DB.doc("kanban/estoque_us").onSnapshot(s=>{ const d=s.exists?s.data():{}; STK.us=d.itens||{}; STK.meta.us=d.meta||null; rerender(); }, ()=>{});
+  DB.doc("kanban/carteira").onSnapshot(s=>{ const d=s.exists?s.data():{}; STK.cart=d.itens||{}; STK.meta.cart=d.meta||null; rerender(); }, ()=>{});
+  DB.collection("historico").onSnapshot(q=>{ HIST={}; q.docs.forEach(d=>{ HIST[d.id]=d.data(); }); rerender(); }, ()=>{});
   DB.doc("kanban/params4").onSnapshot(s=>{ if(s.exists&&s.data().p){ P=Object.assign(clone(DEF),s.data().p); rerender(); } }, ()=>{});
   initFotos(); cartInit();
   DB.collection("ordens").orderBy("criada","desc").limit(600).onSnapshot(q=>{ ORD=q.docs.map(d=>Object.assign({id:d.id},d.data())); ORDmap={}; ORD.forEach(o=>{ if(o.status!=="concluída"){ const key=o.tipo+"|"+o.cod; ORDmap[key]=(ORDmap[key]||0)+o.qtd; } }); rerender(); }, ()=>{});
 }
-async function writeStock(tipo,changes){
+async function writeStock(tipo,changes,meta){
   const t=new Date().toISOString(); const itens={}; for(const [c,q] of Object.entries(changes)) itens[c]={q:Math.max(0,Math.round(q)),t,u:UID||""};
-  const store=tipo==="pa"?STK.pa:STK.us; Object.assign(store,itens);
+  const store=STK[tipo]; Object.assign(store,itens);
+  const m=Object.assign({t,u:UID||"",n:Object.keys(changes).length},meta||{}); STK.meta[tipo]=m;
   if(!DB){ rerender(); return true; }
   if(!WRITE_OK){ toast("Seu acesso é só leitura: peça permissão de interação ao dono do app"); return false; }
-  const ref=DB.doc("kanban/estoque_"+tipo);
-  try{ await ref.update({itens}); }
-  catch(e){ try{ const s=await ref.get(); if(!s.exists){ await ref.set({itens}); } else throw e; } catch(e2){ if(e2.code==="invalid_argument"){ WRITE_OK=false; toast("Seu acesso é só leitura: o estoque não foi gravado"); } else toast("Não gravou ("+e2.code+"). Tente de novo."); return false; } }
+  const ref=DB.doc(tipo==="cart"?"kanban/carteira":"kanban/estoque_"+tipo);
+  try{ await ref.update({itens,meta:m}); }
+  catch(e){ try{ const s=await ref.get(); if(!s.exists){ await ref.set({itens,meta:m}); } else throw e; } catch(e2){ if(e2.code==="invalid_argument"){ WRITE_OK=false; toast("Seu acesso é só leitura: o estoque não foi gravado"); } else toast("Não gravou ("+e2.code+"). Tente de novo."); return false; } }
   return true;
 }
 async function saveParams(){
   try{ localStorage.setItem("aemco-kd4-params",JSON.stringify(P)); }catch(e){}
   if(DB&&WRITE_OK){ try{ await DB.doc("kanban/params4").set({p:P,t:new Date().toISOString(),u:UID||""}); }catch(e){ toast("Parâmetros salvos só neste navegador ("+e.code+")"); } }
 }
-let rerenderT=null; function rerender(){ clearTimeout(rerenderT); rerenderT=setTimeout(()=>{ if(TAB!=="cd") go(TAB,true); else if(window.CD3) CD3.recolor(); },60); }
+let rerenderT=null; function rerender(){ clearTimeout(rerenderT); rerenderT=setTimeout(()=>{ try{ document.getElementById('rev').textContent="Kanban · "+estCurto(); if(typeof histCheck==='function') histCheck(); }catch(e){} if(TAB!=="cd") go(TAB,true); else if(window.CD3) CD3.recolor(); },60); }
 async function saveFile(name,text,type){
   if(!DL){
     try{ const u=URL.createObjectURL(new Blob([text],{type:type||"text/csv;charset=utf-8"})); const a=document.createElement("a"); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),2000); toast("Arquivo "+name+" gerado"); }
@@ -1777,11 +1806,11 @@ function saudeCard(titulo,sub,T,nVerm,unid){
 const ST_INFO=[["Vermelho","r","■","Vermelha","risco de faltar — produzir já"],["Amarelo","y","▲","Amarela","programar a reposição"],["Verde","g","●","Verde","abastecido — não fazer nada"],["Acima do máx","b","◆","Acima do máximo","sobrando — não produzir"],["sem dado","n","○","Sem estoque apontado","conferir no inventário"]];
 function semaforo(lab,c){
   const tot=ST_INFO.reduce((t,x)=>t+(c[x[0]]||0),0)||1;
-  return `<div class="ovsem"><div class="ovsemh"><b>${lab}</b><span class="note">${f0(tot)} itens</span></div>
+  return `<div class="ovsem"><div class="ovsemh"><b>${lab}</b><span class="note">${f0(tot)} SKUs</span></div>
    <div class="ovstack" role="img" aria-label="${esc(lab)}: ${ST_INFO.map(x=>x[3]+' '+(c[x[0]]||0)).join(', ')}">
     ${ST_INFO.map(x=>{ const n=c[x[0]]||0; if(!n) return ''; const w=n/tot*100;
-      return `<span style="flex:${n};background:${OVC[x[1]]}" title="${x[3]}: ${f0(n)} itens (${f0(w)}%) — ${x[4]}">${w>=7?f0(n):''}</span>`; }).join('')}
-   </div><div class="note">${ST_INFO.map(x=>`${x[2]} ${f0(c[x[0]]||0)} ${x[3].toLowerCase()}`).join(' · ')}</div></div>`;
+      return `<span style="flex:${n};background:${OVC[x[1]]}" title="${x[3]}: ${f0(n)} SKUs (${f0(w)}%) — ${x[4]}">${w>=7?f0(n):''}</span>`; }).join('')}
+   </div><div class="note">${ST_INFO.map(x=>`${x[2]} ${f0(c[x[0]]||0)} SKUs ${x[3].toLowerCase()}`).join(' · ')}</div></div>`;
 }
 function semLegend(){
   return `<div class="ovleg">${ST_INFO.map(x=>`<span><i style="background:${OVC[x[1]]}"></i><b>${x[2]} ${x[3]}</b> — ${x[4]}</span>`).join('')}</div>`;
@@ -1792,8 +1821,9 @@ function famBars(lab,L,dica){
   return `<div class="panel"><div class="head"><h3>${lab}</h3><span class="note">faltam ${f0(R.reduce((s,o)=>s+o.falta,0))} pç</span></div>
    ${R.map(o=>{ const p=o.alvo?o.util/o.alvo*100:0;
      return `<div class="ovbar" title="${esc(o.fam)} — deve ter ${f0(o.alvo)} pç · tem ${f0(o.util)} pç na faixa · faltam ${f0(o.falta)} pç">
-      <div class="ovbl"><b>${esc(o.fam)}</b><span>${o.falta>0?`faltam <b>${f0(o.falta)}</b> pç`:'<b style="color:var(--kg)">completo</b>'} · ${f0(p)}% abastecido</span></div>
-      <div class="ovtrack" style="width:${Math.max(6,o.alvo/mx*100).toFixed(1)}%"><i style="width:${p.toFixed(1)}%;background:${OVC.g}"></i><i style="width:${(100-p).toFixed(1)}%;background:${OVC.r}"></i></div></div>`; }).join('')}
+      <div class="ovbl"><b>${esc(o.fam)}</b><span class="note">${f0(o.alvo)} pç no máximo</span></div>
+      <div class="ovwrap${o.alvo/mx*100<60?" narrow":""}"><div class="ovtrack" style="width:${Math.max(6,o.alvo/mx*100).toFixed(1)}%"><i style="width:${p.toFixed(1)}%;background:${OVC.g}"></i><i style="width:${(100-p).toFixed(1)}%;background:${OVC.r}"></i></div>
+       <span class="ovval" style="${o.alvo/mx*100<60?`left:calc(${Math.max(6,o.alvo/mx*100).toFixed(1)}% + 10px)`:''}">${o.falta>0?`faltam <b>${f0(o.falta)}</b> pç`:'<b>completo</b>'} · ${f0(p)}% abastecido</span></div></div>`; }).join('')}
    <div class="ovleg"><span><i style="background:${OVC.g}"></i>abastecido</span><span><i style="background:${OVC.r}"></i>falta fabricar</span><span class="note">${dica}</span></div></div>`;
 }
 function excBars(lab,L,cd){
@@ -1803,8 +1833,9 @@ function excBars(lab,L,cd){
   return `<div class="panel"><div class="head"><h3>${lab}</h3><span class="note">${f0(tot)} pç sobrando${cd?` · ${f0(vend)} já vendidas`:''}</span></div>
    ${R.map(o=>{ const w=o.exc/mx*100, v=cd?Math.min(o.vend,o.exc):0;
      return `<div class="ovbar" title="${esc(o.fam)} — ${f0(o.exc)} pç acima do máximo (${pctE(o.exc,o.est)} do estoque)${cd?` · ${f0(v)} pç já vendidas na carteira`:''}">
-      <div class="ovbl"><b>${esc(o.fam)}</b><span><b>${f0(o.exc)}</b> pç · ${pctE(o.exc,o.est)} do estoque${cd&&v?` · ${f0(v)} vendidas`:''}</span></div>
-      <div class="ovtrack" style="width:${Math.max(4,w).toFixed(1)}%">${cd&&v?`<i style="width:${(v/o.exc*100).toFixed(1)}%;background:var(--kb-soft);box-shadow:inset 0 0 0 2px ${OVC.b}"></i>`:''}<i style="flex:1;background:${OVC.b}"></i></div></div>`; }).join('')}
+      <div class="ovbl"><b>${esc(o.fam)}</b><span class="note">${pctE(o.exc,o.est)} do estoque da família</span></div>
+      <div class="ovwrap${w<60?" narrow":""}"><div class="ovtrack" style="width:${Math.max(4,w).toFixed(1)}%">${cd&&v?`<i style="width:${(v/o.exc*100).toFixed(1)}%;background:var(--kb-soft);box-shadow:inset 0 0 0 2px ${OVC.b}"></i>`:''}<i style="flex:1;background:${OVC.b}"></i></div>
+       <span class="ovval" style="${w<60?`left:calc(${Math.max(4,w).toFixed(1)}% + 10px)`:''}"><b>${f0(o.exc)}</b> pç acima do máximo${cd&&v?` · <b>${f0(v)}</b> já vendidas`:''}</span></div></div>`; }).join('')}
    <div class="ovleg"><span><i style="background:${OVC.b}"></i>acima do máximo — sai com o consumo, não repor</span>${cd?`<span><i style="background:var(--kb-soft);box-shadow:inset 0 0 0 2px ${OVC.b}"></i>já vendido (carteira em aberto)</span>`:''}</div></div>`;
 }
 function riscoList(lab,rows){
@@ -1831,16 +1862,82 @@ function finAgg(rows){
 }
 function finPanel(PA){
   const {T,L}=finAgg(PA), mx=Math.max(1,...L.map(f=>f.livre));
-  return `<div class="panel"><div class="head"><h3>Resumo financeiro · CD (produto acabado)</h3><span class="note">a preço médio de venda das NFs · estoque de ${esc(DATA.dataest)}</span></div>
+  const K=PA.filter(r=>(r.M>0||estReal(r)>0)); const poucas=K.filter(r=>r.preco>0&&r.nnf<5).length, semp=K.filter(r=>!(r.preco>0)).length;
+  const pa=ultimaImp('pa');
+  return `<div class="panel" style="border-top:5px solid var(--ky)"><div class="head"><h3>Resumo financeiro · CD (produto acabado) <span class="tag" style="background:var(--ky);color:#15223B">ESTIMATIVA</span></h3><span class="note">estoque ${pa?'apontado em '+fmtDT(pa.t):'da posição de '+esc(DATA.dataest)}</span></div>
+   <p class="note"><b>Como o valor foi estimado:</b> cada item vale o seu <b>preço médio de venda</b> nas notas fiscais de set/25 a ago/26 (faturamento ÷ quantidade faturada). <b>Não é custo</b>: o valor a custo é menor e o ganho real de caixa também. ${f0(K.length)} itens valorados${poucas?`, ${f0(poucas)} deles com menos de 5 NFs no período (preço menos confiável)`:''}${semp?`, ${f0(semp)} sem preço (fora da soma)`:''}. Para valor a custo, basta importar o custo médio do ERP (pedido em aberto).</p>
    <div class="fin">
-    <div><small>Estoque no CD hoje</small><b>${brl(T.est)}</b><small>itens do app</small></div>
+    <div><small>Estoque no CD hoje</small><b>${brl(T.est)}</b><small>estimativa a preço de venda</small></div>
     <div><small>Máximo do Kanban (alvo)</small><b>${brl(T.alvo)}</b><small>o que o supermercado deve ter</small></div>
     <div><small>Acima do máximo</small><b style="color:var(--kb)">${brl(T.exc)}</b><small>${brl(T.vend)} já vendidos (carteira em aberto)</small></div>
     <div class="gain"><small>Ganho ao retirar o excesso</small><b>${brl(T.livre)}</b><small>excesso sem pedido: sai com o consumo e não é reposto</small></div>
     <div><small>Falta fabricar</small><b style="color:var(--kr)">${brl(T.falta)}</b><small>para completar o supermercado</small></div>
    </div>
-   ${L.length?L.slice(0,6).map(f=>`<div class="ovbar" title="${esc(f.fam)} — ${brl(f.livre)} acima do máximo sem pedido"><div class="ovbl"><b>${esc(f.fam)}</b><span><b>${brl(f.livre)}</b> de excesso sem pedido</span></div><div class="ovtrack" style="width:${Math.max(4,f.livre/mx*100).toFixed(1)}%"><i style="flex:1;background:${OVC.g}"></i></div></div>`).join(''):''}
-   <p class="note">Leitura: o excesso já vendido sai com a carteira; o restante é o caixa que deixa de ficar parado quando o item volta ao máximo (não repor acima da faixa verde). Com o estoque no alvo, o CD fica com ${brl(T.depois)} (hoje ${brl(T.est)}). <b>Valores a preço de venda (NF set/25–ago/26), não a custo</b>: o ganho a custo é menor. Usinados não têm preço na base e ficam fora.${T.semp>0?` ${f0(T.semp)} pç sem preço não entram.`:''}</p></div>`;
+   ${L.length?L.slice(0,6).map(f=>{ const w=f.livre/mx*100; return `<div class="ovbar" title="${esc(f.fam)} — ${brl(f.livre)} acima do máximo sem pedido"><div class="ovbl"><b>${esc(f.fam)}</b><span class="note">estimativa a preço de venda</span></div><div class="ovwrap${w<60?" narrow":""}"><div class="ovtrack" style="width:${Math.max(4,w).toFixed(1)}%"><i style="flex:1;background:${OVC.g}"></i></div><span class="ovval" style="${w<60?`left:calc(${Math.max(4,w).toFixed(1)}% + 10px)`:''}"><b>${brl(f.livre)}</b> de excesso sem pedido</span></div></div>`; }).join(''):''}
+   <p class="note">Leitura: o excesso já vendido sai com a carteira; o restante é o caixa que deixa de ficar parado quando o item volta ao máximo (não repor acima da faixa verde). Com o estoque no alvo, o CD fica com ${brl(T.depois)} (hoje ${brl(T.est)}). Usinados não têm preço na base e ficam fora.${T.semp>0?` ${f0(T.semp)} pç sem preço não entram.`:''}</p></div>`;
+}
+
+/* ---------- Rev11: histórico diário do abastecimento (coleção "historico", um doc por data) ---------- */
+function pctSnapshot(){
+  const PA=calcPA(), US=calcUS();
+  const kU=US.filter(r=>r.manter&&r.cls!=="MTO"), uFora=US.filter(r=>!(r.manter&&r.cls!=="MTO")).map(r=>Object.assign({},r,{M:0}));
+  const fP=famAgg(PA,'fam'), fU=famAgg(kU.concat(uFora),'grp'), cP=countSt(PA), cU=countSt(US.filter(r=>r.manter));
+  const pk=T=>({pct:+(T.alvo?T.util/T.alvo*100:0).toFixed(1),util:Math.round(T.util),alvo:Math.round(T.alvo),falta:Math.round(T.falta),exc:Math.round(T.exc),vend:Math.round(T.vend||0)});
+  const cd=pk(fP.T), us=pk(fU.T); cd.verm=cP["Vermelho"]||0; us.verm=cU["Vermelho"]||0;
+  return {cd,us,tot:+((fP.T.util+fU.T.util)/Math.max(1,fP.T.alvo+fU.T.alvo)*100).toFixed(1)};
+}
+let BASE_PT=null;
+function basePoint(){   // ponto da base (posição de DATA.dataest), calculado sem os apontamentos
+  if(BASE_PT) return BASE_PT;
+  const bk={pa:STK.pa,us:STK.us,cart:STK.cart,meta:STK.meta}; STK.pa={}; STK.us={}; STK.cart={}; STK.meta={pa:null,us:null,cart:null};
+  try{ BASE_PT=Object.assign({d:DT_ISO(DATA.dataest),base:true},pctSnapshot()); } finally{ Object.assign(STK,bk); }
+  return BASE_PT;
+}
+function histPoints(){
+  const pts=Object.values(HIST).filter(h=>h&&h.d&&h.cd&&h.us).map(h=>Object.assign({},h));
+  const b=basePoint(); if(b.d&&!pts.some(p=>p.d===b.d)) pts.push(b);
+  return pts.sort((a,b)=>a.d<b.d?-1:1);
+}
+let histT=null;
+function histCheck(){   // grava/atualiza o ponto do dia da última importação (CD ou Usinados)
+  clearTimeout(histT);
+  histT=setTimeout(()=>{
+    const pa=ultimaImp('pa'), us=ultimaImp('us'); const t=[pa&&pa.t,us&&us.t].filter(Boolean).sort().pop(); if(!t) return;
+    const dt=new Date(t); if(isNaN(dt)) return; const d=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
+    const p=Object.assign({d,t:new Date().toISOString(),u:UID||"",impPA:pa?pa.t:null,impUS:us?us.t:null},pctSnapshot());
+    const h=HIST[d];
+    const same=h&&h.cd&&h.us&&Math.abs(h.cd.pct-p.cd.pct)<0.05&&Math.abs(h.us.pct-p.us.pct)<0.05&&h.cd.falta===p.cd.falta&&h.us.falta===p.us.falta&&h.cd.exc===p.cd.exc&&h.us.exc===p.us.exc;
+    if(same) return;
+    HIST[d]=p;
+    if(DB&&WRITE_OK){ DB.doc("historico/"+d).set(p).catch(()=>{}); } else if(TAB==="ov") rerender();
+  },1500);
+}
+function histChart(pts){
+  if(!pts.length) return '<p class="note">Sem pontos ainda.</p>';
+  const W=720,H=230,L=44,R=86,T=18,B=38, iw=W-L-R, ih=H-T-B;
+  const x=i=>L+(pts.length>1?i/(pts.length-1):0.5)*iw, y=v=>T+(1-Math.max(0,Math.min(100,v))/100)*ih;
+  const SER=[['cd','CD · produto acabado','#2F6DB5'],['us','Usinados · AUS','#C27C0E']];
+  const fd=d=>{ const [a,m,dd]=d.split('-'); return dd+'/'+m; };
+  let g='';
+  for(const v of [0,25,50,75,100]) g+=`<line x1="${L}" x2="${L+iw}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="${v?'3 4':''}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${v}%</text>`;
+  const step=Math.max(1,Math.ceil(pts.length/8));
+  pts.forEach((p,i)=>{ if(i%step===0||i===pts.length-1) g+=`<text x="${x(i)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="var(--muted)">${fd(p.d)}</text>`; });
+  for(const [k,lab,c] of SER){
+    const d=pts.map((p,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(p[k].pct).toFixed(1)}`).join(' ');
+    g+=`<path d="${d}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round"/>`;
+    pts.forEach((p,i)=>{ g+=`<g><circle cx="${x(i)}" cy="${y(p[k].pct)}" r="4" fill="${c}" stroke="var(--panel)" stroke-width="2"/><circle cx="${x(i)}" cy="${y(p[k].pct)}" r="11" fill="transparent"><title>${fd(p.d)}${p.base?' (base)':''} · ${lab}: ${f1(p[k].pct)}% abastecido · faltam ${f0(p[k].falta)} pç · ${f0(p[k].exc)} pç acima do máximo · ${f0(p[k].verm)} SKUs na vermelha</title></circle></g>`; });
+    const last=pts[pts.length-1]; g+=`<text x="${x(pts.length-1)+9}" y="${y(last[k].pct)+4}" font-size="12" font-weight="700" fill="var(--ink)">${f0(last[k].pct)}% ${k==='cd'?'CD':'AUS'}</text>`;
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:260px;display:block" role="img" aria-label="Evolução diária do abastecimento">${g}</svg>`;
+}
+function histPanel(){
+  const pts=histPoints(); const last=pts.slice(-10).reverse();
+  return `<div class="panel"><div class="head"><h3>Evolução diária do abastecimento</h3><span class="note">um ponto por dia de importação do estoque · ${f0(pts.length)} dia(s)</span></div>
+   ${histChart(pts)}
+   <div class="ovleg"><span><i style="background:#2F6DB5"></i><b>CD · produto acabado</b></span><span><i style="background:#C27C0E"></i><b>Usinados · AUS</b></span><span class="note">% abastecido = peças dentro das faixas ÷ máximo do supermercado · passe o mouse nos pontos</span></div>
+   <details style="margin-top:8px"><summary class="note">Tabela dos últimos ${last.length} dias</summary><div class="tw"><table><thead><tr><th>Data</th><th class="num">CD %</th><th class="num">CD faltam (pç)</th><th class="num">CD acima (pç)</th><th class="num">AUS %</th><th class="num">AUS faltam (pç)</th><th class="num">AUS acima (pç)</th><th class="num">Total %</th></tr></thead><tbody>
+   ${last.map(p=>`<tr><td>${fmtDT(p.d+'T12:00:00')}${p.base?' <span class="note">(base)</span>':''}</td><td class="num">${f1(p.cd.pct)}</td><td class="num">${f0(p.cd.falta)}</td><td class="num">${f0(p.cd.exc)}</td><td class="num">${f1(p.us.pct)}</td><td class="num">${f0(p.us.falta)}</td><td class="num">${f0(p.us.exc)}</td><td class="num">${f1(p.tot)}</td></tr>`).join('')}</tbody></table></div></details>
+   <p class="note">O ponto do dia é gravado automaticamente quando alguém importa o estoque (CD ou Usinados); importações no mesmo dia atualizam o mesmo ponto. O primeiro ponto é a posição da base (${esc(DATA.dataest)}).</p></div>`;
 }
 function renderOV(){
   const PA=calcPA(), US=calcUS();
@@ -1854,15 +1951,17 @@ function renderOV(){
   const geral=(fP.T.util+fU2.T.util)/Math.max(1,fP.T.alvo+fU2.T.alvo)*100;
   document.getElementById('p-ov').innerHTML=`
   <div class="panel ovhero"><div><h2>Como estão os supermercados hoje</h2>
-    <p class="note">Posição de estoque de <b>${esc(DATA.dataest)}</b> ou o último apontamento feito pelo app. <b style="color:var(--kg)">Verde</b> = abastecido · <b style="color:var(--kr)">vermelho</b> = falta fabricar · <b style="color:var(--kb)">azul</b> = sobrando acima do máximo.</p>
+    <p class="note">${estLabel()}</p>
+    <p class="note"><b style="color:var(--kg)">Verde</b> = abastecido · <b style="color:var(--kr)">vermelho</b> = falta fabricar · <b style="color:var(--kb)">azul</b> = sobrando acima do máximo.</p>
     <p class="note">Máximos dimensionados pela <b>${P.sop!==0?'demanda do S&OP ('+hzLabel()+')':'demanda histórica 12M'}</b>${P.z>0?' com reserva contra variação (z = '+f2(P.z)+')':' sem reserva contra variação'} — ajuste em Parâmetros.</p></div>
    <div class="ovgeral"><span style="color:${saude(geral).c}">${f0(geral)}%</span><small>abastecido no total<br>(CD + Usinados)</small></div></div>
   <div class="grid2">
-   ${saudeCard("Supermercado do CD · produto acabado","Produtos prontos para expedir.",fP.T,cP["Vermelho"]||0,"itens")}
-   ${saudeCard("Supermercado de Usinados · AUS","Peças usinadas que abastecem a montagem.",fU2.T,cU["Vermelho"]||0,"itens")}
+   ${saudeCard("Supermercado do CD · produto acabado","Produtos prontos para expedir.",fP.T,cP["Vermelho"]||0,"SKUs")}
+   ${saudeCard("Supermercado de Usinados · AUS","Peças usinadas que abastecem a montagem.",fU2.T,cU["Vermelho"]||0,"SKUs")}
   </div>
+  ${histPanel()}
   ${finPanel(PA)}
-  <div class="panel"><div class="head"><h3>Semáforo dos itens</h3><span class="note">quantos itens estão em cada faixa</span></div>
+  <div class="panel"><div class="head"><h3>Semáforo dos itens (SKUs)</h3><span class="note">quantos <b>códigos de item (SKUs)</b> estão em cada faixa — contagem de itens, não de peças</span></div>
    ${semaforo("CD · produto acabado",cP)}${semaforo("Usinados · AUS",cU)}${semLegend()}</div>
   <div class="grid2">
    ${famBars("Onde falta fabricar · CD",fP.L,"barra maior = família com mais peças no supermercado")}
@@ -1947,7 +2046,7 @@ function renderList(kind){
     <td class="num">${f0(r.lmin)}</td><td class="num">${f0(r.q)}</td><td class="num">${r.nk} = ${r.kv}/${r.ka}/${r.kr}</td><td>${contGraphic(r)}</td>
     ${us?`<td class="note">${esc(r.motivo)}${r.ext?`<br><b style="color:var(--ky)">Processo externo: ${esc(r.ext)}</b>`:''}${r.shf>0?`<br><span class="note">${f0(r.shf*100)}% do volume já sai acabado no CD</span>`:''}</td><td class="num">${f0(r.canais)}</td>`
         :`<td class="note">${r.fast?'<b style="color:var(--kg)">Atendimento rápido AX/AY</b>':esc(r.role||'Kanban')}</td><td class="num">${f0(r.cap)}</td><td class="num">${r.pm==null?'—':`${r.pm} = ${r.pv}/${r.pa}/${r.pr}`}</td><td>${r.pm==null?'<span class="note">posição inteira</span>':palGraphic(r)}</td><td class="num">${r.ocup==null?'—':r.ocup}</td><td class="note">${esc(r.endN||'sem posição')}</td>`}
-    <td class="num">${r.pg?f0(r.pg)+' pç':''}</td><td class="num">${f0(r.est)}${!us&&r.cart>0?`<br><span class="note">carteira ${f0(r.cart)}</span>`:''}</td><td>${spill(r.st)}</td></tr>`;
+    <td class="num">${r.pg?f0(r.pg)+' pç':''}</td><td class="num" title="${!us?('estoque '+f0(r.est)+' · carteira '+f0(r.cart)+' ('+(STK.meta.cart?'importada':'base '+DATA.dataest)+') · disponível '+f0(Math.max(0,(r.est||0)-(r.cart||0)))):''}">${f0(r.est)}${!us&&r.cart>0?`<br><span class="note">carteira ${f0(r.cart)} · disp. ${f0(Math.max(0,(r.est||0)-r.cart))}</span>`:''}</td><td>${spill(r.st)}</td></tr>`;
   }
   h+=`</tbody></table></div><p class="note">${rows.length} SKU(s) listados — a tabela mostra todos, use o scroll horizontal e vertical.</p>`;
   el.innerHTML=h;
@@ -1956,9 +2055,9 @@ function renderList(kind){
   if(us) bind('us-grp','grp','change'); else { bind('pa-fam','fam','change'); }
   document.getElementById(kind+'-csv').onclick=()=>{
     const H=us?["codigo","descricao","grupo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","canais","estoque","status","processo_externo","origem_classe","classe_modelo","anotacao_kandi"]
-              :["codigo","descricao","familia","subfamilia","tipo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","cap_pos","pos_max","pos_v","pos_a","pos_r","ocup_hoje","end_proposto","pedido_especial_acima_de","preco_medio_venda_nf","estoque","status","carteira_0110","origem_classe","classe_modelo","anotacao_kandi"];
+              :["codigo","descricao","familia","subfamilia","tipo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","cap_pos","pos_max","pos_v","pos_a","pos_r","ocup_hoje","end_proposto","pedido_especial_acima_de","preco_medio_venda_nf","estoque","status","carteira","disponivel","fonte_carteira","origem_classe","classe_modelo","anotacao_kandi"];
     const val=r=>us?[r.cod,r.desc,r.grp,r.abc,r.xyz,r.cls,r.D,r.fdem,r.Dh,r.cv??"",r.SS,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.canais,r.est??"",r.st,r.ext,r.orig,r.clsm,r.nota]
-                   :[r.cod,r.desc,r.fam,r.sub,r.tipo,r.abc,r.xyz,r.cls,r.D,r.fdem,r.Dh,r.cv??"",r.SS,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.cap??"",r.pm??"",r.pv??"",r.pa??"",r.pr??"",r.ocup??"",r.endN,r.pg??"",r.preco||"",r.est??"",r.st,r.cart,r.orig,r.clsm,r.nota];
+                   :[r.cod,r.desc,r.fam,r.sub,r.tipo,r.abc,r.xyz,r.cls,r.D,r.fdem,r.Dh,r.cv??"",r.SS,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.cap??"",r.pm??"",r.pv??"",r.pa??"",r.pr??"",r.ocup??"",r.endN,r.pg??"",r.preco||"",r.est??"",r.st,r.cart,Math.max(0,(r.est||0)-(r.cart||0)),(STK.meta.cart?"importada":"base "+DATA.dataest),r.orig,r.clsm,r.nota];
     const txt=[H.join(";")].concat(rows.map(r=>val(r).map(v=>typeof v==="number"?nf2.format(v).replace(/\./g,""):String(v).replace(/;/g,",")).join(";"))).join("\n");
     saveFile(us?"kanban_usinados_aemco.csv":"kanban_pa_aemco.csv","﻿"+txt);
   };
@@ -2842,7 +2941,37 @@ function pedirFoto(cod){
   i.click();
 }
 /* ---------- Importação de dados (Datasul) ---------- */
-const IMP={tipo:"estoque_pa",sep:"auto",txt:"",prev:null,cmap:{cod:0,qtd:1},hdr:true,log:[]};
+const IMP={tipo:"estoque_pa",sep:"auto",txt:"",prev:null,cmap:{cod:0,qtd:1},hdr:true,log:[],completo:true};
+/* ---------- Rev11: catálogo completo de códigos para explicar o que não casou ---------- */
+let CATX=null;
+function catalogo(){
+  if(CATX) return CATX;
+  const pa=new Map(), us=new Map();
+  DATA.pa.forEach(x=>pa.set(x[0],{cls:x[6],fam:DATA.fams[x[2]],app:true}));
+  (DATA.catpa||[]).forEach(([c,fi])=>{ if(!pa.has(c)) pa.set(c,{cls:'MTO',fam:(DATA.catpa_f||[])[fi]||'',app:false}); });
+  DATA.us.forEach(x=>us.set(x[0],{cls:x[5]==="MTO + buffer"?CLS_US_BUF:x[5],grp:DATA.grp[x[2]],man:!!x[14],app:true}));
+  (DATA.catus||[]).forEach(([c,d,gi])=>{ if(!us.has(c)) us.set(c,{cls:'MTO',grp:(DATA.catus_g||[])[gi]||'',man:false,app:false,desc:d}); });
+  const semZero=new Map();   // "8019" -> ["008019"] (o Excel costuma apagar os zeros à esquerda)
+  for(const c of [...pa.keys(),...us.keys()]){ const k=c.replace(/^0+/,''); if(k!==c){ const L=semZero.get(k)||[]; L.push(c); semZero.set(k,L); } }
+  return CATX={pa,us,semZero};
+}
+/* classifica um código do arquivo para o tipo importado. Retorna {st, cod} com cod = código canônico quando casou por zeros à esquerda */
+function classCod(c,tipo){
+  const K=catalogo(); const us=tipo==="estoque_us";
+  const alvoApp=us?new Set(DATA.us.map(x=>x[0])):new Set(DATA.pa.map(x=>x[0]));
+  if(alvoApp.has(c)) return {st:"ok",cod:c};
+  const z=K.semZero.get(c.replace(/^0+/,'')); if(z&&z.length===1&&alvoApp.has(z[0])) return {st:"zeros",cod:z[0]};
+  const P=K.pa.get(c)||(z&&z.length===1?K.pa.get(z[0]):null), U=K.us.get(c)||(z&&z.length===1?K.us.get(z[0]):null);
+  if(!us){ if(P&&!P.app) return {st:"mto",cod:c,info:P}; if(U) return {st:"outro",cod:c,info:U}; }
+  else   { if(U&&!U.app) return {st:"mto",cod:c,info:U}; if(P) return {st:"outro",cod:c,info:P}; }
+  return {st:"novo",cod:c};
+}
+const CLASS_ST={ok:['Linhas prontas','g','código do supermercado encontrado'],
+  zeros:['Zeros à esquerda corrigidos','g','ex.: 8019 → 008019 (Excel apaga os zeros) — entram normalmente'],
+  mto:['Item MTO · sem Kanban','b','está no cadastro, mas é produzido sob pedido: não tem supermercado, saldo não entra'],
+  outro:['Código do outro supermercado','y','é usinado/semiacabado (ou PA) — importe no tipo certo'],
+  novo:['Código desconhecido','r','não está em nenhuma base compartilhada (NF set/25–ago/26, BOM, estoque 01/10): item novo ou código digitado diferente'],
+  bad:['Quantidade inválida','r','serão ignoradas']};
 function detSep(t){ const l=t.split(/\r?\n/).filter(x=>x.trim()).slice(0,5);
   const cand=[[';',1],['\t',1],[',',1],['|',1]];
   let best=';',bs=-1;
@@ -2861,16 +2990,22 @@ function renderIM(){
   const body=hdr?rows.slice(1):rows, ncol=Math.max(0,...rows.map(r=>r.length));
   const colOpts=(sel)=>Array.from({length:ncol},(_,i)=>`<option value="${i}" ${sel===i?'selected':''}>${esc(hdr&&hdr[i]?hdr[i]:'Coluna '+(i+1))}</option>`).join('');
   // pré-visualização do casamento com o cadastro
-  const codPA=new Set(DATA.pa.map(x=>x[0])), codUS=new Set(DATA.us.map(x=>x[0]));
-  const alvo=IMP.tipo==="estoque_us"?codUS:codPA;
-  let ok=0,nf=0,bad=0; const amostra=[];
+  const tipoCls=IMP.tipo==="estoque_us"?"estoque_us":"estoque_pa";   // carteira e produção usam o cadastro de PA
+  const cnt={ok:0,zeros:0,mto:0,outro:0,novo:0,bad:0}, pcs={mto:0,outro:0,novo:0}; const amostra=[], naoCad={novo:[],mto:[],outro:[]}; const vistos=new Set();
   for(const r of body){
     const c=(r[IMP.cmap.cod]||"").trim(), q=numBR(r[IMP.cmap.qtd]);
     if(!c) continue;
-    const hit=alvo.has(c); const good=hit&&!isNaN(q);
-    if(good) ok++; else if(!hit) nf++; else bad++;
-    if(amostra.length<12) amostra.push([c,r[IMP.cmap.qtd],hit,isNaN(q)?null:q]);
+    const k=classCod(c,tipoCls); let st=k.st;
+    if((st==="ok"||st==="zeros")&&isNaN(q)) st="bad";
+    cnt[st]++; if(pcs[st]!=null&&!isNaN(q)) pcs[st]+=q;
+    if(st==="ok"||st==="zeros"||st==="bad") vistos.add(k.cod);   // quem veio no arquivo (mesmo com quantidade inválida) não é zerado
+    if(naoCad[st]&&naoCad[st].length<400) naoCad[st].push([c,isNaN(q)?'':q,k.info?(k.info.fam||k.info.grp||''):'',k.info?k.info.cls:'']);
+    if(amostra.length<12) amostra.push([c,r[IMP.cmap.qtd],st,isNaN(q)?null:q,k.cod]);
   }
+  const ok=cnt.ok+cnt.zeros, nf=cnt.mto+cnt.outro+cnt.novo, bad=cnt.bad;
+  const alvoApp=tipoCls==="estoque_us"?DATA.us.filter(x=>x[14]&&x[5]!=="MTO").map(x=>x[0]):DATA.pa.filter(x=>x[6]!=="MTO").map(x=>x[0]);
+  const zerar=(IMP.tipo!=="producao"&&IMP.completo&&body.length)?alvoApp.filter(c=>!vistos.has(c)):[];
+  IMP.prev={naoCad,zerar};
   const fsOK=typeof window.showDirectoryPicker==="function";
   el.innerHTML=`
   <div class="head"><h2>Importar dados do ERP</h2><span class="note">Datasul, Excel ou qualquer sistema que exporte texto delimitado</span></div>
@@ -2880,8 +3015,11 @@ function renderIM(){
     <label class="f" for="im-tipo">Tipo de dado<select id="im-tipo">
       <option value="estoque_pa" ${IMP.tipo==="estoque_pa"?"selected":""}>Estoque de PA (supermercado do CD)</option>
       <option value="estoque_us" ${IMP.tipo==="estoque_us"?"selected":""}>Estoque de Usinados (supermercado AUS)</option>
+      <option value="carteira" ${IMP.tipo==="carteira"?"selected":""}>Carteira de pedidos em aberto (saldo reservado por item)</option>
       <option value="producao" ${IMP.tipo==="producao"?"selected":""}>Produção apontada (baixa das ordens abertas)</option>
     </select></label>
+    ${IMP.tipo!=="producao"?`<label class="chk" for="im-comp"><input type="checkbox" id="im-comp" ${IMP.completo?"checked":""}> <span>O arquivo é a posição completa: itens do Kanban que <b>não aparecem</b> no arquivo ficam com ${IMP.tipo==="carteira"?"carteira":"saldo"} <b>zero</b></span></label>
+    <p class="note">Relatórios de saldo do ERP normalmente só listam itens com saldo diferente de zero — por isso quem não veio no arquivo é tratado como zerado. Desmarque se o arquivo for parcial (por exemplo, só um depósito).</p>`:''}
     <label class="f" for="im-sep">Separador<select id="im-sep">
       <option value="auto" ${IMP.sep==="auto"?"selected":""}>Detectar automaticamente</option>
       <option value=";" ${IMP.sep===";"?"selected":""}>Ponto e vírgula (;)</option>
@@ -2902,20 +3040,28 @@ function renderIM(){
     <label class="f" for="im-cod">Coluna do código do item<select id="im-cod">${colOpts(IMP.cmap.cod)}</select></label>
     <label class="f" for="im-qtd">Coluna da quantidade<select id="im-qtd">${colOpts(IMP.cmap.qtd)}</select></label>
     <div class="stats">
-     <div class="stat g"><div class="l">Linhas prontas</div><div class="v">${f0(ok)}</div><div class="s">código encontrado</div></div>
-     <div class="stat y"><div class="l">Código não cadastrado</div><div class="v">${f0(nf)}</div><div class="s">serão ignoradas</div></div>
+     <div class="stat g"><div class="l">Linhas prontas</div><div class="v">${f0(ok)}</div><div class="s">${cnt.zeros?`inclui ${f0(cnt.zeros)} com zeros à esquerda corrigidos`:'código encontrado'}</div></div>
+     <div class="stat y"><div class="l">Código não cadastrado</div><div class="v">${f0(nf)}</div><div class="s">detalhado abaixo</div></div>
      <div class="stat r"><div class="l">Quantidade inválida</div><div class="v">${f0(bad)}</div><div class="s">serão ignoradas</div></div>
      <div class="stat m"><div class="l">Linhas no arquivo</div><div class="v">${f0(body.length)}</div><div class="s">separador “${esc(P0.sep==="\t"?"tab":P0.sep)}”</div></div>
     </div>
-    <button class="btn pri" id="im-go" ${ok?'':'disabled'}>Aplicar ${f0(ok)} linha(s)</button>
-    <p class="note">Aplicar grava no banco compartilhado do app: todo mundo que abrir passa a ver o mesmo estoque, e os quadros Kanban recalculam na hora.</p>
+    ${nf?`<h3 style="margin:10px 0 6px">O que são os ${f0(nf)} códigos não cadastrados</h3>
+    <div class="stats">
+     <div class="stat b"><div class="l">${CLASS_ST.mto[0]}</div><div class="v">${f0(cnt.mto)}</div><div class="s">${f0(pcs.mto)} pç · ${CLASS_ST.mto[2]}</div></div>
+     <div class="stat y"><div class="l">${CLASS_ST.outro[0]}</div><div class="v">${f0(cnt.outro)}</div><div class="s">${f0(pcs.outro)} pç · ${CLASS_ST.outro[2]}</div></div>
+     <div class="stat r"><div class="l">${CLASS_ST.novo[0]}</div><div class="v">${f0(cnt.novo)}</div><div class="s">${f0(pcs.novo)} pç · ${CLASS_ST.novo[2]}</div></div>
+    </div>
+    <div class="filters"><button class="btn" id="im-nc">Salvar lista dos não cadastrados (CSV)</button><span class="note">${esc(DATA.catnota||'')}</span></div>`:''}
+    ${zerar.length?`<p class="note"><b>${f0(zerar.length)} item(ns) do Kanban</b> não vieram no arquivo e ficarão com ${IMP.tipo==="carteira"?"carteira":"saldo"} zero ao aplicar (arquivo marcado como posição completa).</p>`:''}
+    <button class="btn pri" id="im-go" ${ok||zerar.length?'':'disabled'}>Aplicar ${f0(ok)} linha(s)${zerar.length?` + zerar ${f0(zerar.length)}`:''}</button>
+    <p class="note">${IMP.tipo==="carteira"?'Aplicar grava a carteira no banco compartilhado: o app passa a mostrar, por item, o saldo reservado para pedidos (estoque − carteira = disponível) e usa esses pedidos para separar “já vendido” do excesso. No futuro, a mesma carteira alimenta a programação dos cartões.':'Aplicar grava no banco compartilhado do app: todo mundo que abrir passa a ver o mesmo estoque, e os quadros Kanban recalculam na hora. O painel registra o ponto do dia na evolução do abastecimento.'}</p>
    </div>
   </div>
   <div class="panel" id="im-drop"><div class="head"><h3>Conteúdo</h3><span class="note">cole aqui (Ctrl+V) ou arraste o arquivo</span></div>
    <textarea id="im-txt" rows="8" style="width:100%;font-family:var(--mono);font-size:12px" placeholder="Cole o relatório do Datasul aqui…">${esc(IMP.txt)}</textarea>
   </div>
   ${amostra.length?`<div class="panel"><div class="head"><h3>Prévia</h3></div><div class="tw"><table><thead><tr><th>Código</th><th>Valor lido</th><th>Quantidade</th><th>Situação</th></tr></thead><tbody>
-   ${amostra.map(([c,v,hit,q])=>`<tr><td><b>${esc(c)}</b></td><td>${esc(v??'')}</td><td class="num">${q==null?'—':f0(q)}</td><td>${hit&&q!=null?'<span class="pill p-MTS">ok</span>':(hit?'<span class="pill p-MTO">quantidade inválida</span>':'<span class="pill p-BUF">não cadastrado</span>')}</td></tr>`).join('')}
+   ${amostra.map(([c,v,st,q,cc])=>`<tr><td><b>${esc(c)}</b>${cc!==c?` <span class="note">→ ${esc(cc)}</span>`:''}</td><td>${esc(v??'')}</td><td class="num">${q==null?'—':f0(q)}</td><td><span class="pill ${st==='ok'||st==='zeros'?'p-MTS':(st==='bad'||st==='novo'?'p-MTO':'p-BUF')}">${esc(CLASS_ST[st][0])}</span></td></tr>`).join('')}
    </tbody></table></div></div>`:''}
   ${IMP.log.length?`<div class="panel"><div class="head"><h3>Histórico desta sessão</h3></div>${IMP.log.map(l=>`<div class="prow"><span>${esc(l.t)}</span><b>${esc(l.m)}</b></div>`).join('')}</div>`:''}
   <div class="panel"><div class="head"><h3>Como ligar no Datasul</h3></div>
@@ -2924,6 +3070,7 @@ function renderIM(){
     <li>Exporte em <b>CSV com ponto e vírgula</b>. O Datasul costuma entregar a quantidade no padrão brasileiro (1.234,00) — o app já entende esse formato.</li>
     <li>Agende a exportação para uma pasta fixa da rede (por exemplo, uma vez por turno). Use “Ler de uma pasta” para reabrir sempre o arquivo mais recente.</li>
     <li>Para o supermercado de Usinados, a mesma consulta filtrando os depósitos de processo/usinados.</li>
+    <li>Para a <b>carteira</b>, exporte os pedidos de venda em aberto com duas colunas: código do item e saldo em aberto (quantidade ainda não faturada). Pedidos do mesmo item são somados.</li>
     <li>Para produção apontada, exporte ordem, item e quantidade produzida — o app baixa as ordens abertas correspondentes.</li>
     <li>Integração direta por API do Datasul é possível, mas exige um serviço intermediário publicando os dados; a importação por arquivo já mantém o Kanban atualizado por turno.</li>
    </ul></div>`;
@@ -2931,6 +3078,10 @@ function renderIM(){
   on('im-tipo','change',e=>{ IMP.tipo=e.target.value; renderIM(); });
   on('im-sep','change',e=>{ IMP.sep=e.target.value; renderIM(); });
   on('im-hdr','change',e=>{ IMP.hdr=e.target.checked; renderIM(); });
+  on('im-comp','change',e=>{ IMP.completo=e.target.checked; renderIM(); });
+  on('im-nc','click',()=>{ const N=IMP.prev&&IMP.prev.naoCad||{}; const L=[["codigo","quantidade","classificacao","familia_ou_grupo","classe"]];
+    for(const k of ['novo','mto','outro']) (N[k]||[]).forEach(([c,q,f,cl])=>L.push([c,q,CLASS_ST[k][0],f,cl]));
+    saveFile("codigos_nao_cadastrados.csv","\ufeff"+L.map(r=>r.map(v=>String(v??'').replace(/;/g,',')).join(";")).join("\n")); });
   on('im-cod','change',e=>{ IMP.cmap.cod=+e.target.value; renderIM(); });
   on('im-qtd','change',e=>{ IMP.cmap.qtd=+e.target.value; renderIM(); });
   on('im-clear','click',()=>{ IMP.txt=""; renderIM(); });
@@ -2978,12 +3129,14 @@ function autoMap(){
 }
 async function aplicarImport(){
   const P0=parseTab(IMP.txt,IMP.sep), body=IMP.hdr?P0.rows.slice(1):P0.rows;
-  const codPA=new Set(DATA.pa.map(x=>x[0])), codUS=new Set(DATA.us.map(x=>x[0]));
-  const alvo=IMP.tipo==="estoque_us"?codUS:codPA, ch={};
-  let n=0;
+  const tipoCls=IMP.tipo==="estoque_us"?"estoque_us":"estoque_pa", ch={};
+  let n=0, mtoPc=0;
   for(const r of body){ const c=(r[IMP.cmap.cod]||"").trim(), q=numBR(r[IMP.cmap.qtd]);
-    if(!c||!alvo.has(c)||isNaN(q)) continue; ch[c]=(ch[c]||0)+q; n++; }
-  if(!n){ toast("Nada para aplicar"); return; }
+    if(!c||isNaN(q)) continue; const k=classCod(c,tipoCls);
+    if(k.st==="mto") mtoPc+=q;
+    if(k.st!=="ok"&&k.st!=="zeros") continue; ch[k.cod]=(ch[k.cod]||0)+q; n++; }
+  const zer=(IMP.prev&&IMP.prev.zerar)||[]; if(IMP.tipo!=="producao") zer.forEach(c=>{ if(ch[c]==null) ch[c]=0; });
+  if(!n&&!zer.length){ toast("Nada para aplicar"); return; }
   if(IMP.tipo==="producao"){
     let baixadas=0;
     for(const [c,q] of Object.entries(ch)){
@@ -2996,10 +3149,11 @@ async function aplicarImport(){
     IMP.log.unshift({t:new Date().toLocaleString('pt-BR'),m:`Produção: ${n} linha(s), ${baixadas} ordem(ns) concluída(s)`});
     toast(baixadas+" ordem(ns) baixada(s)"); renderIM(); return;
   }
-  const tipo=IMP.tipo==="estoque_us"?"us":"pa";
-  const okw=await writeStock(tipo,ch);
+  const tipo=IMP.tipo==="estoque_us"?"us":(IMP.tipo==="carteira"?"cart":"pa");
+  const okw=await writeStock(tipo,ch,{n,zer:zer.length,completo:!!IMP.completo,mtoPc:Math.round(mtoPc),fonte:IMP.tipo});
   setSim(false);
-  IMP.log.unshift({t:new Date().toLocaleString('pt-BR'),m:`${IMP.tipo==="estoque_us"?"Estoque de Usinados":"Estoque de PA"}: ${n} item(ns) atualizados${okw?"":" (só neste navegador)"}`});
+  const nomeT={estoque_us:"Estoque de Usinados",estoque_pa:"Estoque de PA",carteira:"Carteira de pedidos"}[IMP.tipo]||IMP.tipo;
+  IMP.log.unshift({t:new Date().toLocaleString('pt-BR'),m:`${nomeT}: ${n} item(ns) atualizados${zer.length?`, ${zer.length} zerados`:''}${okw?"":" (só neste navegador)"}`});
   toast(n+" item(ns) atualizados"); renderIM();
 }
 
@@ -3624,7 +3778,7 @@ function buildNav(){
   if(mn){ mn.innerHTML=MN.map(([id,l,ic])=>`<button data-m="${id}"><span class="ic">${ic}</span>${l}</button>`).join('')+`<button data-m="mais"><span class="ic">☰</span>Mais</button>`;
     mn.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(b.dataset.m==="mais") menu(true); else { menu(false); go(b.dataset.m); window.scrollTo(0,0); } }); }
   document.getElementById('tvbtn').onclick=()=>openTV(QD.proc);
-  document.getElementById('rev').textContent="Kanban · posição "+(DATA.dataest||"");
+  document.getElementById('rev').textContent="Kanban · "+estCurto();
 }
 function chips(){
   try{
