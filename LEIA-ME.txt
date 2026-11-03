@@ -1,4 +1,4 @@
-APP KANBAN AEMCO – versão instalável (PWA) – Rev11
+APP KANBAN AEMCO – versão instalável (PWA) – Rev12
 =====================================================
 
 O QUE É
@@ -21,7 +21,7 @@ BASE ONLINE (uma vez só)
    No resultado aparece o CÓDIGO DE INSTALAÇÃO (8 caracteres). Anote.
 2. Abra o app > tela "Primeira instalação" > seu nome + código de instalação +
    seu PIN de administrador (6 a 12 números). O código deixa de valer assim que o admin é criado.
-3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev11.json
+3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev12.json
    (fica na pasta Aretia > 03 - Kanban — NÃO suba esse arquivo no GitHub) > Publicar para todos.
 4. ☁ > Pessoas com acesso > cadastre o PIN de cada pessoa (digite ou "Gerar PIN") e entregue
    pessoalmente. O nome da pessoa fica gravado em tudo o que ela apontar.
@@ -44,6 +44,18 @@ PROGRAMAÇÃO DIGITAL DOS CARTÕES (aba Programação)
 - Chão de fábrica: Iniciar e Concluir. Na última etapa da rota, Concluir dá entrada no
   supermercado; nas intermediárias (ex.: Pintura) o cartão segue para a fila do processo seguinte.
 - Exporta para Excel (CSV) e PDF (Imprimir).
+
+EXPEDIÇÃO POR PEDIDO (aba Expedição · Rev12)
+- Alimentada pela importação diária: Importar dados > Carteira de pedidos em aberto, mapeando
+  pedido, cliente, item, saldo e data de entrega; e o Estoque de PA (estoque do CD de todos os códigos).
+- Kanban de pedidos: A separar (completos) > Em separação > Separados > Incompletos.
+  Completo = todas as linhas cabem no estoque, reservando primeiro os de entrega mais cedo.
+- Separar (celular): um item por vez, na ordem de coleta pelo ENDEREÇO ATUAL do CD (Mapa Lógico de hoje),
+  com rua / posição / nível / vaga, mapa 2D e a estante. Botões: PEGUEI, Peguei menos, Não achei, Pular.
+  Cada baixa aparece para todos em ~15 s.
+- Incompletos: lista do que falta produzir (itens que liberam pedidos sozinhos primeiro) e "Liberar ordem".
+- "Enviar completos ao Comercial": manda a lista pelo WhatsApp/e-mail do próprio celular.
+- Parâmetros e Premissas: só o administrador altera (o servidor recusa alteração de outro perfil).
 
 SEGURANÇA
 - PIN errado 10 vezes em 15 minutos bloqueia aquele acesso por 15 minutos.

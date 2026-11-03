@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev11"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev12"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1063,7 +1063,7 @@
 } )();
 </script>
 <style>
-:root{
+:root{--ped:#8E2DE2;--ped2:#D3B5F2;--pedoff:#C9CED8;
   --paper:#F2F4F7; --panel:#FFFFFF; --panel2:#EBEFF5; --ink:#15223B; --muted:#586379; --line:#D6DCE6;
   --navy:#1A335B; --navy-ink:#FFFFFF; --gold:#B8942F; --gold-soft:#F4ECD6;
   --kg:#1F9A57; --ky:#E2AE00; --kr:#D23B33; --kg-soft:#E1F3E8; --ky-soft:#FBF0CC; --kr-soft:#F9DEDC; --kb:#3B6FB6; --kb-soft:#E0E9F6;
@@ -1368,6 +1368,99 @@ label.chk input{width:16px;height:16px;min-width:16px}
 .fin b{display:block;font-family:var(--display);font-size:24px;line-height:1.1}
 .fin small{color:var(--muted);font-size:12px}
 .fin .gain{background:var(--kg);color:#fff}.fin .gain small{color:#fff;opacity:.9}
+/* Rev12 · Kanban de expedição e modo separação (celular) */
+.exb{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}
+.exb-t{all:unset;box-sizing:border-box;cursor:pointer;background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-height:64px}
+.exb-t.on{background:var(--panel2);box-shadow:inset 0 0 0 2px var(--c)}
+.exb-t:focus-visible,.pk-l:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.exb-n{font:700 26px var(--display);line-height:1;color:var(--ink)}
+.exb-l{font-weight:700;font-size:14px;color:var(--ink)}
+.exb-t small{font-size:11.5px;color:var(--muted)}
+.exg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin:10px 0}
+.exc{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--kg);border-radius:10px;padding:11px 12px;display:flex;flex-direction:column;gap:4px}
+.exc-h{display:flex;align-items:center;gap:8px;font-size:18px}
+.exc-c{font-weight:600}
+.exc-a{font:600 13px var(--mono);color:var(--ink);background:var(--panel2);border-radius:6px;padding:4px 7px;overflow-wrap:anywhere}
+.exc-f{font-size:13px;color:var(--kr)}
+.exc-b{display:flex;gap:8px;margin-top:6px}
+.exc-b .btn{flex:1;min-height:44px;font-size:15px}
+.exvw{display:flex;gap:6px;align-self:flex-end}
+#pk{position:fixed;inset:0;z-index:200;background:var(--paper);display:flex;flex-direction:column}
+body.pk-on{overflow:hidden}
+.pk-top{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;background:var(--navy);color:#fff}
+.pk-top .note{color:#CFD8E8}
+.pk-top .btn{min-height:44px;min-width:44px;font-size:15px}
+.pk-prog{height:8px;background:var(--panel2)}
+.pk-prog>div{height:100%;background:var(--kg);transition:width .2s}
+.pk-prog.sm{height:6px;border-radius:3px;overflow:hidden;margin-top:4px}
+.pk-sum{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;padding:8px 14px;font-size:15px}
+.pk-body{flex:1;overflow:auto;padding:2px 10px 10px;-webkit-overflow-scrolling:touch}
+.pk-l{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0;cursor:pointer;min-height:72px;color:var(--ink)}
+.pk-l.on{background:var(--kg-soft);border-color:var(--kg)}
+.pk-l.on .pk-ad,.pk-l.on .pk-q b{text-decoration:line-through;text-decoration-thickness:2px;opacity:.65}
+.pk-l.falta{border-color:var(--kr)}
+.pk-ck{flex:0 0 40px;height:40px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:16px;color:var(--muted)}
+.pk-l.on .pk-ck{background:var(--kg);border-color:var(--kg);color:#fff;font-size:20px}
+.pk-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.pk-ad{font:700 20px var(--mono);overflow-wrap:anywhere}
+.pk-cd{font-size:13.5px;color:var(--muted)}
+.pk-cd b{color:var(--ink)}
+.pk-ft{font-size:12.5px;color:var(--kr);font-weight:600}
+.pk-q{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end}
+.pk-q b{font:700 26px var(--display);line-height:1}
+.pk-q small{color:var(--muted)}
+.pk-foot{display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--panel);border-top:1px solid var(--line)}
+.pk-foot .btn{flex:1;min-height:52px;font-size:16px}
+.pk-foot .btn.warn{background:var(--ky);color:#15223B;border-color:var(--ky)}
+details.panel>summary{cursor:pointer;padding:2px 0}
+@media (max-width:700px){.exb{grid-template-columns:repeat(2,minmax(0,1fr))}.exvw{display:none}.exg{grid-template-columns:1fr}.exf label.f{flex:1 1 42%}}
+.ft-crd{display:none}
+.ftc{border:1px solid var(--line);border-left:5px solid var(--kr);border-radius:8px;padding:9px 10px;margin:8px 0;display:flex;flex-direction:column;gap:5px}
+.ftc-n{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
+.ftc .btn{min-height:42px}
+@media (max-width:700px){.ft-tab{display:none}.ft-crd{display:block}
+ .exb{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.exb-t{padding:8px 4px;min-height:0;align-items:center;text-align:center;border-top-width:4px}.exb-t small{display:none}.exb-l{font-size:11.5px;line-height:1.15}.exb-n{font-size:22px}
+ .exhd h2{display:none}.exhd{justify-content:flex-end}.exsrc{font-size:11.5px}}
+/* Rev12 · tela do operador (passo a passo) */
+.pk-step{display:flex;flex-direction:column;gap:9px;padding:10px 4px 6px}
+.pk-cnt{font-size:14px;letter-spacing:.04em;color:var(--muted)}
+.pk-cnt b{color:var(--ink);font-size:17px}
+.pk-go{font:800 15px var(--display);letter-spacing:.12em;color:var(--muted)}
+.pk-adr{display:flex;gap:7px}
+.pk-blk{flex:1;min-width:0;border:2px solid var(--ink);border-radius:10px;background:var(--panel);color:var(--ink);text-align:center;padding:4px 2px 6px;display:flex;flex-direction:column}
+.pk-blk small{font:700 10.5px var(--body);letter-spacing:.08em;opacity:.85}
+.pk-blk b{font:800 38px/1.05 var(--display)}
+.pk-blk.alto{border-color:var(--kr)}
+.pk-vis{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px}
+.pk-map{display:block;width:100%;height:auto}
+.pk-alt{background:var(--kr-soft);color:var(--kr);font-weight:700;border-radius:8px;padding:7px 10px;font-size:14px}
+.pk-r2{display:flex;gap:10px;align-items:center}
+.pk-est{flex:0 0 128px;width:128px;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px}
+.pk-r2t{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.pk-item{display:flex;gap:9px;align-items:center}
+.pk-item .note{overflow-wrap:anywhere}
+.pk-item .ph{border-radius:8px;object-fit:cover;flex:0 0 auto;display:grid;place-items:center;background:var(--panel2)}
+.pk-cod{font:800 22px var(--display)}
+.pk-pegue{background:var(--navy);color:#fff;border-radius:10px;padding:8px 10px;font:700 15px var(--display);letter-spacing:.06em;text-align:center}
+.pk-pegue b{font-size:34px;display:block;line-height:1.05;letter-spacing:0}
+.pk-menos{background:var(--ky-soft);border:2px solid var(--ky);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;font-weight:700}
+.pk-stp{display:flex;gap:8px}
+.pk-stp .btn{flex:0 0 64px;min-height:56px;font-size:26px}
+.pk-stp input{flex:1;min-width:0;font:800 30px var(--display);text-align:center;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
+.pk-menos .btn.pri{min-height:52px;font-size:17px}
+.pk-foot.col{flex-direction:column}
+.pk-ok{background:var(--kg)!important;color:#fff!important;border-color:var(--kg)!important;min-height:64px!important;font:800 21px var(--display)!important;letter-spacing:.04em;border-radius:12px!important}
+.pk-row{display:flex;gap:8px}
+.pk-row .btn{flex:1;min-height:48px;font-size:14.5px}
+.pk-row .btn[disabled]{opacity:.4}
+.pk-undo{min-height:40px!important;font-size:13.5px!important;background:transparent!important;border:none!important;color:var(--muted)!important;text-decoration:underline}
+.pk-fim{margin:10px 4px 0;border-radius:12px;padding:12px 14px;background:var(--kg-soft);border:2px solid var(--kg);display:flex;flex-direction:column;gap:2px;font-size:14px}
+.pk-fim b{font:800 20px var(--display)}
+.pk-fim.warn{background:var(--ky-soft);border-color:var(--ky)}
+.pk-body2{padding:0}
+.pk-tx .pill{align-self:flex-start}
+.pk-top .btn{color:var(--ink)}
+@media print{#pk{display:none}}
 
 
 [hidden]{display:none!important}
@@ -1425,6 +1518,7 @@ label.chk input{width:16px;height:16px;min-width:16px}
 <section class="pane" id="p-ov"></section>
 <section class="pane" id="p-qd" hidden></section>
 <section class="pane" id="p-pr" hidden></section>
+<section class="pane" id="p-ex" hidden></section>
 <section class="pane" id="p-op" hidden></section>
 <section class="pane" id="p-kc" hidden></section>
 <section class="pane" id="p-cd" hidden>
@@ -1432,6 +1526,7 @@ label.chk input{width:16px;height:16px;min-width:16px}
   <div class="filters">
     <label class="f" for="cd-mode">Colorir por<select id="cd-mode">
       <option value="katu">Kanban nas posições atuais (transição)</option>
+      <option value="ped">Pedido da expedição (onde estão os itens)</option>
       <option value="fam">Família (supermercado)</option>
       <option value="band">Faixa Kanban (V/A/R) proposta</option>
       <option value="abc">Classe ABC·XYZ proposta</option>
@@ -1513,7 +1608,13 @@ function capUsinagem(){
   return {g,Dd,nsku,ep,garg,semfolga:false,dterm:DT,takt1:P.tod*3600*P.dias/DT,takt2:P.tod*3600*P.dias/DATA.volcardan};
 }
 const STK={pa:{},us:{},cart:{},meta:{pa:null,us:null,cart:null}};   // Rev11: carteira importada + metadados das importações
-let HIST={};                                                            // Rev11: histórico diário do abastecimento (coleção "historico")
+let HIST={};
+/* Rev12: expedição por pedido */
+let PED={linhas:[],meta:null};      // linhas da carteira por pedido: [pedido, cliente, codigo, saldo, entrega(AAAA-MM-DD|"")]
+let CDALL={itens:null,meta:null};   // estoque do CD de TODOS os códigos (inclui MTO), só para completar pedidos
+let EXPST={};                       // situação da separação por pedido (coleção "expedicao")
+let PREM=null;                      // premissas editadas pelo administrador (doc kanban/premissas)
+function isAdmin(){ if(window.KB&&KB.state) return KB.state.papel==="admin"; return true; }   // arquivo local (sem PIN) = consultor                                                            // Rev11: histórico diário do abastecimento (coleção "historico")
 const DT_ISO=(s)=>{ const m=String(s||'').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m?`${m[3]}-${m[2]}-${m[1]}`:null; };
 const fmtDT=(iso,hora)=>{ if(!iso) return '—'; const d=new Date(iso); if(isNaN(d)) return String(iso); return d.toLocaleDateString('pt-BR')+(hora?' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}):''); };
 const quemNome=u=>String(u||'').split(' · ')[0];
@@ -1613,6 +1714,10 @@ async function initCaps(){
   DB.doc("kanban/estoque_us").onSnapshot(s=>{ const d=s.exists?s.data():{}; STK.us=d.itens||{}; STK.meta.us=d.meta||null; rerender(); }, ()=>{});
   DB.doc("kanban/carteira").onSnapshot(s=>{ const d=s.exists?s.data():{}; STK.cart=d.itens||{}; STK.meta.cart=d.meta||null; rerender(); }, ()=>{});
   DB.collection("historico").onSnapshot(q=>{ HIST={}; q.docs.forEach(d=>{ HIST[d.id]=d.data(); }); rerender(); }, ()=>{});
+  DB.doc("kanban/pedidos").onSnapshot(s=>{ const d=s.exists?s.data():{}; PED={linhas:d.linhas||[],meta:d.meta||null}; if(typeof expReset==="function") expReset(); rerender(); }, ()=>{});
+  DB.doc("kanban/estoque_cd").onSnapshot(s=>{ const d=s.exists?s.data():{}; CDALL={itens:d.itens||null,meta:d.meta||null}; if(typeof expReset==="function") expReset(); rerender(); }, ()=>{});
+  DB.collection("expedicao").onSnapshot(q=>{ EXPST={}; q.docs.forEach(d=>{ EXPST[d.id]=d.data(); }); if(typeof expReset==="function") expReset(); rerender(); }, ()=>{});
+  DB.doc("kanban/premissas").onSnapshot(s=>{ PREM=s.exists&&s.data().itens?s.data():null; rerender(); }, ()=>{});
   DB.doc("kanban/params4").onSnapshot(s=>{ if(s.exists&&s.data().p){ P=Object.assign(clone(DEF),s.data().p); rerender(); } }, ()=>{});
   initFotos(); cartInit();
   DB.collection("ordens").orderBy("criada","desc").limit(600).onSnapshot(q=>{ ORD=q.docs.map(d=>Object.assign({id:d.id},d.data())); ORDmap={}; ORD.forEach(o=>{ if(o.status!=="concluída"){ const key=o.tipo+"|"+o.cod; ORDmap[key]=(ORDmap[key]||0)+o.qtd; } }); rerender(); }, ()=>{});
@@ -1629,11 +1734,18 @@ async function writeStock(tipo,changes,meta){
   catch(e){ try{ const s=await ref.get(); if(!s.exists){ await ref.set(payload); } else throw e; } catch(e2){ if(e2.code==="invalid_argument"){ WRITE_OK=false; toast("Seu acesso é só leitura: o estoque não foi gravado"); } else toast("Não gravou ("+e2.code+"). Tente de novo."); return false; } }
   return true;
 }
+/* grava um documento inteiro (substitui); local: só memória */
+async function writeDoc(path,data){
+  if(!DB) return true;
+  if(!WRITE_OK){ toast("Seu acesso é só leitura"); return false; }
+  try{ await DB.doc(path).set(data); return true; }catch(e){ toast("Não gravou ("+(e.code||"erro")+")"); return false; }
+}
 async function saveParams(){
+  if(!isAdmin()){ toast("Somente o administrador altera os parâmetros"); return; }
   try{ localStorage.setItem("aemco-kd4-params",JSON.stringify(P)); }catch(e){}
   if(DB&&WRITE_OK){ try{ await DB.doc("kanban/params4").set({p:P,t:new Date().toISOString(),u:UID||""}); }catch(e){ toast("Parâmetros salvos só neste navegador ("+e.code+")"); } }
 }
-let rerenderT=null; function rerender(){ clearTimeout(rerenderT); rerenderT=setTimeout(()=>{ try{ document.getElementById('rev').textContent="Kanban · "+estCurto(); if(typeof histCheck==='function') histCheck(); }catch(e){} if(TAB!=="cd") go(TAB,true); else if(window.CD3) CD3.recolor(); },60); }
+let rerenderT=null; function rerender(){ clearTimeout(rerenderT); rerenderT=setTimeout(()=>{ try{ document.getElementById('rev').textContent="Kanban · "+estCurto(); if(typeof expReset==='function') expReset(); if(typeof histCheck==='function') histCheck(); }catch(e){} if(TAB!=="cd") go(TAB,true); else if(window.CD3) CD3.recolor(); },60); }
 async function saveFile(name,text,type){
   if(!DL){
     try{ const u=URL.createObjectURL(new Blob([text],{type:type||"text/csv;charset=utf-8"})); const a=document.createElement("a"); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),2000); toast("Arquivo "+name+" gerado"); }
@@ -1891,13 +2003,14 @@ function pctSnapshot(){
   const fP=famAgg(PA,'fam'), fU=famAgg(kU.concat(uFora),'grp'), cP=countSt(PA), cU=countSt(US.filter(r=>r.manter));
   const pk=T=>({pct:+(T.alvo?T.util/T.alvo*100:0).toFixed(1),util:Math.round(T.util),alvo:Math.round(T.alvo),falta:Math.round(T.falta),exc:Math.round(T.exc),vend:Math.round(T.vend||0)});
   const cd=pk(fP.T), us=pk(fU.T); cd.verm=cP["Vermelho"]||0; us.verm=cU["Vermelho"]||0;
-  return {cd,us,tot:+((fP.T.util+fU.T.util)/Math.max(1,fP.T.alvo+fU.T.alvo)*100).toFixed(1)};
+  let ped=null; if(!BASE_CALC&&typeof expAlloc==="function"&&PED.linhas.length){ const S=expStats(expAlloc()); ped={comp:S.comp,inc:S.inc,pcComp:S.pcsComp,pcInc:S.pcsInc,atr:S.atrComp+S.atrInc}; }
+  return {cd,us,ped,tot:+((fP.T.util+fU.T.util)/Math.max(1,fP.T.alvo+fU.T.alvo)*100).toFixed(1)};
 }
-let BASE_PT=null;
+let BASE_PT=null, BASE_CALC=false;
 function basePoint(){   // ponto da base (posição de DATA.dataest), calculado sem os apontamentos
   if(BASE_PT) return BASE_PT;
   const bk={pa:STK.pa,us:STK.us,cart:STK.cart,meta:STK.meta}; STK.pa={}; STK.us={}; STK.cart={}; STK.meta={pa:null,us:null,cart:null};
-  try{ BASE_PT=Object.assign({d:DT_ISO(DATA.dataest),base:true},pctSnapshot()); } finally{ Object.assign(STK,bk); }
+  BASE_CALC=true; try{ BASE_PT=Object.assign({d:DT_ISO(DATA.dataest),base:true},pctSnapshot()); } finally{ Object.assign(STK,bk); BASE_CALC=false; }
   return BASE_PT;
 }
 function histPoints(){
@@ -1909,11 +2022,11 @@ let histT=null;
 function histCheck(){   // grava/atualiza o ponto do dia da última importação (CD ou Usinados)
   clearTimeout(histT);
   histT=setTimeout(()=>{
-    const pa=ultimaImp('pa'), us=ultimaImp('us'); const t=[pa&&pa.t,us&&us.t].filter(Boolean).sort().pop(); if(!t) return;
+    const pa=ultimaImp('pa'), us=ultimaImp('us'); const t=[pa&&pa.t,us&&us.t,PED.meta&&PED.meta.t].filter(Boolean).sort().pop(); if(!t) return;
     const dt=new Date(t); if(isNaN(dt)) return; const d=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
     const p=Object.assign({d,t:new Date().toISOString(),u:UID||"",impPA:pa?pa.t:null,impUS:us?us.t:null},pctSnapshot());
     const h=HIST[d];
-    const same=h&&h.cd&&h.us&&Math.abs(h.cd.pct-p.cd.pct)<0.05&&Math.abs(h.us.pct-p.us.pct)<0.05&&h.cd.falta===p.cd.falta&&h.us.falta===p.us.falta&&h.cd.exc===p.cd.exc&&h.us.exc===p.us.exc;
+    const same=h&&h.cd&&h.us&&Math.abs(h.cd.pct-p.cd.pct)<0.05&&Math.abs(h.us.pct-p.us.pct)<0.05&&h.cd.falta===p.cd.falta&&h.us.falta===p.us.falta&&h.cd.exc===p.cd.exc&&h.us.exc===p.us.exc&&JSON.stringify(h.ped||null)===JSON.stringify(p.ped||null);
     if(same) return;
     HIST[d]=p;
     if(DB&&WRITE_OK){ DB.doc("historico/"+d).set(p).catch(()=>{}); } else if(TAB==="ov") rerender();
@@ -1946,7 +2059,8 @@ function histPanel(){
    ${last.map(p=>`<tr><td>${fmtDT(p.d+'T12:00:00')}${p.base?' <span class="note">(base)</span>':''}</td><td class="num">${f1(p.cd.pct)}</td><td class="num">${f0(p.cd.falta)}</td><td class="num">${f0(p.cd.exc)}</td><td class="num">${f1(p.us.pct)}</td><td class="num">${f0(p.us.falta)}</td><td class="num">${f0(p.us.exc)}</td><td class="num">${f1(p.tot)}</td></tr>`).join('')}</tbody></table></div></details>
    <p class="note">O ponto do dia é gravado automaticamente quando alguém importa o estoque (CD ou Usinados); importações no mesmo dia atualizam o mesmo ponto. O primeiro ponto é a posição da base (${esc(DATA.dataest)}).</p></div>`;
 }
-function renderOV(){
+function renderOV(){ renderOV0(); pedPanelBind(); }
+function renderOV0(){
   const PA=calcPA(), US=calcUS();
   const tP=aggPA(PA), tU=aggUS(US.filter(r=>r.manter));
   const cP=countSt(PA), cU=countSt(US.filter(r=>r.manter));
@@ -1967,6 +2081,7 @@ function renderOV(){
    ${saudeCard("Supermercado de Usinados · AUS","Peças usinadas que abastecem a montagem.",fU2.T,cU["Vermelho"]||0,"SKUs")}
   </div>
   ${histPanel()}
+  ${pedPanelOV()}
   ${finPanel(PA)}
   <div class="panel"><div class="head"><h3>Semáforo dos itens (SKUs)</h3><span class="note">quantos <b>códigos de item (SKUs)</b> estão em cada faixa — contagem de itens, não de peças</span></div>
    ${semaforo("CD · produto acabado",cP)}${semaforo("Usinados · AUS",cU)}${semLegend()}</div>
@@ -2087,6 +2202,7 @@ function slotColor(s,mode){
   const K={g:css('--kg'),y:css('--ky'),r:css('--kr'),b:css('--kb'),A:css('--cA'),B:css('--cB'),C:css('--cC'),e:css('--empty'),f:css('--free'),res:css('--res')};
   if(s.kind==="livre" && !s.nw && mode!=="katu") return K.f;
   if(s.kind==="reservado" && !s.nw) return K.res;
+  if(mode==="ped"){ const o=(typeof expSelCods==="function")?expSelCods():null; if(o){ const c=new Set(o.lines.map(x=>x.cod)); if(s.cur&&c.has(s.cur)) return css('--ped'); } return s.kind==="item"?css('--pedoff'):K.e; }
   if(mode==="katu"){ if(s.kind!=="item"||!s.cur) return (s.kind==="livre"?K.f:s.kind==="reservado"?K.res:K.e); const b=KATU.band[s.addr]; return b==="V"?K.g:b==="A"?K.y:b==="R"?K.r:b==="*"?K.b:K.C; }
   if(mode==="fam"){ return s.nw?famCol(s.fam):K.e; }
   if(mode==="cur"){ if(s.kind==="item") return (s.max>0?K.b:K.C); return K.e; }
@@ -2136,6 +2252,7 @@ function katuCSV(){
 const LEG={fam:null,band:[['--kg','Verde (lote)'],['--ky','Amarela (reposição)'],['--kr','Vermelha (segurança)'],['--kb','Posição inteira (cruzeta/tubo)'],['--empty','Livre após a proposta'],['--free','Zona livre por família'],['--res','Reservado (definir)']],
  abc:[['--cA','Classe A'],['--cB','Classe B'],['--cC','Classe C'],['--empty','Livre'],['--free','Zona livre por família'],['--res','Reservado']],
  move:[['--kg','Mantém o mesmo item'],['--ky','Recebe outro item'],['--kr','Liberada (item virou MTO)'],['--empty','Vazia'],['--free','Zona livre por família'],['--res','Reservado']],
+ ped:[['--ped','Item do pedido — endereço atual'],['--pedoff','Outros itens'],['--empty','Vazia']],
  katu:[['--kg','Verde (lote) — posição atual'],['--ky','Amarela — posição atual'],['--kr','Vermelha — posição atual'],['--kb','Posição inteira'],['--cC','Item que sai do CD: consumir e liberar'],['--empty','Vazia hoje'],['--free','Zona livre'],['--res','Reservado']],
  cur:[['--kb','Ocupada hoje (com “Max.”)'],['--cC','Ocupada hoje (Max. = 0)'],['--empty','Vazia'],['--free','Zona livre'],['--res','Reservado']]};
 const CD3={ready:false,
@@ -2303,9 +2420,9 @@ const CD3={ready:false,
   resize(){ if(!this.ready) return; const b=document.getElementById('scene'); const W=b.clientWidth,H=b.clientHeight; if(!W||!H) return; this.r.setSize(W,H); this.cam.aspect=W/H; this.cam.updateProjectionMatrix(); },
   mode(){ return document.getElementById('cd-mode').value; },
   recolor(){
-    if(this.fallback){ if(this.mode()==="katu"){ katuCalc(); this.trans(); } CD2.draw(); this.legend(); this.elev(); return; }
+    if(this.fallback){ if(this.mode()==="katu"){ katuCalc(); this.trans(); } else if(this.mode()==="ped") cdPedPanel(); CD2.draw(); this.legend(); this.elev(); return; }
     const mode=this.mode(), rua=document.getElementById('cd-rua').value, q=document.getElementById('cd-find').value.trim().toUpperCase();
-    if(mode==="katu") { katuCalc(); this.trans(); } else { const t=document.getElementById('cd-trans'); if(t) t.innerHTML=''; }
+    if(mode==="katu") { katuCalc(); this.trans(); } else if(mode==="ped"){ cdPedPanel(); } else { const t=document.getElementById('cd-trans'); if(t) t.innerHTML=''; }
     if(this.ready){ this.sc.background=new THREE.Color(css('--scene'));  
       this.meshes.forEach(m=>{ const s=m.userData; m.visible=!rua||rua.includes(s.rua); m.material.color=new THREE.Color(slotColor(s,mode));
         const hitq=q&&((s.nw||'').toUpperCase().includes(q)||(s.cur||'').toUpperCase().includes(q)); m.material.opacity=(q&&!hitq)?0.18:1; m.material.emissive=new THREE.Color(hitq?0x333300:0x000000); }); }
@@ -2336,7 +2453,7 @@ const CD3={ready:false,
         for(const p of posList){
           const cells=SLOTS.filter(s=>s.rua===ru&&s.niv===lv&&s.pos===p).sort((x,y)=>x.sub.localeCompare(y.sub));
           let used=0;
-          for(const s of cells){ const sp=Math.min(s.span,ns); used+=sp; const col=slotColor(s,mode); const lab=(mode==="katu"||mode==="cur")?(s.cur||''):(s.nw||(s.kind==="livre"?"livre":s.kind==="reservado"?"res.":""));
+          for(const s of cells){ const sp=Math.min(s.span,ns); used+=sp; const col=slotColor(s,mode); const lab=(mode==="katu"||mode==="cur"||mode==="ped")?(s.cur||''):(s.nw||(s.kind==="livre"?"livre":s.kind==="reservado"?"res.":""));
             const hitq=q&&((s.nw||'').toUpperCase().includes(q)||(s.cur||'').toUpperCase().includes(q));
             h+=`<div class="c" data-a="${esc(s.addr)}" title="${esc(s.addr+' · '+(s.nw||s.cur||'vazia'))}" style="grid-column:span ${sp};background:${col};${q&&!hitq?'opacity:.25;':''}${hitq?'outline:2px solid var(--ink);':''}color:${['--empty','--free','--res','--ky','--cC'].some(v=>col===css(v))?'var(--ink)':'#fff'}">${ns>1&&sp<3?'':esc(lab)}</div>`; }
           if(used<ns) h+=`<div style="grid-column:span ${ns-used}"></div>`;
@@ -2430,7 +2547,8 @@ function renderPR(){
   </div>
   <div class="head"><h2>2 · Programação digital dos cartões por processo</h2><span class="note">${DB?'Compartilhada entre PCP e chão de fábrica':'Modo local: fica só neste navegador'}</span></div>
   <div id="prg"></div>
-  ${ORD.length?`  <div class="head"><h2>3 · Ordens avulsas (modelo anterior)</h2><span class="note">${f0(open.length)} abertas</span></div>
+  ${expProgPanel()}
+  ${ORD.length?`  <div class="head"><h2>4 · Ordens avulsas (modelo anterior)</h2><span class="note">${f0(open.length)} abertas</span></div>
   <div class="board">
    ${cols.map(([st,lab])=>`<div class="col"><h3>${lab}</h3>${open.filter(o=>o.status===st).slice(0,80).map(o=>`
      <div class="card ${o.prio===1?'p1':''}"><div class="t"><span>${esc(o.cod)}</span><span style="font-family:var(--mono)">${f0(o.qtd)} pç</span></div>
@@ -2448,7 +2566,7 @@ function renderPR(){
   document.getElementById('ap-bulk-go').onclick=async()=>{ const lines=document.getElementById('ap-bulk').value.split(/\n/).map(l=>l.split(/[;\t,]/)).filter(p=>p.length>=2&&p[0].trim()); const src=new Set((PR.tipo==="pa"?DATA.pa:DATA.us).map(x=>x[0])); const ch={}; let bad=0; lines.forEach(([c,q])=>{ c=c.trim(); const v=parseFloat(String(q).replace(/\./g,'').replace(',','.')); if(src.has(c)&&!isNaN(v)) ch[c]=v; else bad++; }); if(!Object.keys(ch).length){ toast("Nenhuma linha válida: use código;quantidade"); return; } if(await writeStock(PR.tipo,ch)) toast(`${Object.keys(ch).length} itens gravados${bad?` · ${bad} linhas ignoradas`:''}`); };
   el.querySelectorAll('button[data-a]').forEach(b=>b.onclick=()=>ordAction(b.dataset.a,b.dataset.id));
   const cl=document.getElementById('pr-clean'); if(cl) cl.onclick=cleanOld;
-  renderPRG();
+  renderPRG(); expProgBind();
 }
 function showItem(){
   const box=document.getElementById('ap-item'); if(!box) return;
@@ -2554,6 +2672,12 @@ Posições = ⌈MÁX ÷ “Max.” da posição⌉</div>
     <div class="gl">${SIG.map(([a,b])=>`<b>${esc(a)}</b><span>${esc(b)}</span>`).join('')}</div>
    </div>
   </div>`;
+  if(!isAdmin()){
+    el.querySelectorAll('input,select,textarea').forEach(e=>{ e.disabled=true; });
+    const rb=document.getElementById('par-reset'); if(rb) rb.remove();
+    el.insertAdjacentHTML('afterbegin','<p class="warn" style="margin-bottom:10px"><b>Somente leitura.</b> Os parâmetros e premissas só podem ser alterados pelo administrador. Você vê os mesmos valores que todos usam.</p>');
+    return;
+  }
   const commit=()=>{ saveParams(); toast("Parâmetros atualizados — todas as abas recalculadas"); renderPar(); };
   g.forEach(([k])=>{ const e=document.getElementById('g-'+k); e.onchange=()=>{ const v=+e.value; if(!(v>=0)||((k==="dias"||k==="tcp"||k==="tod"||k==="hzn")&&v<=0)){ e.value=P[k]; toast("Use um número válido (maior que zero)"); return; } P[k]=v; commit(); }; });
   el.querySelectorAll('input[data-f]').forEach(e=>e.onchange=()=>{ const v=+e.value; if(!(v>=0)) return; P.tcpa[e.dataset.f]=v; commit(); });
@@ -2948,7 +3072,21 @@ function pedirFoto(cod){
   i.click();
 }
 /* ---------- Importação de dados (Datasul) ---------- */
-const IMP={tipo:"estoque_pa",sep:"auto",txt:"",prev:null,cmap:{cod:0,qtd:1},hdr:true,log:[],completo:true};
+const IMP={tipo:"estoque_pa",sep:"auto",txt:"",prev:null,cmap:{cod:0,qtd:1,ped:-1,cli:-1,dt:-1},hdr:true,log:[],completo:true};
+/* ---------- Rev12: data de entrega em qualquer formato comum do Datasul/Excel ---------- */
+function dataISO(v){ const s=String(v||"").trim(); if(!s) return "";
+  let m=s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})/); if(m){ let y=+m[3]; if(y<100) y+=2000; return y+'-'+String(+m[2]).padStart(2,'0')+'-'+String(+m[1]).padStart(2,'0'); }
+  m=s.match(/^(\d{4})-(\d{2})-(\d{2})/); if(m) return m[1]+'-'+m[2]+'-'+m[3];
+  if(/^\d{5}(\.\d+)?$/.test(s)){ const d=new Date(Date.UTC(1899,11,30)+Math.floor(+s)*86400000); return d.toISOString().slice(0,10); }   // serial do Excel
+  return ""; }
+/* linhas da carteira por pedido (só quando a coluna do pedido foi mapeada) */
+function linhasPedido(body){
+  const cm=IMP.cmap; if(!(cm.ped>=0)) return null;
+  const L=[], peds=new Set();
+  for(const r of body){ const c=(r[cm.cod]||"").trim(), q=numBR(r[cm.qtd]), p=(r[cm.ped]||"").trim(); if(!c||!p||isNaN(q)||q<=0) continue;
+    const k=classCod(c,"estoque_pa"); L.push([p,cm.cli>=0?(r[cm.cli]||"").trim():"",(k.st==="ok"||k.st==="zeros")?k.cod:c,q,cm.dt>=0?dataISO(r[cm.dt]):""]); peds.add(p); }
+  return {L,np:peds.size,semData:L.filter(x=>!x[4]).length};
+}
 /* ---------- Rev11: catálogo completo de códigos para explicar o que não casou ---------- */
 let CATX=null;
 function catalogo(){
@@ -3045,7 +3183,12 @@ function renderIM(){
    </div>
    <div class="panel"><div class="head"><h3>2 · Colunas</h3></div>
     <label class="f" for="im-cod">Coluna do código do item<select id="im-cod">${colOpts(IMP.cmap.cod)}</select></label>
-    <label class="f" for="im-qtd">Coluna da quantidade<select id="im-qtd">${colOpts(IMP.cmap.qtd)}</select></label>
+    <label class="f" for="im-qtd">Coluna da quantidade${IMP.tipo==="carteira"?' (saldo em aberto)':''}<select id="im-qtd">${colOpts(IMP.cmap.qtd)}</select></label>
+    ${IMP.tipo==="carteira"?`<p class="note" style="margin:8px 0 2px"><b>Para a Expedição por pedido</b> (pedidos completos × incompletos), mapeie também:</p>
+    <label class="f" for="im-ped">Coluna do nº do pedido<select id="im-ped"><option value="-1">— não tem —</option>${colOpts(IMP.cmap.ped)}</select></label>
+    <label class="f" for="im-cli">Coluna do cliente<select id="im-cli"><option value="-1">— não tem —</option>${colOpts(IMP.cmap.cli)}</select></label>
+    <label class="f" for="im-dt">Coluna da data de entrega<select id="im-dt"><option value="-1">— não tem —</option>${colOpts(IMP.cmap.dt)}</select></label>
+    ${(()=>{ const x=linhasPedido(body); return x?`<p class="note">Lido: <b>${f0(x.np)} pedidos</b> em ${f0(x.L.length)} linhas${x.semData?` · <b style="color:var(--kr)">${f0(x.semData)} linhas sem data de entrega reconhecida</b>`:''}. Os pedidos incluem também itens MTO e fora do Kanban.</p>`:'<p class="warn">Sem a coluna do pedido o app só grava o total por item; a aba Expedição não consegue dizer quais pedidos estão completos.</p>'; })()}`:''}
     <div class="stats">
      <div class="stat g"><div class="l">Linhas prontas</div><div class="v">${f0(ok)}</div><div class="s">${cnt.zeros?`inclui ${f0(cnt.zeros)} com zeros à esquerda corrigidos`:'código encontrado'}</div></div>
      <div class="stat y"><div class="l">Código não cadastrado</div><div class="v">${f0(nf)}</div><div class="s">detalhado abaixo</div></div>
@@ -3077,7 +3220,7 @@ function renderIM(){
     <li>Exporte em <b>CSV com ponto e vírgula</b>. O Datasul costuma entregar a quantidade no padrão brasileiro (1.234,00) — o app já entende esse formato.</li>
     <li>Agende a exportação para uma pasta fixa da rede (por exemplo, uma vez por turno). Use “Ler de uma pasta” para reabrir sempre o arquivo mais recente.</li>
     <li>Para o supermercado de Usinados, a mesma consulta filtrando os depósitos de processo/usinados.</li>
-    <li>Para a <b>carteira</b>, exporte os pedidos de venda em aberto com duas colunas: código do item e saldo em aberto (quantidade ainda não faturada). Pedidos do mesmo item são somados.</li>
+    <li>Para a <b>carteira</b>, exporte os pedidos de venda em aberto <b>uma linha por item de pedido</b>, com nº do pedido, cliente, código do item, saldo em aberto (ainda não faturado) e data de entrega. O total por item alimenta o Kanban; as linhas por pedido alimentam a aba <b>Expedição</b>.</li>
     <li>Para produção apontada, exporte ordem, item e quantidade produzida — o app baixa as ordens abertas correspondentes.</li>
     <li>Integração direta por API do Datasul é possível, mas exige um serviço intermediário publicando os dados; a importação por arquivo já mantém o Kanban atualizado por turno.</li>
    </ul></div>`;
@@ -3091,6 +3234,9 @@ function renderIM(){
     saveFile("codigos_nao_cadastrados.csv","\ufeff"+L.map(r=>r.map(v=>String(v??'').replace(/;/g,',')).join(";")).join("\n")); });
   on('im-cod','change',e=>{ IMP.cmap.cod=+e.target.value; renderIM(); });
   on('im-qtd','change',e=>{ IMP.cmap.qtd=+e.target.value; renderIM(); });
+  on('im-ped','change',e=>{ IMP.cmap.ped=+e.target.value; renderIM(); });
+  on('im-cli','change',e=>{ IMP.cmap.cli=+e.target.value; renderIM(); });
+  on('im-dt','change',e=>{ IMP.cmap.dt=+e.target.value; renderIM(); });
   on('im-clear','click',()=>{ IMP.txt=""; renderIM(); });
   const ta=document.getElementById('im-txt');
   if(ta){ ta.addEventListener('change',()=>{ IMP.txt=ta.value; autoMap(); renderIM(); });
@@ -3132,18 +3278,25 @@ function autoMap(){
   const ci=f('it-codigo','item','codigo','código','cod','sku'), qi=f('saldo','quantidade','qtde','qtd','estoque','quant');
   IMP.hdr = ci>=0||qi>=0;
   if(ci>=0) IMP.cmap.cod=ci; if(qi>=0) IMP.cmap.qtd=qi;
+  const fx=(fn)=>h.findIndex(fn);
+  let pi=fx(x=>/ped/.test(x)&&!/cli/.test(x)&&!/repr/.test(x)); if(pi===ci||pi===qi) pi=-1;
+  let li=fx(x=>/nome/.test(x)&&/cli/.test(x)); if(li<0) li=fx(x=>/cliente|raz[aã]o|emitente/.test(x)&&!/cod/.test(x)); if(li<0) li=fx(x=>/cliente/.test(x));
+  let di=fx(x=>/entrega/.test(x)); if(di<0) di=fx(x=>/prev|prazo/.test(x)); if(di<0) di=fx(x=>/^dt|data/.test(x));
+  IMP.cmap.ped=pi; IMP.cmap.cli=li; IMP.cmap.dt=di;
   if(ci<0&&qi<0){ IMP.cmap.cod=0; IMP.cmap.qtd=Math.max(1,P0.rows[0].length-1); }
 }
 async function aplicarImport(){
   const P0=parseTab(IMP.txt,IMP.sep), body=IMP.hdr?P0.rows.slice(1):P0.rows;
-  const tipoCls=IMP.tipo==="estoque_us"?"estoque_us":"estoque_pa", ch={};
+  const tipoCls=IMP.tipo==="estoque_us"?"estoque_us":"estoque_pa", ch={}, todos={};
   let n=0, mtoPc=0;
   for(const r of body){ const c=(r[IMP.cmap.cod]||"").trim(), q=numBR(r[IMP.cmap.qtd]);
     if(!c||isNaN(q)) continue; const k=classCod(c,tipoCls);
     if(k.st==="mto") mtoPc+=q;
+    const cc=(k.st==="ok"||k.st==="zeros")?k.cod:c; todos[cc]=(todos[cc]||0)+q;   // Rev12: estoque de todos os códigos (expedição)
     if(k.st!=="ok"&&k.st!=="zeros") continue; ch[k.cod]=(ch[k.cod]||0)+q; n++; }
+  const PL=IMP.tipo==="carteira"?linhasPedido(body):null;
   const zer=(IMP.prev&&IMP.prev.zerar)||[]; if(IMP.tipo!=="producao") zer.forEach(c=>{ if(ch[c]==null) ch[c]=0; });
-  if(!n&&!zer.length){ toast("Nada para aplicar"); return; }
+  if(!n&&!zer.length&&!(PL&&PL.L.length)){ toast("Nada para aplicar"); return; }
   if(IMP.tipo==="producao"){
     let baixadas=0;
     for(const [c,q] of Object.entries(ch)){
@@ -3158,9 +3311,16 @@ async function aplicarImport(){
   }
   const tipo=IMP.tipo==="estoque_us"?"us":(IMP.tipo==="carteira"?"cart":"pa");
   const okw=await writeStock(tipo,ch,{n,zer:zer.length,completo:!!IMP.completo,mtoPc:Math.round(mtoPc),fonte:IMP.tipo});
+  const meta={t:new Date().toISOString(),u:UID||"",n:0};
+  if(IMP.tipo==="estoque_pa"){   // estoque do CD de todos os códigos, para completar pedidos (substitui o anterior; arquivo parcial soma por cima)
+    const it=IMP.completo?{}:Object.assign({},CDALL.itens||{}); for(const [c,q] of Object.entries(todos)) it[c]=Math.max(0,Math.round(q));
+    CDALL={itens:it,meta:Object.assign(meta,{n:Object.keys(it).length})}; await writeDoc("kanban/estoque_cd",CDALL); }
+  if(PL&&PL.L.length){
+    PED={linhas:PL.L,meta:Object.assign(meta,{n:PL.L.length,np:PL.np,semData:PL.semData})}; await writeDoc("kanban/pedidos",PED); }
+  if(typeof expReset==="function") expReset();
   setSim(false);
   const nomeT={estoque_us:"Estoque de Usinados",estoque_pa:"Estoque de PA",carteira:"Carteira de pedidos"}[IMP.tipo]||IMP.tipo;
-  IMP.log.unshift({t:new Date().toLocaleString('pt-BR'),m:`${nomeT}: ${n} item(ns) atualizados${zer.length?`, ${zer.length} zerados`:''}${okw?"":" (só neste navegador)"}`});
+  IMP.log.unshift({t:new Date().toLocaleString('pt-BR'),m:`${nomeT}: ${n} item(ns) atualizados${zer.length?`, ${zer.length} zerados`:''}${PL&&PL.L.length?` · ${PL.np} pedidos (${PL.L.length} linhas) para a Expedição`:''}${okw?"":" (só neste navegador)"}`});
   toast(n+" item(ns) atualizados"); renderIM();
 }
 
@@ -3558,7 +3718,7 @@ function renderPRG(){
     <label class="f" for="pg-h">Horas/dia<input class="in" id="pg-h" type="number" min="1" max="24" step="0.5" value="${cfg.h>0?cfg.h:P.tod}"></label>
     <label class="f" for="pg-po">Postos<input class="in" id="pg-po" type="number" min="1" step="1" value="${postosDe(p)}"></label>
     <label class="f" for="pg-cpd">Cartões/dia (sem TC)<input class="in" id="pg-cpd" type="number" min="1" step="1" value="${cartDia(p)}"></label>
-    <button class="btn" id="pg-sv">Salvar capacidade</button>
+    ${isAdmin()?'<button class="btn" id="pg-sv">Salvar capacidade</button>':'<span class="note">Capacidade dos processos: só o administrador altera.</span>'}
    </div>
    <p class="note">Capacidade: <b>${f1(horasDia(p))} h/dia</b>${p==="P3"&&!(cfg.tc>0)?` · referência: gargalo ${esc(garg3().g)} (${esc(garg3().d)}), ${garg3().m} máquinas, TC ${f1(garg3().t)} s/pç — a CFU fica fora da restrição, como na aba Capacidade`:''}${p==="P7"?` · campanha de cor: ${P.trocas} trocas × ${P.setp} min por dia`:''} · TC em uso: ${esc(tcTxt)}. ${tcTxt==="não informado"?'Sem TC, o limite do dia é por número de cartões.':''} Setup é contado uma vez por item por dia.</p>
   </div>
@@ -3599,7 +3759,8 @@ function renderPRG(){
   <p class="note">Concluir na última etapa da rota dá entrada no supermercado (estoque + peças do cartão). Nas etapas intermediárias, o cartão vai para a fila do processo seguinte — por exemplo, terminais pintados (P7) seguem para a Embalagem (P8).</p>`;
   box.querySelectorAll('[data-proc]').forEach(b=>b.onclick=()=>{ PRG.p=b.dataset.proc; try{ localStorage.setItem("aemco-kd8-prgp",PRG.p); }catch(e){} renderPRG(); });
   const num=id=>{ const v=parseFloat(document.getElementById(id).value); return isNaN(v)?null:v; };
-  document.getElementById('pg-sv').onclick=()=>{ P.procp=P.procp||{}; P.procp[p]={tc:num('pg-tc'),setup:num('pg-st'),h:num('pg-h'),postos:num('pg-po'),cpd:num('pg-cpd')}; saveParams(); toast("Capacidade de "+p+" salva"); renderPRG(); };
+  if(!isAdmin()) ['pg-tc','pg-st','pg-h','pg-po','pg-cpd'].forEach(i=>{ const e=document.getElementById(i); if(e) e.disabled=true; });
+  const pgsv=document.getElementById('pg-sv'); if(pgsv) pgsv.onclick=()=>{ P.procp=P.procp||{}; P.procp[p]={tc:num('pg-tc'),setup:num('pg-st'),h:num('pg-h'),postos:num('pg-po'),cpd:num('pg-cpd')}; saveParams(); toast("Capacidade de "+p+" salva"); renderPRG(); };
   document.getElementById('pg-ini').onchange=e=>{ PRG.ini=e.target.value; renderPRG(); };
   document.getElementById('pg-d').onchange=e=>{ PRG.dias=+e.target.value; renderPRG(); };
   document.getElementById('pg-sab').onchange=e=>{ PRG.sab=e.target.checked; renderPRG(); };
@@ -3635,6 +3796,428 @@ function prgExport(pdf){
   document.body.classList.add('prt-prg'); setTimeout(()=>{ window.print(); setTimeout(()=>document.body.classList.remove('prt-prg'),500); },60);
 }
 try{ const s=localStorage.getItem("aemco-kd8-prgp"); if(s&&PROC_PRG.includes(s)) PRG.p=s; }catch(e){}
+
+/* ---------- Rev12: Expedição por pedido ----------
+   A carteira importada traz uma linha por item de pedido (pedido, cliente, item, saldo em aberto, entrega).
+   Regra de "pedido completo" (decidida em 30/10): o estoque do CD vai primeiro para o pedido com entrega
+   mais cedo; o pedido só fica completo se TODAS as linhas couberem no que sobrou (tudo ou nada — um pedido
+   incompleto não segura peças dos seguintes). Pedidos já em separação ou separados reservam antes de todos. */
+const EXP={sel:"",f:{cli:"",st:"comp",prazo:"",q:""},grp:"semana",base:"prazo",col:"sep",vw:(window.innerWidth<700?"card":"card")};
+let EXPC=null;
+function expReset(){ EXPC=null; }
+const pedKey=p=>String(p).trim().replace(/[^A-Za-z0-9_.-]/g,"_").slice(0,60)||"_";
+function hojeISO(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function addDias(iso,n){ const d=new Date(iso+'T12:00:00'); d.setDate(d.getDate()+n); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+const dBR=iso=>iso?iso.slice(8,10)+'/'+iso.slice(5,7)+'/'+iso.slice(2,4):'sem data';
+/* endereços do CD por item: hoje (Mapa Lógico da base) e proposto (o picking usa só o de hoje) */
+let ADDR=null;
+function addrMaps(){
+  if(ADDR) return ADDR;
+  const cur={}, nw={}, ord=s=>`${s.rua}|${String(s.pos).padStart(2,'0')}|${s.niv}|${s.sub||''}`;
+  (typeof SLOTS!=="undefined"?SLOTS:[]).forEach(s=>{
+    if(s.kind==="item"&&s.cur) (cur[s.cur]=cur[s.cur]||[]).push(s);
+    if(s.nw) (nw[s.nw]=nw[s.nw]||[]).push(s); });
+  for(const m of [cur,nw]) for(const k in m) m[k].sort((a,b)=>ord(a)<ord(b)?-1:1);
+  return ADDR={cur,nw,ord};
+}
+function expPrazo(dt,hoje){ if(!dt) return "sem"; if(dt<hoje) return "atr"; if(dt===hoje) return "hoje"; if(dt<=addDias(hoje,7)) return "sem7"; return "dep"; }
+const PRAZO_LAB={atr:"Atrasado",hoje:"Entrega hoje",sem7:"Próximos 7 dias",dep:"Depois",sem:"Sem data"};
+/* aloca o estoque e classifica os pedidos (cacheado até mudar estoque, carteira ou separação) */
+function expAlloc(){
+  if(EXPC) return EXPC;
+  const hoje=hojeISO();
+  const PA=calcPA(), estApp={}; PA.forEach(r=>{ estApp[r.cod]=estReal(r); });
+  const cdAll=CDALL.itens||{};
+  const est=c=>estApp[c]!=null?estApp[c]:(+cdAll[c]||0);     // item do app: saldo do supermercado (inclui ajustes); demais: estoque CD completo
+  const desc={}; PA.forEach(r=>{ desc[r.cod]=r.desc; });
+  const cls={}; PA.forEach(r=>{ cls[r.cod]=r.cls; });
+  const P0={};
+  for(const l of PED.linhas){ const [ped,cli,cod,q,dt]=l; if(!ped||!cod||!(q>0)) continue;
+    const o=P0[ped]||(P0[ped]={ped:String(ped),cli:cli||"",dt:"",L:{}});
+    if(cli&&!o.cli) o.cli=cli; if(dt&&(!o.dt||dt<o.dt)) o.dt=dt; o.L[cod]=(o.L[cod]||0)+q; }
+  const ords=Object.values(P0).map(o=>{ const sep=EXPST[pedKey(o.ped)]||null;
+    return Object.assign(o,{lines:Object.entries(o.L).map(([cod,q])=>({cod,q})),sep:sep&&sep.st?sep:null,pz:expPrazo(o.dt,hoje)}); });
+  const pri=o=>o.sep?(o.sep.st==="separado"?0:1):2;
+  ords.sort((a,b)=>(pri(a)-pri(b))||((a.dt||"9999")<(b.dt||"9999")?-1:(a.dt||"9999")>(b.dt||"9999")?1:0)||(a.ped<b.ped?-1:1));
+  const av={}; const disp=c=>(av[c]!=null?av[c]:(av[c]=Math.max(0,est(c))));
+  let seq=0;
+  for(const o of ords){
+    o.nL=o.lines.length; o.pcs=o.lines.reduce((s,x)=>s+x.q,0);
+    o.lines.forEach(x=>{ x.disp=disp(x.cod); x.ok=x.disp>=x.q-1e-9; x.desc=desc[x.cod]||""; x.cls=cls[x.cod]||"MTO / fora do Kanban"; });
+    o.okL=o.lines.filter(x=>x.ok).length; o.pcsOk=o.lines.reduce((s,x)=>s+Math.min(x.q,x.disp),0);
+    o.comp=!!o.sep||o.okL===o.nL;
+    if(o.comp) o.lines.forEach(x=>{ av[x.cod]=Math.max(0,disp(x.cod)-x.q); });
+    o.seq=++seq;
+  }
+  const comp=ords.filter(o=>o.comp), inc=ords.filter(o=>!o.comp);
+  // falta de cada linha dos incompletos sem desmontar os pedidos completos (estoque que sobrou depois da reserva)
+  for(const o of inc){ o.lines.forEach(x=>{ x.falta=Math.max(0,x.q-disp(x.cod)); }); o.nF=o.lines.filter(x=>x.falta>0).length; }
+  return EXPC={ords,comp,inc,hoje,temCDall:!!CDALL.itens,est,rest:c=>disp(c)};
+}
+function expStats(E){ E=E||expAlloc(); const c=k=>E.ords.filter(o=>o.pz===k);
+  return {n:E.ords.length,comp:E.comp.length,inc:E.inc.length,pcsComp:E.comp.reduce((s,o)=>s+o.pcs,0),pcsInc:E.inc.reduce((s,o)=>s+o.pcs,0),
+    atrComp:c("atr").filter(o=>o.comp).length,atrInc:c("atr").filter(o=>!o.comp).length,
+    sep:E.ords.filter(o=>o.sep&&o.sep.st==="separando").length,sepOk:E.ords.filter(o=>o.sep&&o.sep.st==="separado").length}; }
+function expFonte(){
+  const m=PED.meta, e=ultimaImp('pa');
+  return `${m?`Carteira por pedido importada em <b>${fmtDT(m.t,true)}</b>${m.u?' por '+esc(quemNome(m.u)):''} (${f0(m.np||0)} pedidos, ${f0(m.n||PED.linhas.length)} linhas)`:'<b>Carteira por pedido ainda não importada</b>'} · estoque do CD ${e?'importado em <b>'+fmtDT(e.t,true)+'</b>':'da posição de '+esc(DATA.dataest)}${CDALL.itens?'':' <span class="note">(itens fora do Kanban contam com estoque zero até a próxima importação do estoque de PA)</span>'}`;
+}
+/* ---------- situação da separação ---------- */
+async function expSep(ped,st,extra,quiet){
+  const k=pedKey(ped);
+  if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return; }
+  if(st){ const prev=EXPST[k]||{}; const d=Object.assign({ped:String(ped),ok:[]},prev,extra||{},{st,t:(prev.st===st&&prev.t)?prev.t:new Date().toISOString(),u:(prev.st===st&&prev.u)?prev.u:(UID||""),ut:new Date().toISOString(),uu:UID||""});
+    EXPST[k]=d; expReset(); if(PK.ped) pkRender(); if(DB){ try{ await DB.doc("expedicao/"+k).set(d); }catch(e){ toast("Não gravou ("+(e.code||"erro")+")"); } } }
+  else { delete EXPST[k]; expReset(); if(DB){ try{ await DB.doc("expedicao/"+k).delete(); }catch(e){} } }
+  if(!quiet) toast(st==="separando"?`Pedido ${ped}: em separação`:st==="separado"?`Pedido ${ped}: separado ✓`:`Pedido ${ped}: voltou para a fila`);
+  rerender(); if(PK.ped) pkRender();
+}
+/* ---------- lista de separação (picking) ---------- */
+function pickTable(o){
+  const R=pickRows(o);
+  return `<div class="tw"><table><thead><tr><th>#</th><th>Endereço hoje</th><th>Código</th><th>Descrição</th><th class="num">Pedido</th><th class="num">Disponível</th><th>Situação</th></tr></thead><tbody>
+   ${R.map((x,i)=>`<tr><td>${i+1}</td><td><b style="font-family:var(--mono)">${esc(x.ac.join(', ')||'—')}</b></td><td><b>${esc(x.cod)}</b></td><td class="desc">${esc(String(x.desc||x.cls).slice(0,60))}</td><td class="num">${f0(x.q)}</td><td class="num">${f0(x.disp)}</td><td>${!xFal(x)?'<span class="pill p-MTS">ok</span>':`<span class="pill p-MTO">faltam ${f0(xFal(x))}</span>`}</td></tr>`).join('')}
+   </tbody></table></div>`;
+}
+function pickPrint(o){
+  const R=pickRows(o);
+  let el=document.getElementById('prt-prg'); if(!el){ el=document.createElement('div'); el.id='prt-prg'; document.body.appendChild(el); }
+  el.innerHTML=`<h2 style="font:700 16pt var(--display);margin:0 0 2mm">Lean Up · AEMCO — Lista de separação · Pedido ${esc(o.ped)}</h2>
+   <p style="margin:0 0 4mm;font-size:9.5pt">Cliente: <b>${esc(o.cli||'—')}</b> · Entrega: <b>${dBR(o.dt)}</b> · ${o.nL} linha(s) · ${f0(o.pcs)} pç · emitida em ${new Date().toLocaleString('pt-BR')}</p>
+   <table style="width:100%;border-collapse:collapse;font-size:9pt"><thead><tr>${['✓','Endereço','Código','Descrição','Qtd','Disponível','Obs.'].map(h=>`<th style="border:1px solid #999;padding:3px 5px;text-align:left;background:#eee">${h}</th>`).join('')}</tr></thead>
+   <tbody>${R.map(x=>`<tr>${['☐',x.ac.join(', ')||'sem endereço',x.cod,String(x.desc||'').slice(0,48),f0(x.q),f0(x.disp),!xFal(x)?'':'FALTA '+f0(xFal(x))].map(v=>`<td style="border:1px solid #bbb;padding:3px 5px">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>
+   <p style="font-size:8pt;margin-top:4mm">Endereços do Mapa Lógico do CD (posição da base). Separado por: ____________________ Conferido por: ____________________</p>`;
+  document.body.classList.add('prt-prg'); setTimeout(()=>{ window.print(); setTimeout(()=>document.body.classList.remove('prt-prg'),500); },60);
+}
+function pickCSV(o){
+  const R=pickRows(o), H=["pedido","cliente","entrega","sequencia","endereco_hoje","codigo","descricao","quantidade","disponivel","situacao"];
+  const L=R.map((x,i)=>[o.ped,o.cli,dBR(o.dt),i+1,x.ac.join(" "),x.cod,x.desc,x.q,x.disp,!xFal(x)?"ok":"falta "+xFal(x)]);
+  saveFile("separacao_pedido_"+pedKey(o.ped)+".csv","﻿"+[H.join(";")].concat(L.map(r=>r.map(v=>String(v??'').replace(/;/g,',')).join(";"))).join("\n"));
+}
+function verNoCD(ped){ EXP.sel=String(ped); const m=document.getElementById('cd-mode'); if(m) m.value="ped"; go('cd'); setTimeout(()=>{ if(window.CD3) CD3.recolor(); const sc=document.getElementById('scene'); if(sc) sc.scrollIntoView({behavior:'smooth',block:'start'}); },150); }
+/* ---------- painel da Expedição (aba própria) ---------- */
+function expBarraPrazo(E){
+  const K=["atr","hoje","sem7","dep","sem"], rows=K.map(k=>{ const os=E.ords.filter(o=>o.pz===k); return {k,c:os.filter(o=>o.comp).length,i:os.filter(o=>!o.comp).length}; }).filter(r=>r.c+r.i);
+  const mx=Math.max(1,...rows.map(r=>r.c+r.i));
+  return rows.map(r=>{ const w=(r.c+r.i)/mx*100;
+    return `<div class="ovbar"><div class="ovbl"><b>${PRAZO_LAB[r.k]}</b><span class="note">${f0(r.c+r.i)} pedidos</span></div>
+     <div class="ovwrap${w<60?' narrow':''}"><div class="ovtrack" style="width:${Math.max(6,w).toFixed(1)}%"><i style="flex:${r.c};background:var(--kg)"></i><i style="flex:${r.i};background:var(--kr)"></i></div>
+     <span class="ovval" style="${w<60?`left:calc(${Math.max(6,w).toFixed(1)}% + 10px)`:''}"><b>${f0(r.c)}</b> completos · <b>${f0(r.i)}</b> incompletos</span></div></div>`; }).join('');
+}
+/* ---------- Rev12 · o que falta para completar pedidos (prioridade da produção) ---------- */
+const xFal=x=>x.falta!=null?x.falta:Math.max(0,x.q-x.disp);
+function expFaltas(E){
+  E=E||expAlloc(); const M={};
+  for(const o of E.inc){ const miss=o.lines.filter(x=>x.falta>0);
+    for(const x of o.lines){ const m=M[x.cod]||(M[x.cod]={cod:x.cod,desc:x.desc,cls:x.cls,dem:0,nb:0,so:0,dt:"",peds:[]}); m.dem+=x.q;
+      if(x.falta>0){ m.nb++; if(miss.length===1) m.so++; if(o.dt&&(!m.dt||o.dt<m.dt)) m.dt=o.dt; if(m.peds.length<30) m.peds.push(o.ped); } } }
+  const PA={}; calcPA().forEach(r=>{ PA[r.cod]=r; });
+  const R=Object.values(M).filter(m=>m.nb).map(m=>{ const rest=E.rest(m.cod); const pa=PA[m.cod]||null;
+    return Object.assign(m,{rest,falta:Math.max(0,m.dem-rest),pa,ord:ORDmap["pa|"+m.cod]||0}); });
+  return R.sort((a,b)=>(b.so-a.so)||((a.dt||"9999")<(b.dt||"9999")?-1:(a.dt||"9999")>(b.dt||"9999")?1:0)||(b.nb-a.nb));
+}
+function faltaTable(F,max,acao){
+  if(!F.length) return '<p class="note">Nenhum item travando pedidos: todos os pedidos em carteira estão completos.</p>';
+  return `<div class="tw ft-tab"><table><thead><tr><th>Item</th><th class="num">Falta (pç)</th><th class="num">Pedidos travados</th><th class="num">Libera sozinho</th><th>Entrega mais cedo</th><th>Ordem</th></tr></thead><tbody>
+   ${F.slice(0,max).map(m=>`<tr><td><b>${esc(m.cod)}</b><div class="note">${esc(String(m.desc||m.cls).slice(0,46))}</div></td><td class="num"><b>${f0(m.falta)}</b></td><td class="num">${f0(m.nb)}</td><td class="num">${m.so?`<b style="color:var(--kg)">${f0(m.so)}</b>`:'0'}</td><td>${dBR(m.dt)}${m.dt&&m.dt<hojeISO()?' <span class="pill p-MTO">atrasado</span>':''}</td>
+    <td>${m.ord?`<span class="pill p-BUF">${f0(m.ord)} pç em aberto</span>`:m.pa&&acao?`<button class="btn" data-fo="${esc(m.cod)}">Liberar ordem</button>`:m.pa?'<span class="note">sem ordem</span>':'<span class="note">MTO · programar no PCP</span>'}</td></tr>`).join('')}
+   </tbody></table></div>
+   <div class="ft-crd">${F.slice(0,max).map(m=>`<div class="ftc"><div><b>${esc(m.cod)}</b> <span class="note">${esc(String(m.desc||m.cls).slice(0,40))}</span></div>
+    <div class="ftc-n"><span><b style="color:var(--kr)">${f0(m.falta)}</b> pç faltam</span><span>trava <b>${f0(m.nb)}</b> pedido(s)</span>${m.so?`<span style="color:var(--kg)">libera <b>${f0(m.so)}</b> sozinho</span>`:''}<span>entrega ${dBR(m.dt)}</span></div>
+    ${m.ord?`<span class="pill p-BUF">${f0(m.ord)} pç em ordem aberta</span>`:m.pa&&acao?`<button class="btn" data-fo="${esc(m.cod)}">Liberar ordem</button>`:m.pa?'':'<span class="note">MTO · programar no PCP</span>'}</div>`).join('')}</div>
+   ${F.length>max?`<p class="note">+ ${f0(F.length-max)} item(ns).</p>`:''}`;
+}
+function faltaBind(){
+  document.querySelectorAll('[data-fo]').forEach(b=>b.onclick=async()=>{ const m=expFaltas().find(x=>x.cod===b.dataset.fo); if(!m||!m.pa) return;
+    const r=m.pa, cx=r.q>0?r.q:1, qtd=Math.ceil(m.falta/cx)*cx;
+    if(b.dataset.ok!=="1"){ b.dataset.ok="1"; b.textContent=`Confirmar ${f0(qtd)} pç`; b.classList.add('pri'); return; }
+    await liberar([{tipo:"pa",cod:r.cod,desc:r.desc,rec:r.rec,qtd,prio:1}]); expReset(); rerender(); });
+}
+/* ---------- Rev12 · compartilhar com o Comercial ---------- */
+function expTextoComercial(L){
+  const E=expAlloc(), m=PED.meta, e=ultimaImp('pa');
+  const C=(L||E.ords).filter(o=>o.comp);
+  const t=[`Lean Up · AEMCO — pedidos COMPLETOS para expedir`,`Carteira de ${m?fmtDT(m.t,true):'—'} · estoque do CD de ${e?fmtDT(e.t,true):DATA.dataest}`,`${C.length} completo(s) de ${(L||E.ords).length} pedido(s)`,``]
+   .concat(C.slice(0,60).map(o=>`• ${o.ped} · ${o.cli||'—'} · entrega ${dBR(o.dt)}${o.pz==="atr"?' (ATRASADO)':''} · ${f0(o.pcs)} pç${o.sep?' · '+(o.sep.st==="separado"?'SEPARADO':'em separação'):''}`));
+  if(C.length>60) t.push(`… + ${C.length-60} pedido(s)`);
+  return t.join("\n");
+}
+async function expCompartilhar(L){
+  const txt=expTextoComercial(L);
+  try{ if(navigator.share){ await navigator.share({title:"Pedidos completos · AEMCO",text:txt}); return; } }catch(e){ if(e&&e.name==="AbortError") return; }
+  try{ await navigator.clipboard.writeText(txt); toast("Lista copiada — cole no WhatsApp ou no e-mail"); }catch(e){ saveFile("pedidos_completos.txt",txt); }
+}
+/* ---------- Rev12 · rota de coleta pelo ENDEREÇO ATUAL (Mapa Lógico de hoje, não o proposto) ---------- */
+// Sai da expedição, percorre as ruas da mais próxima para a mais distante e, em cada rua, anda num sentido só
+// (começa pela ponta mais perto de onde o operador está). Itens em mais de uma posição: usa o nível mais baixo.
+const PLC={D:{bg:'#F2F2F2',fg:'#333333'},E:{bg:'#0F9D58',fg:'#ffffff'},F:{bg:'#C0392B',fg:'#ffffff'},G:{bg:'#5A6068',fg:'#ffffff'},H:{bg:'#E8A33D',fg:'#222222'},I:{bg:'#2F6DB5',fg:'#ffffff'}};
+function pkRota(o){
+  const A=addrMaps(), zz=s=>slotZ(s.rua,s.pos);
+  const L=o.lines.map(x=>{ const c=(A.cur[x.cod]||[]).slice().sort((a,b)=>(a.niv-b.niv)||(zz(a)-zz(b))); return {x,s:c[0]||null,alt:c.slice(1)}; });
+  const row=s=>"GHI".includes(s.rua)?"G":s.rua, rows={};
+  L.filter(l=>l.s).forEach(l=>(rows[row(l.s)]=rows[row(l.s)]||[]).push(l));
+  const ordR=Object.keys(rows).sort((a,b)=>(Math.abs(RX[a]-PACK.x)-Math.abs(RX[b]-PACK.x))||a.localeCompare(b));
+  let z=PACK.z, out=[];
+  for(const r of ordR){ const it=rows[r].sort((a,b)=>(zz(a.s)-zz(b.s))||(a.s.niv-b.s.niv)||String(a.s.sub).localeCompare(String(b.s.sub)));
+    if(Math.abs(z-zz(it[it.length-1].s))<Math.abs(z-zz(it[0].s))) it.reverse();
+    out=out.concat(it); z=zz(it[it.length-1].s); }
+  return out.concat(L.filter(l=>!l.s));
+}
+function pickRows(o){ return pkRota(o).map(l=>Object.assign({},l.x,{s:l.s,alt:l.alt,ac:l.s?[l.s.addr].concat(l.alt.map(a=>a.addr)):[]})); }
+/* mapa 2D (vista de cima) com as paradas numeradas */
+function pkMapa(R,cur,done){
+  // esquema (fora de escala no sentido das ruas): F e G/H/I ficam costas com costas no layout
+  const M=4.6, zmax=16*BW, Z=z=>(z+2)*M+52, ROW={D:14,E:42,F:70,G:92,H:92,I:92}, RH=12, W=Z(zmax+1), H=128;
+  let g=`<rect x="0" y="0" width="${W}" height="${H}" rx="8" fill="var(--panel2)"/>`;
+  g+=`<rect x="4" y="${ROW.G-2}" width="46" height="${RH+4}" rx="3" fill="var(--gold)"/><text x="27" y="${ROW.G+RH+14}" text-anchor="middle" font-size="8" font-weight="700" fill="var(--ink)">EXPEDIÇÃO</text>`;
+  const bars=[["D",1,16],["E",1,16],["F",1,16],["I",1,4],["H",1,4],["G",1,2]];
+  for(const [r,a,b] of bars){ const za=Math.min(slotZ(r,a),slotZ(r,b)), zb=Math.max(slotZ(r,a),slotZ(r,b))+BW, y=ROW[r];
+    g+=`<rect x="${Z(za)}" y="${y}" width="${(zb-za)*M}" height="${RH}" rx="2" fill="var(--panel)" stroke="var(--muted)" stroke-width=".6"/>`;
+     const c=PLC[r], low="GHI".includes(r), bx=low?Z((za+zb)/2)-8:Z(za)-18, by=low?y+RH+3:y-2; g+=`<rect x="${bx}" y="${by}" width="16" height="16" rx="3" fill="${c.bg}" stroke="#888" stroke-width=".5"/><text x="${bx+8}" y="${by+12}" text-anchor="middle" font-size="11" font-weight="700" fill="${c.fg}">${r}</text>`; }
+  R.forEach((x,i)=>{ if(!x.s) return; const cx=Z(slotZ(x.s.rua,x.s.pos)+BW/2), cy=ROW[x.s.rua]+RH/2, st=done(x), on=i===cur;
+    if(on) g+=`<circle cx="${cx}" cy="${cy}" r="13" fill="var(--ped)" opacity=".25"><animate attributeName="r" values="9;15;9" dur="1.6s" repeatCount="indefinite"/></circle>`;
+    g+=`<circle cx="${cx}" cy="${cy}" r="${on?9:6.5}" fill="${on?'var(--ped)':st?'var(--kg)':'var(--panel)'}" stroke="${on?'#fff':st?'var(--kg)':'var(--muted)'}" stroke-width="1.5"/><text x="${cx}" y="${cy+(on?3.5:3)}" text-anchor="middle" font-size="${on?10:8}" font-weight="700" fill="${on||st?'#fff':'var(--ink)'}">${st&&!on?'✓':i+1}</text>`; });
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" class="pk-map" role="img" aria-label="Mapa do CD visto de cima com a posição do item">${g}</svg>`;
+}
+/* estante de frente: níveis × vagas, com a vaga do item marcada */
+function pkEstante(s){
+  const ns=NSUB[s.rua]||1, cw=Math.min(26,120/ns), ch=19, W=ns*cw+28, H=5*ch+16, si=Math.max(0,"ABCDEF".indexOf(s.sub||"A"));
+  let g=`<rect x="24" y="2" width="${ns*cw+2}" height="${5*ch+2}" fill="none" stroke="var(--ink)" stroke-width="1.5"/>`;
+  for(let l=1;l<=5;l++){ const y=3+(5-l)*ch; g+=`<text x="10" y="${y+ch/2+4}" text-anchor="middle" font-size="10" font-weight="${l===s.niv?800:500}" fill="${l===s.niv?'var(--ped)':'var(--muted)'}">${l}</text>`;
+    for(let c=0;c<ns;c++){ const on=l===s.niv&&c>=si&&c<si+Math.min(s.span||1,ns); g+=`<rect x="${25+c*cw}" y="${y}" width="${cw-1}" height="${ch-1}" fill="${on?'var(--ped)':'var(--panel2)'}" stroke="var(--line)"/>${ns>1?`<text x="${25+c*cw+cw/2-.5}" y="${y+ch/2+3.5}" text-anchor="middle" font-size="8.5" fill="${on?'#fff':'var(--muted)'}">${"ABCDEF"[c]}</text>`:''}`; } }
+  g+=`<line x1="20" x2="${W}" y1="${5*ch+4}" y2="${5*ch+4}" stroke="var(--ink)" stroke-width="2"/><text x="10" y="${5*ch+14}" text-anchor="middle" font-size="7.5" fill="var(--muted)">chão</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" class="pk-est" role="img" aria-label="Estante: nível ${s.niv}${ns>1?', vaga '+(s.sub||'A'):''}">${g}</svg>`;
+}
+/* ---------- tela do operador: um item por vez ---------- */
+const PK={ped:"",conf:false,vw:"passo",skip:[],menos:false,hist:[]};
+function pkAbrir(ped){ Object.assign(PK,{ped:String(ped),conf:false,vw:"passo",skip:[],menos:false,hist:[]}); pkRender(); }
+function pkFechar(){ PK.ped=""; const el=document.getElementById('pk'); if(el) el.remove(); document.body.classList.remove('pk-on'); }
+function pkEst(o){ const d=o.sep||{}; return {ok:new Set(d.ok||[]),nf:new Set(d.nf||[]),pq:Object.assign({},d.pq||{})}; }
+async function pkSalvar(o,E){ await expSep(o.ped,"separando",{ok:[...E.ok],nf:[...E.nf],pq:E.pq},true); if(navigator.vibrate) try{ navigator.vibrate(20); }catch(e){} }
+function pkRender(){
+  if(!PK.ped) return;
+  const EA=expAlloc(), o=EA.ords.find(x=>x.ped===PK.ped);
+  let el=document.getElementById('pk'); if(!el){ el=document.createElement('div'); el.id='pk'; el.setAttribute('role','dialog'); el.setAttribute('aria-label','Separação do pedido'); document.body.appendChild(el); }
+  document.body.classList.add('pk-on');
+  if(!o){ el.innerHTML=`<div class="pk-top"><button class="btn" id="pk-x">←</button><b>Pedido ${esc(PK.ped)}</b></div><div class="pk-body"><p>Este pedido não está mais na carteira (faturado ou removido na última importação).</p></div>`; document.getElementById('pk-x').onclick=pkFechar; return; }
+  const R=pickRows(o), E=pkEst(o), st=o.sep&&o.sep.st;
+  const feito=x=>E.ok.has(x.cod)||E.nf.has(x.cod), nDone=R.filter(feito).length, nProb=R.filter(x=>E.nf.has(x.cod)||(E.pq[x.cod]!=null&&E.pq[x.cod]<x.q)).length;
+  const fila=R.map((x,i)=>i).filter(i=>!feito(R[i])); const ordem=fila.filter(i=>!PK.skip.includes(R[i].cod)).concat(fila.filter(i=>PK.skip.includes(R[i].cod)));
+  const ci=PK.vw==="passo"&&st!=="separado"&&ordem.length?ordem[0]:-1;
+  const top=`<div class="pk-top"><button class="btn" id="pk-x" aria-label="Fechar">←</button><div style="flex:1;min-width:0"><b>Pedido ${esc(o.ped)}</b><div class="note" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(o.cli||'—')} · entrega ${dBR(o.dt)}${o.pz==="atr"?' · <b style="color:#FF8A80">ATRASADO</b>':''}</div></div><button class="btn" id="pk-vw">${PK.vw==="passo"?'Lista':'Passo a passo'}</button></div>
+   <div class="pk-prog"><div style="width:${R.length?nDone/R.length*100:0}%"></div></div>`;
+  let body='', foot='';
+  if(ci>=0){
+    const x=R[ci], s=x.s, n=R.indexOf(x)+1, c=s?PLC[s.rua]:null;
+    body=`<div class="pk-step">
+     <div class="pk-cnt">ITEM <b>${n}</b> DE <b>${R.length}</b>${nDone?` · <span style="color:var(--kg)">${nDone} pronto(s)</span>`:''}${PK.skip.includes(x.cod)?' · <span class="note">pulado antes</span>':''}</div>
+     ${s?`<div class="pk-go">VÁ ATÉ</div>
+     <div class="pk-adr"><div class="pk-blk" style="background:${c.bg};color:${c.fg}"><small>RUA</small><b>${s.rua}</b></div><div class="pk-blk"><small>POSIÇÃO</small><b>${String(s.pos).padStart(2,'0')}</b></div><div class="pk-blk${s.niv>=3?' alto':''}"><small>NÍVEL</small><b>${s.niv}</b></div>${(NSUB[s.rua]||1)>1?`<div class="pk-blk"><small>VAGA</small><b>${(()=>{ const si=Math.max(0,"ABCDEF".indexOf(s.sub||"A")), sp=Math.min(s.span||1,NSUB[s.rua]); return sp>1?esc((s.sub||'A')+'–'+"ABCDEF"[Math.min(5,si+sp-1)]):esc(s.sub||'A'); })()}</b></div>`:''}</div>
+     <div class="pk-vis">${pkMapa(R,ci,feito)}</div>
+     ${s.niv>=3?'<div class="pk-alt">⚠ Nível alto: siga o procedimento de trabalho em altura</div>':''}`
+     :`<div class="pk-go" style="color:var(--kr)">SEM ENDEREÇO NO MAPA</div><p class="note">Este item não está no Mapa Lógico atual do CD. Procure com o líder.</p>`}
+     <div class="pk-r2">${s?pkEstante(s):''}<div class="pk-r2t">
+      <div class="pk-item">${fotoImg(x.cod,56)}<div style="min-width:0"><b class="pk-cod">${esc(x.cod)}</b><div class="note">${esc(String(x.desc||x.cls).slice(0,54))}</div></div></div>
+      <div class="pk-pegue">PEGUE <b>${f0(x.q)}</b> PEÇAS</div></div></div>
+     ${s&&x.alt.length?`<div class="note">também tem em: ${esc(x.alt.map(a=>a.addr).join(', '))}</div>`:''}
+     ${PK.menos?`<div class="pk-menos"><span>Quantas peças você pegou?</span><div class="pk-stp"><button class="btn" id="pk-m-">−</button><input id="pk-mq" type="number" inputmode="numeric" min="0" max="${x.q}" value="${E.pq[x.cod]!=null?E.pq[x.cod]:Math.max(0,x.q-1)}" aria-label="Peças pegas"><button class="btn" id="pk-m+">+</button></div><button class="btn pri" id="pk-mok">Confirmar</button></div>`:''}
+    </div>`;
+    foot=PK.menos?'':`<div class="pk-foot col"><button class="btn pk-ok" id="pk-ok">✓ PEGUEI ${f0(x.q)}</button>
+     <div class="pk-row"><button class="btn" id="pk-menos">Peguei menos</button><button class="btn" id="pk-nf">Não achei</button><button class="btn" id="pk-pula"${ordem.length<2?' disabled':''}>Pular</button></div>
+     ${PK.hist.length?'<button class="btn pk-undo" id="pk-undo">↶ Desfazer o último</button>':''}</div>`;
+    PK._x=x;
+  } else {
+    const lista=R.map((x,i)=>{ const ok=E.ok.has(x.cod), nf=E.nf.has(x.cod), pq=E.pq[x.cod];
+      const tag=nf?'<span class="pill p-MTO">não achou</span>':ok&&pq!=null&&pq<x.q?`<span class="pill p-BUF">pegou ${f0(pq)}</span>`:ok?'<span class="pill p-MTS">ok</span>':'';
+      return `<button class="pk-l${ok?' on':''}${nf?' falta':''}" data-pk="${esc(x.cod)}" aria-pressed="${ok}"><span class="pk-ck">${ok?'✓':nf?'!':i+1}</span>
+       <span class="pk-tx"><span class="pk-ad">${esc(x.s?x.s.addr:'sem endereço')}</span><span class="pk-cd"><b>${esc(x.cod)}</b> ${esc(String(x.desc||x.cls).slice(0,36))}</span>${tag}</span><span class="pk-q"><b>${f0(x.q)}</b><small>pç</small></span></button>`; }).join('');
+    const fim=!fila.length;
+    body=`${fim&&st!=="separado"?`<div class="pk-fim ${nProb?'warn':''}"><b>${nProb?`⚠ ${nProb} item(ns) com problema`:'✓ Tudo coletado'}</b><span>${nProb?'Avise o líder antes de concluir.':'Confira e conclua a separação.'}</span></div>`:''}
+     ${st==="separado"?`<div class="pk-fim"><b>Pedido separado</b><span>${fmtDT(o.sep.t,true)}${o.sep.u?' · '+esc(quemNome(o.sep.u)):''}</span></div>`:''}
+     <div class="pk-body2">${lista}<p class="note" style="margin:10px 4px">Ordem de coleta pelo endereço atual (Mapa Lógico de hoje). Toque num item para marcar ou desmarcar.</p></div>`;
+    foot=st==="separado"?`<div class="pk-foot"><button class="btn" id="pk-volta">Reabrir</button><button class="btn pri" id="pk-x2">Fechar</button></div>`:
+      `<div class="pk-foot"><button class="btn" id="pk-pausa">Pausar</button><button class="btn pri${fim&&!nProb?'':' warn'}" id="pk-fim">${fim&&!nProb?'Concluir separação ✓':PK.conf?'Toque de novo para confirmar':fim?'Concluir com pendência':`Concluir (faltam ${fila.length})`}</button></div>`;
+  }
+  el.innerHTML=top+`<div class="pk-body">${body}</div>`+foot;
+  const $=id=>document.getElementById(id), clk=(id,fn)=>{ const b=$(id); if(b) b.onclick=fn; };
+  clk('pk-x',pkFechar); clk('pk-x2',pkFechar); clk('pk-pausa',pkFechar);
+  clk('pk-vw',()=>{ PK.vw=PK.vw==="passo"?"lista":"passo"; PK.menos=false; PK.conf=false; pkRender(); });
+  if(ci>=0){ const x=PK._x;
+    clk('pk-ok',async()=>{ E.ok.add(x.cod); E.nf.delete(x.cod); delete E.pq[x.cod]; PK.hist.push(x.cod); PK.skip=PK.skip.filter(c=>c!==x.cod); await pkSalvar(o,E); });
+    clk('pk-nf',async()=>{ E.nf.add(x.cod); E.ok.delete(x.cod); PK.hist.push(x.cod); PK.skip=PK.skip.filter(c=>c!==x.cod); await pkSalvar(o,E); });
+    clk('pk-pula',()=>{ PK.skip=PK.skip.filter(c=>c!==x.cod).concat(x.cod); pkRender(); });
+    clk('pk-menos',()=>{ PK.menos=true; pkRender(); });
+    clk('pk-undo',async()=>{ const c=PK.hist.pop(); E.ok.delete(c); E.nf.delete(c); delete E.pq[c]; await pkSalvar(o,E); });
+    const mq=$('pk-mq'); if(mq){ mq.focus(); clk('pk-m-',()=>{ mq.value=Math.max(0,(+mq.value||0)-1); }); clk('pk-m+',()=>{ mq.value=Math.min(x.q,(+mq.value||0)+1); });
+      clk('pk-mok',async()=>{ const v=Math.max(0,Math.min(x.q,Math.round(+mq.value||0))); PK.menos=false; delete E.pq[x.cod]; if(v===0){ E.nf.add(x.cod); E.ok.delete(x.cod); } else { E.nf.delete(x.cod); E.ok.add(x.cod); if(v<x.q) E.pq[x.cod]=v; } PK.hist.push(x.cod); await pkSalvar(o,E); }); }
+  } else {
+    el.querySelectorAll('[data-pk]').forEach(b=>b.onclick=async()=>{ if(st==="separado") return; const c=b.dataset.pk, F=pkEst(EA.ords.find(z=>z.ped===o.ped)||o);
+      if(F.ok.has(c)||F.nf.has(c)){ F.ok.delete(c); F.nf.delete(c); delete F.pq[c]; } else F.ok.add(c); PK.conf=false; await pkSalvar(o,F); });
+    clk('pk-volta',()=>expSep(o.ped,"separando",{}));
+    clk('pk-fim',async()=>{ const fim=!fila.length; if(!(fim&&!nProb)&&!PK.conf){ PK.conf=true; pkRender(); return; } await expSep(o.ped,"separado",{pend:nProb+fila.length}); pkFechar(); });
+  }
+}
+/* ---------- painel da Expedição (aba própria) · Kanban de expedição ---------- */
+const EXCOL=[["sep","A separar","completos, na ordem de entrega","var(--kg)"],["and","Em separação","coleta em andamento","var(--ky)"],["ok","Separados","aguardando carregamento / faturamento","var(--kb)"],["inc","Incompletos","aguardando produção","var(--kr)"]];
+function expCol(o){ return o.sep?(o.sep.st==="separado"?"ok":"and"):(o.comp?"sep":"inc"); }
+function renderEX(){
+  const el=document.getElementById('p-ex');
+  if(!PED.linhas.length){
+    el.innerHTML=`<div class="head"><h2>Expedição — pedidos completos para separação</h2></div>
+    <div class="panel"><p><b>Ainda não há carteira por pedido no app.</b> A carteira importada até agora traz só o total por item, que não diz quais pedidos estão completos.</p>
+     <p class="note">Em <b>Importar dados → Carteira de pedidos em aberto</b>, use o relatório do Datasul com uma linha por item de pedido e mapeie as colunas <b>pedido</b>, <b>cliente</b>, <b>item</b>, <b>saldo em aberto</b> e <b>data de entrega</b>. Depois disso, esta aba mostra os pedidos completos, a ordem de separação e os endereços no CD.</p>
+     <button class="btn pri" id="ex-im">Ir para Importar dados</button></div>`;
+    document.getElementById('ex-im').onclick=()=>{ IMP.tipo="carteira"; go('im'); };
+    return;
+  }
+  const E=expAlloc(), S=expStats(E), f=EXP.f, col=EXP.col||"sep", vw=EXP.vw||"card";
+  const clis=[...new Set(E.ords.map(o=>o.cli).filter(Boolean))].sort();
+  const q=f.q.trim().toUpperCase();
+  const B=E.ords.filter(o=>(!f.cli||o.cli===f.cli)&&(!f.prazo||o.pz===f.prazo)&&(!q||o.ped.toUpperCase().includes(q)||o.cli.toUpperCase().includes(q)||o.lines.some(x=>x.cod.toUpperCase().includes(q))));
+  const cnt={}; EXCOL.forEach(c=>cnt[c[0]]=0); B.forEach(o=>cnt[expCol(o)]++);
+  const L=B.filter(o=>expCol(o)===col);
+  const A=addrMaps();
+  const rua=o=>{ const s=[...new Set(pickRows(o).map(x=>x.s?x.s.addr:'').filter(Boolean))]; return s.slice(0,3).join(' · ')+(s.length>3?` +${s.length-3}`:''); };
+  const pz=o=>o.pz==="atr"?'<span class="pill p-MTO">atrasado</span>':o.pz==="hoje"?'<span class="pill p-BUF">hoje</span>':o.pz==="sem7"?'<span class="pill p-MTS">7 dias</span>':'';
+  const card=o=>{ const k=expCol(o), nOk=o.sep?((o.sep.ok||[]).length+(o.sep.nf||[]).length):0, nPb=o.sep?((o.sep.nf||[]).length+Object.keys(o.sep.pq||{}).length):0;
+    return `<div class="exc" style="border-left-color:${EXCOL.find(c=>c[0]===k)[3]}">
+     <div class="exc-h"><b>${esc(o.ped)}</b>${pz(o)}<span class="note" style="margin-left:auto">#${o.seq}</span></div>
+     <div class="exc-c">${esc(o.cli||'—')}</div>
+     <div class="note">entrega <b>${dBR(o.dt)}</b> · ${o.nL} linha(s) · ${f0(o.pcs)} pç</div>
+     ${k==="inc"?`<div class="exc-f">falta: ${o.lines.filter(x=>x.falta>0).slice(0,3).map(x=>`<b>${esc(x.cod)}</b> (${f0(x.falta)} pç)`).join(', ')}${o.nF>3?' …':''} · ${f0(o.pcs?o.pcsOk/o.pcs*100:0)}% atendível</div>`:
+       `<div class="exc-a">📍 ${esc(rua(o)||'sem endereço no mapa')}</div>`}
+     ${k==="and"?`<div class="pk-prog sm"><div style="width:${o.nL?nOk/o.nL*100:0}%"></div></div><div class="note">${nOk}/${o.nL} linhas · ${o.sep.u?esc(quemNome(o.sep.u))+' · ':''}desde ${fmtDT(o.sep.t,true)}</div>${nPb?`<div class="exc-f">⚠ ${nPb} item(ns) com problema</div>`:''}`:''}
+     ${k==="ok"?`<div class="note">separado ${fmtDT(o.sep.t,true)}${o.sep.u?' por '+esc(quemNome(o.sep.u)):''}</div>${o.sep.pend?`<div class="exc-f">⚠ concluído com ${o.sep.pend} pendência(s)</div>`:''}`:''}
+     <div class="exc-b">${k==="sep"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Separar ▶</button>`:k==="and"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Continuar ▶</button>`:k==="ok"?`<button class="btn" data-xa="pick" data-p="${esc(o.ped)}">Ver lista</button>`:`<button class="btn" data-xa="det" data-p="${esc(o.ped)}">Detalhe</button>`}<button class="btn" data-xa="cd" data-p="${esc(o.ped)}">CD 3D</button></div></div>`; };
+  const sel=E.ords.find(o=>o.ped===EXP.sel);
+  const stPill=o=>o.sep?(o.sep.st==="separado"?'<span class="pill" style="background:var(--kb);color:#fff">separado</span>':'<span class="pill" style="background:var(--ky);color:#15223B">em separação</span>'):(o.comp?'<span class="pill p-MTS">completo</span>':'<span class="pill p-MTO">incompleto</span>');
+  const F=col==="inc"?expFaltas(E):null;
+  el.innerHTML=`
+  <div class="head exhd"><h2>Expedição — Kanban de pedidos</h2><button class="btn" id="ex-sh">Enviar completos ao Comercial</button></div>
+  <p class="note exsrc">${expFonte()} · situação da separação atualiza sozinha a cada ~15 s</p>
+  <div class="exb" role="tablist">${EXCOL.map(c=>`<button role="tab" aria-selected="${c[0]===col}" class="exb-t${c[0]===col?' on':''}" data-col="${c[0]}" style="--c:${c[3]}"><span class="exb-n">${f0(cnt[c[0]])}</span><span class="exb-l">${c[1]}</span><small>${c[2]}</small></button>`).join('')}</div>
+  <div class="filters exf">
+   <label class="f" for="ex-q" style="flex:1 1 180px">Buscar<input id="ex-q" type="search" inputmode="search" value="${esc(f.q)}" placeholder="pedido, cliente ou item"></label>
+   <label class="f" for="ex-pz">Prazo<select id="ex-pz"><option value="">Todos</option>${Object.entries(PRAZO_LAB).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label>
+   <label class="f" for="ex-cli">Cliente<select id="ex-cli"><option value="">Todos</option>${clis.map(c=>`<option>${esc(c)}</option>`).join('')}</select></label>
+   <span class="exvw"><button class="btn${vw==="card"?' pri':''}" data-vw="card">Cartões</button><button class="btn${vw==="tab"?' pri':''}" data-vw="tab">Tabela</button></span>
+  </div>
+  ${F?`<div class="panel" style="border-top:5px solid var(--kr)"><div class="head"><h3>O que falta produzir para completar pedidos</h3><span class="note">prioridade: itens que liberam pedidos sozinhos e entrega mais cedo</span></div>${faltaTable(F,8,isAdmin()||WRITE_OK)}</div>`:''}
+  ${vw==="card"?`<div class="exg">${L.slice(0,120).map(card).join('')||`<p class="note">Nenhum pedido em “${EXCOL.find(c=>c[0]===col)[1]}” com esse filtro.</p>`}</div>${L.length>120?`<p class="note">Mostrando 120 de ${f0(L.length)} — use a busca.</p>`:''}`:
+  `<div class="tw tall"><table><thead><tr><th class="num">Prior.</th><th>Pedido</th><th>Cliente</th><th>Entrega</th><th class="num">Linhas ok</th><th class="num">Peças</th><th class="num">% atendível</th><th>Situação</th><th></th></tr></thead><tbody>
+   ${L.slice(0,400).map(o=>`<tr${o.ped===EXP.sel?' style="background:var(--gold-soft)"':''}><td class="num">${o.seq}</td><td><b>${esc(o.ped)}</b></td><td>${esc(o.cli||'—')}</td><td>${dBR(o.dt)} ${pz(o)}</td>
+    <td class="num">${o.okL}/${o.nL}</td><td class="num">${f0(o.pcs)}</td><td class="num">${f0(o.pcs?o.pcsOk/o.pcs*100:0)}%</td><td>${stPill(o)}</td>
+    <td style="white-space:nowrap"><button class="btn" data-xa="det" data-p="${esc(o.ped)}">Abrir</button> <button class="btn" data-xa="cd" data-p="${esc(o.ped)}">Ver no CD</button></td></tr>`).join('')||'<tr><td colspan="9" class="note">Nenhum pedido com esse filtro.</td></tr>'}
+  </tbody></table></div><button class="btn" id="ex-csv">Salvar lista (CSV)</button>`}
+  <div id="ex-det">${sel?`<div class="panel" style="border-top:5px solid ${sel.comp?'var(--kg)':'var(--kr)'}"><div class="head"><h3>Pedido ${esc(sel.ped)} · ${esc(sel.cli||'—')}</h3>${stPill(sel)}</div>
+    <p class="note">Entrega ${dBR(sel.dt)} · ${sel.nL} linha(s) · ${f0(sel.pcs)} pç · prioridade ${sel.seq}. Lista na ordem de coleta (rua → posição → nível).</p>
+    <div class="filters">
+     ${sel.comp?`<button class="btn pri" data-xa="pick" data-p="${esc(sel.ped)}">${sel.sep?'Abrir separação':'Separar ▶'}</button>`:''}
+     ${sel.sep?`<button class="btn" data-xa="volta" data-p="${esc(sel.ped)}">Voltar para a fila</button>`:''}
+     <button class="btn" data-xa="cd" data-p="${esc(sel.ped)}">Ver no CD 3D</button>
+     <button class="btn" data-xa="prt" data-p="${esc(sel.ped)}">Imprimir lista</button>
+     <button class="btn" data-xa="pcsv" data-p="${esc(sel.ped)}">CSV</button>
+    </div>${pickTable(sel)}</div>`:''}</div>
+  <details class="panel"><summary><b>Pedidos por prazo de entrega</b> · <span class="note">${f0(S.comp)} completos × ${f0(S.inc)} incompletos · ${f0(S.atrComp+S.atrInc)} atrasados</span></summary>${expBarraPrazo(E)}
+   <ul class="clean note" style="margin-top:10px">
+    <li><b>Completo</b>: todas as linhas do pedido cabem no estoque do CD, depois de reservar o estoque dos pedidos com entrega mais cedo.</li>
+    <li>Pedido incompleto não segura peças: o estoque fica para os pedidos seguintes que conseguem sair inteiros.</li>
+    <li><b>Separar</b> reserva o pedido para todos; cada linha coletada é marcada no celular; ao terminar, <b>Concluir separação</b>.</li>
+    <li>O pedido sai da Expedição quando deixa de vir na carteira importada (faturado).</li></ul></details>`;
+  const on=(id,fn)=>{ const e=document.getElementById(id); if(e) e.onchange=fn; };
+  document.getElementById('ex-pz').value=f.prazo; document.getElementById('ex-cli').value=f.cli;
+  on('ex-pz',e=>{ f.prazo=e.target.value; renderEX(); }); on('ex-cli',e=>{ f.cli=e.target.value; renderEX(); });
+  const qi=document.getElementById('ex-q'); qi.oninput=()=>{ f.q=qi.value; renderEX(); const n=document.getElementById('ex-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); };
+  el.querySelectorAll('[data-col]').forEach(b=>b.onclick=()=>{ EXP.col=b.dataset.col; renderEX(); });
+  el.querySelectorAll('[data-vw]').forEach(b=>b.onclick=()=>{ EXP.vw=b.dataset.vw; renderEX(); });
+  document.getElementById('ex-sh').onclick=()=>expCompartilhar(B);
+  const cs=document.getElementById('ex-csv'); if(cs) cs.onclick=()=>{ const H=["prioridade","pedido","cliente","entrega","prazo","linhas","linhas_ok","pecas","pecas_atendiveis","situacao"];
+    saveFile("expedicao_pedidos.csv","﻿"+[H.join(";")].concat(L.map(o=>[o.seq,o.ped,o.cli,dBR(o.dt),PRAZO_LAB[o.pz],o.nL,o.okL,o.pcs,o.pcsOk,o.sep?o.sep.st:(o.comp?"completo":"incompleto")].map(v=>String(v??'').replace(/;/g,',')).join(";"))).join("\n")); };
+  el.querySelectorAll('[data-xa]').forEach(b=>b.onclick=()=>{ const p=b.dataset.p, a=b.dataset.xa, o=E.ords.find(x=>x.ped===p);
+    if(a==="det"){ EXP.sel=p; renderEX(); setTimeout(()=>{ const d=document.getElementById('ex-det'); if(d) d.scrollIntoView({behavior:'smooth',block:'start'}); },50); }
+    else if(a==="cd") verNoCD(p);
+    else if(a==="pick"&&o){ if(!o.sep) expSep(p,"separando",{ok:[]}); pkAbrir(p); }
+    else if(a==="volta") expSep(p,null);
+    else if(a==="prt"&&o) pickPrint(o); else if(a==="pcsv"&&o) pickCSV(o); });
+  faltaBind();
+  if(PK.ped) pkRender();
+}
+/* ---------- bloco na Programação: escolher o pedido e ver no CD ---------- */
+function expProgPanel(){
+  if(!PED.linhas.length) return `<div class="panel"><h3>3 · Expedição por pedido</h3><p class="note">Importe a carteira por pedido (Importar dados → Carteira de pedidos em aberto, com as colunas pedido, cliente e data de entrega) para programar a expedição aqui.</p></div>`;
+  const E=expAlloc(), S=expStats(E);
+  const top=E.ords.filter(o=>o.comp&&!(o.sep&&o.sep.st==="separado")).slice(0,8);
+  return `<div class="panel"><div class="head"><h3>3 · Expedição por pedido</h3><span class="note">${f0(S.comp)} completos · ${f0(S.inc)} incompletos</span></div>
+   <div class="filters"><label class="f" for="pr-ped" style="flex:1">Pedido<input id="pr-ped" list="pr-pedl" placeholder="nº do pedido" value="${esc(EXP.sel)}"></label>
+    <datalist id="pr-pedl">${E.ords.slice(0,1500).map(o=>`<option value="${esc(o.ped)}">${esc(o.cli)} · ${dBR(o.dt)} · ${o.comp?'completo':'incompleto'}</option>`).join('')}</datalist>
+    <button class="btn pri" id="pr-pedcd">Ver no CD 3D</button><button class="btn" id="pr-pedex">Abrir na Expedição</button></div>
+   <p class="note">Próximos completos na ordem de entrega:</p>
+   <div class="tw"><table><thead><tr><th class="num">Prior.</th><th>Pedido</th><th>Cliente</th><th>Entrega</th><th class="num">Peças</th><th></th></tr></thead><tbody>
+    ${top.map(o=>`<tr><td class="num">${o.seq}</td><td><b>${esc(o.ped)}</b></td><td>${esc(o.cli||'—')}</td><td>${dBR(o.dt)}${o.pz==="atr"?' <span class="pill p-MTO">atrasado</span>':''}</td><td class="num">${f0(o.pcs)}</td><td><button class="btn" data-pc="${esc(o.ped)}">Ver no CD</button></td></tr>`).join('')||'<tr><td colspan="6" class="note">Nenhum pedido completo agora.</td></tr>'}
+   </tbody></table></div>
+   <div class="head" style="margin-top:14px"><h3>O que falta produzir para completar pedidos</h3><span class="note">${f0(S.inc)} pedidos incompletos</span></div>${faltaTable(expFaltas(E),6,isAdmin()||WRITE_OK)}</div>`;
+}
+function expProgBind(){ faltaBind();
+  const i=document.getElementById('pr-ped'); if(!i) return;
+  const val=()=>String(i.value||"").trim();
+  document.getElementById('pr-pedcd').onclick=()=>{ if(!val()) return toast("Escolha um pedido"); verNoCD(val()); };
+  document.getElementById('pr-pedex').onclick=()=>{ if(!val()) return toast("Escolha um pedido"); EXP.sel=val(); EXP.f.st=""; go('ex'); };
+  document.querySelectorAll('[data-pc]').forEach(b=>b.onclick=()=>verNoCD(b.dataset.pc));
+}
+/* ---------- CD 3D: modo "Pedido" ---------- */
+function expSelCods(){ if(!EXP.sel||!PED.linhas.length) return null; const E=expAlloc(); const o=E.ords.find(x=>x.ped===EXP.sel); return o?o:null; }
+function cdPedPanel(){
+  const el=document.getElementById('cd-trans'); if(!el) return;
+  const E=PED.linhas.length?expAlloc():null, o=expSelCods();
+  el.innerHTML=`<div class="panel" style="border-top:5px solid var(--ped)"><div class="head"><h3>Pedido no CD${o?` · ${esc(o.ped)} · ${esc(o.cli||'')}`:''}</h3>${o?`<button class="btn" id="cdp-prt">Imprimir lista de separação</button>`:''}</div>
+   ${E?`<div class="filters"><label class="f" for="cdp-sel" style="flex:1">Pedido<input id="cdp-sel" list="cdp-l" value="${esc(EXP.sel)}" placeholder="nº do pedido"></label><datalist id="cdp-l">${E.ords.slice(0,1500).map(x=>`<option value="${esc(x.ped)}">${esc(x.cli)} · ${dBR(x.dt)} · ${x.comp?'completo':'incompleto'}</option>`).join('')}</datalist></div>`:'<p class="note">Importe a carteira por pedido para usar esta vista.</p>'}
+   ${o?`<p class="note"><b style="color:var(--ped)">■</b> posição onde o item está hoje (Mapa Lógico atual), na ordem de coleta. Os endereços vêm do mapa do CD da base; o app não rastreia o palete em tempo real — confirme na posição.</p>${pickTable(o)}`:(E?'<p class="note">Escolha um pedido acima, na Expedição ou na Programação.</p>':'')}</div>`;
+  const i=document.getElementById('cdp-sel'); if(i) i.onchange=()=>{ EXP.sel=String(i.value||"").trim(); CD3.recolor(); };
+  const p=document.getElementById('cdp-prt'); if(p&&o) p.onclick=()=>pickPrint(o);
+}
+/* ---------- painel executivo: completos × incompletos por dia / semana / mês ---------- */
+function perKey(iso,g){ if(g==="dia") return iso; if(g==="mes") return iso.slice(0,7); const d=new Date(iso+'T12:00:00'); const w=(d.getDay()+6)%7; d.setDate(d.getDate()-w); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function perLab(k,g){ if(g==="mes"){ const [y,m]=k.split('-'); return ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+m-1]+'/'+y.slice(2); } return (g==="semana"?'sem. ':'')+k.slice(8,10)+'/'+k.slice(5,7); }
+function pedBars(rows,unit){
+  if(!rows.length) return '<p class="note">Sem dados para este agrupamento.</p>';
+  const W=720,H=230,L=40,R=10,T=22,B=40, iw=W-L-R, ih=H-T-B, mx=Math.max(1,...rows.map(r=>r.c+r.i)), bw=Math.min(46,iw/rows.length*0.7), st=iw/rows.length;
+  let g=''; for(const v of [0,0.5,1]){ const y=T+ih*(1-v); g+=`<line x1="${L}" x2="${L+iw}" y1="${y}" y2="${y}" stroke="var(--line)" ${v?'stroke-dasharray="3 4"':''}/><text x="${L-6}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--muted)">${f0(mx*v)}</text>`; }
+  rows.forEach((r,i)=>{ const x=L+st*i+(st-bw)/2, hc=ih*r.c/mx, hi=ih*r.i/mx, yb=T+ih;
+    g+=`<g><rect x="${x}" y="${yb-hc}" width="${bw}" height="${Math.max(0,hc-1)}" rx="3" fill="var(--kg)"/><rect x="${x}" y="${yb-hc-hi}" width="${bw}" height="${Math.max(0,hi-1)}" rx="3" fill="var(--kr)"/>
+     <rect x="${L+st*i}" y="${T}" width="${st}" height="${ih}" fill="transparent"><title>${r.lab}: ${f0(r.c)} completos · ${f0(r.i)} incompletos (${unit})</title></rect>
+     <text x="${x+bw/2}" y="${yb-hc-hi-5}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)">${f0(r.c)}/${f0(r.c+r.i)}</text>
+     <text x="${x+bw/2}" y="${H-B+15}" text-anchor="middle" font-size="10.5" fill="${r.atr?'var(--kr)':'var(--muted)'}">${esc(r.lab)}</text></g>`; });
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:260px;display:block" role="img" aria-label="Pedidos completos e incompletos">${g}</svg>`;
+}
+function pedPanelOV(){
+  const g=EXP.grp, base=EXP.base;
+  let rows=[], sub='', tot='';
+  if(base==="prazo"){
+    if(!PED.linhas.length) rows=null;
+    else { const E=expAlloc(), S=expStats(E), m={}; let atr={c:0,i:0}, sd={c:0,i:0};
+      E.ords.forEach(o=>{ if(o.pz==="atr"){ o.comp?atr.c++:atr.i++; return; } if(!o.dt){ o.comp?sd.c++:sd.i++; return; } const k=perKey(o.dt,g); const x=m[k]||(m[k]={c:0,i:0}); o.comp?x.c++:x.i++; });
+      rows=(atr.c+atr.i?[{lab:'atrasados',c:atr.c,i:atr.i,atr:true}]:[]).concat(Object.keys(m).sort().slice(0,g==="dia"?14:g==="semana"?10:6).map(k=>({lab:perLab(k,g),c:m[k].c,i:m[k].i}))).concat(sd.c+sd.i?[{lab:'sem data',c:sd.c,i:sd.i}]:[]);
+      tot=`<b style="color:var(--kg)">${f0(S.comp)} completos</b> × <b style="color:var(--kr)">${f0(S.inc)} incompletos</b> de ${f0(S.n)} pedidos em carteira`;
+      sub='pedidos em aberto agrupados pela data de entrega'; }
+  } else {
+    const pts=Object.values(HIST).filter(h=>h&&h.d&&h.ped).sort((a,b)=>a.d<b.d?-1:1), m={};
+    pts.forEach(h=>{ m[perKey(h.d,g)]=h; });   // último registro do período
+    rows=Object.keys(m).sort().slice(-14).map(k=>({lab:perLab(k,g),c:m[k].ped.comp,i:m[k].ped.inc}));
+    sub='situação registrada na importação diária (último dia de cada período)';
+    tot=rows.length?'':'O histórico começa a ser gravado a partir da primeira importação da carteira por pedido.';
+  }
+  const btn=(k,v,cur,attr)=>`<button class="btn${cur===k?' pri':''}" data-${attr}="${k}">${v}</button>`;
+  return `<div class="panel"><div class="head"><h3>Pedidos completos × incompletos</h3><span class="note">${sub}</span></div>
+   <div class="filters">${btn('prazo','Por data de entrega',base,'pb')}${btn('hist','Evolução (histórico)',base,'pb')}<span style="width:12px"></span>${btn('dia','Dia',g,'pg')}${btn('semana','Semana',g,'pg')}${btn('mes','Mês',g,'pg')}<button class="btn" data-pgo="ex">Abrir Expedição</button></div>
+   ${rows===null?'<p class="note">Ainda não há carteira por pedido importada (só o total por item). Importe em <b>Importar dados → Carteira de pedidos em aberto</b> com as colunas pedido, cliente e data de entrega.</p>':`<p class="note">${tot}</p>${pedBars(rows,'pedidos')}`}
+   <div class="ovleg"><span><i style="background:var(--kg)"></i>completo — todas as linhas com estoque</span><span><i style="background:var(--kr)"></i>incompleto</span><span class="note">número sobre a barra = completos / total</span></div>
+   ${PED.linhas.length?`<div class="head" style="margin-top:14px"><h3>Itens que travam pedidos · prioridade da produção</h3><span class="note">“libera sozinho” = pedidos que ficam completos só com este item</span></div>${faltaTable(expFaltas(),6,false)}`:''}</div>`;
+}
+function pedPanelBind(){
+  document.querySelectorAll('[data-pb]').forEach(b=>b.onclick=()=>{ EXP.base=b.dataset.pb; renderOV(); });
+  document.querySelectorAll('[data-pg]').forEach(b=>b.onclick=()=>{ EXP.grp=b.dataset.pg; renderOV(); });
+  document.querySelectorAll('[data-pgo]').forEach(b=>b.onclick=()=>go(b.dataset.pgo));
+}
 
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,
@@ -3748,25 +4331,53 @@ const FB2={
 };
 
 /* ---------- Premissas e pendências ---------- */
-function renderPD(){
+const PD_ST=["Confirmada","Premissa","Corrigida","Frágil"];
+let PD_EDIT=null;      // rascunho em edição (só admin)
+const pdTxt=h=>{ const d=document.createElement('div'); d.innerHTML=String(h??''); return d.textContent; };
+function pdItens(){
+  if(PREM&&Array.isArray(PREM.itens)) return {itens:PREM.itens.map(x=>[x[0],x[1],esc(x[2]||'')]),fonte:PREM};
   const cu=capUsinagem();
-  const ITENS=(typeof premissasItens==="function")?premissasItens(cu):(DATA.premJS?(new Function('cu',DATA.premJS))(cu):[]);
+  const it=(typeof premissasItens==="function")?premissasItens(cu):(DATA.premJS?(new Function('cu',DATA.premJS))(cu):[]);
+  return {itens:it,fonte:null};
+}
+function renderPD(){
   const cor={Confirmada:"var(--kg)",Premissa:"var(--kb)",Corrigida:"var(--kg)","Frágil":"var(--kr)"};
-  document.getElementById('p-pd').innerHTML=`
-  <div class="head"><h2>Premissas, correções e o que ainda precisa ser medido</h2></div>
-  <p class="note">Tudo que sustenta os números está aqui. “Frágil” quer dizer: o número existe, mas veio de amostra pequena ou de estimativa — antes de comprar estoque ou mandar fazer os quadros, confirme no gemba.</p>
+  const adm=isAdmin(), {itens,fonte}=pdItens(), el=document.getElementById('p-pd');
+  if(PD_EDIT&&adm){
+    el.innerHTML=`<div class="head"><h2>Editar premissas</h2><span class="note">só o administrador vê esta tela</span></div>
+    <div class="tw"><table><thead><tr><th>Situação</th><th>Assunto</th><th>O que vale hoje</th><th></th></tr></thead><tbody>
+    ${PD_EDIT.map((x,i)=>`<tr><td><select class="in" data-pe="${i}" data-k="0">${PD_ST.map(s=>`<option ${s===x[0]?'selected':''}>${s}</option>`).join('')}</select></td>
+      <td><input class="in" data-pe="${i}" data-k="1" value="${esc(x[1])}" style="width:220px"></td>
+      <td><textarea class="in" data-pe="${i}" data-k="2" rows="3" style="width:100%;min-width:320px">${esc(x[2])}</textarea></td>
+      <td><button class="btn" data-pdel="${i}" title="Excluir">✕</button></td></tr>`).join('')}</tbody></table></div>
+    <div class="filters"><button class="btn" id="pd-add">+ Nova premissa</button><button class="btn pri" id="pd-sv">Salvar para todos</button><button class="btn" id="pd-cx">Cancelar</button>
+     ${fonte?'<button class="btn" id="pd-rst">Voltar ao texto da revisão</button>':''}</div>
+    <p class="note">Ao salvar, o texto fica fixo (os números deixam de ser recalculados automaticamente) e todos passam a ver esta versão.</p>`;
+    el.querySelectorAll('[data-pe]').forEach(e=>e.oninput=e.onchange=()=>{ PD_EDIT[+e.dataset.pe][+e.dataset.k]=e.value; });
+    el.querySelectorAll('[data-pdel]').forEach(b=>b.onclick=()=>{ PD_EDIT.splice(+b.dataset.pdel,1); renderPD(); });
+    document.getElementById('pd-add').onclick=()=>{ PD_EDIT.push(["Premissa","",""]); renderPD(); };
+    document.getElementById('pd-cx').onclick=()=>{ PD_EDIT=null; renderPD(); };
+    document.getElementById('pd-sv').onclick=async()=>{ const it=PD_EDIT.filter(x=>String(x[1]).trim()||String(x[2]).trim()).map(x=>[x[0],String(x[1]).trim(),String(x[2]).trim()]);
+      const d={itens:it,t:new Date().toISOString(),u:UID||""}; PREM=d; PD_EDIT=null; if(await writeDoc("kanban/premissas",d)) toast("Premissas salvas para todos"); renderPD(); };
+    const r=document.getElementById('pd-rst'); if(r) r.onclick=async()=>{ PREM=null; PD_EDIT=null; if(DB){ try{ await DB.doc("kanban/premissas").delete(); }catch(e){} } toast("Voltou ao texto da revisão"); renderPD(); };
+    return;
+  }
+  el.innerHTML=`
+  <div class="head"><h2>Premissas, correções e o que ainda precisa ser medido</h2>${adm?'<button class="btn pri" id="pd-ed">Editar premissas</button>':'<span class="tag">somente leitura · alterações só pelo administrador</span>'}</div>
+  <p class="note">Tudo que sustenta os números está aqui. “Frágil” quer dizer: o número existe, mas veio de amostra pequena ou de estimativa — antes de comprar estoque ou mandar fazer os quadros, confirme no gemba.${fonte?` Última edição: ${fmtDT(fonte.t,true)}${fonte.u?' por '+esc(quemNome(fonte.u)):''}.`:''}</p>
   <div class="tw"><table><thead><tr><th>Situação</th><th>Assunto</th><th>O que vale hoje</th></tr></thead><tbody>
-  ${ITENS.map(([s,t,d])=>`<tr><td><span class="pill" style="background:${cor[s]};color:#fff">${s}</span></td><td><b>${esc(t)}</b></td><td class="desc" style="white-space:normal;max-width:none">${d}</td></tr>`).join('')}
+  ${itens.map(([s,t,d])=>`<tr><td><span class="pill" style="background:${cor[s]||'var(--muted)'};color:#fff">${esc(s)}</span></td><td><b>${esc(t)}</b></td><td class="desc" style="white-space:normal;max-width:none">${d}</td></tr>`).join('')}
   </tbody></table></div>
   <div class="panel"><div class="head"><h3>Glossário</h3></div><div class="gl">${SIG.map(([a,b])=>`<b>${esc(a)}</b><span>${esc(b)}</span>`).join('')}</div></div>`;
+  const ed=document.getElementById('pd-ed'); if(ed) ed.onclick=()=>{ PD_EDIT=itens.map(([s,t,d])=>[s,pdTxt(t),pdTxt(d)]); renderPD(); };
 }
 /* ---------- navegação (shell SaaS) ---------- */
 const NAV=[
- [1,"ov","Painel","◱"],[1,"qd","Quadros Kanban","▦"],[1,"pr","Programação","▶"],[1,"op","Ordem de produção","🗓"],[1,"kc","Cartões","▤"],[1,"im","Importar dados","⇪"],
+ [1,"ov","Painel","◱"],[1,"qd","Quadros Kanban","▦"],[1,"pr","Programação","▶"],[1,"ex","Expedição","⛟"],[1,"op","Ordem de produção","🗓"],[1,"kc","Cartões","▤"],[1,"im","Importar dados","⇪"],
  [2,"cd","CD em 3D","◨"],[2,"pa","Kanban PA","●"],[2,"us","Kanban Usinados","◐"],
  [3,"par","Parâmetros","⚙"],[3,"pd","Premissas","!"],
 ];
-const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
+const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],ex:["Operação","Expedição — Kanban de pedidos"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
  cd:["Supermercados","CD em 3D"],pa:["Supermercados","Kanban de PA"],us:["Supermercados","Kanban de Usinados"],
  par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
 function buildNav(){
@@ -3780,7 +4391,7 @@ function buildNav(){
   document.getElementById('mtog').onclick=()=>menu(!side.classList.contains('open'));
   if(mb) mb.onclick=()=>menu(false);
   document.querySelectorAll('aside.side nav button').forEach(b=>b.addEventListener('click',()=>{ menu(false); window.scrollTo(0,0); }));
-  const MN=[["ov","Painel","◱"],["qd","Quadros","▦"],["pr","Programar","▶"],["kc","Cartões","▤"]];
+  const MN=[["ov","Painel","◱"],["qd","Quadros","▦"],["pr","Programar","▶"],["ex","Expedição","⛟"]];
   const mn=document.getElementById('mnav');
   if(mn){ mn.innerHTML=MN.map(([id,l,ic])=>`<button data-m="${id}"><span class="ic">${ic}</span>${l}</button>`).join('')+`<button data-m="mais"><span class="ic">☰</span>Mais</button>`;
     mn.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(b.dataset.m==="mais") menu(true); else { menu(false); go(b.dataset.m); window.scrollTo(0,0); } }); }
@@ -3802,18 +4413,20 @@ function chips(){
 function go(tab,soft){
   TAB=tab; try{ localStorage.setItem("aemco-kd4-tab",tab); }catch(e){}
   document.querySelectorAll('aside.side nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.p===tab?"page":"false"));
-  const mainIds=["ov","qd","pr","kc"];
+  const mainIds=["ov","qd","pr","ex"];
   document.querySelectorAll('#mnav button').forEach(b=>b.setAttribute('aria-current',(b.dataset.m===tab||(b.dataset.m==="mais"&&!mainIds.includes(tab)))?"page":"false"));
   document.querySelectorAll('section.pane').forEach(s=>s.hidden=(s.id!=='p-'+tab));
   const t=TITLES[tab]||["",""]; document.getElementById('crumb').textContent=t[0]; document.getElementById('ptitle').textContent=t[1];
   const sy=window.scrollY;
   ({ov:renderOV,qd:renderQD,cd:()=>CD3.init(),pa:()=>renderList('pa'),us:()=>renderList('us'),
     kc:()=>{ if(soft) return; renderKC(); },
+    ex:()=>{ if(soft&&document.activeElement&&document.getElementById('p-ex').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderEX(); },
+    pd:()=>{ if(soft&&PD_EDIT) return; renderPD(); },
     pr:()=>{ if(soft&&document.activeElement&&document.getElementById('p-pr').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderPR(); },
     op:()=>{ if(soft&&document.activeElement&&document.getElementById('p-op').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderOP(); },
     par:()=>{ if(soft&&document.activeElement&&document.getElementById('p-par').contains(document.activeElement)) return; renderPar(); },
     im:()=>{ if(soft&&document.activeElement&&document.getElementById('p-im').contains(document.activeElement)) return; renderIM(); },
-    pd:renderPD})[tab]();
+    })[tab]();
   chips();
   if(soft) window.scrollTo(0,sy);
 }
