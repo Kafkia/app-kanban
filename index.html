@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev12"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev12b"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1460,6 +1460,9 @@ details.panel>summary{cursor:pointer;padding:2px 0}
 .pk-body2{padding:0}
 .pk-tx .pill{align-self:flex-start}
 .pk-top .btn{color:var(--ink)}
+.pk-tp{border-left:6px solid var(--c);background:var(--panel);border-radius:10px;padding:9px 12px;display:flex;flex-direction:column;gap:3px;font-size:13.5px;color:var(--ink)}
+.pk-tp b{color:var(--c);font:800 15px var(--display);letter-spacing:.04em}
+.exc-tp{display:flex;flex-wrap:wrap;gap:4px}
 @media print{#pk{display:none}}
 
 
@@ -3804,7 +3807,7 @@ try{ const s=localStorage.getItem("aemco-kd8-prgp"); if(s&&PROC_PRG.includes(s))
    incompleto não segura peças dos seguintes). Pedidos já em separação ou separados reservam antes de todos. */
 const EXP={sel:"",f:{cli:"",st:"comp",prazo:"",q:""},grp:"semana",base:"prazo",col:"sep",vw:(window.innerWidth<700?"card":"card")};
 let EXPC=null;
-function expReset(){ EXPC=null; }
+function expReset(){ EXPC=null; PAXC=null; }
 const pedKey=p=>String(p).trim().replace(/[^A-Za-z0-9_.-]/g,"_").slice(0,60)||"_";
 function hojeISO(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function addDias(iso,n){ const d=new Date(iso+'T12:00:00'); d.setDate(d.getDate()+n); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
@@ -3875,8 +3878,8 @@ async function expSep(ped,st,extra,quiet){
 /* ---------- lista de separação (picking) ---------- */
 function pickTable(o){
   const R=pickRows(o);
-  return `<div class="tw"><table><thead><tr><th>#</th><th>Endereço hoje</th><th>Código</th><th>Descrição</th><th class="num">Pedido</th><th class="num">Disponível</th><th>Situação</th></tr></thead><tbody>
-   ${R.map((x,i)=>`<tr><td>${i+1}</td><td><b style="font-family:var(--mono)">${esc(x.ac.join(', ')||'—')}</b></td><td><b>${esc(x.cod)}</b></td><td class="desc">${esc(String(x.desc||x.cls).slice(0,60))}</td><td class="num">${f0(x.q)}</td><td class="num">${f0(x.disp)}</td><td>${!xFal(x)?'<span class="pill p-MTS">ok</span>':`<span class="pill p-MTO">faltam ${f0(xFal(x))}</span>`}</td></tr>`).join('')}
+  return `<div class="tw"><table><thead><tr><th>#</th><th>Endereço hoje</th><th>Código</th><th>Descrição</th><th class="num">Pedido</th><th class="num">Disponível</th><th>Situação</th><th>Tipo</th></tr></thead><tbody>
+   ${R.map((x,i)=>`<tr><td>${i+1}</td><td><b style="font-family:var(--mono)">${esc(x.ac.join(', ')||'—')}</b></td><td><b>${esc(x.cod)}</b></td><td class="desc">${esc(String(x.desc||x.cls).slice(0,60))}</td><td class="num">${f0(x.q)}</td><td class="num">${f0(x.disp)}</td><td>${!xFal(x)?'<span class="pill p-MTS">ok</span>':`<span class="pill p-MTO">faltam ${f0(xFal(x))}</span>`}</td><td>${x.tp&&x.tp!=="kb"?`<span class="pill" style="background:${(LTP[x.tp]||LTP.desc).cor};color:#fff">${LTP[x.tp].lab}</span>`:'<span class="note">Kanban</span>'}</td></tr>`).join('')}
    </tbody></table></div>`;
 }
 function pickPrint(o){
@@ -3885,7 +3888,7 @@ function pickPrint(o){
   el.innerHTML=`<h2 style="font:700 16pt var(--display);margin:0 0 2mm">Lean Up · AEMCO — Lista de separação · Pedido ${esc(o.ped)}</h2>
    <p style="margin:0 0 4mm;font-size:9.5pt">Cliente: <b>${esc(o.cli||'—')}</b> · Entrega: <b>${dBR(o.dt)}</b> · ${o.nL} linha(s) · ${f0(o.pcs)} pç · emitida em ${new Date().toLocaleString('pt-BR')}</p>
    <table style="width:100%;border-collapse:collapse;font-size:9pt"><thead><tr>${['✓','Endereço','Código','Descrição','Qtd','Disponível','Obs.'].map(h=>`<th style="border:1px solid #999;padding:3px 5px;text-align:left;background:#eee">${h}</th>`).join('')}</tr></thead>
-   <tbody>${R.map(x=>`<tr>${['☐',x.ac.join(', ')||'sem endereço',x.cod,String(x.desc||'').slice(0,48),f0(x.q),f0(x.disp),!xFal(x)?'':'FALTA '+f0(xFal(x))].map(v=>`<td style="border:1px solid #bbb;padding:3px 5px">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>
+   <tbody>${R.map(x=>`<tr>${['☐',x.ac.join(', ')||(x.tp==="sp"||x.tp==="desc"?'sem posição (líder)':'área MTO'),x.cod,String(x.desc||'').slice(0,48),f0(x.q),f0(x.disp),[!xFal(x)?'':'FALTA '+f0(xFal(x)),x.tp&&x.tp!=="kb"?LTP[x.tp].lab:''].filter(Boolean).join(' · ')].map(v=>`<td style="border:1px solid #bbb;padding:3px 5px">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>
    <p style="font-size:8pt;margin-top:4mm">Endereços do Mapa Lógico do CD (posição da base). Separado por: ____________________ Conferido por: ____________________</p>`;
   document.body.classList.add('prt-prg'); setTimeout(()=>{ window.print(); setTimeout(()=>document.body.classList.remove('prt-prg'),500); },60);
 }
@@ -3953,7 +3956,7 @@ async function expCompartilhar(L){
 const PLC={D:{bg:'#F2F2F2',fg:'#333333'},E:{bg:'#0F9D58',fg:'#ffffff'},F:{bg:'#C0392B',fg:'#ffffff'},G:{bg:'#5A6068',fg:'#ffffff'},H:{bg:'#E8A33D',fg:'#222222'},I:{bg:'#2F6DB5',fg:'#ffffff'}};
 function pkRota(o){
   const A=addrMaps(), zz=s=>slotZ(s.rua,s.pos);
-  const L=o.lines.map(x=>{ const c=(A.cur[x.cod]||[]).slice().sort((a,b)=>(a.niv-b.niv)||(zz(a)-zz(b))); return {x,s:c[0]||null,alt:c.slice(1)}; });
+  const L=o.lines.map(x=>{ const tp=linTipo(x.cod,x.q), c=(tp==="kb"||tp==="esp")?(A.cur[x.cod]||[]).slice().sort((a,b)=>(a.niv-b.niv)||(zz(a)-zz(b))):[]; return {x,tp,s:c[0]||null,alt:c.slice(1)}; });
   const row=s=>"GHI".includes(s.rua)?"G":s.rua, rows={};
   L.filter(l=>l.s).forEach(l=>(rows[row(l.s)]=rows[row(l.s)]||[]).push(l));
   const ordR=Object.keys(rows).sort((a,b)=>(Math.abs(RX[a]-PACK.x)-Math.abs(RX[b]-PACK.x))||a.localeCompare(b));
@@ -3961,14 +3964,39 @@ function pkRota(o){
   for(const r of ordR){ const it=rows[r].sort((a,b)=>(zz(a.s)-zz(b.s))||(a.s.niv-b.s.niv)||String(a.s.sub).localeCompare(String(b.s.sub)));
     if(Math.abs(z-zz(it[it.length-1].s))<Math.abs(z-zz(it[0].s))) it.reverse();
     out=out.concat(it); z=zz(it[it.length-1].s); }
-  return out.concat(L.filter(l=>!l.s));
+  return out.concat(L.filter(l=>!l.s).sort((a,b)=>LTP_ORD.indexOf(a.tp)-LTP_ORD.indexOf(b.tp)));
 }
-function pickRows(o){ return pkRota(o).map(l=>Object.assign({},l.x,{s:l.s,alt:l.alt,ac:l.s?[l.s.addr].concat(l.alt.map(a=>a.addr)):[]})); }
+function pickRows(o){ return pkRota(o).map(l=>Object.assign({},l.x,{s:l.s,alt:l.alt,tp:l.tp,ac:l.s?[l.s.addr].concat(l.alt.map(a=>a.addr)):[]})); }
+/* Rev12b · por que o item não tem posição no CD: classificação de cada linha do pedido */
+let PAXC=null;
+function paxMap(){ if(PAXC) return PAXC; const m={}; calcPA().forEach(r=>{ m[r.cod]=r; }); const cat=new Set((DATA.catpa||[]).map(x=>x[0])); return PAXC={m,cat}; }
+function linTipo(cod,q){
+  const X=paxMap(), r=X.m[cod], A=addrMaps();
+  if(r){ if(r.cls==="MTO") return /comprado/i.test(r.tipo||"")?"comp":"mto";
+    if(r.pg&&q>r.pg) return "esp";
+    return A.cur[cod]?"kb":"sp"; }
+  return X.cat.has(cod)?"mto":"desc";
+}
+const LTP={
+ kb:{lab:"Kanban",cor:"var(--kg)",txt:""},
+ esp:{lab:"PEDIDO ESPECIAL (fura-fila)",cor:"#C2185B",txt:"Linha acima do limite de pedido especial: pela regra atende por OP sob pedido, fora do supermercado. Confirme com o líder antes de tirar do supermercado."},
+ comp:{lab:"COMPRADO · MTO",cor:"#7B5EA7",txt:"Item comprado e vendido direto, classificado como MTO: não tem posição no supermercado do CD. Retire na área de comprados/MTO combinada com o líder."},
+ mto:{lab:"MTO · FEITO PARA O PEDIDO",cor:"var(--kb)",txt:"Item MTO: não tem posição no supermercado do CD. Retire na área de MTO / pedidos especiais."},
+ sp:{lab:"KANBAN SEM POSIÇÃO NO MAPA",cor:"var(--kr)",txt:"Item do Kanban sem posição no Mapa Lógico atual. Avise o líder — o mapa precisa ser corrigido."},
+ desc:{lab:"CÓDIGO FORA DO CADASTRO",cor:"var(--muted)",txt:"Código que não está no cadastro do app (item novo?). Procure com o líder."}};
+const LTP_ORD=["comp","mto","esp","sp","desc"];
 /* mapa 2D (vista de cima) com as paradas numeradas */
 function pkMapa(R,cur,done){
   // esquema (fora de escala no sentido das ruas): F e G/H/I ficam costas com costas no layout
   const M=4.6, zmax=16*BW, Z=z=>(z+2)*M+52, ROW={D:14,E:42,F:70,G:92,H:92,I:92}, RH=12, W=Z(zmax+1), H=128;
   let g=`<rect x="0" y="0" width="${W}" height="${H}" rx="8" fill="var(--panel2)"/>`;
+  const fora=R.map((x,i)=>i).filter(i=>!R[i].s), zoneOn=fora.includes(cur);
+  g+=`<rect x="4" y="6" width="46" height="74" rx="4" fill="${zoneOn?'rgba(142,45,226,.12)':'var(--panel)'}" stroke="${zoneOn?'var(--ped)':'var(--muted)'}" stroke-width="${zoneOn?1.6:.8}" stroke-dasharray="3 2"/>
+   <text x="27" y="15" text-anchor="middle" font-size="6.6" font-weight="700" fill="var(--ink)">ÁREA MTO</text><text x="27" y="22" text-anchor="middle" font-size="5.6" fill="var(--muted)">(a definir)</text>`;
+  fora.forEach((i,k)=>{ const x=R[i], on=i===cur, st=done(x), cx=15+(k%3)*12, cy=32+Math.floor(k/3)*12; if(cy>76) return;
+    if(on) g+=`<circle cx="${cx}" cy="${cy}" r="10" fill="var(--ped)" opacity=".25"><animate attributeName="r" values="7;12;7" dur="1.6s" repeatCount="indefinite"/></circle>`;
+    g+=`<circle cx="${cx}" cy="${cy}" r="${on?7:5.4}" fill="${on?'var(--ped)':st?'var(--kg)':(LTP[x.tp]||LTP.desc).cor}" stroke="#fff" stroke-width="1"/><text x="${cx}" y="${cy+2.8}" text-anchor="middle" font-size="${on?8:6.5}" font-weight="700" fill="#fff">${st&&!on?'✓':i+1}</text>`; });
+  if(fora.length>15) g+=`<text x="27" y="78" text-anchor="middle" font-size="6" fill="var(--muted)">+${fora.length-15}</text>`;
   g+=`<rect x="4" y="${ROW.G-2}" width="46" height="${RH+4}" rx="3" fill="var(--gold)"/><text x="27" y="${ROW.G+RH+14}" text-anchor="middle" font-size="8" font-weight="700" fill="var(--ink)">EXPEDIÇÃO</text>`;
   const bars=[["D",1,16],["E",1,16],["F",1,16],["I",1,4],["H",1,4],["G",1,2]];
   for(const [r,a,b] of bars){ const za=Math.min(slotZ(r,a),slotZ(r,b)), zb=Math.max(slotZ(r,a),slotZ(r,b))+BW, y=ROW[r];
@@ -4015,7 +4043,10 @@ function pkRender(){
      <div class="pk-adr"><div class="pk-blk" style="background:${c.bg};color:${c.fg}"><small>RUA</small><b>${s.rua}</b></div><div class="pk-blk"><small>POSIÇÃO</small><b>${String(s.pos).padStart(2,'0')}</b></div><div class="pk-blk${s.niv>=3?' alto':''}"><small>NÍVEL</small><b>${s.niv}</b></div>${(NSUB[s.rua]||1)>1?`<div class="pk-blk"><small>VAGA</small><b>${(()=>{ const si=Math.max(0,"ABCDEF".indexOf(s.sub||"A")), sp=Math.min(s.span||1,NSUB[s.rua]); return sp>1?esc((s.sub||'A')+'–'+"ABCDEF"[Math.min(5,si+sp-1)]):esc(s.sub||'A'); })()}</b></div>`:''}</div>
      <div class="pk-vis">${pkMapa(R,ci,feito)}</div>
      ${s.niv>=3?'<div class="pk-alt">⚠ Nível alto: siga o procedimento de trabalho em altura</div>':''}`
-     :`<div class="pk-go" style="color:var(--kr)">SEM ENDEREÇO NO MAPA</div><p class="note">Este item não está no Mapa Lógico atual do CD. Procure com o líder.</p>`}
+     :`<div class="pk-go">VÁ ATÉ</div>
+     <div class="pk-adr"><div class="pk-blk" style="background:${(LTP[x.tp]||LTP.desc).cor};color:#fff;border-color:transparent"><small>ÁREA</small><b style="font-size:26px;line-height:1.25">${x.tp==="sp"||x.tp==="desc"?"LÍDER":"MTO"}</b></div></div>
+     <div class="pk-vis">${pkMapa(R,ci,feito)}</div>`}
+     ${x.tp&&x.tp!=="kb"?`<div class="pk-tp" style="--c:${(LTP[x.tp]||LTP.desc).cor}"><b>${LTP[x.tp].lab}</b><span>${LTP[x.tp].txt}</span></div>`:''}
      <div class="pk-r2">${s?pkEstante(s):''}<div class="pk-r2t">
       <div class="pk-item">${fotoImg(x.cod,56)}<div style="min-width:0"><b class="pk-cod">${esc(x.cod)}</b><div class="note">${esc(String(x.desc||x.cls).slice(0,54))}</div></div></div>
       <div class="pk-pegue">PEGUE <b>${f0(x.q)}</b> PEÇAS</div></div></div>
@@ -4030,7 +4061,7 @@ function pkRender(){
     const lista=R.map((x,i)=>{ const ok=E.ok.has(x.cod), nf=E.nf.has(x.cod), pq=E.pq[x.cod];
       const tag=nf?'<span class="pill p-MTO">não achou</span>':ok&&pq!=null&&pq<x.q?`<span class="pill p-BUF">pegou ${f0(pq)}</span>`:ok?'<span class="pill p-MTS">ok</span>':'';
       return `<button class="pk-l${ok?' on':''}${nf?' falta':''}" data-pk="${esc(x.cod)}" aria-pressed="${ok}"><span class="pk-ck">${ok?'✓':nf?'!':i+1}</span>
-       <span class="pk-tx"><span class="pk-ad">${esc(x.s?x.s.addr:'sem endereço')}</span><span class="pk-cd"><b>${esc(x.cod)}</b> ${esc(String(x.desc||x.cls).slice(0,36))}</span>${tag}</span><span class="pk-q"><b>${f0(x.q)}</b><small>pç</small></span></button>`; }).join('');
+       <span class="pk-tx"><span class="pk-ad">${esc(x.s?x.s.addr:(x.tp==="sp"||x.tp==="desc"?'sem posição · líder':'área MTO'))}</span>${x.tp&&x.tp!=="kb"?`<span class="pill" style="background:${(LTP[x.tp]||LTP.desc).cor};color:#fff">${LTP[x.tp].lab}</span>`:''}<span class="pk-cd"><b>${esc(x.cod)}</b> ${esc(String(x.desc||x.cls).slice(0,36))}</span>${tag}</span><span class="pk-q"><b>${f0(x.q)}</b><small>pç</small></span></button>`; }).join('');
     const fim=!fila.length;
     body=`${fim&&st!=="separado"?`<div class="pk-fim ${nProb?'warn':''}"><b>${nProb?`⚠ ${nProb} item(ns) com problema`:'✓ Tudo coletado'}</b><span>${nProb?'Avise o líder antes de concluir.':'Confira e conclua a separação.'}</span></div>`:''}
      ${st==="separado"?`<div class="pk-fim"><b>Pedido separado</b><span>${fmtDT(o.sep.t,true)}${o.sep.u?' · '+esc(quemNome(o.sep.u)):''}</span></div>`:''}
@@ -4059,6 +4090,32 @@ function pkRender(){
 }
 /* ---------- painel da Expedição (aba própria) · Kanban de expedição ---------- */
 const EXCOL=[["sep","A separar","completos, na ordem de entrega","var(--kg)"],["and","Em separação","coleta em andamento","var(--ky)"],["ok","Separados","aguardando carregamento / faturamento","var(--kb)"],["inc","Incompletos","aguardando produção","var(--kr)"]];
+function tpChips(o){ const c={}; o.lines.forEach(x=>{ const t=linTipo(x.cod,x.q); if(t!=="kb") c[t]=(c[t]||0)+1; });
+  const k=LTP_ORD.filter(t=>c[t]); return k.length?`<div class="exc-tp">${k.map(t=>`<span class="pill" style="background:${LTP[t].cor};color:#fff">${f0(c[t])} ${LTP[t].lab.split(' (')[0].toLowerCase()}</span>`).join(' ')}</div>`:''; }
+function endDiag(E){
+  E=E||expAlloc(); const X=paxMap(), T={}, P={};
+  for(const o of E.ords) for(const x of o.lines){ const t=linTipo(x.cod,x.q), d=T[t]||(T[t]={n:0,pcs:0,cont:0,semCx:0,peds:new Set(),cods:{}});
+    d.n++; d.pcs+=x.q; d.peds.add(o.ped); const r=X.m[x.cod]; if(r&&r.q>0) d.cont+=Math.ceil(x.q/r.q); else d.semCx++;
+    const c=d.cods[x.cod]||(d.cods[x.cod]={cod:x.cod,desc:x.desc||(r&&r.desc)||"",n:0,pcs:0,nw:(addrMaps().nw[x.cod]||[]).map(s=>s.addr)}); c.n++; c.pcs+=x.q; }
+  const nL=Object.values(T).reduce((a,d)=>a+d.n,0); return {T,nL,nP:E.ords.length};
+}
+function endDiagPanel(E){
+  const D=endDiag(E), K=["kb"].concat(LTP_ORD).filter(t=>D.T[t]);
+  return `<details class="panel" id="ex-end"><summary><b>Endereçamento da carteira</b> · <span class="note">${f0(D.T.kb?D.T.kb.n:0)} de ${f0(D.nL)} linhas têm posição no CD — por que as outras não têm</span></summary>
+   <div class="tw"><table><thead><tr><th>Tipo</th><th class="num">Linhas</th><th class="num">Códigos</th><th class="num">Pedidos com o tipo</th><th class="num">Peças</th><th class="num">Contêineres (estim.)</th><th>Códigos mais pedidos</th></tr></thead><tbody>
+   ${K.map(t=>{ const d=D.T[t], top=Object.values(d.cods).sort((a,b)=>b.n-a.n).slice(0,6);
+     return `<tr><td><span class="pill" style="background:${LTP[t].cor};color:#fff">${LTP[t].lab}</span></td><td class="num">${f0(d.n)}</td><td class="num">${f0(Object.keys(d.cods).length)}</td><td class="num">${f0(d.peds.size)}</td><td class="num">${f0(d.pcs)}</td><td class="num">${t==="kb"?'—':f0(d.cont)+(d.semCx?` <span class="note">+${f0(d.semCx)} linhas sem padrão</span>`:'')}</td><td class="desc" style="white-space:normal">${top.map(c=>`<b>${esc(c.cod)}</b> (${c.n})`).join(', ')}</td></tr>`; }).join('')}
+   </tbody></table></div>
+   <ul class="clean note" style="margin-top:8px">
+    <li><b>Comprado · MTO</b> e <b>MTO</b>: não têm posição no supermercado por definição da classificação MTS/MTO. Se aparecem em muitos pedidos, avaliar uma área de picking reservada (contêineres estimados = peças ÷ peças por contêiner do cadastro, para a carteira inteira).</li>
+    <li><b>Pedido especial</b>: linha acima de ${f0(P.pg||0)} dias de demanda média (Parâmetros) — pela regra atende por OP sob pedido.</li>
+    <li><b>Kanban sem posição</b>: item MTS com cartões mas fora do Mapa Lógico atual — corrigir o mapa ou implantar o endereço proposto.</li>
+    <li><b>Fora do cadastro</b>: código que não existe na base do app (item novo ou digitação).</li></ul>
+   <button class="btn" id="ex-endcsv">Salvar lista por código (CSV)</button></details>`;
+}
+function endDiagCSV(){ const D=endDiag(), H=["tipo","codigo","descricao","linhas","pecas","endereco_proposto"], L=[];
+  for(const [t,d] of Object.entries(D.T)) for(const c of Object.values(d.cods)) L.push([LTP[t].lab,c.cod,c.desc,c.n,c.pcs,c.nw.join(" ")]);
+  saveFile("enderecamento_carteira.csv","\ufeff"+[H.join(";")].concat(L.map(r=>r.map(v=>String(v??'').replace(/;/g,',')).join(";"))).join("\n")); }
 function expCol(o){ return o.sep?(o.sep.st==="separado"?"ok":"and"):(o.comp?"sep":"inc"); }
 function renderEX(){
   const el=document.getElementById('p-ex');
@@ -4085,7 +4142,7 @@ function renderEX(){
      <div class="exc-c">${esc(o.cli||'—')}</div>
      <div class="note">entrega <b>${dBR(o.dt)}</b> · ${o.nL} linha(s) · ${f0(o.pcs)} pç</div>
      ${k==="inc"?`<div class="exc-f">falta: ${o.lines.filter(x=>x.falta>0).slice(0,3).map(x=>`<b>${esc(x.cod)}</b> (${f0(x.falta)} pç)`).join(', ')}${o.nF>3?' …':''} · ${f0(o.pcs?o.pcsOk/o.pcs*100:0)}% atendível</div>`:
-       `<div class="exc-a">📍 ${esc(rua(o)||'sem endereço no mapa')}</div>`}
+       `<div class="exc-a">📍 ${esc(rua(o)||'nenhum item com posição no CD')}</div>`}${tpChips(o)}
      ${k==="and"?`<div class="pk-prog sm"><div style="width:${o.nL?nOk/o.nL*100:0}%"></div></div><div class="note">${nOk}/${o.nL} linhas · ${o.sep.u?esc(quemNome(o.sep.u))+' · ':''}desde ${fmtDT(o.sep.t,true)}</div>${nPb?`<div class="exc-f">⚠ ${nPb} item(ns) com problema</div>`:''}`:''}
      ${k==="ok"?`<div class="note">separado ${fmtDT(o.sep.t,true)}${o.sep.u?' por '+esc(quemNome(o.sep.u)):''}</div>${o.sep.pend?`<div class="exc-f">⚠ concluído com ${o.sep.pend} pendência(s)</div>`:''}`:''}
      <div class="exc-b">${k==="sep"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Separar ▶</button>`:k==="and"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Continuar ▶</button>`:k==="ok"?`<button class="btn" data-xa="pick" data-p="${esc(o.ped)}">Ver lista</button>`:`<button class="btn" data-xa="det" data-p="${esc(o.ped)}">Detalhe</button>`}<button class="btn" data-xa="cd" data-p="${esc(o.ped)}">CD 3D</button></div></div>`; };
@@ -4118,6 +4175,7 @@ function renderEX(){
      <button class="btn" data-xa="prt" data-p="${esc(sel.ped)}">Imprimir lista</button>
      <button class="btn" data-xa="pcsv" data-p="${esc(sel.ped)}">CSV</button>
     </div>${pickTable(sel)}</div>`:''}</div>
+  ${endDiagPanel(E)}
   <details class="panel"><summary><b>Pedidos por prazo de entrega</b> · <span class="note">${f0(S.comp)} completos × ${f0(S.inc)} incompletos · ${f0(S.atrComp+S.atrInc)} atrasados</span></summary>${expBarraPrazo(E)}
    <ul class="clean note" style="margin-top:10px">
     <li><b>Completo</b>: todas as linhas do pedido cabem no estoque do CD, depois de reservar o estoque dos pedidos com entrega mais cedo.</li>
@@ -4140,6 +4198,7 @@ function renderEX(){
     else if(a==="volta") expSep(p,null);
     else if(a==="prt"&&o) pickPrint(o); else if(a==="pcsv"&&o) pickCSV(o); });
   faltaBind();
+  const ec=document.getElementById('ex-endcsv'); if(ec) ec.onclick=endDiagCSV;
   if(PK.ped) pkRender();
 }
 /* ---------- bloco na Programação: escolher o pedido e ver no CD ---------- */
