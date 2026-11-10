@@ -1,4 +1,4 @@
-APP KANBAN AEMCO – versão instalável (PWA) – Rev12b
+APP KANBAN AEMCO – versão instalável (PWA) – Rev13
 =====================================================
 
 O QUE É
@@ -21,7 +21,7 @@ BASE ONLINE (uma vez só)
    No resultado aparece o CÓDIGO DE INSTALAÇÃO (8 caracteres). Anote.
 2. Abra o app > tela "Primeira instalação" > seu nome + código de instalação +
    seu PIN de administrador (6 a 12 números). O código deixa de valer assim que o admin é criado.
-3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev12b.json
+3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev13.json
    (fica na pasta Aretia > 03 - Kanban — NÃO suba esse arquivo no GitHub) > Publicar para todos.
 4. ☁ > Pessoas com acesso > cadastre o PIN de cada pessoa (digite ou "Gerar PIN") e entregue
    pessoalmente. O nome da pessoa fica gravado em tudo o que ela apontar.
@@ -56,6 +56,12 @@ EXPEDIÇÃO POR PEDIDO (aba Expedição · Rev12)
 - Incompletos: lista do que falta produzir (itens que liberam pedidos sozinhos primeiro) e "Liberar ordem".
 - "Enviar completos ao Comercial": manda a lista pelo WhatsApp/e-mail do próprio celular.
 - Parâmetros e Premissas: só o administrador altera (o servidor recusa alteração de outro perfil).
+
+COMERCIAL (aba Comercial · Rev13)
+- Itens acima do máximo do Kanban e sem pedido: disponível = estoque do CD − máximo − carteira em aberto.
+- Gráficos por família (toque para filtrar) e top 10 itens; filtros por família, tipo e busca.
+- Valor estimado a preço médio de venda das NFs set/25–ago/26 (referência, não é tabela de preço).
+- Exporta Excel (CSV), PDF (Imprimir) e Compartilhar (WhatsApp/e-mail).
 
 SEGURANÇA
 - PIN errado 10 vezes em 15 minutos bloqueia aquele acesso por 15 minutos.

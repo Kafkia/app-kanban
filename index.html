@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev12b"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev13"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1463,6 +1463,14 @@ details.panel>summary{cursor:pointer;padding:2px 0}
 .pk-tp{border-left:6px solid var(--c);background:var(--panel);border-radius:10px;padding:9px 12px;display:flex;flex-direction:column;gap:3px;font-size:13.5px;color:var(--ink)}
 .pk-tp b{color:var(--c);font:800 15px var(--display);letter-spacing:.04em}
 .exc-tp{display:flex;flex-wrap:wrap;gap:4px}
+.cm-bar{cursor:pointer}.cm-bar:focus-visible{outline:3px solid var(--gold)}
+.cm-exp{display:flex;gap:6px;flex-wrap:wrap;align-self:flex-end}
+.cm-crd{display:none}
+.cmc{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--kb);border-radius:10px;padding:10px 12px;margin:8px 0;display:flex;flex-direction:column;gap:6px}
+.cmc-h{display:flex;gap:10px;align-items:center}.cmc-h b{font-size:17px}
+.cmc-n{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.cmc-n span{display:flex;flex-direction:column}.cmc-n small{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.cmc-n b{font-size:15px}
+.cmc .pill{align-self:flex-start}
+@media (max-width:700px){.cm-tab{display:none}.cm-crd{display:block}.cm-exp{width:100%}.cm-exp .btn{flex:1;min-height:44px}}
 @media print{#pk{display:none}}
 
 
@@ -1522,6 +1530,7 @@ details.panel>summary{cursor:pointer;padding:2px 0}
 <section class="pane" id="p-qd" hidden></section>
 <section class="pane" id="p-pr" hidden></section>
 <section class="pane" id="p-ex" hidden></section>
+<section class="pane" id="p-cm" hidden></section>
 <section class="pane" id="p-op" hidden></section>
 <section class="pane" id="p-kc" hidden></section>
 <section class="pane" id="p-cd" hidden>
@@ -4278,6 +4287,113 @@ function pedPanelBind(){
   document.querySelectorAll('[data-pgo]').forEach(b=>b.onclick=()=>go(b.dataset.pgo));
 }
 
+/* ---------- Rev13 · aba Comercial: itens acima do máximo disponíveis para venda (pedido do Hugo, 10/11/2026) ----------
+   Disponível para venda = estoque real − máximo do Kanban − o que já está vendido na carteira em aberto.
+   Itens MTO não têm máximo: todo o estoque sem pedido conta. Valor = preço médio de venda das NFs (estimativa). */
+const CM={q:"",fam:"",ord:"valor",so:"",vw:"tab"};
+function cmRows(){
+  const out=[];
+  for(const r of calcPA()){
+    const e=estReal(r), M=r.M>0?r.M:0, ex=Math.max(0,e-M); if(ex<=0) continue;
+    const vend=Math.min(ex,r.cart||0), disp=Math.floor(ex-vend+1e-9); if(disp<=0) continue;
+    const p=r.preco>0?r.preco:0;
+    out.push({cod:r.cod,desc:r.desc,fam:r.fam||"Outros",sub:r.sub||"",cls:r.cls,tipo:r.tipo||"",abc:r.abc,est:e,M,cart:r.cart||0,vend,disp,p,valor:disp*p,nnf:r.nnf||0,
+      dias:r.D>0?disp/r.D:null,mto:r.cls==="MTO",cont:r.cont||"",q:r.q||0});
+  }
+  return out;
+}
+function cmFilt(R){
+  const q=CM.q.trim().toUpperCase();
+  let L=R.filter(x=>(!CM.fam||x.fam===CM.fam)&&(!CM.so||(CM.so==="kb"?!x.mto:x.mto))&&(!q||x.cod.toUpperCase().includes(q)||String(x.desc).toUpperCase().includes(q)));
+  const k={valor:(a,b)=>b.valor-a.valor||b.disp-a.disp,pecas:(a,b)=>b.disp-a.disp,dias:(a,b)=>(b.dias??-1)-(a.dias??-1),cod:(a,b)=>a.cod<b.cod?-1:1}[CM.ord]||((a,b)=>b.valor-a.valor);
+  return L.sort(k);
+}
+const cmPreco=x=>x.p>0?'R$ '+nf2.format(x.p):'<span class="note">sem preço</span>';
+const cmTag=x=>x.mto?'<span class="pill" style="background:var(--kb-soft);color:var(--kb)">MTO · sem pedido</span>':'<span class="pill" style="background:var(--kb);color:#fff">acima do máximo</span>';
+function cmBars(L,lab,val,txt,click){
+  if(!L.length) return '<p class="note">Nada para mostrar.</p>';
+  const mx=Math.max(1,...L.map(val));
+  return L.map(o=>{ const w=val(o)/mx*100;
+    return `<div class="ovbar cm-bar"${click?` data-cmf="${esc(click(o))}" role="button" tabindex="0" title="Filtrar ${esc(lab(o))}"`:''}><div class="ovbl"><b>${esc(lab(o))}</b><span class="note">${txt(o)}</span></div>
+     <div class="ovwrap${w<60?' narrow':''}"><div class="ovtrack" style="width:${Math.max(3,w).toFixed(1)}%"><i style="flex:1;background:var(--kb)"></i></div>
+     <span class="ovval" style="${w<60?`left:calc(${Math.max(3,w).toFixed(1)}% + 10px)`:''}"><b>${brl(val(o))}</b></span></div></div>`; }).join('');
+}
+function renderCM(){
+  const el=document.getElementById('p-cm'); if(!el) return;
+  const R=cmRows(), L=cmFilt(R), pa=ultimaImp('pa'), ct=ultimaImp('cart');
+  const sum=(A,f)=>A.reduce((s,x)=>s+f(x),0);
+  const T={n:L.length,pc:sum(L,x=>x.disp),val:sum(L,x=>x.valor),semp:L.filter(x=>!(x.p>0)).length};
+  const vendR=finAgg(calcPA()).T.vend;   // mesmo número do Painel executivo
+  const F={}; R.forEach(x=>{ const f=F[x.fam]||(F[x.fam]={fam:x.fam,val:0,n:0,pc:0}); f.val+=x.valor; f.n++; f.pc+=x.disp; });
+  const FL=Object.values(F).sort((a,b)=>b.val-a.val);
+  const fams=FL.map(f=>f.fam);
+  el.innerHTML=`
+  <div class="head"><h2>Comercial — itens disponíveis para venda</h2><span class="note">acima do máximo do Kanban e sem pedido</span></div>
+  <p class="note">Estoque do CD ${pa?'importado em <b>'+fmtDT(pa.t,true)+'</b>':'da posição de '+esc(DATA.dataest)} · carteira ${ct?'importada em <b>'+fmtDT(ct.t,true)+'</b>':'da base'} · o que já está vendido na carteira em aberto não aparece aqui.</p>
+  <div class="stats">
+   <div class="stat b"><div class="l">Itens para oferecer</div><div class="v">${f0(T.n)}</div><div class="s">códigos com sobra${CM.fam||CM.q||CM.so?' (no filtro)':''}</div></div>
+   <div class="stat b"><div class="l">Peças disponíveis</div><div class="v">${f0(T.pc)}</div><div class="s">acima do máximo, sem pedido</div></div>
+   <div class="stat g"><div class="l">Valor estimado</div><div class="v">${brl(T.val)}</div><div class="s">a preço médio de venda${T.semp?` · ${f0(T.semp)} sem preço`:''}</div></div>
+   <div class="stat m"><div class="l">Excesso já vendido</div><div class="v">${brl(vendR)}</div><div class="s">sai com a carteira em aberto</div></div>
+  </div>
+  <div class="grid2">
+   <div class="panel"><div class="head"><h3>Valor disponível por família</h3><span class="note">toque para filtrar</span></div>${cmBars(FL.slice(0,10),f=>f.fam,f=>f.val,f=>`${f0(f.n)} itens · ${f0(f.pc)} pç`,f=>f.fam)}</div>
+   <div class="panel"><div class="head"><h3>Top 10 itens para oferecer</h3><span class="note">maior valor${CM.fam?' · '+esc(CM.fam):''}</span></div>${cmBars(L.filter(x=>x.valor>0).slice(0,10),x=>x.cod,x=>x.valor,x=>`${f0(x.disp)} pç · ${esc(String(x.desc).slice(0,34))}`,null)}</div>
+  </div>
+  <div class="filters exf">
+   <label class="f" for="cm-q" style="flex:1 1 180px">Buscar<input id="cm-q" type="search" value="${esc(CM.q)}" placeholder="código ou descrição"></label>
+   <label class="f" for="cm-fam">Família<select id="cm-fam"><option value="">Todas</option>${fams.map(f=>`<option>${esc(f)}</option>`).join('')}</select></label>
+   <label class="f" for="cm-so">Tipo<select id="cm-so"><option value="">Todos</option><option value="kb">Kanban acima do máximo</option><option value="mto">MTO sem pedido</option></select></label>
+   <label class="f" for="cm-ord">Ordenar<select id="cm-ord"><option value="valor">Maior valor</option><option value="pecas">Mais peças</option><option value="dias">Mais dias de venda</option><option value="cod">Código</option></select></label>
+   <span class="cm-exp"><button class="btn pri" id="cm-csv">Excel (CSV)</button><button class="btn" id="cm-pdf">PDF / Imprimir</button><button class="btn" id="cm-sh">Compartilhar</button></span>
+  </div>
+  <div class="tw tall cm-tab"><table><thead><tr><th>Código</th><th>Descrição</th><th>Família</th><th class="num">Disponível (pç)</th><th class="num">Preço médio</th><th class="num">Valor estimado</th><th class="num">Dias de venda</th><th class="num">Estoque</th><th class="num">Máximo</th><th class="num">Na carteira</th><th>Situação</th></tr></thead><tbody>
+   ${L.slice(0,500).map(x=>`<tr><td><b>${esc(x.cod)}</b></td><td class="desc">${esc(String(x.desc).slice(0,60))}</td><td>${esc(x.fam)}</td><td class="num"><b>${f0(x.disp)}</b></td><td class="num">${cmPreco(x)}${x.p>0&&x.nnf<5?' <span class="note" title="menos de 5 notas fiscais no período">*</span>':''}</td><td class="num"><b>${x.valor>0?brl(x.valor):'—'}</b></td><td class="num">${x.dias!=null?f0(x.dias):'—'}</td><td class="num">${f0(x.est)}</td><td class="num">${x.M?f0(x.M):'—'}</td><td class="num">${f0(x.cart)}</td><td>${cmTag(x)}</td></tr>`).join('')||'<tr><td colspan="11" class="note">Nenhum item com esse filtro.</td></tr>'}
+  </tbody></table></div>
+  <div class="cm-crd">${L.slice(0,150).map(x=>`<div class="cmc"><div class="cmc-h">${fotoImg(x.cod,48)}<div style="min-width:0"><b>${esc(x.cod)}</b><div class="note">${esc(String(x.desc).slice(0,56))}</div></div></div>
+    <div class="cmc-n"><span><small>Disponível</small><b>${f0(x.disp)} pç</b></span><span><small>Preço médio</small><b>${cmPreco(x)}</b></span><span><small>Valor</small><b>${x.valor>0?brl(x.valor):'—'}</b></span></div>
+    <div class="note">${esc(x.fam)} · estoque ${f0(x.est)} · máx. ${x.M?f0(x.M):'—'}${x.dias!=null?' · cobre '+f0(x.dias)+' dias de venda':''}</div>${cmTag(x)}</div>`).join('')||'<p class="note">Nenhum item com esse filtro.</p>'}</div>
+  <p class="note">${f0(L.length)} item(ns) no filtro${L.length>500?' — a tabela mostra os 500 primeiros; o Excel leva todos':''}.</p>
+  <div class="panel"><div class="head"><h3>Como ler</h3></div><ul class="clean note">
+   <li><b>Disponível</b> = estoque do CD − máximo do Kanban − quantidade já vendida na carteira em aberto. Vendendo isso, o supermercado volta ao máximo e o Kanban continua repondo normalmente.</li>
+   <li><b>MTO sem pedido</b>: item feito sob pedido (sem máximo); todo o estoque que não está na carteira pode ser oferecido.</li>
+   <li><b>Preço médio</b> = faturamento ÷ quantidade nas notas fiscais de set/25 a ago/26. É uma <b>referência</b>, não a tabela de preço — confirme o preço com a tabela comercial. * = menos de 5 notas no período.</li>
+   <li><b>Dias de venda</b> = quantos dias de demanda média o disponível cobre (demanda do S&amp;OP/histórico usada no Kanban).</li></ul></div>`;
+  const $=id=>document.getElementById(id);
+  $('cm-fam').value=CM.fam; $('cm-so').value=CM.so; $('cm-ord').value=CM.ord;
+  $('cm-fam').onchange=e=>{ CM.fam=e.target.value; renderCM(); }; $('cm-so').onchange=e=>{ CM.so=e.target.value; renderCM(); }; $('cm-ord').onchange=e=>{ CM.ord=e.target.value; renderCM(); };
+  const qi=$('cm-q'); qi.oninput=()=>{ CM.q=qi.value; renderCM(); const n=$('cm-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); };
+  el.querySelectorAll('[data-cmf]').forEach(b=>{ const f=()=>{ CM.fam=CM.fam===b.dataset.cmf?"":b.dataset.cmf; renderCM(); }; b.onclick=f; b.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); f(); } }; });
+  $('cm-csv').onclick=()=>cmCSV(L); $('cm-pdf').onclick=()=>cmPrint(L,T); $('cm-sh').onclick=()=>cmShare(L,T);
+}
+function cmCSV(L){
+  const H=["codigo","descricao","familia","subfamilia","situacao","disponivel_pc","preco_medio_venda_RS","valor_estimado_RS","dias_de_venda","estoque_cd","maximo_kanban","na_carteira","notas_fiscais_no_periodo","embalagem","pc_por_contêiner"];
+  const n2=v=>v==null?"":String(Math.round(v*100)/100).replace('.',',');
+  const rows=L.map(x=>[x.cod,x.desc,x.fam,x.sub,x.mto?"MTO sem pedido":"acima do máximo",Math.round(x.disp),n2(x.p||null),n2(x.valor||null),x.dias!=null?Math.round(x.dias):"",Math.round(x.est),Math.round(x.M),Math.round(x.cart),x.nnf,x.cont,x.q]);
+  const pa=ultimaImp('pa');
+  saveFile("itens_disponiveis_para_venda_"+hojeISO()+".csv","﻿"+[`Lean Up · AEMCO — itens acima do máximo disponíveis para venda · estoque ${pa?fmtDT(pa.t,true):DATA.dataest} · preço = média das NFs set/25-ago/26 (referência)`,H.join(";")].concat(rows.map(r=>r.map(v=>String(v??'').replace(/;/g,',').replace(/\n/g,' ')).join(";"))).join("\n"));
+}
+function cmPrint(L,T){
+  let el=document.getElementById('prt-prg'); if(!el){ el=document.createElement('div'); el.id='prt-prg'; document.body.appendChild(el); }
+  const pa=ultimaImp('pa');
+  el.innerHTML=`<h2 style="font:700 16pt var(--display);margin:0 0 1mm">Lean Up · AEMCO — Itens disponíveis para venda</h2>
+   <p style="margin:0 0 3mm;font-size:9.5pt">Acima do máximo do Kanban e sem pedido · estoque ${pa?fmtDT(pa.t,true):esc(DATA.dataest)} · emitido em ${new Date().toLocaleString('pt-BR')}${CM.fam?' · família: <b>'+esc(CM.fam)+'</b>':''}<br>
+   <b>${f0(T.n)} itens · ${f0(T.pc)} peças · ${brl(T.val)}</b> a preço médio de venda (NFs set/25–ago/26, referência — confirmar com a tabela comercial)</p>
+   <table style="width:100%;border-collapse:collapse;font-size:8.6pt"><thead><tr>${['Código','Descrição','Família','Disponível (pç)','Preço médio','Valor estimado','Dias de venda','Situação'].map(h=>`<th style="border:1px solid #999;padding:3px 5px;text-align:left;background:#eee">${h}</th>`).join('')}</tr></thead>
+   <tbody>${L.map(x=>`<tr>${[x.cod,String(x.desc).slice(0,52),x.fam,f0(x.disp),x.p>0?'R$ '+nf2.format(x.p):'sem preço',x.valor>0?'R$ '+nf0.format(x.valor):'—',x.dias!=null?f0(x.dias):'—',x.mto?'MTO sem pedido':'acima do máximo'].map((v,i)=>`<td style="border:1px solid #bbb;padding:2px 5px${i>=3&&i<=6?';text-align:right':''}">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>
+   <p style="font-size:8pt;margin-top:3mm">Disponível = estoque do CD − máximo do Kanban − carteira em aberto. Fonte: Lean Way Consulting.</p>`;
+  document.body.classList.add('prt-prg'); setTimeout(()=>{ window.print(); setTimeout(()=>document.body.classList.remove('prt-prg'),500); },60);
+}
+async function cmShare(L,T){
+  const top=L.filter(x=>x.disp>0).slice(0,25), pa=ultimaImp('pa');
+  const txt=[`Lean Up · AEMCO — itens disponíveis para venda (acima do máximo, sem pedido)`,`Estoque de ${pa?fmtDT(pa.t,true):DATA.dataest}${CM.fam?' · '+CM.fam:''}`,`${f0(T.n)} itens · ${f0(T.pc)} pç · ${brl(T.val)} a preço médio de venda (referência)`,``]
+    .concat(top.map(x=>`• ${x.cod} — ${String(x.desc).slice(0,40)}: ${f0(x.disp)} pç${x.p>0?' · ~R$ '+nf2.format(x.p)+'/pç':''}`));
+  if(L.length>top.length) txt.push(`… + ${f0(L.length-top.length)} itens (lista completa no Excel do app)`);
+  const t=txt.join("\n");
+  try{ if(navigator.share){ await navigator.share({title:"Itens disponíveis para venda · AEMCO",text:t}); return; } }catch(e){ if(e&&e.name==="AbortError") return; }
+  try{ await navigator.clipboard.writeText(t); toast("Lista copiada — cole no WhatsApp ou no e-mail"); }catch(e){ saveFile("itens_disponiveis.txt",t); }
+}
+
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,
    mas o WebGL não existe e a cena não aparece. Aqui o app testa antes e, sem WebGL,
@@ -4432,11 +4548,11 @@ function renderPD(){
 }
 /* ---------- navegação (shell SaaS) ---------- */
 const NAV=[
- [1,"ov","Painel","◱"],[1,"qd","Quadros Kanban","▦"],[1,"pr","Programação","▶"],[1,"ex","Expedição","⛟"],[1,"op","Ordem de produção","🗓"],[1,"kc","Cartões","▤"],[1,"im","Importar dados","⇪"],
+ [1,"ov","Painel","◱"],[1,"qd","Quadros Kanban","▦"],[1,"pr","Programação","▶"],[1,"ex","Expedição","⛟"],[1,"cm","Comercial","$"],[1,"op","Ordem de produção","🗓"],[1,"kc","Cartões","▤"],[1,"im","Importar dados","⇪"],
  [2,"cd","CD em 3D","◨"],[2,"pa","Kanban PA","●"],[2,"us","Kanban Usinados","◐"],
  [3,"par","Parâmetros","⚙"],[3,"pd","Premissas","!"],
 ];
-const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],ex:["Operação","Expedição — Kanban de pedidos"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
+const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],ex:["Operação","Expedição — Kanban de pedidos"],cm:["Operação","Comercial — itens disponíveis para venda"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
  cd:["Supermercados","CD em 3D"],pa:["Supermercados","Kanban de PA"],us:["Supermercados","Kanban de Usinados"],
  par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
 function buildNav(){
@@ -4481,6 +4597,7 @@ function go(tab,soft){
     kc:()=>{ if(soft) return; renderKC(); },
     ex:()=>{ if(soft&&document.activeElement&&document.getElementById('p-ex').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderEX(); },
     pd:()=>{ if(soft&&PD_EDIT) return; renderPD(); },
+    cm:()=>{ if(soft&&document.activeElement&&document.getElementById('p-cm').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderCM(); },
     pr:()=>{ if(soft&&document.activeElement&&document.getElementById('p-pr').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderPR(); },
     op:()=>{ if(soft&&document.activeElement&&document.getElementById('p-op').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderOP(); },
     par:()=>{ if(soft&&document.activeElement&&document.getElementById('p-par').contains(document.activeElement)) return; renderPar(); },
@@ -4553,7 +4670,7 @@ async function rpc(fn, body){
 
 /* ---------------- estado ---------------- */
 const ST = {
-  pin: LS.get("kb-pin") || null, nome: LS.get("kb-nome") || "", papel: LS.get("kb-papel") || "",
+  pin: LS.get("kb-pin") || null, nome: LS.get("kb-nome") || "", papel: LS.get("kb-papel") || "", cadastra: LS.get("kb-cad") === "1",
   since: LS.get("kb-since") || null, master: null,
   docs: {}, out: [], online: navigator.onLine, last: null, erro: "", syncing: false, bkDir: null, bkMsg: ""
 };
@@ -4587,8 +4704,8 @@ async function askPin(msg){
       try{
         const r = await rpc("kb_login", { p_pin: pin });
         if (r && (r.papel === "admin" || r.papel === "equipe")){
-          ST.pin = pin; ST.nome = r.nome; ST.papel = r.papel;
-          LS.set("kb-pin", pin); LS.set("kb-nome", r.nome); LS.set("kb-papel", r.papel);
+          ST.pin = pin; ST.nome = r.nome; ST.papel = r.papel; ST.cadastra = !!r.cadastra;
+          LS.set("kb-pin", pin); LS.set("kb-nome", r.nome); LS.set("kb-papel", r.papel); LS.set("kb-cad", r.cadastra ? "1" : "0");
           res(true);
         } else {
           $("kb-msg").innerHTML = r && r.erro === "bloqueado" ? '<b class="kb-err">Muitas tentativas erradas. Aguarde 15 minutos.</b>' : '<b class="kb-err">PIN não cadastrado.</b>';
@@ -4780,7 +4897,7 @@ async function syncNow(){
         if (pend.has(d.p)) continue;                      // alteração local ainda não enviada: vale a local
         ST.docs[d.p] = { d: d.d, x: d.x, t: d.t }; notify(d.p);
       }
-      ST.since = r.agora; if (r.papel && r.papel !== ST.papel){ ST.papel = r.papel; LS.set("kb-papel", r.papel); } if (r.nome && r.nome !== ST.nome){ ST.nome = r.nome; LS.set("kb-nome", r.nome); }
+      ST.since = r.agora; if (r.papel && r.papel !== ST.papel){ ST.papel = r.papel; LS.set("kb-papel", r.papel); } if (r.nome && r.nome !== ST.nome){ ST.nome = r.nome; LS.set("kb-nome", r.nome); } if (typeof r.cadastra === "boolean" && r.cadastra !== ST.cadastra){ ST.cadastra = r.cadastra; LS.set("kb-cad", r.cadastra ? "1" : "0"); }
       persist(); ST.last = new Date(); ST.online = true;
       bkAuto();
     }
@@ -4843,7 +4960,8 @@ function panel(){
       <div class="kb-row"><button class="kb-btn alt" id="kb-bk">${ST.bkDir ? "Trocar pasta" : "Escolher pasta"}</button>${ST.bkDir ? '<button class="kb-btn alt" id="kb-bkn">Gravar agora</button>' : ""}</div><p class="kb-sub">${escH(ST.bkMsg || (ST.bkDir ? "Pasta: " + ST.bkDir.name : ""))}</p>` : ""}
     ${adm ? `<h3>Administrador</h3>
       <div class="kb-row"><button class="kb-btn alt" id="kb-pub2">Publicar nova base (.json)</button></div>
-      <div class="kb-row"><button class="kb-btn alt" id="kb-us">Pessoas com acesso (PINs)</button></div>` : ""}
+      <div class="kb-row"><button class="kb-btn alt" id="kb-us">Pessoas com acesso (PINs)</button></div>` : ST.cadastra ? `<h3>Cadastro</h3>
+      <div class="kb-row"><button class="kb-btn alt" id="kb-us">Incluir novo integrante</button></div>` : ""}
     <div class="kb-row"><button class="kb-btn alt" id="kb-mp">Trocar meu PIN</button></div>
     <div class="kb-row"><button class="kb-btn alt" id="kb-out">Sair deste aparelho</button></div>
     <p class="kb-msg" id="kb-msg"></p>`);
@@ -4862,26 +4980,28 @@ function panel(){
 /* ---------------- pessoas com acesso (só administrador) ---------------- */
 const SUGERIDOS = ["Rafael Kandi", "Kelvin Troes", "Cristiano Silva", "Alex Bertino", "Luis Colombo", "Neto Colombo", "Hugo Matsuo"];
 const pinRand = () => { const a = new Uint32Array(1); crypto.getRandomValues(a); return String(100000 + a[0] % 900000); };
-const errTxt = e => ({ novo: "PIN inválido: use de 6 a 12 números.", repetido: "Esse PIN já é de outra pessoa — escolha outro.", nome: "Informe o nome.", proprio: "Você não pode tirar o próprio acesso de administrador.", admin: "Só o administrador faz isso.", pin: "Seu PIN não vale mais — entre de novo.", bloqueado: "Muitas tentativas erradas. Aguarde 15 minutos." })[e] || ("Não gravou: " + escH(e));
+const errTxt = e => ({ novo: "PIN inválido: use de 6 a 12 números.", repetido: "Esse PIN já é de outra pessoa — escolha outro.", nome: "Informe o nome.", proprio: "Você não pode tirar o próprio acesso de administrador.", admin: "Só o administrador faz isso.", soinclui: "Essa pessoa já tem acesso. Para trocar o PIN, o perfil ou remover, fale com o administrador.", soequipe: "Você só pode incluir pessoas com perfil equipe.", pin: "Seu PIN não vale mais — entre de novo.", bloqueado: "Muitas tentativas erradas. Aguarde 15 minutos." })[e] || ("Não gravou: " + escH(e));
 async function usersPanel(msg){
   card(`${HEAD}<h2>Pessoas com acesso</h2><p class="kb-sub">Carregando…</p>`);
   let lista = [];
   try{ const r = await rpc("kb_usuarios_listar", { p_pin: ST.pin }); if (r && r.erro){ card(`${HEAD}<p class="kb-err">${errTxt(r.erro)}</p><div class="kb-row"><button class="kb-btn alt" id="kb-back">Voltar</button></div>`); $("kb-back").onclick = panel; return; } lista = r.usuarios || []; }
   catch(e){ card(`${HEAD}<p class="kb-err">Sem conexão com a base online.</p><div class="kb-row"><button class="kb-btn alt" id="kb-back">Voltar</button></div>`); $("kb-back").onclick = panel; return; }
-  const tem = new Set(lista.map(u => u.nome));
+  const tem = new Set(lista.map(u => u.nome)), adm = ST.papel === "admin";
   const falta = SUGERIDOS.filter(n => !tem.has(n));
   card(`${HEAD}
     <h2>Pessoas com acesso</h2>
     <p class="kb-sub">Só quem está nesta lista abre o app. Cada pessoa tem o próprio PIN (6 a 12 números) e o nome dela fica gravado no que apontar.</p>
     ${msg ? `<p class="kb-msg"><b>${escH(msg)}</b></p>` : ""}
-    ${lista.map(u => `<div class="kb-kv"><span>${escH(u.nome)}${u.nome === ST.nome ? " (você)" : ""}</span><b>${u.papel === "admin" ? "administrador" : "equipe"}
-      <button class="kb-btn alt" style="padding:2px 8px;margin-left:6px" data-ed="${escH(u.nome)}" data-pp="${u.papel}">PIN</button>
-      ${u.nome !== ST.nome ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-rm="${escH(u.nome)}">Remover</button>` : ""}</b></div>`).join("")}
-    <h3>Cadastrar ou trocar PIN</h3>
+    ${!adm ? `<p class="kb-sub"><b>Você pode incluir novos integrantes</b> (perfil equipe). Trocar PIN, mudar perfil ou remover alguém continua só com o administrador.</p>` : ""}
+    ${lista.map(u => `<div class="kb-kv"><span>${escH(u.nome)}${u.nome === ST.nome ? " (você)" : ""}</span><b>${u.papel === "admin" ? "administrador" : "equipe" + (u.cadastra ? " · inclui pessoas" : "")}
+      ${adm ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:6px" data-ed="${escH(u.nome)}" data-pp="${u.papel}">PIN</button>
+      ${u.papel !== "admin" ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-cd="${escH(u.nome)}" data-on="${u.cadastra ? 0 : 1}">${u.cadastra ? "Tirar inclusão" : "Pode incluir"}</button>` : ""}
+      ${u.nome !== ST.nome ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-rm="${escH(u.nome)}">Remover</button>` : ""}` : ""}</b></div>`).join("")}
+    <h3>${adm ? "Cadastrar ou trocar PIN" : "Incluir novo integrante"}</h3>
     ${falta.length ? `<div class="kb-row">${falta.map(n => `<button class="kb-btn alt" style="padding:4px 10px" data-sg="${escH(n)}">+ ${escH(n)}</button>`).join("")}</div>` : ""}
     <label>Nome<input id="kb-un" autocomplete="off" placeholder="Nome e sobrenome"></label>
     <label>PIN (6 a 12 números)<input id="kb-up" inputmode="numeric" autocomplete="off" placeholder="digite ou clique em Gerar"></label>
-    <label>Acesso<select id="kb-ur"><option value="equipe">Equipe — aponta estoque, programa e conclui cartões</option><option value="admin">Administrador — também publica base e gerencia PINs</option></select></label>
+    <label${adm ? "" : " hidden"}>Acesso<select id="kb-ur"><option value="equipe">Equipe — aponta estoque, programa e conclui cartões</option>${adm ? '<option value="admin">Administrador — também publica base e gerencia PINs</option>' : ""}</select></label>
     <div class="kb-row"><button class="kb-btn alt" id="kb-ug">Gerar PIN</button><button class="kb-btn" id="kb-us2">Salvar</button><button class="kb-btn alt" id="kb-back">Voltar</button></div>
     <p class="kb-msg" id="kb-msg"></p>
     <p class="kb-sub">Anote o PIN e entregue pessoalmente. Depois de salvo, ele não aparece mais — se a pessoa esquecer, gere outro.</p>`);
@@ -4889,6 +5009,11 @@ async function usersPanel(msg){
   document.querySelectorAll("[data-sg]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.sg; $("kb-ur").value = "equipe"; $("kb-up").focus(); });
   document.querySelectorAll("[data-ed]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.ed; $("kb-ur").value = b.dataset.pp; $("kb-up").value = ""; $("kb-up").focus(); });
   $("kb-ug").onclick = () => { $("kb-up").value = pinRand(); };
+  document.querySelectorAll("[data-cd]").forEach(b => b.onclick = async () => {
+    try{ const r = await rpc("kb_usuario_cadastra", { p_pin: ST.pin, p_nome: b.dataset.cd, p_on: b.dataset.on === "1" }); if (r && r.erro){ $("kb-msg").innerHTML = '<b class="kb-err">' + errTxt(r.erro) + '</b>'; return; }
+      usersPanel(b.dataset.cd + (b.dataset.on === "1" ? " agora pode incluir novos integrantes." : " não inclui mais integrantes.")); }
+    catch(e){ $("kb-msg").innerHTML = '<b class="kb-err">Sem conexão com a base online.</b>'; }
+  });
   const rmArm = {};
   document.querySelectorAll("[data-rm]").forEach(b => b.onclick = async () => {
     const n = b.dataset.rm;
