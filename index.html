@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev14"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev15"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1703,7 +1703,7 @@ async function saveParams(){
   try{ localStorage.setItem("aemco-kd4-params",JSON.stringify(P)); }catch(e){}
   if(DB&&WRITE_OK){ try{ await DB.doc("kanban/params4").set({p:P,t:new Date().toISOString(),u:UID||""}); }catch(e){ toast("Parâmetros salvos só neste navegador ("+e.code+")"); } }
 }
-let rerenderT=null; function rerender(){ clearTimeout(rerenderT); rerenderT=setTimeout(()=>{ try{ document.getElementById('rev').textContent="Kanban · "+estCurto(); if(typeof expReset==='function') expReset(); if(typeof histCheck==='function') histCheck(); if(typeof eqSync==='function') eqSync(); }catch(e){} if(TAB!=="cd") go(TAB,true); else if(window.CD3) CD3.recolor(); },60); }
+let rerenderT=null; function rerender(){ clearTimeout(rerenderT); rerenderT=setTimeout(()=>{ try{ document.getElementById('rev').textContent="Kanban · "+estCurto(); if(typeof expReset==='function') expReset(); if(typeof histCheck==='function') histCheck(); if(typeof eqSync==='function') eqSync(); }catch(e){} if(TAB!=="cd"){ const sel='section.pane:not([hidden]) .tw', keep=[...document.querySelectorAll(sel)].map(e=>[e.scrollTop,e.scrollLeft]); go(TAB,true); document.querySelectorAll(sel).forEach((e,i)=>{ if(keep[i]&&(keep[i][0]||keep[i][1])){ e.scrollTop=keep[i][0]; e.scrollLeft=keep[i][1]; } }); } else if(window.CD3) CD3.recolor(); },60); }
 async function saveFile(name,text,type){
   if(!DL){
     try{ const u=URL.createObjectURL(new Blob([text],{type:type||"text/csv;charset=utf-8"})); const a=document.createElement("a"); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),2000); toast("Arquivo "+name+" gerado"); }
@@ -1977,6 +1977,7 @@ function histPoints(){
   return pts.sort((a,b)=>a.d<b.d?-1:1);
 }
 let histT=null;
+const histKey=o=>o?Object.keys(o).sort().map(k=>k+":"+o[k]).join(","):"";
 function histCheck(){   // grava/atualiza o ponto do dia da última importação (CD ou Usinados)
   clearTimeout(histT);
   histT=setTimeout(()=>{
@@ -1984,8 +1985,11 @@ function histCheck(){   // grava/atualiza o ponto do dia da última importação
     const dt=new Date(t); if(isNaN(dt)) return; const d=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
     const p=Object.assign({d,t:new Date().toISOString(),u:UID||"",impPA:pa?pa.t:null,impUS:us?us.t:null},pctSnapshot());
     const h=HIST[d];
-    const same=h&&h.cd&&h.us&&Math.abs(h.cd.pct-p.cd.pct)<0.05&&Math.abs(h.us.pct-p.us.pct)<0.05&&h.cd.falta===p.cd.falta&&h.us.falta===p.us.falta&&h.cd.exc===p.cd.exc&&h.us.exc===p.us.exc&&JSON.stringify(h.ped||null)===JSON.stringify(p.ped||null);
+    const same=h&&h.cd&&h.us&&Math.abs(h.cd.pct-p.cd.pct)<0.05&&Math.abs(h.us.pct-p.us.pct)<0.05&&h.cd.falta===p.cd.falta&&h.us.falta===p.us.falta&&h.cd.exc===p.cd.exc&&h.us.exc===p.us.exc&&histKey(h.ped)===histKey(p.ped);
     if(same) return;
+    const sig=d+"|"+[p.cd.pct.toFixed(1),p.us.pct.toFixed(1),p.cd.falta,p.us.falta,p.cd.exc,p.us.exc,histKey(p.ped)].join("|");
+    if(histCheck.sig===sig&&Date.now()-(histCheck.at||0)<300000) return;   // Rev15: nunca regrava o mesmo ponto em sequência
+    histCheck.sig=sig; histCheck.at=Date.now();
     HIST[d]=p;
     if(DB&&WRITE_OK){ DB.doc("historico/"+d).set(p).catch(()=>{}); } else if(TAB==="ov") rerender();
   },1500);
@@ -2117,7 +2121,7 @@ function renderList(kind){
   </div>
   <div class="tw tall"><table><thead><tr><th>Código</th><th>Descrição</th><th>${us?'Grupo':'Família · tipo'}</th><th>ABC·XYZ</th><th>Classe</th>
    <th class="num">D pç/dia</th><th class="num">Reserva</th><th class="num">LT</th><th class="num">EPEI</th><th class="num">Verde</th><th class="num">Amarela</th><th class="num">Vermelha</th><th class="num">Máx</th><th class="num">Cob. d</th>
-   <th class="num">Lote mín.</th><th class="num">Pç/cartão</th><th class="num">Cartões V/A/R</th><th>Cartões</th>
+   <th class="num">Lote</th><th class="num">Pç/cartão</th><th class="num">Cartões V/A/R</th><th>Cartões</th>
    ${us?'<th>Por que está no supermercado</th><th class="num">Canais</th>':'<th>Papel no CD</th><th class="num">Cap./pos.</th><th class="num">Pos. V/A/R</th><th>Posições</th><th class="num">Ocup. hoje</th><th>End. proposto</th>'}
    <th class="num">${us?'':'Pedido especial acima de'}</th><th class="num">Estoque</th><th>Status</th></tr></thead><tbody>`;
   for(const r of rows.slice(0,f.lim)){
@@ -2502,7 +2506,7 @@ function renderPR(){
    </div>
    <div class="panel"><h3>Como a programação funciona</h3>
     <p class="note">1. O consumo baixa o estoque e <b>libera cartões</b> (máximo − estoque, em contêineres inteiros), que caem na fila do primeiro processo da rota do item.<br>
-    2. Escolha o processo (P1 a P8), confira a capacidade e <b>programe os cartões por dia</b> — manualmente ou com “Programar fila automaticamente” (ordem: fura-fila, MTO, vermelho, amarelo; o verde só entra quando os cartões livres somam o lote mínimo).<br>
+    2. Escolha o processo (P1 a P8), confira a capacidade e <b>programe os cartões por dia</b> — manualmente ou com “Programar fila automaticamente” (ordem: fura-fila, MTO, vermelho, amarelo; o verde fica formando lote e só entra quando o estoque chega na faixa amarela).<br>
     3. No chão de fábrica: <b>Iniciar</b> e <b>Concluir</b>. Concluir na última etapa dá entrada no supermercado; nas etapas intermediárias o cartão segue para a fila do processo seguinte.</p>
     <p class="note">Rotas (as mesmas dos Quadros Kanban): terminais do CD → P7 Pintura → P8 Embalagem · cardans → P6 Montagem → P8 · juntas, CTV’s e demais do CD → P8 · tubos e barras → P2 · proteções → P4 · cruzetas compradas → P5 · demais comprados → P1 · usinados: terminais em processo e embreagens → P3, metades de cardan → P6.</p>
    </div>
@@ -2581,7 +2585,7 @@ function cardHTML(o){
   <div class="kb">
    <div class="ka"><b>${o.a1t}</b><span>${esc(o.a1)}</span><b>Endereço</b><span>${esc(o.end||'a definir')}</span><b>Contêiner</b><span>${esc(o.cont)}</span></div>
    <div class="ka"><b>Código</b><div class="code">${esc(o.cod)}</div><span style="font-weight:500">${esc(o.desc)}</span><b>Quantidade por cartão</b><div class="qty">${f0(o.q)} pç</div></div>
-   <div class="ka"><b>${o.ret?'Ponto de uso':'Recurso'}</b><span>${esc(o.rec)}</span>${o.ret?'':`<b>Lote mínimo (setup)</b><span>${f0(o.lmin)} pç</span><b>Tempo de produção</b><span>${o.tp==null?'—':f1(o.tp)+' min'}</span>`}<b>Classe</b><span>${esc(o.cls)} · ${esc(o.abc)}</span></div>
+   <div class="ka"><b>${o.ret?'Ponto de uso':'Recurso'}</b><span>${esc(o.rec)}</span>${o.ret?'':`<b>Lote de produção</b><span>${f0(o.lmin)} pç</span><b>Tempo de produção</b><span>${o.tp==null?'—':f1(o.tp)+' min'}</span>`}<b>Classe</b><span>${esc(o.cls)} · ${esc(o.abc)}</span></div>
   </div>
   <div class="kf ${o.fx}"><span>${o.fxl}</span><span>${esc(o.dest)}</span></div></div>`;
 }
@@ -3202,7 +3206,7 @@ async function aplicarImport(){
   const okw=await writeStock(tipo,ch,{n,zer:zer.length,completo:!!IMP.completo,mtoPc:Math.round(mtoPc),fonte:IMP.tipo});
   const meta={t:new Date().toISOString(),u:UID||"",n:0};
   if(IMP.tipo==="estoque_pa"){   // estoque do CD de todos os códigos, para completar pedidos (substitui o anterior; arquivo parcial soma por cima)
-    const it=IMP.completo?{}:Object.assign({},CDALL.itens||{}); for(const [c,q] of Object.entries(todos)) it[c]=Math.max(0,Math.round(q));
+    const it=IMP.completo?{}:Object.assign({},CDALL.itens||{}); for(const [c,q] of Object.entries(todos)){ if(/^total\b/i.test(c)) continue; it[c]=Math.max(0,Math.round(q)); }   // Rev15: linha de total do relatório não é item
     CDALL={itens:it,meta:Object.assign(meta,{n:Object.keys(it).length})}; await writeDoc("kanban/estoque_cd",CDALL); }
   if(PL&&PL.L.length){
     PED={linhas:PL.L,meta:Object.assign(meta,{n:PL.L.length,np:PL.np,semData:PL.semData})}; await writeDoc("kanban/pedidos",PED); }
@@ -3457,6 +3461,36 @@ const postosDe=p=>{ const c=procCfg(p); if(c.postos>0) return c.postos; return p
 const horasDia=p=>{ const c=procCfg(p); return (c.h>0?c.h:P.tod)*postosDe(p); };
 const cartDia=p=>{ const c=procCfg(p); if(c.cpd>0) return c.cpd; return Math.max(5,Math.ceil((procB(p).cday||3)*1.5)); };
 
+/* ---------- Rev15: capacidade por grupo de máquina (TOD) com o roteiro do ERP (operação × grupo × tempo de ciclo) ---------- */
+const GMS=DATA.gms||[], ROT=DATA.rot||{};
+function opsDe(cod,p,rota){ const R=ROT[cod]; if(!R) return null; const multi=!!(rota&&rota.length>1), emb=multi&&p===rota[rota.length-1];
+  const o=R.filter(x=>!x[4]&&(!multi||(emb?x[3]===1:x[3]!==1))); return o.length?o:null; }
+function gmHoras(code){ const c=((P.gmc||{})[code])||{}; return c.h>0?c.h:P.tod; }
+function gmMaq(code){ const c=((P.gmc||{})[code])||{}; if(c.m>0) return c.m; const i=DATA.cap.findIndex(x=>"GM-"+x[0]+"-A"===code); return i>=0&&P.maq[i]>0?P.maq[i]:null; }
+function gmCap(gi){ const g=GMS[gi]; if(!g) return null; const m=gmMaq(g[0]); return m>0?m*gmHoras(g[0]):null; }
+function gmSetupMin(o,p){ return o[2]>0?o[2]/60:setupMin(p); }
+function cargaGM(p,dia){ const L={}, vistos=new Set();
+  CART.forEach(c=>{ if(!(c.proc===p&&c.dia===dia&&(c.status==="prog"||c.status==="prod"||c.status==="ok"&&c.etDia===dia))) return;
+    const ops=opsDe(c.cod,p,c.rota); if(!ops) return; const k=keyOf(c.tipo,c.cod), novo=!vistos.has(k); vistos.add(k);
+    ops.forEach(o=>{ L[o[0]]=(L[o[0]]||0)+c.q*o[1]/3600+(novo?gmSetupMin(o,p)/60:0); }); });
+  return L; }
+function gmPainel(p,dias,fila){
+  const set=new Set(); fila.forEach(f=>{ const o=opsDe(f.cod,p,f.rota); if(o) o.forEach(x=>set.add(x[0])); });
+  const Ld=dias.map(d=>cargaGM(p,d)); Ld.forEach(L=>Object.keys(L).forEach(k=>set.add(+k)));
+  if(!set.size) return `<p class="note">Sem roteiro do ERP para os itens deste processo: vale a capacidade do processo acima.</p>`;
+  const gs=[...set].sort((a,b)=>String(GMS[a][0]).localeCompare(String(GMS[b][0]))), adm=isAdmin();
+  return `<div class="panel"><div class="head"><h3>Carga por grupo de máquina (TOD)</h3><span class="note">tempo de ciclo e setup de cada operação, pelo roteiro do ERP</span></div>
+   <div class="tw"><table><thead><tr><th>Grupo de máquina</th><th class="num">Máquinas</th><th class="num">Horas/dia</th><th class="num">TOD h/dia</th>${dias.map(d=>`<th class="num">${dbr(deYMD(d))}</th>`).join('')}</tr></thead><tbody>
+   ${gs.map(gi=>{ const g=GMS[gi], m=gmMaq(g[0]), h=gmHoras(g[0]), cap=gmCap(gi);
+     return `<tr><td><b>${esc(g[0])}</b><br><span class="note">${esc(g[1])}</span></td>
+      <td class="num">${adm?`<input class="in gm-m" data-g="${esc(g[0])}" type="number" min="0" step="1" style="width:74px" value="${m!=null?m:''}" placeholder="?" aria-label="Máquinas de ${esc(g[0])}">`:(m!=null?f0(m):'não informado')}</td>
+      <td class="num">${adm?`<input class="in gm-h" data-g="${esc(g[0])}" type="number" min="1" max="24" step="0.5" style="width:74px" value="${h}" aria-label="Horas por dia de ${esc(g[0])}">`:f1(h)}</td>
+      <td class="num">${cap!=null?f1(cap):'—'}</td>
+      ${Ld.map(L=>{ const x=L[gi]||0, pc=cap?x/cap:null; return `<td class="num" style="${pc!=null&&pc>1?'background:#FBE3E1;font-weight:700':(pc!=null&&pc>0.85?'background:#FFF4CC':'')}">${x?f1(x)+' h':'—'}${pc!=null&&x?`<br><span class="note">${f0(pc*100)}%</span>`:''}</td>`; }).join('')}</tr>`; }).join('')}
+   </tbody></table></div>
+   <p class="note">O dia só recebe mais cartões enquanto todos os grupos do roteiro do item couberem no TOD (máquinas × horas/dia). Grupo sem nº de máquinas informado não limita a programação, só mostra a carga. Operações sem setup no ERP usam o “setup por item” do processo. ${adm?'<button class="btn" id="gm-sv">Salvar capacidade dos grupos</button>':''}</p></div>`;
+}
+
 /* ---------- armazenamento dos cartões ---------- */
 function cartInit(){
   if(typeof DB!=="undefined"&&DB){
@@ -3527,8 +3561,13 @@ function cargaDia(p,dia,extra){
   if(p==="P7"&&cs.length) h+=P.trocas*P.setp/60;      // campanha de cor por dia
   return {h,n:cs.length,semtc};
 }
-function capOk(p,dia,tc,q,cod,tipo){
+function capOk(p,dia,tc,q,cod,tipo,rota){
   const c=cargaDia(p,dia); const temItem=CART.some(x=>x.proc===p&&x.dia===dia&&x.cod===cod&&x.tipo===tipo&&x.status!=="ok");
+  const ops=opsDe(cod,p,rota);      // Rev15: com roteiro do ERP, quem limita é o TOD de cada grupo de máquina do roteiro
+  if(ops){ const L=cargaGM(p,dia); let lim=false;
+    const add={}; ops.forEach(o=>{ add[o[0]]=(add[o[0]]||0)+q*o[1]/3600+(temItem?0:gmSetupMin(o,p)/60); });
+    for(const gi in add){ const cap=gmCap(+gi); if(cap==null) continue; lim=true; const cur=L[gi]||0; if(cur>0&&cur+add[gi]>cap+1e-6) return false; }
+    if(lim) return true; }
   if(tc>0){ const add=q*tc/3600+(temItem?0:setupMin(p)/60); return c.h+add<=horasDia(p)+1e-6 || c.n===0; }
   return c.n<cartDia(p);
 }
@@ -3539,7 +3578,7 @@ async function programar(p,f,n,diaFixo){
   let ids=f.virt?null:f.ids.slice();
   for(let i=0;i<n;i++){
     let dia=diaFixo||null;
-    if(!dia){ dia=dias.find(d=>capOk(p,d,f.tc,f.q,f.cod,f.tipo)); if(!dia) break; }
+    if(!dia){ dia=dias.find(d=>capOk(p,d,f.tc,f.q,f.cod,f.tipo,f.rota)); if(!dia) break; }
     const seq=Math.max(0,...CART.filter(c=>c.proc===p&&c.dia===dia).map(c=>c.seq||0))+1;
     if(f.virt){
       const o={tipo:f.tipo,cod:f.cod,desc:f.desc,q:f.q,rota:f.rota,et:0,proc:p,status:"prog",dia,seq,prio:f.prio,ped:f.ped?1:0,tc:f.tc||null,criado:now,por:UID||""};
@@ -3557,7 +3596,7 @@ async function programar(p,f,n,diaFixo){
 }
 async function programarAuto(p){
   const {fila}=filaDe(p); let tot=0, sobrou=0;
-  for(const f of fila){ if(f.prio===3&&!(f.r&&f.r.lmin>1&&f.n*f.q>=f.r.lmin)) continue;      // verde: só programa sozinho quando os cartões livres já somam o lote mínimo
+  for(const f of fila){ if(f.prio===3) continue;      // verde: lote ainda em formação — os cartões acumulam e o item só entra quando o estoque chega na faixa amarela
     const k=await programar(p,f,f.n); tot+=k; sobrou+=f.n-k; }
   toast(`${tot} cartões programados${sobrou?` · ${sobrou} não couberam no horizonte`:''}`);
   rerender();
@@ -3625,6 +3664,7 @@ function renderPRG(){
    </div>
    <p class="note">Capacidade: <b>${f1(horasDia(p))} h/dia</b>${p==="P3"&&!(cfg.tc>0)?` · referência: gargalo ${esc(garg3().g)} (${esc(garg3().d)}), ${garg3().m} máquinas, TC ${f1(garg3().t)} s/pç — a CFU fica fora da restrição, como na aba Capacidade`:''}${p==="P7"?` · campanha de cor: ${P.trocas} trocas × ${P.setp} min por dia`:''} · TC em uso: ${esc(tcTxt)}. ${tcTxt==="não informado"?'Sem TC, o limite do dia é por número de cartões.':''} Setup é contado uma vez por item por dia.</p>
   </div>
+  ${gmPainel(p,dias,fila)}
   <div class="filters">
    <label class="f" for="pg-ini">Início<input class="in" id="pg-ini" type="date" value="${esc(PRG.ini||ymd(opHoje()))}"></label>
    <label class="f" for="pg-d">Dias<select id="pg-d">${[3,5,10].map(n=>`<option ${PRG.dias===n?'selected':''}>${n}</option>`).join('')}</select></label>
@@ -3638,7 +3678,7 @@ function renderPRG(){
     ${fila.slice(0,150).map((f,i)=>`<div class="card" style="border-left-color:${f.prio<1?'#5B2A86':f.prio===1?'var(--kr)':f.prio===2?'var(--ky)':'var(--kg)'}">
       <div class="t"><span>${esc(f.cod)}</span><span style="font-family:var(--mono)">${f.n} × ${f0(f.q)} pç</span></div>
       <span class="note desc" style="white-space:normal">${esc(String(f.desc).slice(0,60))}</span>
-      <span class="note">${f.virt?`estoque ${f0(f.est)} / máx ${f0(f.M)} · ${f.prio===3?(f.r&&f.r.lmin>1&&f.n*f.q>=f.r.lmin?'verde · lote mínimo completo':'acima do gatilho (verde)'):spill(f.st)}`:`vindo de ${esc(f.de||'')}`}${f.tc?` · ${f1(f.n*f.q*f.tc/3600)} h`:''}${f.rota.length>1?` · rota ${f.rota.join('→')}`:''}</span>
+      <span class="note">${f.virt?`estoque ${f0(f.est)} / máx ${f0(f.M)} · ${f.prio===3?'verde · lote em formação':spill(f.st)}`:`vindo de ${esc(f.de||'')}`}${f.tc?` · ${f1(f.n*f.q*f.tc/3600)} h`:''}${f.rota.length>1?` · rota ${f.rota.join('→')}`:''}</span>
       <div class="acts"><select class="in" data-fd="${i}" style="max-width:120px"><option value="">1º dia livre</option>${dias.map(d=>`<option value="${d}">${dbr(deYMD(d))}</option>`).join('')}</select>
        <button class="btn" data-pg="${i}" data-n="1">+1</button><button class="btn pri" data-pg="${i}" data-n="${f.n}">Todos</button></div></div>`).join('')||'<span class="note">Nenhum cartão na fila.</span>'}
     ${fila.length>150?`<span class="note">+${fila.length-150} itens</span>`:''}
@@ -3663,6 +3703,10 @@ function renderPRG(){
   box.querySelectorAll('[data-proc]').forEach(b=>b.onclick=()=>{ PRG.p=b.dataset.proc; try{ localStorage.setItem("aemco-kd8-prgp",PRG.p); }catch(e){} renderPRG(); });
   const num=id=>{ const v=parseFloat(document.getElementById(id).value); return isNaN(v)?null:v; };
   if(!isAdmin()) ['pg-tc','pg-st','pg-h','pg-po','pg-cpd'].forEach(i=>{ const e=document.getElementById(i); if(e) e.disabled=true; });
+  const gmsv=document.getElementById('gm-sv'); if(gmsv) gmsv.onclick=()=>{ const g=Object.assign({},P.gmc||{});
+    document.querySelectorAll('#p-pr .gm-m').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0) g[k].m=v; else delete g[k].m; });
+    document.querySelectorAll('#p-pr .gm-h').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0&&v!==P.tod) g[k].h=v; else delete g[k].h; });
+    P.gmc=g; saveParams(); toast("Capacidade dos grupos de máquina salva"); renderPRG(); };
   const pgsv=document.getElementById('pg-sv'); if(pgsv) pgsv.onclick=()=>{ P.procp=P.procp||{}; P.procp[p]={tc:num('pg-tc'),setup:num('pg-st'),h:num('pg-h'),postos:num('pg-po'),cpd:num('pg-cpd')}; saveParams(); toast("Capacidade de "+p+" salva"); renderPRG(); };
   document.getElementById('pg-ini').onchange=e=>{ PRG.ini=e.target.value; renderPRG(); };
   document.getElementById('pg-d').onchange=e=>{ PRG.dias=+e.target.value; renderPRG(); };
@@ -4811,7 +4855,7 @@ function badge(){
 window.addEventListener("online", () => { ST.online = true; syncNow(); });
 window.addEventListener("offline", () => { ST.online = false; badge(); });
 document.addEventListener("visibilitychange", () => { if (!document.hidden) syncNow(); });
-setInterval(() => { if (!document.hidden) syncNow(); }, 15000);
+setInterval(() => { if (!document.hidden) syncNow(); }, 300000);      // Rev15: a tela só busca atualização dos outros a cada 5 min
 setInterval(checkNewBase, 300000);
 async function checkNewBase(){
   if (!navigator.onLine || !ST.pin || !ST.master) return;
