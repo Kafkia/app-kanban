@@ -2502,7 +2502,7 @@ function renderPR(){
    </div>
    <div class="panel"><h3>Como a programação funciona</h3>
     <p class="note">1. O consumo baixa o estoque e <b>libera cartões</b> (máximo − estoque, em contêineres inteiros), que caem na fila do primeiro processo da rota do item.<br>
-    2. Escolha o processo (P1 a P8), confira a capacidade e <b>programe os cartões por dia</b> — manualmente ou com “Programar fila automaticamente” (vermelho primeiro, depois amarelo).<br>
+    2. Escolha o processo (P1 a P8), confira a capacidade e <b>programe os cartões por dia</b> — manualmente ou com “Programar fila automaticamente” (ordem: fura-fila, MTO, vermelho, amarelo; o verde só entra quando os cartões livres somam o lote mínimo).<br>
     3. No chão de fábrica: <b>Iniciar</b> e <b>Concluir</b>. Concluir na última etapa dá entrada no supermercado; nas etapas intermediárias o cartão segue para a fila do processo seguinte.</p>
     <p class="note">Rotas (as mesmas dos Quadros Kanban): terminais do CD → P7 Pintura → P8 Embalagem · cardans → P6 Montagem → P8 · juntas, CTV’s e demais do CD → P8 · tubos e barras → P2 · proteções → P4 · cruzetas compradas → P5 · demais comprados → P1 · usinados: terminais em processo e embreagens → P3, metades de cardan → P6.</p>
    </div>
