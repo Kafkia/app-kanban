@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev16"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev17"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1937,21 +1937,40 @@ function finAgg(rows){
   T.livre=T.exc-T.vend; T.depois=T.est-T.exc+T.falta;
   return {T,L:Object.values(F).filter(f=>f.livre>0).sort((a,b)=>b.livre-a.livre)};
 }
-function finPanel(PA){
-  const {T,L}=finAgg(PA), mx=Math.max(1,...L.map(f=>f.livre));
-  const K=PA.filter(r=>(r.M>0||estReal(r)>0)); const poucas=K.filter(r=>r.preco>0&&r.nnf<5).length, semp=K.filter(r=>!(r.preco>0)).length;
-  const pa=ultimaImp('pa');
-  return `<div class="panel" style="border-top:5px solid var(--ky)"><div class="head"><h3>Resumo financeiro · CD (produto acabado) <span class="tag" style="background:var(--ky);color:#15223B">ESTIMATIVA</span></h3><span class="note">estoque ${pa?'importado em '+fmtDT(pa.t):'da posição de '+esc(DATA.dataest)}</span></div>
-   <p class="note"><b>Como o valor foi estimado:</b> cada item vale o seu <b>preço médio de venda</b> nas notas fiscais de set/25 a ago/26 (faturamento ÷ quantidade faturada). <b>Não é custo</b>: o valor a custo é menor e o ganho real de caixa também. ${f0(K.length)} itens valorados${poucas?`, ${f0(poucas)} deles com menos de 5 NFs no período (preço menos confiável)`:''}${semp?`, ${f0(semp)} sem preço (fora da soma)`:''}. Para valor a custo, basta importar o custo médio do ERP (pedido em aberto).</p>
+/* Rev17: valor a custo (material + conversão) por item — CD e Usinados */
+function custoDe(cod){ const c=(DATA.custo||{})[cod]; if(!c) return null; const m=+c[0]||0, g=+c[1]||0; return (m+g)>0?{m,g,u:m+g,f:(DATA.custof||[])[c[2]]||""}:null; }
+function finCusto(rows,comCarteira){
+  const T={est:0,alvo:0,falta:0,exc:0,excm:0,vend:0,semp:0,nsem:0,n:0,ant:0}, F={};
+  rows.forEach(r=>{ const e=estReal(r), M=r.M>0?r.M:0; if(M<=0&&e<=0) return; const c=custoDe(r.cod), ex=Math.max(0,e-M);
+    if(!c){ T.semp+=ex; T.nsem++; return; }
+    const v=comCarteira?Math.min(ex,r.cart||0):0; T.n++; if(!/01\/10\/2026/.test(c.f)) T.ant++;
+    T.est+=e*c.u; T.alvo+=M*c.u; T.falta+=Math.max(0,M-e)*c.u; T.exc+=ex*c.u; T.excm+=(ex-v)*c.m; T.vend+=v*c.u;
+    const k=r.fam||r.grp||"—", f=F[k]||(F[k]={fam:k,livre:0}); f.livre+=(ex-v)*c.u; });
+  T.livre=T.exc-T.vend; T.depois=T.est-T.exc+T.falta;
+  return {T,L:Object.values(F).filter(f=>f.livre>0).sort((a,b)=>b.livre-a.livre)};
+}
+function finPanel(PA,US){
+  US=US||[];
+  const kb=r=>r.M>0&&(r.k!=="us"||r.manter);                      // item com faixa no Kanban
+  const A1=finCusto(PA.filter(kb),true), A2=finCusto(PA.filter(r=>!kb(r)),true), B1=finCusto(US.filter(kb),false), B2=finCusto(US.filter(r=>!kb(r)),false);
+  const a=A1.T, a2=A2.T, b=B1.T, b2=B2.T, S=k=>a[k]+b[k], Sall=k=>a[k]+b[k]+a2[k]+b2[k];
+  const L=A1.L.map(f=>({fam:"CD · "+f.fam,livre:f.livre})).concat(B1.L.map(f=>({fam:"Usinados · "+f.fam,livre:f.livre}))).sort((x,y)=>y.livre-x.livre), mx=Math.max(1,...L.map(f=>f.livre));
+  const pa=ultimaImp('pa'), us=ultimaImp('us');
+  const lin=(nome,t,cart,alvo)=>`<tr><td>${nome}</td><td class="num">${brl(t.est)}</td><td class="num">${alvo?brl(t.alvo):'—'}</td><td class="num">${brl(t.exc)}</td><td class="num">${cart?brl(t.vend):'—'}</td><td class="num"><b>${brl(t.livre)}</b></td><td class="num">${brl(t.excm)}</td><td class="num">${alvo?brl(t.falta):'—'}</td></tr>`;
+  return `<div class="panel" style="border-top:5px solid var(--ky)"><div class="head"><h3>Resumo financeiro · CD e Usinados <span class="tag" style="background:var(--ky);color:#15223B">A CUSTO</span></h3><span class="note">estoque do CD ${pa?'importado em '+fmtDT(pa.t):'da posição de '+esc(DATA.dataest)} · Usinados ${us?'importado em '+fmtDT(us.t):'da posição de '+esc(DATA.dataest)}</span></div>
+   <p class="note"><b>Como o valor foi calculado:</b> cada item vale o seu <b>custo unitário = material + conversão</b> (mão de obra e gastos gerais de fabricação), do cadastro de custos do ERP de 01/10/2026 ou, quando o item não está nele, do custo médio mais recente do item (jan/25 a mar/26). ${f0(Sall('n'))} itens valorados, ${f0(Sall('ant'))} deles com custo anterior a 01/10/2026${Sall('nsem')?`; ${f0(Sall('nsem'))} sem custo ficam fora da soma`:''}.</p>
    <div class="fin">
-    <div><small>Estoque no CD hoje</small><b>${brl(T.est)}</b><small>estimativa a preço de venda</small></div>
-    <div><small>Máximo do Kanban (alvo)</small><b>${brl(T.alvo)}</b><small>o que o supermercado deve ter</small></div>
-    <div><small>Acima do máximo</small><b style="color:var(--kb)">${brl(T.exc)}</b><small>${brl(T.vend)} já vendidos (carteira em aberto)</small></div>
-    <div class="gain"><small>Ganho ao retirar o excesso</small><b>${brl(T.livre)}</b><small>excesso sem pedido: sai com o consumo e não é reposto</small></div>
-    <div><small>Falta fabricar</small><b style="color:var(--kr)">${brl(T.falta)}</b><small>para completar o supermercado</small></div>
+    <div><small>Estoque hoje (CD + Usinados)</small><b>${brl(Sall('est'))}</b><small>a custo · ${brl(S('est'))} em itens do Kanban</small></div>
+    <div><small>Máximo do Kanban (alvo)</small><b>${brl(S('alvo'))}</b><small>o que os supermercados devem ter</small></div>
+    <div><small>Acima do máximo</small><b style="color:var(--kb)">${brl(S('exc'))}</b><small>itens do Kanban · ${brl(a.vend)} do CD já vendidos</small></div>
+    <div class="gain"><small>Ganho ao retirar o excesso</small><b>${brl(S('livre'))}</b><small>dos quais ${brl(S('excm'))} são material</small></div>
+    <div><small>Itens sob pedido com saldo</small><b>${brl(a2.livre+b2.livre)}</b><small>fora do Kanban · CD ${brl(a2.livre)} sem pedido · Usinados ${brl(b2.livre)}</small></div>
+    <div><small>Falta fabricar</small><b style="color:var(--kr)">${brl(S('falta'))}</b><small>para completar os supermercados</small></div>
    </div>
-   ${L.length?L.slice(0,6).map(f=>{ const w=f.livre/mx*100; return `<div class="ovbar" title="${esc(f.fam)} — ${brl(f.livre)} acima do máximo sem pedido"><div class="ovbl"><b>${esc(f.fam)}</b><span class="note">estimativa a preço de venda</span></div><div class="ovwrap${w<60?" narrow":""}"><div class="ovtrack" style="width:${Math.max(4,w).toFixed(1)}%"><i style="flex:1;background:${OVC.g}"></i></div><span class="ovval" style="${w<60?`left:calc(${Math.max(4,w).toFixed(1)}% + 10px)`:''}"><b>${brl(f.livre)}</b> de excesso sem pedido</span></div></div>`; }).join(''):''}
-   <p class="note">Leitura: o excesso já vendido sai com a carteira; o restante é o caixa que deixa de ficar parado quando o item volta ao máximo (não repor acima da faixa verde). Com o estoque no alvo, o CD fica com ${brl(T.depois)} (hoje ${brl(T.est)}). Usinados não têm preço na base e ficam fora.${T.semp>0?` ${f0(T.semp)} pç sem preço não entram.`:''}</p></div>`;
+   <div class="tw"><table><thead><tr><th>Onde</th><th class="num">Estoque hoje</th><th class="num">Máximo (alvo)</th><th class="num">Acima do máximo</th><th class="num">Já vendido</th><th class="num">Sem pedido</th><th class="num">só material</th><th class="num">Falta fabricar</th></tr></thead><tbody>
+    ${lin('<b>CD</b> · itens do Kanban',a,true,true)}${lin('<b>Usinados</b> · itens do Kanban',b,false,true)}${lin('CD · itens sob pedido (MTO) com saldo',a2,true,false)}${lin('Usinados · itens sob pedido com saldo',b2,false,false)}</tbody></table></div>
+   ${L.length?L.slice(0,8).map(f=>{ const w=f.livre/mx*100; return `<div class="ovbar" title="${esc(f.fam)} — ${brl(f.livre)} acima do máximo sem pedido"><div class="ovbl"><b>${esc(f.fam)}</b><span class="note">a custo</span></div><div class="ovwrap${w<60?" narrow":""}"><div class="ovtrack" style="width:${Math.max(4,w).toFixed(1)}%"><i style="flex:1;background:${OVC.g}"></i></div><span class="ovval" style="${w<60?`left:calc(${Math.max(4,w).toFixed(1)}% + 10px)`:''}"><b>${brl(f.livre)}</b> de excesso sem pedido</span></div></div>`; }).join(''):''}
+   <p class="note">Leitura: o excesso é o valor de estoque que sai do balanço quando o item volta ao máximo (consome e não repõe acima da faixa verde). A parcela de <b>material</b> é o caixa que deixa de ser gasto em compra; a conversão é custo de fábrica já absorvido, que só vira caixa se a hora de máquina ou de pessoa for de fato evitada. O saldo de usinados sob pedido pode estar reservado para pedidos em carteira (a carteira é de produto acabado e não desce a estrutura). Com os supermercados no alvo, os itens do Kanban ficam com ${brl(S('depois'))} (hoje ${brl(S('est'))}). Na aba Comercial o excesso do CD continua a preço de venda.</p></div>`;
 }
 
 /* ---------- Rev11: histórico diário do abastecimento (coleção "historico", um doc por data) ---------- */
@@ -2044,7 +2063,7 @@ function renderOV0(){
   </div>
   ${histPanel()}
   ${pedPanelOV()}
-  ${finPanel(PA)}
+  ${finPanel(PA,US)}
   <div class="panel"><div class="head"><h3>Semáforo dos itens (SKUs)</h3><span class="note">quantos <b>códigos de item (SKUs)</b> estão em cada faixa — contagem de itens, não de peças</span></div>
    ${semaforo("CD · produto acabado",cP)}${semaforo("Usinados · AUS",cU)}${semLegend()}</div>
   <div class="grid2">
@@ -2142,11 +2161,12 @@ function renderList(kind){
       const H2=us?["codigo","descricao","grupo","classe","verde","amarela","vermelha","max","pc_por_cartao","cartoes","estoque","status"]:["codigo","descricao","familia","classe","verde","amarela","vermelha","max","pc_por_cartao","cartoes","end_proposto","estoque","status","carteira"];
       const v2=r=>us?[r.cod,r.desc,r.grp,r.cls,r.V,r.A,r.R,r.M,r.q,r.nk,r.est??"",r.st]:[r.cod,r.desc,r.fam,r.cls,r.V,r.A,r.R,r.M,r.q,r.nk,r.endN,r.est??"",r.st,r.cart];
       saveFile(us?"kanban_usinados_aemco.csv":"kanban_pa_aemco.csv","\ufeff"+[H2.join(";")].concat(rows.map(r=>v2(r).map(v=>typeof v==="number"?nf0.format(v).replace(/\./g,""):String(v??"").replace(/;/g,",")).join(";"))).join("\n")); return; }
-    const H=us?["codigo","descricao","grupo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","canais","estoque","status","processo_externo","origem_classe","classe_modelo","anotacao_kandi"]
-              :["codigo","descricao","familia","subfamilia","tipo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","cap_pos","pos_max","pos_v","pos_a","pos_r","ocup_hoje","end_proposto","pedido_especial_acima_de","preco_medio_venda_nf","estoque","status","carteira","disponivel","fonte_carteira","origem_classe","classe_modelo","anotacao_kandi"];
+    const H=us?["codigo","descricao","grupo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","canais","estoque","status","processo_externo","origem_classe","classe_modelo","anotacao_kandi","custo_material","custo_conversao","excesso_a_custo"]
+              :["codigo","descricao","familia","subfamilia","tipo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","cap_pos","pos_max","pos_v","pos_a","pos_r","ocup_hoje","end_proposto","pedido_especial_acima_de","preco_medio_venda_nf","estoque","status","carteira","disponivel","fonte_carteira","origem_classe","classe_modelo","anotacao_kandi","custo_material","custo_conversao","excesso_a_custo"];
     const val=r=>us?[r.cod,r.desc,r.grp,r.abc,r.xyz,r.cls,r.D,r.fdem,r.Dh,r.cv??"",r.SS,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.canais,r.est??"",r.st,r.ext,r.orig,r.clsm,r.nota]
                    :[r.cod,r.desc,r.fam,r.sub,r.tipo,r.abc,r.xyz,r.cls,r.D,r.fdem,r.Dh,r.cv??"",r.SS,r.LT,r.ep,r.lmin,r.V,r.A,r.R,r.M,r.q,r.nk,r.kv,r.ka,r.kr,r.cap??"",r.pm??"",r.pv??"",r.pa??"",r.pr??"",r.ocup??"",r.endN,r.pg??"",r.preco||"",r.est??"",r.st,r.cart,Math.max(0,(r.est||0)-(r.cart||0)),(STK.meta.cart?"importada":"base "+DATA.dataest),r.orig,r.clsm,r.nota];
-    const txt=[H.join(";")].concat(rows.map(r=>val(r).map(v=>typeof v==="number"?nf2.format(v).replace(/\./g,""):String(v).replace(/;/g,",")).join(";"))).join("\n");
+    const cst=r=>{ const c=custoDe(r.cod); return c?[c.m,c.g,Math.max(0,estReal(r)-r.M)*c.u]:["","",""]; };
+    const txt=[H.join(";")].concat(rows.map(r=>val(r).concat(cst(r)).map(v=>typeof v==="number"?nf2.format(v).replace(/\./g,""):String(v).replace(/;/g,",")).join(";"))).join("\n");
     saveFile(us?"kanban_usinados_aemco.csv":"kanban_pa_aemco.csv","﻿"+txt);
   };
 }
@@ -4263,7 +4283,7 @@ function renderCM(){
   const R=cmRows(), L=cmFilt(R), pa=ultimaImp('pa'), ct=ultimaImp('cart');
   const sum=(A,f)=>A.reduce((s,x)=>s+f(x),0);
   const T={n:L.length,pc:sum(L,x=>x.disp),val:sum(L,x=>x.valor),semp:L.filter(x=>!(x.p>0)).length};
-  const vendR=finAgg(calcPA()).T.vend;   // mesmo número do Painel executivo
+  const vendR=finAgg(calcPA()).T.vend;   // a preço de venda (o Painel executivo mostra a custo)
   const F={}; R.forEach(x=>{ const f=F[x.fam]||(F[x.fam]={fam:x.fam,val:0,n:0,pc:0}); f.val+=x.valor; f.n++; f.pc+=x.disp; });
   const FL=Object.values(F).sort((a,b)=>b.val-a.val);
   const fams=FL.map(f=>f.fam);
