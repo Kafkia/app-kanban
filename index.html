@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev15"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev16"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3466,8 +3466,9 @@ const GMS=DATA.gms||[], ROT=DATA.rot||{};
 function opsDe(cod,p,rota){ const R=ROT[cod]; if(!R) return null; const multi=!!(rota&&rota.length>1), emb=multi&&p===rota[rota.length-1];
   const o=R.filter(x=>!x[4]&&(!multi||(emb?x[3]===1:x[3]!==1))); return o.length?o:null; }
 function gmHoras(code){ const c=((P.gmc||{})[code])||{}; return c.h>0?c.h:P.tod; }
-function gmMaq(code){ const c=((P.gmc||{})[code])||{}; if(c.m>0) return c.m; const i=DATA.cap.findIndex(x=>"GM-"+x[0]+"-A"===code); return i>=0&&P.maq[i]>0?P.maq[i]:null; }
-function gmCap(gi){ const g=GMS[gi]; if(!g) return null; const m=gmMaq(g[0]); return m>0?m*gmHoras(g[0]):null; }
+function gmEf(code){ const c=((P.gmc||{})[code])||{}; return c.e>0?c.e:100; }
+function gmMaq(code){ const c=((P.gmc||{})[code])||{}; if(c.m>0) return c.m; const g=((DATA.gmdef||{})[code])||{}; if(g.m>0) return g.m; const i=DATA.cap.findIndex(x=>"GM-"+x[0]+"-A"===code); return i>=0&&P.maq[i]>0?P.maq[i]:null; }
+function gmCap(gi){ const g=GMS[gi]; if(!g) return null; const m=gmMaq(g[0]); return m>0?m*gmHoras(g[0])*gmEf(g[0])/100:null; }
 function gmSetupMin(o,p){ return o[2]>0?o[2]/60:setupMin(p); }
 function cargaGM(p,dia){ const L={}, vistos=new Set();
   CART.forEach(c=>{ if(!(c.proc===p&&c.dia===dia&&(c.status==="prog"||c.status==="prod"||c.status==="ok"&&c.etDia===dia))) return;
@@ -3480,15 +3481,16 @@ function gmPainel(p,dias,fila){
   if(!set.size) return `<p class="note">Sem roteiro do ERP para os itens deste processo: vale a capacidade do processo acima.</p>`;
   const gs=[...set].sort((a,b)=>String(GMS[a][0]).localeCompare(String(GMS[b][0]))), adm=isAdmin();
   return `<div class="panel"><div class="head"><h3>Carga por grupo de máquina (TOD)</h3><span class="note">tempo de ciclo e setup de cada operação, pelo roteiro do ERP</span></div>
-   <div class="tw"><table><thead><tr><th>Grupo de máquina</th><th class="num">Máquinas</th><th class="num">Horas/dia</th><th class="num">TOD h/dia</th>${dias.map(d=>`<th class="num">${dbr(deYMD(d))}</th>`).join('')}</tr></thead><tbody>
+   <div class="tw"><table><thead><tr><th>Grupo de máquina</th><th class="num">Máquinas</th><th class="num">Horas/dia</th><th class="num">Eficiência %</th><th class="num">TOD real h/dia</th>${dias.map(d=>`<th class="num">${dbr(deYMD(d))}</th>`).join('')}</tr></thead><tbody>
    ${gs.map(gi=>{ const g=GMS[gi], m=gmMaq(g[0]), h=gmHoras(g[0]), cap=gmCap(gi);
      return `<tr><td><b>${esc(g[0])}</b><br><span class="note">${esc(g[1])}</span></td>
       <td class="num">${adm?`<input class="in gm-m" data-g="${esc(g[0])}" type="number" min="0" step="1" style="width:74px" value="${m!=null?m:''}" placeholder="?" aria-label="Máquinas de ${esc(g[0])}">`:(m!=null?f0(m):'não informado')}</td>
       <td class="num">${adm?`<input class="in gm-h" data-g="${esc(g[0])}" type="number" min="1" max="24" step="0.5" style="width:74px" value="${h}" aria-label="Horas por dia de ${esc(g[0])}">`:f1(h)}</td>
+      <td class="num">${adm?`<input class="in gm-e" data-g="${esc(g[0])}" type="number" min="1" max="100" step="1" style="width:74px" value="${gmEf(g[0])}" aria-label="Eficiência de ${esc(g[0])}">`:f0(gmEf(g[0]))}</td>
       <td class="num">${cap!=null?f1(cap):'—'}</td>
       ${Ld.map(L=>{ const x=L[gi]||0, pc=cap?x/cap:null; return `<td class="num" style="${pc!=null&&pc>1?'background:#FBE3E1;font-weight:700':(pc!=null&&pc>0.85?'background:#FFF4CC':'')}">${x?f1(x)+' h':'—'}${pc!=null&&x?`<br><span class="note">${f0(pc*100)}%</span>`:''}</td>`; }).join('')}</tr>`; }).join('')}
    </tbody></table></div>
-   <p class="note">O dia só recebe mais cartões enquanto todos os grupos do roteiro do item couberem no TOD (máquinas × horas/dia). Grupo sem nº de máquinas informado não limita a programação, só mostra a carga. Operações sem setup no ERP usam o “setup por item” do processo. ${adm?'<button class="btn" id="gm-sv">Salvar capacidade dos grupos</button>':''}</p></div>`;
+   <p class="note">O dia só recebe mais cartões enquanto todos os grupos do roteiro do item couberem no TOD real (máquinas × horas/dia × eficiência). Grupo sem nº de máquinas informado não limita a programação, só mostra a carga. Operações sem setup no ERP usam o “setup por item” do processo. ${adm?'<button class="btn" id="gm-sv">Salvar capacidade dos grupos</button>':''}</p></div>`;
 }
 
 /* ---------- armazenamento dos cartões ---------- */
@@ -3706,6 +3708,7 @@ function renderPRG(){
   const gmsv=document.getElementById('gm-sv'); if(gmsv) gmsv.onclick=()=>{ const g=Object.assign({},P.gmc||{});
     document.querySelectorAll('#p-pr .gm-m').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0) g[k].m=v; else delete g[k].m; });
     document.querySelectorAll('#p-pr .gm-h').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0&&v!==P.tod) g[k].h=v; else delete g[k].h; });
+    document.querySelectorAll('#p-pr .gm-e').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0&&v<100) g[k].e=v; else delete g[k].e; });
     P.gmc=g; saveParams(); toast("Capacidade dos grupos de máquina salva"); renderPRG(); };
   const pgsv=document.getElementById('pg-sv'); if(pgsv) pgsv.onclick=()=>{ P.procp=P.procp||{}; P.procp[p]={tc:num('pg-tc'),setup:num('pg-st'),h:num('pg-h'),postos:num('pg-po'),cpd:num('pg-cpd')}; saveParams(); toast("Capacidade de "+p+" salva"); renderPRG(); };
   document.getElementById('pg-ini').onchange=e=>{ PRG.ini=e.target.value; renderPRG(); };
