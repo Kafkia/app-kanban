@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev17"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev18"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1475,6 +1475,47 @@ details.panel>summary{cursor:pointer;padding:2px 0}
 body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9){display:none}
 .pill.s-Fura-fila{background:#5B2A86;color:#fff}
 
+.vtabs{display:flex;gap:10px;margin:8px 0 16px;flex-wrap:wrap}
+.vtabs button{flex:1;min-width:220px;text-align:left;border:2px solid var(--line);background:var(--panel);border-radius:12px;padding:12px 16px;font:700 20px var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+.vtabs button small{display:block;font:400 13px var(--body,inherit);text-transform:none;letter-spacing:0;color:var(--muted)}
+.vtabs button.on{border-color:var(--navy);background:var(--navy);color:#fff}.vtabs button.on small{color:#fff;opacity:.85}
+.apd{margin:18px 0}.apd>summary{cursor:pointer;color:var(--muted);font-size:14px;padding:6px 0}
+.rchip{display:inline-block;margin:2px 3px 2px 0;padding:3px 8px;border-radius:999px;border:1px solid var(--navy);background:var(--navy);color:#fff;font:600 12px var(--mono);cursor:pointer}
+.rchip.off{background:transparent;color:var(--muted);border-color:var(--line);text-decoration:line-through}.rchip.ok{background:var(--kg);border-color:var(--kg)}.rchip:disabled{cursor:default;opacity:.85}
+.wcl{display:flex;flex-wrap:wrap;align-items:center;margin-top:4px}.wcl i{font-style:normal;color:var(--muted);margin:0 3px 0 0}
+.opv{max-width:860px;margin:0 auto}
+.opv-q{font:700 30px var(--display);letter-spacing:.03em;text-transform:uppercase;margin:6px 0 14px}
+.opv-g h4{font:600 14px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px}
+.opv-ms{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.opv-m{border:2px solid var(--line);background:var(--panel);border-radius:14px;padding:14px 12px;text-align:left;cursor:pointer;min-height:96px;color:var(--ink)}
+.opv-m b{display:block;font:700 28px var(--display);letter-spacing:.03em}.opv-m span{display:block;font-size:13px;color:var(--muted);line-height:1.25}
+.opv-m i{display:inline-block;margin-top:6px;font-style:normal;font-size:13px;font-weight:700;color:var(--muted)}
+.opv-m.tem{border-color:var(--navy)}.opv-m.tem i{background:var(--navy);color:#fff;border-radius:999px;padding:2px 10px}
+.opv-top{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--navy);color:#fff;border-radius:14px;padding:14px 18px;margin-bottom:14px}
+.opv-top small{display:block;font-size:12px;letter-spacing:.12em;opacity:.8}.opv-top b{font:700 40px/1 var(--display);letter-spacing:.03em;margin-right:10px}.opv-top span{font-size:15px;opacity:.9}
+.opv-troca{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);border-radius:10px;padding:10px 14px;font:600 14px inherit;cursor:pointer;white-space:nowrap}
+.opv-now{border:5px solid var(--kr);border-radius:18px;background:var(--panel);overflow:hidden;padding-bottom:16px}
+.opv-tag{color:#fff;font:700 22px var(--display);letter-spacing:.06em;padding:10px 18px}.opv-tag small{display:block;font:400 13px var(--body,inherit);letter-spacing:0;opacity:.9;text-transform:none}
+.opv-cod{font:700 clamp(46px,11vw,88px)/1 var(--display);letter-spacing:.02em;padding:14px 18px 0}
+.opv-desc{font-size:18px;color:var(--muted);padding:2px 18px 10px}
+.opv-nums{display:flex;gap:12px;padding:0 18px;flex-wrap:wrap}.opv-nums>div{flex:1;min-width:140px;background:var(--panel2);border-radius:12px;padding:10px 14px}
+.opv-nums b{display:block;font:700 54px/1 var(--display)}.opv-nums span{font-size:16px;color:var(--muted)}
+.opv-op{padding:12px 18px 0;font-size:20px}.opv-op small{display:block;font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:700}
+.opv-wait{margin:12px 18px 0;background:#FFF4CC;border-radius:10px;padding:10px 12px;font-size:16px;color:#5a4500}
+.opv-btn{display:block;width:calc(100% - 36px);margin:16px 18px 0;border:0;border-radius:14px;padding:22px;font:700 34px var(--display);letter-spacing:.06em;color:#fff;cursor:pointer;min-height:84px}
+.opv-btn.ini{background:var(--kg)}.opv-btn.fim{background:var(--kb)}.opv-btn:disabled{opacity:.6}
+.opv-bts{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.opv-troca.esc{color:var(--ink);border-color:var(--line);margin-top:14px}
+.opv-vazio{border:3px dashed var(--line);border-radius:18px;padding:34px 18px;text-align:center}.opv-vazio b{display:block;font:700 30px var(--display);text-transform:uppercase}.opv-vazio span{color:var(--muted);font-size:17px}
+.opv-h{font:700 20px var(--display);letter-spacing:.08em;margin:22px 0 10px}
+.opv-list{display:flex;flex-direction:column;gap:8px}
+.opv-it{display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.opv-it.esp{opacity:.62}
+.opv-n{width:54px;height:54px;border-radius:50%;color:#fff;font:700 28px/54px var(--display);text-align:center}
+.opv-ic b{display:block;font:700 26px/1.1 var(--display)}.opv-ic span{display:block;font-size:14px;color:var(--muted)}.opv-ic small{font-size:12px;color:var(--muted)}
+.opv-ip{text-align:right}.opv-ip b{display:block;font:700 30px/1 var(--display)}.opv-ip span{font-size:13px;color:var(--muted)}
+.opv-is{grid-column:2/4;font-size:14px;font-weight:700;color:var(--muted)}
+
 
 [hidden]{display:none!important}
 #kb-gate{position:fixed;inset:0;z-index:2147483000;background:var(--paper,#F2F4F7);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:max(16px,env(safe-area-inset-top)) 16px 24px}
@@ -1613,7 +1654,9 @@ let PED={linhas:[],meta:null};      // linhas da carteira por pedido: [pedido, c
 let CDALL={itens:null,meta:null};   // estoque do CD de TODOS os códigos (inclui MTO), só para completar pedidos
 let EXPST={};                       // situação da separação por pedido (coleção "expedicao")
 let PREM=null;                      // premissas editadas pelo administrador (doc kanban/premissas)
-function isAdmin(){ if(window.KB&&KB.state) return KB.state.papel==="admin"; return true; }   // arquivo local (sem PIN) = consultor                                                            // Rev11: histórico diário do abastecimento (coleção "historico")
+function isAdmin(){ if(window.KB&&KB.state) return KB.state.papel==="admin"; return true; }
+function isProg(){ if(window.KB&&KB.state) return KB.state.programa===true; return true; }   // Rev18: função Programador
+let PGM=null; try{ PGM=JSON.parse(localStorage.getItem("aemco-kd18-prog")||"null"); }catch(e){}   // parâmetros da programação (doc kanban/prog)   // arquivo local (sem PIN) = consultor                                                            // Rev11: histórico diário do abastecimento (coleção "historico")
 const DT_ISO=(s)=>{ const m=String(s||'').match(/(\d{2})\/(\d{2})\/(\d{4})/); return m?`${m[3]}-${m[2]}-${m[1]}`:null; };
 const fmtDT=(iso,hora)=>{ if(!iso) return '—'; const d=new Date(iso); if(isNaN(d)) return String(iso); return d.toLocaleDateString('pt-BR')+(hora?' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}):''); };
 const quemNome=u=>String(u||'').split(' · ')[0];
@@ -1675,6 +1718,7 @@ async function initCaps(){
   DB.doc("kanban/pedidos").onSnapshot(s=>{ const d=s.exists?s.data():{}; PED={linhas:d.linhas||[],meta:d.meta||null}; if(typeof expReset==="function") expReset(); rerender(); }, ()=>{});
   DB.doc("kanban/estoque_cd").onSnapshot(s=>{ const d=s.exists?s.data():{}; CDALL={itens:d.itens||null,meta:d.meta||null}; if(typeof expReset==="function") expReset(); rerender(); }, ()=>{});
   DB.collection("expedicao").onSnapshot(q=>{ EXPST={}; q.docs.forEach(d=>{ EXPST[d.id]=d.data(); }); if(typeof expReset==="function") expReset(); rerender(); }, ()=>{});
+  DB.doc("kanban/prog").onSnapshot(s=>{ if(s.exists) PGM=s.data(); rerender(); }, ()=>{});
   DB.doc("kanban/premissas").onSnapshot(s=>{ PREM=s.exists&&s.data().itens?s.data():null; rerender(); }, ()=>{});
   DB.doc("kanban/params4").onSnapshot(s=>{ if(s.exists&&s.data().p){ P=Object.assign(clone(DEF),s.data().p); rerender(); } }, ()=>{});
   initFotos(); cartInit();
@@ -2485,7 +2529,7 @@ document.getElementById('cd-corr').onclick=()=>this.corredor();
   document.getElementById('cd-corr').onclick=()=>{ if(CD3.ready) CD3.corredor(); };
 
 /* ---------- Programação (Kanban Digital) ---------- */
-const PR={tipo:"pa",q:"",rec:"",sel:null};
+const PR={tipo:"pa",q:"",rec:"",sel:null,view:""}; try{ PR.view=localStorage.getItem("aemco-kd18-prv")||""; }catch(e){}
 function needs(){
   const cu=capUsinagem(); const out=[];
   const add=(r,tipo)=>{
@@ -2510,8 +2554,12 @@ function renderPR(){
   const el=document.getElementById('p-pr');
   const open=ORD.filter(o=>o.status!=="concluída"), done=ORD.filter(o=>o.status==="concluída").slice(0,30);
   const cols=[["liberada","Liberadas"],["em produção","Em produção"]];
+  if(!isProg()) PR.view="op"; else if(PR.view!=="op"&&PR.view!=="pg") PR.view="pg";
+  const op=PR.view==="op";
   el.innerHTML=`
   <div class="head"><h2>Programação da produção puxada</h2><span class="note">${DB?'Dados compartilhados entre PCP e chão de fábrica':'Modo local: ordens e apontamentos ficam só nesta tela'}</span></div>
+  <div class="vtabs"><button data-view="op" class="${op?'on':''}"><span>▶</span> Operação<small>o que fazer agora em cada máquina</small></button>${isProg()?`<button data-view="pg" class="${op?'':'on'}"><span>🗓</span> Programador<small>fila, capacidade e sequência</small></button>`:''}</div>
+  ${op?'<div id="opv"></div><details class="apd"><summary>Apontar estoque (contagem manual)</summary>':''}
   <div class="grid2">
    <div class="panel"><h3>1 · Apontar estoque</h3>
     <div class="filters">
@@ -2524,14 +2572,15 @@ function renderPR(){
      <textarea id="ap-bulk" rows="5" style="width:100%;margin-top:6px" placeholder="CODIGO;QTD&#10;ex.: 1234;420"></textarea>
      <button class="btn" id="ap-bulk-go" style="margin-top:6px">Gravar inventário</button></details>
    </div>
-   <div class="panel"><h3>Como a programação funciona</h3>
+   ${op?'':`<div class="panel"><h3>Como a programação funciona</h3>
     <p class="note">1. O consumo baixa o estoque e <b>libera cartões</b> (máximo − estoque, em contêineres inteiros), que caem na fila do primeiro processo da rota do item.<br>
     2. Escolha o processo (P1 a P8), confira a capacidade e <b>programe os cartões por dia</b> — manualmente ou com “Programar fila automaticamente” (ordem: fura-fila, MTO, vermelho, amarelo; o verde fica formando lote e só entra quando o estoque chega na faixa amarela).<br>
-    3. No chão de fábrica: <b>Iniciar</b> e <b>Concluir</b>. Concluir na última etapa dá entrada no supermercado; nas etapas intermediárias o cartão segue para a fila do processo seguinte.</p>
+    3. No chão de fábrica, na tela <b>Operação</b>: cada máquina vê a sua sequência e aperta <b>Comecei</b> e <b>Terminei</b>. Concluir na última etapa dá entrada no supermercado; nas etapas intermediárias o cartão segue para a fila do processo seguinte.</p>
     <p class="note">Rotas (as mesmas dos Quadros Kanban): terminais do CD → P7 Pintura → P8 Embalagem · cardans → P6 Montagem → P8 · juntas, CTV’s e demais do CD → P8 · tubos e barras → P2 · proteções → P4 · cruzetas compradas → P5 · demais comprados → P1 · usinados: terminais em processo e embreagens → P3, metades de cardan → P6.</p>
-   </div>
+   </div>`}
   </div>
-  <div class="head"><h2>2 · Programação digital dos cartões por processo</h2><span class="note">${DB?'Compartilhada entre PCP e chão de fábrica':'Modo local: fica só neste navegador'}</span></div>
+  ${op?'</details>':''}
+  ${op?'':`<div class="head"><h2>2 · Programação digital dos cartões por processo</h2><span class="note">${DB?'Compartilhada entre PCP e chão de fábrica':'Modo local: fica só neste navegador'}</span></div>
   <div id="prg"></div>
   ${expProgPanel()}
   ${ORD.length?`  <div class="head"><h2>4 · Ordens avulsas (modelo anterior)</h2><span class="note">${f0(open.length)} abertas</span></div>
@@ -2542,7 +2591,8 @@ function renderPR(){
       <div class="acts">${st==="liberada"?`<button class="btn" data-a="start" data-id="${o.id}">Iniciar</button>`:`<button class="btn pri" data-a="done" data-id="${o.id}">Concluir e dar entrada</button>`}<button class="btn" data-a="del" data-id="${o.id}">Cancelar</button></div></div>`).join('')||'<span class="note">Nada aqui.</span>'}</div>`).join('')}
    <div class="col"><h3>Concluídas (últimas)</h3>${done.map(o=>`<div class="card" style="border-left-color:var(--kg)"><div class="t"><span>${esc(o.cod)}</span><span style="font-family:var(--mono)">${f0(o.qtd)} pç</span></div><span class="note">${esc(o.recurso)} · ${o.concl?new Date(o.concl).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'}):''}</span></div>`).join('')||'<span class="note">Nada aqui.</span>'}
     ${done.length?'<button class="btn" id="pr-clean">Apagar concluídas com mais de 30 dias</button>':''}</div>
-  </div>`:''}`;
+  </div>`:''}`}`;
+  el.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{ PR.view=b.dataset.view; try{ localStorage.setItem("aemco-kd18-prv",PR.view); }catch(e){} renderPR(); });
   const tipoSel=document.getElementById('ap-tipo'); tipoSel.value=PR.tipo;
   const fillList=()=>{ const src=PR.tipo==="pa"?DATA.pa:DATA.us; document.getElementById('ap-list').innerHTML=src.slice(0,1500).map(x=>`<option value="${esc(x[0])}">`).join(''); };
   fillList();
@@ -2552,7 +2602,7 @@ function renderPR(){
   document.getElementById('ap-bulk-go').onclick=async()=>{ const lines=document.getElementById('ap-bulk').value.split(/\n/).map(l=>l.split(/[;\t,]/)).filter(p=>p.length>=2&&p[0].trim()); const src=new Set((PR.tipo==="pa"?DATA.pa:DATA.us).map(x=>x[0])); const ch={}; let bad=0; lines.forEach(([c,q])=>{ c=c.trim(); const v=parseFloat(String(q).replace(/\./g,'').replace(',','.')); if(src.has(c)&&!isNaN(v)) ch[c]=v; else bad++; }); if(!Object.keys(ch).length){ toast("Nenhuma linha válida: use código;quantidade"); return; } if(await writeStock(PR.tipo,ch)) toast(`${Object.keys(ch).length} itens gravados${bad?` · ${bad} linhas ignoradas`:''}`); };
   el.querySelectorAll('button[data-a]').forEach(b=>b.onclick=()=>ordAction(b.dataset.a,b.dataset.id));
   const cl=document.getElementById('pr-clean'); if(cl) cl.onclick=cleanOld;
-  renderPRG(); expProgBind();
+  if(op) renderOPV(); else { renderPRG(); expProgBind(); }
 }
 function showItem(){
   const box=document.getElementById('ap-item'); if(!box) return;
@@ -3454,7 +3504,7 @@ const PROC_DEF={                                    // capacidade padrão por pr
 const PROC_PRG=["P1","P2","P3","P4","P5","P6","P7","P8"];
 const procB=id=>(DATA.boards||[]).find(b=>b.id===id)||{id,nome:id,setup:"",papel:"",cday:0,lnome:[]};
 const procNome=id=>String(procB(id).nome||id||'').replace(/\s*★.*$/,'').trim();
-function procCfg(id){ const c=Object.assign({},PROC_DEF[id]||{},((P.procp||{})[id])||{}); return c; }
+function procCfg(id){ const c=Object.assign({},PROC_DEF[id]||{},((prgP().procp)[id])||{}); return c; }
 /* rota de fabricação do item (sequência de processos que o cartão percorre) */
 function rotaOf(r){
   const p0=r.k==="us"?procOfUS(r):procOfPA(r);       // mesmo processo dos Quadros Kanban
@@ -3485,10 +3535,10 @@ const cartDia=p=>{ const c=procCfg(p); if(c.cpd>0) return c.cpd; return Math.max
 const GMS=DATA.gms||[], ROT=DATA.rot||{};
 function opsDe(cod,p,rota){ const R=ROT[cod]; if(!R) return null; const multi=!!(rota&&rota.length>1), emb=multi&&p===rota[rota.length-1];
   const o=R.filter(x=>!x[4]&&(!multi||(emb?x[3]===1:x[3]!==1))); return o.length?o:null; }
-function gmHoras(code){ const c=((P.gmc||{})[code])||{}; return c.h>0?c.h:P.tod; }
-function gmEf(code){ const c=((P.gmc||{})[code])||{}; return c.e>0?c.e:100; }
-function gmMaq(code){ const c=((P.gmc||{})[code])||{}; if(c.m>0) return c.m; const g=((DATA.gmdef||{})[code])||{}; if(g.m>0) return g.m; const i=DATA.cap.findIndex(x=>"GM-"+x[0]+"-A"===code); return i>=0&&P.maq[i]>0?P.maq[i]:null; }
-function gmCap(gi){ const g=GMS[gi]; if(!g) return null; const m=gmMaq(g[0]); return m>0?m*gmHoras(g[0])*gmEf(g[0])/100:null; }
+function gmHoras(code){ const c=((prgP().gmc)[code])||{}; return c.h>0?c.h:P.tod; }
+function gmEf(code){ const c=((prgP().gmc)[code])||{}; return c.e>0?c.e:100; }
+function gmMaq(code){ if(!recDe(code,true).length) return null; return recDe(code).length; }   // Rev18: nº de máquinas = centros de trabalho ativos do grupo
+function gmCap(gi){ const g=GMS[gi]; if(!g) return null; const m=gmMaq(g[0]); return m==null?null:m*gmHoras(g[0])*gmEf(g[0])/100; }
 function gmSetupMin(o,p){ return o[2]>0?o[2]/60:setupMin(p); }
 function cargaGM(p,dia){ const L={}, vistos=new Set();
   CART.forEach(c=>{ if(!(c.proc===p&&c.dia===dia&&(c.status==="prog"||c.status==="prod"||c.status==="ok"&&c.etDia===dia))) return;
@@ -3499,18 +3549,159 @@ function gmPainel(p,dias,fila){
   const set=new Set(); fila.forEach(f=>{ const o=opsDe(f.cod,p,f.rota); if(o) o.forEach(x=>set.add(x[0])); });
   const Ld=dias.map(d=>cargaGM(p,d)); Ld.forEach(L=>Object.keys(L).forEach(k=>set.add(+k)));
   if(!set.size) return `<p class="note">Sem roteiro do ERP para os itens deste processo: vale a capacidade do processo acima.</p>`;
-  const gs=[...set].sort((a,b)=>String(GMS[a][0]).localeCompare(String(GMS[b][0]))), adm=isAdmin();
-  return `<div class="panel"><div class="head"><h3>Carga por grupo de máquina (TOD)</h3><span class="note">tempo de ciclo e setup de cada operação, pelo roteiro do ERP</span></div>
-   <div class="tw"><table><thead><tr><th>Grupo de máquina</th><th class="num">Máquinas</th><th class="num">Horas/dia</th><th class="num">Eficiência %</th><th class="num">TOD real h/dia</th>${dias.map(d=>`<th class="num">${dbr(deYMD(d))}</th>`).join('')}</tr></thead><tbody>
-   ${gs.map(gi=>{ const g=GMS[gi], m=gmMaq(g[0]), h=gmHoras(g[0]), cap=gmCap(gi);
+  const gs=[...set].sort((a,b)=>String(GMS[a][0]).localeCompare(String(GMS[b][0]))), adm=isProg(), off=prgP().off;
+  return `<div class="panel"><div class="head"><h3>Máquinas e carga por dia (TOD)</h3><span class="note">recursos do cadastro de centros de trabalho · tempo de ciclo e setup do roteiro do ERP</span></div>
+   <div class="tw"><table><thead><tr><th>Grupo de máquina</th><th>Máquinas (clique para ligar ou desligar)</th><th class="num">Horas/dia</th><th class="num">Eficiência %</th><th class="num">TOD real h/dia</th>${dias.map(d=>`<th class="num">${dbr(deYMD(d))}</th>`).join('')}</tr></thead><tbody>
+   ${gs.map(gi=>{ const g=GMS[gi], h=gmHoras(g[0]), cap=gmCap(gi), rs=recDe(g[0],true);
      return `<tr><td><b>${esc(g[0])}</b><br><span class="note">${esc(g[1])}</span></td>
-      <td class="num">${adm?`<input class="in gm-m" data-g="${esc(g[0])}" type="number" min="0" step="1" style="width:74px" value="${m!=null?m:''}" placeholder="?" aria-label="Máquinas de ${esc(g[0])}">`:(m!=null?f0(m):'não informado')}</td>
+      <td>${rs.length?rs.map(r=>`<button type="button" class="rchip${off[r[0]]?' off':''}" data-rec="${esc(r[0])}" title="${esc(r[1])}${off[r[0]]?' — desligada':''}" ${adm?'':'disabled'}>${esc(r[0])}</button>`).join(''):'<span class="note">sem máquina no cadastro — não limita</span>'}</td>
       <td class="num">${adm?`<input class="in gm-h" data-g="${esc(g[0])}" type="number" min="1" max="24" step="0.5" style="width:74px" value="${h}" aria-label="Horas por dia de ${esc(g[0])}">`:f1(h)}</td>
       <td class="num">${adm?`<input class="in gm-e" data-g="${esc(g[0])}" type="number" min="1" max="100" step="1" style="width:74px" value="${gmEf(g[0])}" aria-label="Eficiência de ${esc(g[0])}">`:f0(gmEf(g[0]))}</td>
       <td class="num">${cap!=null?f1(cap):'—'}</td>
       ${Ld.map(L=>{ const x=L[gi]||0, pc=cap?x/cap:null; return `<td class="num" style="${pc!=null&&pc>1?'background:#FBE3E1;font-weight:700':(pc!=null&&pc>0.85?'background:#FFF4CC':'')}">${x?f1(x)+' h':'—'}${pc!=null&&x?`<br><span class="note">${f0(pc*100)}%</span>`:''}</td>`; }).join('')}</tr>`; }).join('')}
    </tbody></table></div>
-   <p class="note">O dia só recebe mais cartões enquanto todos os grupos do roteiro do item couberem no TOD real (máquinas × horas/dia × eficiência). Grupo sem nº de máquinas informado não limita a programação, só mostra a carga. Operações sem setup no ERP usam o “setup por item” do processo. ${adm?'<button class="btn" id="gm-sv">Salvar capacidade dos grupos</button>':''}</p></div>`;
+   <p class="note">O dia só recebe mais cartões enquanto todos os grupos do roteiro do item couberem no TOD real (máquinas ligadas × horas/dia × eficiência). Cada lote é mandado para a máquina menos carregada do grupo; a Operação vê a sequência por máquina. Operações sem setup no ERP usam o “setup por item” do processo. ${adm?'<button class="btn" id="gm-sv">Salvar horas e eficiência</button>':'Só o Programador altera.'}</p></div>`;
+}
+
+/* ---------- Rev18: recursos (centros de trabalho), parâmetros da programação e máquina de cada lote ---------- */
+const REC=DATA.rec||[], OPSN=DATA.ops||[];
+function prgP(){ const b=PGM||{}; return {procp:b.procp||P.procp||{}, gmc:b.gmc||P.gmc||{}, off:b.off||{}}; }
+async function savePrg(patch){
+  if(!isProg()){ toast("Somente o Programador altera a programação"); return false; }
+  PGM=Object.assign({},prgP(),patch,{t:new Date().toISOString(),u:UID||""}); try{ localStorage.setItem("aemco-kd18-prog",JSON.stringify(PGM)); }catch(e){}
+  return await writeDoc("kanban/prog",PGM);
+}
+function recDe(gm,todos){ const off=prgP().off; return REC.filter(r=>r[2]===gm&&(todos||!off[r[0]])); }
+function recNome(w){ const r=REC.find(x=>x[0]===w); return r?r[1]:""; }
+function wcCarga(p,dia){ const L={}; CART.forEach(c=>{ if(c.proc!==p||c.dia!==dia||c.status==="ok"||!c.wc) return; const ops=opsDe(c.cod,p,c.rota); if(!ops) return; c.wc.forEach((w,i)=>{ if(w&&ops[i]) L[w]=(L[w]||0)+c.q*ops[i][1]/3600; }); }); return L; }
+function wcEscolhe(p,dia,tipo,cod,rota,q){
+  const ops=opsDe(cod,p,rota); if(!ops) return null;
+  const irm=CART.filter(c=>c.proc===p&&c.dia===dia&&c.tipo===tipo&&c.cod===cod&&c.status!=="ok"&&c.wc&&c.wc.length===ops.length);
+  const ult=irm.length?irm[irm.length-1].wc:null, L=wcCarga(p,dia);
+  return ops.map((o,i)=>{ const g=GMS[o[0]][0], rs=recDe(g); if(!rs.length) return null;
+    const cap=gmHoras(g)*gmEf(g)/100, t=(q||0)*o[1]/3600, w0=ult&&ult[i];
+    if(w0&&rs.some(r=>r[0]===w0)&&(L[w0]||0)+t<=cap+1e-6) return w0;     // o lote do item segue na mesma máquina (um setup só) enquanto couber no dia dela
+    let best=rs[0][0]; rs.forEach(r=>{ if((L[r[0]]||0)<(L[best]||0)) best=r[0]; }); return best; });   // senão, a máquina menos carregada do grupo
+}
+function opIni(wc){ if(!wc) return 0; const i=wc.findIndex(w=>w); return i<0?wc.length:i; }
+function wcFaltam(){ return CART.filter(c=>(c.status==="prog"||c.status==="prod")&&c.dia&&!c.wc&&opsDe(c.cod,c.proc,c.rota)).length; }
+async function wcDistribuir(){
+  if(!isProg()){ toast("Somente o Programador distribui os lotes nas máquinas"); return; }
+  let n=0; for(const c of CART){ if((c.status==="prog"||c.status==="prod")&&c.dia&&!c.wc){ const wc=wcEscolhe(c.proc,c.dia,c.tipo,c.cod,c.rota,c.q); if(wc){ await cartUpd(c.id,{wc,op:opIni(wc),opn:null}); c.wc=wc; c.op=opIni(wc); n++; } } }
+  toast(n+" cartão(ões) distribuído(s) nas máquinas"); renderPRG();
+}
+/* máquina desligada: o que ainda não começou nela passa para a máquina menos carregada do mesmo grupo */
+async function wcRealoca(k){
+  const r=REC.find(x=>x[0]===k); if(!r) return 0; const rs=recDe(r[2]); if(!rs.length) return -1; let n=0; const dest={};
+  for(const c of CART){ if((c.status!=="prog"&&c.status!=="prod")||!c.wc||!c.dia) continue; const f=c.op||0, wc=c.wc.slice(); let ch=false;
+    wc.forEach((w,i)=>{ if(w!==k||i<f||(c.status==="prod"&&c.opn===i)) return; const key=[c.proc,c.dia,c.tipo,c.cod,i].join("|");
+      if(!dest[key]){ const L=wcCarga(c.proc,c.dia); let best=rs[0][0]; rs.forEach(x=>{ if((L[x[0]]||0)<(L[best]||0)) best=x[0]; }); dest[key]=best; }
+      wc[i]=dest[key]; ch=true; });
+    if(ch){ await cartUpd(c.id,{wc}); c.wc=wc; n++; } }
+  return n;
+}
+async function grupoMaq(p,dia,tipo,cod,i){
+  if(!isProg()){ toast("Somente o Programador troca a máquina"); return; }
+  const cs=CART.filter(c=>c.proc===p&&c.dia===dia&&c.tipo===tipo&&c.cod===cod&&c.status!=="ok"); if(!cs.length) return;
+  const ops=opsDe(cod,p,cs[0].rota); if(!ops||!ops[i]) return; const rs=recDe(GMS[ops[i][0]][0]);
+  if(rs.length<2){ toast("Só há uma máquina ligada neste grupo"); return; }
+  const cur=cs[0].wc&&cs[0].wc[i], j=rs.findIndex(r=>r[0]===cur), nw=rs[(j+1)%rs.length][0];
+  for(const c of cs){ const wc=(c.wc&&c.wc.length===ops.length?c.wc:ops.map(()=>null)).slice(); wc[i]=nw; await cartUpd(c.id,{wc}); c.wc=wc; }
+  toast(`${cod}: operação ${i+1} agora na ${nw}`); renderPRG();
+}
+/* conclui os cartões na etapa: segue para o próximo processo ou dá entrada no supermercado */
+async function concluirCartoes(cs,p,dia,tipo,cod){
+  let ent=0; const prox0=cs[0].rota[(cs[0].et||0)+1];
+  for(const c of cs){
+    const prox=c.rota[(c.et||0)+1];
+    if(prox) await cartUpd(c.id,{status:"fila",proc:prox,et:(c.et||0)+1,dia:"",seq:0,wc:null,op:0,opn:null,["fim_"+p]:new Date().toISOString()});
+    else { await cartUpd(c.id,{status:"ok",concl:new Date().toISOString(),etDia:dia}); ent+=c.q; }
+  }
+  if(ent>0){ const rows=tipo==="pa"?calcPA():calcUS(); const r=rows.find(x=>x.cod===cod); const base=r&&r.est!=null?r.est:0;
+    await writeStock(tipo,{[cod]:base+ent}); toast(`${cod}: entrada de ${f0(ent)} pç no supermercado`); }
+  else toast(`${cod}: ${cs.length} cartão(ões) seguem para ${prox0?procNome(prox0):'a próxima etapa'}`);
+}
+
+/* ---------- Rev18: tela da OPERAÇÃO — a sequência de cada máquina ---------- */
+const OPV={w:null}; try{ OPV.w=localStorage.getItem("aemco-kd18-maq")||null; }catch(e){}
+const OPPR=p=>p===0?{c:"#5B2A86",t:"FURA-FILA",s:"pedido urgente"}:p===0.5?{c:"#5B2A86",t:"PEDIDO",s:"sob encomenda"}:p===1?{c:"var(--kr)",t:"URGENTE",s:"estoque no vermelho"}:p===2?{c:"#C98A00",t:"NORMAL",s:"estoque no amarelo"}:{c:"var(--kg)",t:"PODE ESPERAR",s:"estoque no verde"};
+const temMaq=c=>!!(c.wc&&c.wc.some(Boolean));
+function opLotesProc(p){      // lotes de um processo que não têm máquina no cadastro (ou ainda não foram distribuídos)
+  const m={};
+  CART.forEach(c=>{ if((c.status!=="prog"&&c.status!=="prod")||!c.dia||c.proc!==p||temMaq(c)) return; const key=[c.dia,c.proc,c.tipo,c.cod,0].join("|");
+    const g=m[key]||(m[key]={key,dia:c.dia,proc:c.proc,tipo:c.tipo,cod:c.cod,desc:c.desc,i:0,q:c.q,prio:c.prio==null?2:c.prio,seq:c.seq||0,cs:[],opn:procNome(p),tm:c.tc||0,sem:true});
+    g.cs.push(c); g.prio=Math.min(g.prio,c.prio==null?2:c.prio); g.seq=Math.min(g.seq,c.seq||0); });
+  return Object.values(m).map(g=>{ g.lib=g.cs; g.esp=[]; g.faz=g.cs.filter(c=>c.status==="prod"); const c0=g.cs[0], prox=c0.rota[(c0.et||0)+1];
+    g.dep=prox?{w:procNome(prox),n:"próxima etapa"}:{w:g.tipo==="pa"?"CD":"Supermercado de usinados",n:"guardar no endereço do item"}; g.ant=null; return g; })
+    .sort((a,b)=>(b.faz.length?1:0)-(a.faz.length?1:0)||(a.dia<b.dia?-1:a.dia>b.dia?1:0)||(a.prio-b.prio)||(a.seq-b.seq));
+}
+function opvNome(W){ return W&&W[0]==="@"?[W.slice(1),procNome(W.slice(1))+" — sem máquina definida"]:[W,recNome(W)]; }
+function opLotes(W){
+  if(W&&W[0]==="@") return opLotesProc(W.slice(1));
+  const m={};
+  CART.forEach(c=>{ if((c.status!=="prog"&&c.status!=="prod")||!c.wc||!c.dia) return; const ops=opsDe(c.cod,c.proc,c.rota); if(!ops||ops.length!==c.wc.length) return; const feito=c.op||0;
+    c.wc.forEach((w,i)=>{ if(w!==W||feito>i) return; const key=[c.dia,c.proc,c.tipo,c.cod,i].join("|");
+      const g=m[key]||(m[key]={key,dia:c.dia,proc:c.proc,tipo:c.tipo,cod:c.cod,desc:c.desc,i,q:c.q,prio:c.prio==null?2:c.prio,seq:c.seq||0,cs:[],opn:OPSN[ops[i][5]]||"",tm:ops[i][1]});
+      g.cs.push(c); g.prio=Math.min(g.prio,c.prio==null?2:c.prio); g.seq=Math.min(g.seq,c.seq||0); }); });
+  return Object.values(m).map(g=>{ g.lib=g.cs.filter(c=>(c.op||0)===g.i); g.esp=g.cs.filter(c=>(c.op||0)<g.i); g.faz=g.lib.filter(c=>c.status==="prod"&&c.opn===g.i);
+    const c0=g.cs[0]; let nx=g.i+1; while(nx<c0.wc.length&&!c0.wc[nx]) nx++;
+    const prox=c0.rota[(c0.et||0)+1];
+    g.dep=nx<c0.wc.length?{w:c0.wc[nx],n:recNome(c0.wc[nx])}:(prox?{w:procNome(prox),n:"próxima etapa"}:{w:g.tipo==="pa"?"CD":"Supermercado de usinados",n:"guardar no endereço do item"});
+    let pv=g.i-1; while(pv>=0&&!c0.wc[pv]) pv--; g.ant=pv>=0?c0.wc[pv]:null;
+    return g; }).sort((a,b)=>(b.faz.length?1:0)-(a.faz.length?1:0)||(b.lib.length?1:0)-(a.lib.length?1:0)||(a.dia<b.dia?-1:a.dia>b.dia?1:0)||(a.prio-b.prio)||(a.seq-b.seq));   // primeiro o que está fazendo, depois o que já pode fazer; o que ainda não chegou fica no fim
+}
+function opvDia(d){ const h=ymd(opHoje()); if(d===h) return "HOJE"; if(d<h) return "ATRASADO · "+dbr(deYMD(d)); const am=new Date(opHoje()); am.setDate(am.getDate()+1); if(d===ymd(am)) return "AMANHÃ"; return DIASEM[deYMD(d).getDay()].toUpperCase()+" "+dbr(deYMD(d)); }
+async function opAcao(a,W,key){
+  if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return; }
+  const g=opLotes(W).find(x=>x.key===key); if(!g||!g.lib.length) return; const now=new Date().toISOString();
+  if(a==="ini"){ for(const c of g.lib){ await cartUpd(c.id,{status:"prod",opn:g.i,inicio:c.inicio||now}); c.status="prod"; c.opn=g.i; } toast(`${g.cod}: começou na ${opvNome(W)[0]}`); }
+  if(a==="fim"&&g.sem) await concluirCartoes(g.lib.slice(),g.proc,g.dia,g.tipo,g.cod);
+  else if(a==="fim"){ const fim=[];
+    for(const c of g.lib){ const n=c.wc.length; let nx=g.i+1; while(nx<n&&!c.wc[nx]) nx++;
+      if(nx<n){ await cartUpd(c.id,{op:nx,opn:null,status:"prod"}); c.op=nx; c.opn=null; c.status="prod"; } else fim.push(c); }
+    if(fim.length){ await concluirCartoes(fim,g.proc,g.dia,g.tipo,g.cod); fim.forEach(c=>{ c.op=c.wc.length; }); }
+    else toast(`${g.cod}: pronto na ${opvNome(W)[0]} — leve para ${g.dep.w}`); }
+  renderOPV();
+}
+function opvSync(){ const b=document.getElementById('opv-sync'); if(b) b.onclick=async()=>{ b.disabled=true; b.textContent='Atualizando…'; try{ await KB.syncNow(); }catch(e){} renderOPV(); }; }
+function renderOPV(){
+  const box=document.getElementById('opv'); if(!box) return;
+  const cont={}; CART.forEach(c=>{ if((c.status!=="prog"&&c.status!=="prod")||!c.dia) return; if(!temMaq(c)){ (cont["@"+c.proc]=cont["@"+c.proc]||new Set()).add([c.dia,c.tipo,c.cod].join("|")); return; } const f=c.op||0; c.wc.forEach((w,i)=>{ if(w&&i>=f) (cont[w]=cont[w]||new Set()).add([c.dia,c.tipo,c.cod,i].join("|")); }); });
+  if(!OPV.w||!(REC.some(r=>r[0]===OPV.w)||/^@P\d+$/.test(OPV.w))){
+    const tile=r=>{ const n=cont[r[0]]?cont[r[0]].size:0; return `<button type="button" class="opv-m${n?' tem':''}" data-maq="${esc(r[0])}"><b>${esc(r[0])}</b><span>${esc(r[1])}</span><i>${n?n+(n>1?' lotes':' lote'):'livre'}</i></button>`; };
+    const ord=(a,b)=>a[0].localeCompare(b[0]), com=REC.filter(r=>cont[r[0]]).sort(ord), sem=REC.filter(r=>!cont[r[0]]).sort(ord);
+    const prc=Object.keys(cont).filter(k=>k[0]==="@").sort().map(k=>[k,procNome(k.slice(1))]);
+    box.innerHTML=`<div class="opv"><div class="opv-q">Qual é a sua máquina?</div>
+     ${com.length?`<div class="opv-g"><h4>Máquinas com serviço programado</h4><div class="opv-ms">${com.map(tile).join('')}</div></div>`:prc.length?'':`<div class="opv-vazio"><b>Nada programado</b><span>O Programador ainda não mandou lotes para as máquinas.</span></div>`}
+     ${prc.length?`<div class="opv-g"><h4>Lotes sem máquina definida — escolha o processo</h4><div class="opv-ms">${prc.map(r=>`<button type="button" class="opv-m tem" data-maq="${esc(r[0])}"><b>${esc(r[0].slice(1))}</b><span>${esc(r[1])}</span><i>${cont[r[0]].size+(cont[r[0]].size>1?' lotes':' lote')}</i></button>`).join('')}</div></div>`:''}
+     ${sem.length?`<details class="apd"><summary>Outras máquinas (${sem.length}) — sem serviço agora</summary><div class="opv-ms">${sem.map(tile).join('')}</div></details>`:''}
+     ${window.KB?'<button type="button" class="opv-troca esc" id="opv-sync">🔄 Atualizar</button>':''}
+     ${wcFaltam()?`<p class="note">${wcFaltam()} cartão(ões) programado(s) ainda sem máquina — o Programador precisa distribuir.</p>`:''}</div>`;
+    opvSync();
+    box.querySelectorAll('[data-maq]').forEach(b=>b.onclick=()=>{ OPV.w=b.dataset.maq; try{ localStorage.setItem("aemco-kd18-maq",OPV.w); }catch(e){} renderOPV(); });
+    return;
+  }
+  const W=OPV.w, L=opLotes(W), ag=L.find(g=>g.lib.length), resto=L.filter(g=>g!==ag);
+  const pcs=g=>g.lib.reduce((s,c)=>s+c.q,0), cx=g=>g.lib.length;
+  box.innerHTML=`<div class="opv">
+   <div class="opv-top"><div><small>${W[0]==="@"?'PROCESSO':'MÁQUINA'}</small><b>${esc(opvNome(W)[0])}</b><span>${esc(opvNome(W)[1])}</span></div><span class="opv-bts">${window.KB?'<button type="button" class="opv-troca" id="opv-sync">🔄 Atualizar</button>':''}<button type="button" class="opv-troca" id="opv-troca">Trocar máquina</button></span></div>
+   ${ag?(()=>{ const pr=OPPR(ag.prio), fz=ag.faz.length>0, esp=ag.esp.reduce((s,c)=>s+c.q,0);
+     return `<div class="opv-now" style="border-color:${pr.c}">
+      <div class="opv-tag" style="background:${pr.c}">${fz?'FAZENDO AGORA':'FAÇA AGORA'} · ${pr.t}<small>${pr.s} · ${opvDia(ag.dia)}</small></div>
+      <div class="opv-cod">${esc(ag.cod)}</div><div class="opv-desc">${esc(ag.desc||'')}</div>
+      <div class="opv-nums"><div><b>${f0(pcs(ag))}</b><span>peças</span></div>${ag.q>1?`<div><b>${f0(cx(ag))}</b><span>${cx(ag)>1?'caixas':'caixa'} de ${f0(ag.q)} peças</span></div>`:''}</div>
+      <div class="opv-op"><small>O QUE FAZER</small>${esc(ag.opn||'Operação '+(ag.i+1))}</div>
+      <div class="opv-op"><small>DEPOIS LEVE PARA</small><b>${esc(ag.dep.w)}</b> ${esc(ag.dep.n||'')}</div>
+      ${esp?`<div class="opv-wait">⏳ mais ${f0(esp)} peças deste item ainda vão chegar da ${esc(ag.ant||'etapa anterior')}</div>`:''}
+      <button type="button" class="opv-btn ${fz?'fim':'ini'}" data-opa="${fz?'fim':'ini'}" data-key="${esc(ag.key)}">${fz?'✔ TERMINEI':'▶ COMECEI'}</button></div>`; })()
+     :`<div class="opv-vazio"><b>${L.length?'Aguardando peças':'Nada para fazer agora'}</b><span>${L.length?'Os próximos lotes ainda estão na máquina anterior.':'Não há lote programado para esta máquina.'}</span></div>`}
+   ${resto.length?`<h3 class="opv-h">DEPOIS, NESTA ORDEM</h3><div class="opv-list">${resto.slice(0,14).map((g,n)=>{ const pr=OPPR(g.prio), lib=g.lib.length>0, pc=g.cs.reduce((s,c)=>s+c.q,0);
+     return `<div class="opv-it${lib?'':' esp'}"><div class="opv-n" style="background:${pr.c}">${n+2}</div><div class="opv-ic"><b>${esc(g.cod)}</b><span>${esc(String(g.desc||'').slice(0,46))}</span><small>${opvDia(g.dia)} · ${esc(g.opn||'')}</small></div>
+      <div class="opv-ip"><b>${f0(pc)}</b><span>peças</span></div>${lib?'':`<div class="opv-is">⏳ falta chegar da ${esc(g.ant||'etapa anterior')}</div>`}</div>`; }).join('')}</div>${resto.length>14?`<p class="note">e mais ${resto.length-14} lote(s).</p>`:''}`:''}
+   </div>`;
+  opvSync();
+  document.getElementById('opv-troca').onclick=()=>{ OPV.w=null; try{ localStorage.removeItem("aemco-kd18-maq"); }catch(e){} renderOPV(); };
+  box.querySelectorAll('[data-opa]').forEach(b=>b.onclick=async()=>{ b.disabled=true; await opAcao(b.dataset.opa,W,b.dataset.key); });
 }
 
 /* ---------- armazenamento dos cartões ---------- */
@@ -3588,13 +3779,14 @@ function capOk(p,dia,tc,q,cod,tipo,rota){
   const ops=opsDe(cod,p,rota);      // Rev15: com roteiro do ERP, quem limita é o TOD de cada grupo de máquina do roteiro
   if(ops){ const L=cargaGM(p,dia); let lim=false;
     const add={}; ops.forEach(o=>{ add[o[0]]=(add[o[0]]||0)+q*o[1]/3600+(temItem?0:gmSetupMin(o,p)/60); });
-    for(const gi in add){ const cap=gmCap(+gi); if(cap==null) continue; lim=true; const cur=L[gi]||0; if(cur>0&&cur+add[gi]>cap+1e-6) return false; }
+    for(const gi in add){ const cap=gmCap(+gi); if(cap==null) continue; lim=true; const cur=L[gi]||0; if(cap<=0||(cur>0&&cur+add[gi]>cap+1e-6)) return false; }
     if(lim) return true; }
   if(tc>0){ const add=q*tc/3600+(temItem?0:setupMin(p)/60); return c.h+add<=horasDia(p)+1e-6 || c.n===0; }
   return c.n<cartDia(p);
 }
 /* programa n cartões de um item da fila */
 async function programar(p,f,n,diaFixo){
+  if(!isProg()){ toast("Somente o Programador programa os cartões"); return 0; }
   if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return 0; }
   const dias=prgDias(); let feitos=0; const now=new Date().toISOString();
   let ids=f.virt?null:f.ids.slice();
@@ -3603,14 +3795,16 @@ async function programar(p,f,n,diaFixo){
     if(!dia){ dia=dias.find(d=>capOk(p,d,f.tc,f.q,f.cod,f.tipo,f.rota)); if(!dia) break; }
     const seq=Math.max(0,...CART.filter(c=>c.proc===p&&c.dia===dia).map(c=>c.seq||0))+1;
     if(f.virt){
-      const o={tipo:f.tipo,cod:f.cod,desc:f.desc,q:f.q,rota:f.rota,et:0,proc:p,status:"prog",dia,seq,prio:f.prio,ped:f.ped?1:0,tc:f.tc||null,criado:now,por:UID||""};
+      const wc=wcEscolhe(p,dia,f.tipo,f.cod,f.rota,f.q);
+      const o={tipo:f.tipo,cod:f.cod,desc:f.desc,q:f.q,rota:f.rota,et:0,proc:p,status:"prog",dia,seq,prio:f.prio,ped:f.ped?1:0,tc:f.tc||null,criado:now,por:UID||"",wc,op:opIni(wc)};
       if(!await cartAdd(o)) break;
       if(!DB) {}                                     // local: CART já atualizado
       else CART.push(Object.assign({id:"tmp"+i+Math.random()},o));   // reflete já para o cálculo de capacidade
     } else {
       const id=ids.shift(); if(!id) break;
-      await cartUpd(id,{status:"prog",dia,seq,tc:f.tc||null});
-      const c=CART.find(x=>x.id===id); if(c){ c.status="prog"; c.dia=dia; c.seq=seq; c.tc=f.tc||null; }
+      const wc=wcEscolhe(p,dia,f.tipo,f.cod,f.rota,f.q);
+      await cartUpd(id,{status:"prog",dia,seq,tc:f.tc||null,wc,op:opIni(wc),opn:null});
+      const c=CART.find(x=>x.id===id); if(c){ c.status="prog"; c.dia=dia; c.seq=seq; c.tc=f.tc||null; c.wc=wc; c.op=opIni(wc); c.opn=null; }
     }
     feitos++;
   }
@@ -3625,23 +3819,14 @@ async function programarAuto(p){
 }
 /* ações nos cartões de um item num dia */
 async function grupoAcao(a,p,dia,tipo,cod){
+  if(!isProg()){ toast("Somente o Programador mexe na programação"); return; }
   if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return; }
   const cs=CART.filter(c=>c.proc===p&&c.dia===dia&&c.tipo===tipo&&c.cod===cod&&c.status!=="ok");
   if(!cs.length) return;
   const dias=prgDias(), i=dias.indexOf(dia);
   if(a==="ini"){ for(const c of cs) if(c.status==="prog") await cartUpd(c.id,{status:"prod",inicio:new Date().toISOString()}); toast(`${cod}: em produção`); }
-  if(a==="ok"){
-    let ent=0; const prox0=cs[0].rota[(cs[0].et||0)+1];
-    for(const c of cs){
-      const prox=c.rota[(c.et||0)+1];
-      if(prox) await cartUpd(c.id,{status:"fila",proc:prox,et:(c.et||0)+1,dia:"",seq:0,["fim_"+p]:new Date().toISOString()});
-      else { await cartUpd(c.id,{status:"ok",concl:new Date().toISOString(),etDia:dia}); ent+=c.q; }
-    }
-    if(ent>0){ const rows=tipo==="pa"?calcPA():calcUS(); const r=rows.find(x=>x.cod===cod); const base=r&&r.est!=null?r.est:0;
-      await writeStock(tipo,{[cod]:base+ent}); toast(`${cod}: entrada de ${f0(ent)} pç no supermercado`); }
-    else toast(`${cod}: ${cs.length} cartão(ões) seguem para ${prox0?procNome(prox0):'a próxima etapa'}`);
-  }
-  if(a==="volta"){ for(const c of cs){ if((c.et||0)===0) await cartDel(c.id); else await cartUpd(c.id,{status:"fila",dia:"",seq:0}); } toast(`${cod}: cartões voltaram para a fila`); }
+  if(a==="ok") await concluirCartoes(cs,p,dia,tipo,cod);
+  if(a==="volta"){ for(const c of cs){ if((c.et||0)===0) await cartDel(c.id); else await cartUpd(c.id,{status:"fila",dia:"",seq:0,wc:null,op:0,opn:null}); } toast(`${cod}: cartões voltaram para a fila`); }
   if(a==="prox"||a==="ant"){ const nd=dias[i+(a==="prox"?1:-1)]; if(!nd){ toast("Fora do horizonte: mude a data de início"); return; }
     for(const c of cs) if(c.status==="prog") await cartUpd(c.id,{dia:nd}); }
   if(a==="sobe"||a==="desce"){
@@ -3682,7 +3867,7 @@ function renderPRG(){
     <label class="f" for="pg-h">Horas/dia<input class="in" id="pg-h" type="number" min="1" max="24" step="0.5" value="${cfg.h>0?cfg.h:P.tod}"></label>
     <label class="f" for="pg-po">Postos<input class="in" id="pg-po" type="number" min="1" step="1" value="${postosDe(p)}"></label>
     <label class="f" for="pg-cpd">Cartões/dia (sem TC)<input class="in" id="pg-cpd" type="number" min="1" step="1" value="${cartDia(p)}"></label>
-    ${isAdmin()?'<button class="btn" id="pg-sv">Salvar capacidade</button>':'<span class="note">Capacidade dos processos: só o administrador altera.</span>'}
+    ${isProg()?'<button class="btn" id="pg-sv">Salvar capacidade</button>':'<span class="note">Capacidade dos processos: só o Programador altera.</span>'}
    </div>
    <p class="note">Capacidade: <b>${f1(horasDia(p))} h/dia</b>${p==="P3"&&!(cfg.tc>0)?` · referência: gargalo ${esc(garg3().g)} (${esc(garg3().d)}), ${garg3().m} máquinas, TC ${f1(garg3().t)} s/pç — a CFU fica fora da restrição, como na aba Capacidade`:''}${p==="P7"?` · campanha de cor: ${P.trocas} trocas × ${P.setp} min por dia`:''} · TC em uso: ${esc(tcTxt)}. ${tcTxt==="não informado"?'Sem TC, o limite do dia é por número de cartões.':''} Setup é contado uma vez por item por dia.</p>
   </div>
@@ -3694,6 +3879,7 @@ function renderPRG(){
    <button class="btn pri" id="pg-auto" ${fila.some(f=>f.prio<3)?'':'disabled'}>Programar fila automaticamente</button>
    <button class="btn" id="pg-csv">Excel (CSV)</button><button class="btn" id="pg-pdf">Imprimir / PDF</button>
   </div>
+  ${wcFaltam()?`<p class="note" style="color:var(--kr)"><b>${wcFaltam()} cartão(ões) programado(s) sem máquina.</b> <button class="btn pri" id="wc-dist">Distribuir nas máquinas</button></p>`:''}
   <div class="board" style="grid-template-columns:minmax(260px,1.1fr) repeat(${dias.length},minmax(220px,1fr));overflow-x:auto;display:grid">
    <div class="col"><h3>Fila · ${f0(nfTot)} cartões</h3>
     <p class="note" style="margin:0">Liberados pelo consumo (máximo − estoque, em contêineres). Vermelho primeiro.${semDado?` ${f0(semDado)} itens sem estoque apontado não entram.`:''}</p>
@@ -3715,6 +3901,7 @@ function renderPRG(){
         return `<div class="card" style="border-left-color:${nO&&!nP&&!nE?'var(--kg)':nE?'var(--kb)':x.prio<1?'#5B2A86':x.prio===1?'var(--kr)':'var(--ky)'};${nO&&!nP&&!nE?'opacity:.6':''}">
          <div class="t"><span>${esc(x.cod)}</span><span style="font-family:var(--mono)">${x.cs.length} × ${f0(x.q)}</span></div>
          <span class="note">${nP?nP+' programado(s) ':''}${nE?'<b>'+nE+' em produção</b> ':''}${nO?nO+' concluído(s)':''}${x.tc?` · ${f1(x.cs.length*x.q*x.tc/3600)} h`:''}</span>
+         ${(()=>{ const ws=x.cs.filter(c=>c.status!=="ok"&&c.wc); if(!ws.length) return (nP||nE)&&opsDe(x.cod,p,x.cs[0].rota)?'<span class="note" style="color:var(--kr)">sem máquina — use “Distribuir nas máquinas”</span>':''; const c0=ws[0], fe=Math.min(...ws.map(c=>c.op||0)); return `<div class="wcl">${c0.wc.map((w,i)=>{ if(!w) return ''; const us=[...new Set(ws.map(c=>c.wc[i]).filter(Boolean))]; return `<button type="button" class="rchip${fe>i?' ok':''}" data-gm="${i}" ${a} title="${esc(us.map(u=>u+' '+recNome(u)).join(' · '))} — clique para trocar a máquina">${esc(us.join('+'))}</button>`; }).filter(Boolean).join('<i>→</i>')}</div>`; })()}
          ${nP||nE?`<div class="acts">
           <button class="btn" data-ga="sobe" ${a} title="Antes">▲</button><button class="btn" data-ga="desce" ${a} title="Depois">▼</button>
           ${nP?`<button class="btn" data-ga="ant" ${a} title="Dia anterior">◀</button><button class="btn" data-ga="prox" ${a} title="Próximo dia">▶</button><button class="btn" data-ga="ini" ${a}>Iniciar</button>`:''}
@@ -3724,13 +3911,16 @@ function renderPRG(){
   <p class="note">Concluir na última etapa da rota dá entrada no supermercado (estoque + peças do cartão). Nas etapas intermediárias, o cartão vai para a fila do processo seguinte — por exemplo, terminais pintados (P7) seguem para a Embalagem (P8).</p>`;
   box.querySelectorAll('[data-proc]').forEach(b=>b.onclick=()=>{ PRG.p=b.dataset.proc; try{ localStorage.setItem("aemco-kd8-prgp",PRG.p); }catch(e){} renderPRG(); });
   const num=id=>{ const v=parseFloat(document.getElementById(id).value); return isNaN(v)?null:v; };
-  if(!isAdmin()) ['pg-tc','pg-st','pg-h','pg-po','pg-cpd'].forEach(i=>{ const e=document.getElementById(i); if(e) e.disabled=true; });
-  const gmsv=document.getElementById('gm-sv'); if(gmsv) gmsv.onclick=()=>{ const g=Object.assign({},P.gmc||{});
-    document.querySelectorAll('#p-pr .gm-m').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0) g[k].m=v; else delete g[k].m; });
-    document.querySelectorAll('#p-pr .gm-h').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0&&v!==P.tod) g[k].h=v; else delete g[k].h; });
+  if(!isProg()) ['pg-tc','pg-st','pg-h','pg-po','pg-cpd'].forEach(i=>{ const e=document.getElementById(i); if(e) e.disabled=true; });
+  const gmsv=document.getElementById('gm-sv'); if(gmsv) gmsv.onclick=async()=>{ const g=Object.assign({},prgP().gmc);
+    document.querySelectorAll('#p-pr .gm-h').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); delete g[k].m; if(v>0&&v!==P.tod) g[k].h=v; else delete g[k].h; });
     document.querySelectorAll('#p-pr .gm-e').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0&&v<100) g[k].e=v; else delete g[k].e; });
-    P.gmc=g; saveParams(); toast("Capacidade dos grupos de máquina salva"); renderPRG(); };
-  const pgsv=document.getElementById('pg-sv'); if(pgsv) pgsv.onclick=()=>{ P.procp=P.procp||{}; P.procp[p]={tc:num('pg-tc'),setup:num('pg-st'),h:num('pg-h'),postos:num('pg-po'),cpd:num('pg-cpd')}; saveParams(); toast("Capacidade de "+p+" salva"); renderPRG(); };
+    if(await savePrg({gmc:g})) toast("Horas e eficiência das máquinas salvas"); renderPRG(); };
+  box.querySelectorAll('[data-rec]').forEach(b=>b.onclick=async()=>{ const off=Object.assign({},prgP().off), k=b.dataset.rec; if(off[k]) delete off[k]; else off[k]=1;
+    if(await savePrg({off})){ if(off[k]){ const n=await wcRealoca(k); toast(n<0?k+" desligada — é a única do grupo: os lotes dela ficam parados":k+" desligada"+(n>0?" · "+n+" cartão(ões) passaram para outra máquina do grupo":"")); } else toast(k+" ligada"); } renderPRG(); });
+  box.querySelectorAll('[data-gm]').forEach(b=>b.onclick=()=>grupoMaq(p,b.dataset.d,b.dataset.t,b.dataset.c,+b.dataset.gm));
+  const wd=document.getElementById('wc-dist'); if(wd) wd.onclick=wcDistribuir;
+  const pgsv=document.getElementById('pg-sv'); if(pgsv) pgsv.onclick=async()=>{ const pp=Object.assign({},prgP().procp); pp[p]={tc:num('pg-tc'),setup:num('pg-st'),h:num('pg-h'),postos:num('pg-po'),cpd:num('pg-cpd')}; if(await savePrg({procp:pp})) toast("Capacidade de "+p+" salva"); renderPRG(); };
   document.getElementById('pg-ini').onchange=e=>{ PRG.ini=e.target.value; renderPRG(); };
   document.getElementById('pg-d').onchange=e=>{ PRG.dias=+e.target.value; renderPRG(); };
   document.getElementById('pg-sab').onchange=e=>{ PRG.sab=e.target.checked; renderPRG(); };
@@ -4631,7 +4821,7 @@ async function rpc(fn, body){
 
 /* ---------------- estado ---------------- */
 const ST = {
-  pin: LS.get("kb-pin") || null, nome: LS.get("kb-nome") || "", papel: LS.get("kb-papel") || "", cadastra: LS.get("kb-cad") === "1",
+  pin: LS.get("kb-pin") || null, nome: LS.get("kb-nome") || "", papel: LS.get("kb-papel") || "", cadastra: LS.get("kb-cad") === "1", programa: LS.get("kb-prg") === "1",
   since: LS.get("kb-since") || null, master: null,
   docs: {}, out: [], online: navigator.onLine, last: null, erro: "", syncing: false, bkDir: null, bkMsg: ""
 };
@@ -4665,7 +4855,7 @@ async function askPin(msg){
       try{
         const r = await rpc("kb_login", { p_pin: pin });
         if (r && (r.papel === "admin" || r.papel === "equipe")){
-          ST.pin = pin; ST.nome = r.nome; ST.papel = r.papel; ST.cadastra = !!r.cadastra;
+          ST.pin = pin; ST.nome = r.nome; ST.papel = r.papel; ST.cadastra = !!r.cadastra; ST.programa = !!r.programa; LS.set("kb-prg", r.programa ? "1" : "0");
           LS.set("kb-pin", pin); LS.set("kb-nome", r.nome); LS.set("kb-papel", r.papel); LS.set("kb-cad", r.cadastra ? "1" : "0");
           res(true);
         } else {
@@ -4704,7 +4894,7 @@ function askSetup(){
       $("kb-ok").disabled = true; $("kb-msg").textContent = "Gravando…";
       try{
         const r = await rpc("kb_instalar", { p_codigo: cod, p_nome: nome, p_pin: p });
-        if (r && r.ok){ ST.pin = p; ST.nome = r.nome; ST.papel = "admin"; LS.set("kb-pin", p); LS.set("kb-nome", r.nome); LS.set("kb-papel", "admin"); res(true); return; }
+        if (r && r.ok){ ST.pin = p; ST.nome = r.nome; ST.papel = "admin"; ST.programa = true; LS.set("kb-prg", "1"); LS.set("kb-pin", p); LS.set("kb-nome", r.nome); LS.set("kb-papel", "admin"); res(true); return; }
         msg(r && r.erro === "bloqueado" ? "Muitas tentativas erradas. Aguarde 15 minutos." : r && r.erro === "pin" ? "Código de instalação incorreto." : "Não gravou: " + escH(r && r.erro));
       }catch(err){ msg("Sem conexão com a base online."); }
       $("kb-ok").disabled = false;
@@ -4859,7 +5049,7 @@ async function syncNow(){
         if (pend.has(d.p)) continue;                      // alteração local ainda não enviada: vale a local
         ST.docs[d.p] = { d: d.d, x: d.x, t: d.t }; notify(d.p);
       }
-      ST.since = r.agora; if (r.papel && r.papel !== ST.papel){ ST.papel = r.papel; LS.set("kb-papel", r.papel); } if (r.nome && r.nome !== ST.nome){ ST.nome = r.nome; LS.set("kb-nome", r.nome); } if (typeof r.cadastra === "boolean" && r.cadastra !== ST.cadastra){ ST.cadastra = r.cadastra; LS.set("kb-cad", r.cadastra ? "1" : "0"); }
+      ST.since = r.agora; if (r.papel && r.papel !== ST.papel){ ST.papel = r.papel; LS.set("kb-papel", r.papel); } if (r.nome && r.nome !== ST.nome){ ST.nome = r.nome; LS.set("kb-nome", r.nome); } if (typeof r.cadastra === "boolean" && r.cadastra !== ST.cadastra){ ST.cadastra = r.cadastra; LS.set("kb-cad", r.cadastra ? "1" : "0"); } if (typeof r.programa === "boolean" && r.programa !== ST.programa){ ST.programa = r.programa; LS.set("kb-prg", r.programa ? "1" : "0"); notify("kanban/prog"); }
       persist(); ST.last = new Date(); ST.online = true; ST.pronto = true;
       bkAuto();
     }
@@ -4955,15 +5145,16 @@ async function usersPanel(msg){
     <p class="kb-sub">Só quem está nesta lista abre o app. Cada pessoa tem o próprio PIN (6 a 12 números) e o nome dela fica gravado no que apontar.</p>
     ${msg ? `<p class="kb-msg"><b>${escH(msg)}</b></p>` : ""}
     ${!adm ? `<p class="kb-sub"><b>Você pode incluir novos integrantes</b> (perfil equipe). Trocar PIN, mudar perfil ou remover alguém continua só com o administrador.</p>` : ""}
-    ${lista.map(u => `<div class="kb-kv"><span>${escH(u.nome)}${u.nome === ST.nome ? " (você)" : ""}</span><b>${u.papel === "admin" ? "administrador" : "equipe" + (u.cadastra ? " · inclui pessoas" : "")}
+    ${lista.map(u => `<div class="kb-kv"><span>${escH(u.nome)}${u.nome === ST.nome ? " (você)" : ""}</span><b>${u.papel === "admin" ? "administrador" : "equipe" + (u.cadastra ? " · inclui pessoas" : "")}${u.programa ? " · programador" : ""}
       ${adm ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:6px" data-ed="${escH(u.nome)}" data-pp="${u.papel}">PIN</button>
       ${u.papel !== "admin" ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-cd="${escH(u.nome)}" data-on="${u.cadastra ? 0 : 1}">${u.cadastra ? "Tirar inclusão" : "Pode incluir"}</button>` : ""}
+      <button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-pg="${escH(u.nome)}" data-on="${u.programa ? 0 : 1}">${u.programa ? "Tirar programação" : "Programador"}</button>
       ${u.nome !== ST.nome ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-rm="${escH(u.nome)}">Remover</button>` : ""}` : ""}</b></div>`).join("")}
     <h3>${adm ? "Cadastrar ou trocar PIN" : "Incluir novo integrante"}</h3>
     ${falta.length ? `<div class="kb-row">${falta.map(n => `<button class="kb-btn alt" style="padding:4px 10px" data-sg="${escH(n)}">+ ${escH(n)}</button>`).join("")}</div>` : ""}
     <label>Nome<input id="kb-un" autocomplete="off" placeholder="Nome e sobrenome"></label>
     <label>PIN (6 a 12 números)<input id="kb-up" inputmode="numeric" autocomplete="off" placeholder="digite ou clique em Gerar"></label>
-    <label${adm ? "" : " hidden"}>Acesso<select id="kb-ur"><option value="equipe">Equipe — aponta estoque, programa e conclui cartões</option>${adm ? '<option value="admin">Administrador — também publica base e gerencia PINs</option>' : ""}</select></label>
+    <label${adm ? "" : " hidden"}>Acesso<select id="kb-ur"><option value="equipe">Equipe — aponta estoque e registra a produção (programar é só do Programador)</option>${adm ? '<option value="admin">Administrador — também publica base e gerencia PINs</option>' : ""}</select></label>
     <div class="kb-row"><button class="kb-btn alt" id="kb-ug">Gerar PIN</button><button class="kb-btn" id="kb-us2">Salvar</button><button class="kb-btn alt" id="kb-back">Voltar</button></div>
     <p class="kb-msg" id="kb-msg"></p>
     <p class="kb-sub">Anote o PIN e entregue pessoalmente. Depois de salvo, ele não aparece mais — se a pessoa esquecer, gere outro.</p>`);
@@ -4971,6 +5162,11 @@ async function usersPanel(msg){
   document.querySelectorAll("[data-sg]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.sg; $("kb-ur").value = "equipe"; $("kb-up").focus(); });
   document.querySelectorAll("[data-ed]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.ed; $("kb-ur").value = b.dataset.pp; $("kb-up").value = ""; $("kb-up").focus(); });
   $("kb-ug").onclick = () => { $("kb-up").value = pinRand(); };
+  document.querySelectorAll("[data-pg]").forEach(b => b.onclick = async () => {
+    try{ const r = await rpc("kb_usuario_programa", { p_pin: ST.pin, p_nome: b.dataset.pg, p_on: b.dataset.on === "1" }); if (r && r.erro){ $("kb-msg").innerHTML = '<b class="kb-err">' + errTxt(r.erro) + '</b>'; return; }
+      if (b.dataset.pg === ST.nome){ ST.programa = b.dataset.on === "1"; LS.set("kb-prg", ST.programa ? "1" : "0"); }
+      usersPanel(b.dataset.pg + (b.dataset.on === "1" ? " agora é Programador: programa os cartões e muda a capacidade." : " não programa mais.")); }
+    catch(e){ $("kb-msg").innerHTML = '<b class="kb-err">Sem conexão com a base online.</b>'; } });
   document.querySelectorAll("[data-cd]").forEach(b => b.onclick = async () => {
     try{ const r = await rpc("kb_usuario_cadastra", { p_pin: ST.pin, p_nome: b.dataset.cd, p_on: b.dataset.on === "1" }); if (r && r.erro){ $("kb-msg").innerHTML = '<b class="kb-err">' + errTxt(r.erro) + '</b>'; return; }
       usersPanel(b.dataset.cd + (b.dataset.on === "1" ? " agora pode incluir novos integrantes." : " não inclui mais integrantes.")); }
