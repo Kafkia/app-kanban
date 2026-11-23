@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev22"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev23"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2040,11 +2040,11 @@ function famChart(lab,L,unid){
 function excPanel7(lab,L,unid,cd){
   const R=L.filter(o=>o.exc>0).sort((a,b)=>b.exc-a.exc), T=L.reduce((t,o)=>{['n','alvo','est','exc','excK','excM','vend'].forEach(k=>t[k]+=o[k]); return t;},{n:0,alvo:0,est:0,exc:0,excK:0,excM:0,vend:0});
   return `<div class="panel"><div class="head"><h3>${lab}</h3><span class="note">${f0(T.exc)} pç acima do máximo</span></div>
-   ${R.length?`<div class="tw"><table><thead><tr><th>Família</th><th class="num">Máximo</th><th class="num">Acima nos kanban</th><th class="num">Em itens ${cd?'MTO':'fora'}</th><th class="num">Acima total</th><th class="num">% do estoque</th>${cd?'<th class="num">Já vendido</th><th class="num">Livre p/ retirar</th>':''}</tr></thead><tbody>
+   ${R.length?`<div class="tw"><table><thead><tr><th>Família</th><th class="num">Máximo</th><th class="num">Acima nos kanban</th><th class="num">Em itens ${cd?'MTO':'fora'}</th><th class="num">Acima total</th><th class="num">% do estoque</th>${cd?(cd==='us'?'<th class="num">Com pedido</th><th class="num">Sem pedido</th>':'<th class="num">Já vendido</th><th class="num">Livre p/ retirar</th>'):''}</tr></thead><tbody>
    ${R.map(o=>`<tr><td>${esc(o.fam)}</td><td class="num">${f0(o.alvo)}</td><td class="num">${f0(o.excK)}</td><td class="num">${f0(o.excM)}</td><td class="num"><b>${f0(o.exc)}</b></td><td class="num">${pctE(o.exc,o.est)}</td>${cd?`<td class="num">${f0(o.vend)}</td><td class="num"><b>${f0(o.exc-o.vend)}</b></td>`:''}</tr>`).join('')}
    <tr style="font-weight:700;background:var(--panel2)"><td>Total</td><td class="num">${f0(T.alvo)}</td><td class="num">${f0(T.excK)}</td><td class="num">${f0(T.excM)}</td><td class="num">${f0(T.exc)}</td><td class="num">${pctE(T.exc,T.est)}</td>${cd?`<td class="num">${f0(T.vend)}</td><td class="num">${f0(T.exc-T.vend)}</td>`:''}</tr>
    </tbody></table></div>`:'<p class="note">Nenhuma família acima do máximo.</p>'}
-   <p class="note">O kanban não repõe o que está acima do máximo: essas peças saem pelo consumo e não voltam.${cd?' “Já vendido” = parte do excesso coberta pela carteira em aberto de 01/10/2026 — sai com os pedidos e não precisa ser retirada.':''}</p></div>`;
+   <p class="note">O kanban não repõe o que está acima do máximo: essas peças saem pelo consumo e não voltam.${cd==='us'?' “Com pedido” = parte do excesso que a carteira de produto acabado vai consumir (o que o CD não cobre, descido pela estrutura). Usinado não vai para venda: o “sem pedido” é para parar de fabricar até baixar.':(cd?' “Já vendido” = parte do excesso coberta pela carteira em aberto — sai com os pedidos e não precisa ser retirada.':'')}</p></div>`;
 }
 
 /* ---------- Painel executivo (Rev08b): leitura direta, sem jargão ---------- */
@@ -2058,7 +2058,7 @@ function donut(p,cor,lab){
    <text x="70" y="70" text-anchor="middle" font-family="var(--display)" font-size="34" font-weight="700" fill="var(--ink)">${f0(v)}%</text>
    <text x="70" y="90" text-anchor="middle" font-size="12" fill="var(--muted)">abastecido</text></svg>`;
 }
-function saudeCard(titulo,sub,T,nVerm,unid){
+function saudeCard(titulo,sub,T,nVerm,unid,vlab){
   const p=T.alvo?T.util/T.alvo*100:0, s=saude(p);
   const frase=p>=80?'O supermercado está bem abastecido.':(p>=50?'Parte importante do supermercado ainda precisa ser fabricada.':'Menos da metade do supermercado está abastecida — prioridade alta.');
   return `<div class="panel ovcard" style="border-top:5px solid ${s.c}">
@@ -2067,7 +2067,7 @@ function saudeCard(titulo,sub,T,nVerm,unid){
     <div class="ovnums">
      <div><span class="ovdot" style="background:${OVC.g}"></span><b>${f0(T.util)} pç</b> abastecidas <small>de ${f0(T.alvo)} pç que o supermercado deve ter</small></div>
      <div><span class="ovdot" style="background:${OVC.r}"></span><b>${f0(T.falta)} pç</b> faltam fabricar <small>${f0(nVerm)} ${unid} na faixa vermelha</small></div>
-     <div><span class="ovdot" style="background:${OVC.b}"></span><b>${f0(T.exc)} pç</b> sobrando acima do máximo <small>${pctE(T.exc,T.est)} do estoque atual${T.vend?` · ${f0(T.vend)} pç já vendidas`:''}</small></div>
+     <div><span class="ovdot" style="background:${OVC.b}"></span><b>${f0(T.exc)} pç</b> sobrando acima do máximo <small>${pctE(T.exc,T.est)} do estoque atual${T.vend?` · ${f0(T.vend)} pç ${vlab||'já vendidas'}`:''}</small></div>
     </div></div>
    <p class="note">${sub} ${frase}</p></div>`;
 }
@@ -2097,14 +2097,14 @@ function famBars(lab,L,dica){
 function excBars(lab,L,cd){
   const R=L.filter(o=>o.exc>0).sort((a,b)=>b.exc-a.exc);
   if(!R.length) return `<div class="panel"><h3>${lab}</h3><p class="note">Nada acima do máximo.</p></div>`;
-  const mx=Math.max(1,...R.map(o=>o.exc)), tot=R.reduce((s,o)=>s+o.exc,0), vend=R.reduce((s,o)=>s+o.vend,0);
-  return `<div class="panel"><div class="head"><h3>${lab}</h3><span class="note">${f0(tot)} pç sobrando${cd?` · ${f0(vend)} já vendidas`:''}</span></div>
+  const mx=Math.max(1,...R.map(o=>o.exc)), tot=R.reduce((s,o)=>s+o.exc,0), vend=R.reduce((s,o)=>s+o.vend,0), vl=cd==="us"?"com pedido":"já vendidas";
+  return `<div class="panel"><div class="head"><h3>${lab}</h3><span class="note">${f0(tot)} pç sobrando${cd?` · ${f0(vend)} ${vl}`:''}</span></div>
    ${R.map(o=>{ const w=o.exc/mx*100, v=cd?Math.min(o.vend,o.exc):0;
-     return `<div class="ovbar" title="${esc(o.fam)} — ${f0(o.exc)} pç acima do máximo (${pctE(o.exc,o.est)} do estoque)${cd?` · ${f0(v)} pç já vendidas na carteira`:''}">
+     return `<div class="ovbar" title="${esc(o.fam)} — ${f0(o.exc)} pç acima do máximo (${pctE(o.exc,o.est)} do estoque)${cd?` · ${f0(v)} pç ${vl}${cd==="us"?" (carteira de PA descida pela estrutura)":" na carteira"}`:''}">
       <div class="ovbl"><b>${esc(o.fam)}</b><span class="note">${pctE(o.exc,o.est)} do estoque da família</span></div>
       <div class="ovwrap${w<60?" narrow":""}"><div class="ovtrack" style="width:${Math.max(4,w).toFixed(1)}%">${cd&&v?`<i style="width:${(v/o.exc*100).toFixed(1)}%;background:var(--kb-soft);box-shadow:inset 0 0 0 2px ${OVC.b}"></i>`:''}<i style="flex:1;background:${OVC.b}"></i></div>
-       <span class="ovval" style="${w<60?`left:calc(${Math.max(4,w).toFixed(1)}% + 10px)`:''}"><b>${f0(o.exc)}</b> pç acima do máximo${cd&&v?` · <b>${f0(v)}</b> já vendidas`:''}</span></div></div>`; }).join('')}
-   <div class="ovleg"><span><i style="background:${OVC.b}"></i>acima do máximo — sai com o consumo, não repor</span>${cd?`<span><i style="background:var(--kb-soft);box-shadow:inset 0 0 0 2px ${OVC.b}"></i>já vendido (carteira em aberto)</span>`:''}</div></div>`;
+       <span class="ovval" style="${w<60?`left:calc(${Math.max(4,w).toFixed(1)}% + 10px)`:''}"><b>${f0(o.exc)}</b> pç acima do máximo${cd&&v?` · <b>${f0(v)}</b> ${vl}`:''}</span></div></div>`; }).join('')}
+   <div class="ovleg"><span><i style="background:${OVC.b}"></i>acima do máximo — sai com o consumo, não repor</span>${cd?`<span><i style="background:var(--kb-soft);box-shadow:inset 0 0 0 2px ${OVC.b}"></i>${cd==="us"?"com pedido (carteira de PA descida pela estrutura — não vai para venda)":"já vendido (carteira em aberto)"}</span>`:''}</div></div>`;
 }
 function riscoList(lab,rows){
   const L=rows.filter(r=>r.st==="Vermelho"&&r.M>0).map(r=>({r,f:Math.max(0,r.M-estReal(r))})).sort((a,b)=>b.f-a.f).slice(0,8);
@@ -2134,7 +2134,7 @@ function finCusto(rows,comCarteira){
   const T={est:0,alvo:0,falta:0,exc:0,excm:0,vend:0,semp:0,nsem:0,n:0,ant:0}, F={};
   rows.forEach(r=>{ const e=estReal(r), M=r.M>0?r.M:0; if(M<=0&&e<=0) return; const c=custoDe(r.cod), ex=Math.max(0,e-M);
     if(!c){ T.semp+=ex; T.nsem++; return; }
-    const v=comCarteira?Math.min(ex,r.cart||0):0; T.n++; if(!/01\/10\/2026/.test(c.f)) T.ant++;
+    const v=comCarteira?Math.min(ex,r.cart||0):0; T.n++; if(!/Cadastro/.test(c.f)) T.ant++;
     T.est+=e*c.u; T.alvo+=M*c.u; T.falta+=Math.max(0,M-e)*c.u; T.exc+=ex*c.u; T.excm+=(ex-v)*c.m; T.vend+=v*c.u;
     const k=r.fam||r.grp||"—", f=F[k]||(F[k]={fam:k,livre:0}); f.livre+=(ex-v)*c.u; });
   T.livre=T.exc-T.vend; T.depois=T.est-T.exc+T.falta;
@@ -2143,25 +2143,25 @@ function finCusto(rows,comCarteira){
 function finPanel(PA,US){
   US=US||[];
   const kb=r=>r.M>0&&(r.k!=="us"||r.manter);                      // item com faixa no Kanban
-  const A1=finCusto(PA.filter(kb),true), A2=finCusto(PA.filter(r=>!kb(r)),true), B1=finCusto(US.filter(kb),false), B2=finCusto(US.filter(r=>!kb(r)),false);
+  const A1=finCusto(PA.filter(kb),true), A2=finCusto(PA.filter(r=>!kb(r)),true), B1=finCusto(US.filter(kb),true), B2=finCusto(US.filter(r=>!kb(r)),true);   // Rev23: usinados com a carteira descida pela estrutura
   const a=A1.T, a2=A2.T, b=B1.T, b2=B2.T, S=k=>a[k]+b[k], Sall=k=>a[k]+b[k]+a2[k]+b2[k];
   const L=A1.L.map(f=>({fam:"CD · "+f.fam,livre:f.livre})).concat(B1.L.map(f=>({fam:"Usinados · "+f.fam,livre:f.livre}))).sort((x,y)=>y.livre-x.livre), mx=Math.max(1,...L.map(f=>f.livre));
   const pa=ultimaImp('pa'), us=ultimaImp('us');
   const lin=(nome,t,cart,alvo)=>`<tr><td>${nome}</td><td class="num">${brl(t.est)}</td><td class="num">${alvo?brl(t.alvo):'—'}</td><td class="num">${brl(t.exc)}</td><td class="num">${cart?brl(t.vend):'—'}</td><td class="num"><b>${brl(t.livre)}</b></td><td class="num">${brl(t.excm)}</td><td class="num">${alvo?brl(t.falta):'—'}</td></tr>`;
   return `<div class="panel" style="border-top:5px solid var(--ky)"><div class="head"><h3>Resumo financeiro · CD e Usinados <span class="tag" style="background:var(--ky);color:#15223B">A CUSTO</span></h3><span class="note">estoque do CD ${pa?'importado em '+fmtDT(pa.t):'da posição de '+esc(DATA.dataest)} · Usinados ${us?'importado em '+fmtDT(us.t):'da posição de '+esc(DATA.dataest)}</span></div>
-   <p class="note"><b>Como o valor foi calculado:</b> cada item vale o seu <b>custo unitário = material + conversão</b> (mão de obra e gastos gerais de fabricação), do cadastro de custos do ERP de 01/10/2026 ou, quando o item não está nele, do custo médio mais recente do item (jan/25 a mar/26). ${f0(Sall('n'))} itens valorados, ${f0(Sall('ant'))} deles com custo anterior a 01/10/2026${Sall('nsem')?`; ${f0(Sall('nsem'))} sem custo ficam fora da soma`:''}.</p>
+   <p class="note"><b>Como o valor foi calculado:</b> cada item vale o seu <b>custo unitário = material + conversão</b> (mão de obra e gastos gerais de fabricação), do cadastro de custos do ERP (relatório MPD132 de 23/11/2026, ou de 01/10/2026) ou, quando o item não está nele, do custo médio mais recente do item (jan/25 a mar/26). ${f0(Sall('n'))} itens valorados, ${f0(Sall('ant'))} deles pelo custo médio do período${Sall('nsem')?`; ${f0(Sall('nsem'))} sem custo ficam fora da soma`:''}.</p>
    <div class="fin">
     <div><small>Estoque hoje (CD + Usinados)</small><b>${brl(Sall('est'))}</b><small>a custo · ${brl(S('est'))} em itens do Kanban</small></div>
     <div><small>Máximo do Kanban (alvo)</small><b>${brl(S('alvo'))}</b><small>o que os supermercados devem ter</small></div>
-    <div><small>Acima do máximo</small><b style="color:var(--kb)">${brl(S('exc'))}</b><small>itens do Kanban · ${brl(a.vend)} do CD já vendidos</small></div>
+    <div><small>Acima do máximo</small><b style="color:var(--kb)">${brl(S('exc'))}</b><small>itens do Kanban · com pedido: CD ${brl(a.vend)} · Usinados ${brl(b.vend)}</small></div>
     <div class="gain"><small>Ganho ao retirar o excesso</small><b>${brl(S('livre'))}</b><small>dos quais ${brl(S('excm'))} são material</small></div>
-    <div><small>Itens sob pedido com saldo</small><b>${brl(a2.livre+b2.livre)}</b><small>fora do Kanban · CD ${brl(a2.livre)} sem pedido · Usinados ${brl(b2.livre)}</small></div>
+    <div><small>Itens sob pedido com saldo</small><b>${brl(a2.livre+b2.livre)}</b><small>fora do Kanban, sem pedido · CD ${brl(a2.livre)} · Usinados ${brl(b2.livre)}</small></div>
     <div><small>Falta fabricar</small><b style="color:var(--kr)">${brl(S('falta'))}</b><small>para completar os supermercados</small></div>
    </div>
-   <div class="tw"><table><thead><tr><th>Onde</th><th class="num">Estoque hoje</th><th class="num">Máximo (alvo)</th><th class="num">Acima do máximo</th><th class="num">Já vendido</th><th class="num">Sem pedido</th><th class="num">só material</th><th class="num">Falta fabricar</th></tr></thead><tbody>
-    ${lin('<b>CD</b> · itens do Kanban',a,true,true)}${lin('<b>Usinados</b> · itens do Kanban',b,false,true)}${lin('CD · itens sob pedido (MTO) com saldo',a2,true,false)}${lin('Usinados · itens sob pedido com saldo',b2,false,false)}</tbody></table></div>
+   <div class="tw"><table><thead><tr><th>Onde</th><th class="num">Estoque hoje</th><th class="num">Máximo (alvo)</th><th class="num">Acima do máximo</th><th class="num">Com pedido</th><th class="num">Sem pedido</th><th class="num">só material</th><th class="num">Falta fabricar</th></tr></thead><tbody>
+    ${lin('<b>CD</b> · itens do Kanban',a,true,true)}${lin('<b>Usinados</b> · itens do Kanban',b,true,true)}${lin('CD · itens sob pedido (MTO) com saldo',a2,true,false)}${lin('Usinados · itens sob pedido com saldo',b2,true,false)}</tbody></table></div>
    ${L.length?L.slice(0,8).map(f=>{ const w=f.livre/mx*100; return `<div class="ovbar" title="${esc(f.fam)} — ${brl(f.livre)} acima do máximo sem pedido"><div class="ovbl"><b>${esc(f.fam)}</b><span class="note">a custo</span></div><div class="ovwrap${w<60?" narrow":""}"><div class="ovtrack" style="width:${Math.max(4,w).toFixed(1)}%"><i style="flex:1;background:${OVC.g}"></i></div><span class="ovval" style="${w<60?`left:calc(${Math.max(4,w).toFixed(1)}% + 10px)`:''}"><b>${brl(f.livre)}</b> de excesso sem pedido</span></div></div>`; }).join(''):''}
-   <p class="note">Leitura: o excesso é o valor de estoque que sai do balanço quando o item volta ao máximo (consome e não repõe acima da faixa verde). A parcela de <b>material</b> é o caixa que deixa de ser gasto em compra; a conversão é custo de fábrica já absorvido, que só vira caixa se a hora de máquina ou de pessoa for de fato evitada. O saldo de usinados sob pedido pode estar reservado para pedidos em carteira (a carteira é de produto acabado e não desce a estrutura). Com os supermercados no alvo, os itens do Kanban ficam com ${brl(S('depois'))} (hoje ${brl(S('est'))}). Na aba Comercial o excesso do CD continua a preço de venda.</p></div>`;
+   <p class="note">Leitura: o excesso é o valor de estoque que sai do balanço quando o item volta ao máximo (consome e não repõe acima da faixa verde). A parcela de <b>material</b> é o caixa que deixa de ser gasto em compra; a conversão é custo de fábrica já absorvido, que só vira caixa se a hora de máquina ou de pessoa for de fato evitada. Nos Usinados, “com pedido” é a carteira de produto acabado que o CD não cobre, descida pela estrutura até cada usinado (estimativa: não desconta semiacabados já montados nem lotes em processo). Com os supermercados no alvo, os itens do Kanban ficam com ${brl(S('depois'))} (hoje ${brl(S('est'))}). Na aba Comercial o excesso do CD continua a preço de venda.</p></div>`;
 }
 
 /* ---------- Rev11: histórico diário do abastecimento (coleção "historico", um doc por data) ---------- */
@@ -2274,8 +2274,9 @@ function renderOV0(){
    <div class="ovgeral"><span style="color:${saude(geral).c}">${f0(geral)}%</span><small>abastecido no total<br>(CD + Usinados)</small></div></div>
   <div class="grid2">
    ${saudeCard("Supermercado do CD · produto acabado","Produtos prontos para expedir.",fP.T,cP["Vermelho"]||0,"SKUs")}
-   ${saudeCard("Supermercado de Usinados · AUS","Peças usinadas que abastecem a montagem.",fU2.T,cU["Vermelho"]||0,"SKUs")}
+   ${saudeCard("Supermercado de Usinados · AUS","Peças usinadas que abastecem a montagem.",fU2.T,cU["Vermelho"]||0,"SKUs","com pedido (pela estrutura)")}
   </div>
+  ${excResumoHTML()}
   ${histPanel()}
   ${pedPanelOV()}
   ${finPanel(PA,US)}
@@ -2287,7 +2288,7 @@ function renderOV0(){
   </div>
   <div class="grid2">
    ${excBars("Onde está sobrando · CD",fP.L,true)}
-   ${excBars("Onde está sobrando · Usinados",fU2.L,false)}
+   ${excBars("Onde está sobrando · Usinados",fU2.L,"us")}
   </div>
   <div class="grid2">
    ${riscoList("Itens em risco de faltar · CD",kP)}
@@ -2300,7 +2301,7 @@ function renderOV0(){
    ${statBlock(tU,"Supermercado Usinados · AUS","faixas Kanban","cartões",`${tU.mts} SKUs MTS + ${tU.n-tU.mts} ponto de pedido · ${f0(tU.um)} cartões em ${f0(tU.can)} canais.`)}
   </div>
   ${excPanel7("Acima do máximo — tabela por família · CD",fP.L,"SKUs",true)}
-  ${excPanel7("Acima do máximo — tabela por grupo · Usinados",fU2.L,"SKUs",false)}
+  ${excPanel7("Acima do máximo — tabela por grupo · Usinados",fU2.L,"SKUs","us")}
   <div class="grid2">
    <div class="panel"><h3>Status do estoque · PA</h3>${sts.map(s=>`<div class="prow">${spill(s)}<b style="font-family:var(--mono)">${f0(cP[s]||0)}</b></div>`).join('')}</div>
    <div class="panel"><h3>Status do estoque · Usinados</h3>${sts.map(s=>`<div class="prow">${spill(s)}<b style="font-family:var(--mono)">${f0(cU[s]||0)}</b></div>`).join('')}</div>
@@ -4619,117 +4620,113 @@ function pedPanelBind(){
   document.querySelectorAll('[data-pgo]').forEach(b=>b.onclick=()=>go(b.dataset.pgo));
 }
 
-/* ---------- Rev13 · aba Comercial: itens acima do máximo disponíveis para venda (pedido do Hugo, 10/11/2026) ----------
-   Disponível para venda = estoque real − máximo do Kanban − o que já está vendido na carteira em aberto.
-   Itens MTO não têm máximo: todo o estoque sem pedido conta. Valor = preço médio de venda das NFs (estimativa). */
-const CM={q:"",fam:"",ord:"valor",so:"",vw:"tab"};
+/* ---------- Rev13 · aba Comercial: itens disponíveis para venda (pedido do Hugo, 10/11/2026) ----------
+   Disponível para venda = estoque real do CD − máximo do Kanban − o que já está vendido na carteira em aberto.
+   Itens MTO não têm máximo: todo o estoque sem pedido conta. Valor = preço médio de venda das NFs (estimativa).
+   Rev23 (decisão do João, 23/11): o Comercial vê SÓ o que pode vender. Excesso com pedido não aparece (nem como
+   número), para não gerar dúvida. A quantidade é o principal; o valor é secundário. A conta completa do
+   "acima do máximo" (com e sem pedido, CD e Usinados) fica no Painel. */
+const CM={q:"",fam:"",ord:"pecas",vw:"tab"};
 function cmRows(){
   const out=[];
   for(const r of calcPA()){
     const e=estReal(r), M=r.M>0?r.M:0, ex=Math.max(0,e-M); if(ex<=0) continue;
     const vend=Math.min(ex,r.cart||0), disp=Math.floor(ex-vend+1e-9); if(disp<=0) continue;
     const p=r.preco>0?r.preco:0;
-    out.push({cod:r.cod,desc:r.desc,fam:r.fam||"Outros",sub:r.sub||"",cls:r.cls,tipo:r.tipo||"",abc:r.abc,est:e,M,cart:r.cart||0,vend,disp,p,valor:disp*p,nnf:r.nnf||0,
-      dias:r.D>0?disp/r.D:null,mto:r.cls==="MTO",cont:r.cont||"",q:r.q||0});
+    out.push({cod:r.cod,desc:r.desc,fam:r.fam||"Outros",sub:r.sub||"",disp,p,valor:disp*p,nnf:r.nnf||0,dias:r.D>0?disp/r.D:null,cont:r.cont||"",q:r.q||0});
   }
   return out;
 }
 function cmFilt(R){
   const q=CM.q.trim().toUpperCase();
-  let L=R.filter(x=>(!CM.fam||x.fam===CM.fam)&&(!CM.so||(CM.so==="kb"?!x.mto:x.mto))&&(!q||x.cod.toUpperCase().includes(q)||String(x.desc).toUpperCase().includes(q)));
-  const k={valor:(a,b)=>b.valor-a.valor||b.disp-a.disp,pecas:(a,b)=>b.disp-a.disp,dias:(a,b)=>(b.dias??-1)-(a.dias??-1),cod:(a,b)=>a.cod<b.cod?-1:1}[CM.ord]||((a,b)=>b.valor-a.valor);
+  let L=R.filter(x=>(!CM.fam||x.fam===CM.fam)&&(!q||x.cod.toUpperCase().includes(q)||String(x.desc).toUpperCase().includes(q)));
+  const k={pecas:(a,b)=>b.disp-a.disp||b.valor-a.valor,valor:(a,b)=>b.valor-a.valor||b.disp-a.disp,cod:(a,b)=>a.cod<b.cod?-1:1}[CM.ord]||((a,b)=>b.disp-a.disp);
   return L.sort(k);
 }
-const cmPreco=x=>x.p>0?'R$ '+nf2.format(x.p):'<span class="note">sem preço</span>';
-const cmTag=x=>x.mto?'<span class="pill" style="background:var(--kb-soft);color:var(--kb)">MTO · sem pedido</span>':'<span class="pill" style="background:var(--kb);color:#fff">acima do máximo</span>';
-function cmBars(L,lab,val,txt,click){
+const cmVal=x=>x.valor>0?brl(x.valor):'<span class="note">sem preço</span>';
+function cmBars(L,lab,txt,click){
   if(!L.length) return '<p class="note">Nada para mostrar.</p>';
-  const mx=Math.max(1,...L.map(val));
-  return L.map(o=>{ const w=val(o)/mx*100;
+  const mx=Math.max(1,...L.map(o=>o.pc));
+  return L.map(o=>{ const w=o.pc/mx*100;
     return `<div class="ovbar cm-bar"${click?` data-cmf="${esc(click(o))}" role="button" tabindex="0" title="Filtrar ${esc(lab(o))}"`:''}><div class="ovbl"><b>${esc(lab(o))}</b><span class="note">${txt(o)}</span></div>
-     <div class="ovwrap${w<60?' narrow':''}"><div class="ovtrack" style="width:${Math.max(3,w).toFixed(1)}%"><i style="flex:1;background:var(--kb)"></i></div>
-     <span class="ovval" style="${w<60?`left:calc(${Math.max(3,w).toFixed(1)}% + 10px)`:''}"><b>${brl(val(o))}</b></span></div></div>`; }).join('');
+     <div class="ovwrap${w<60?' narrow':''}"><div class="ovtrack" style="width:${Math.max(3,w).toFixed(1)}%"><i style="flex:1;background:var(--kg)"></i></div>
+     <span class="ovval" style="${w<60?`left:calc(${Math.max(3,w).toFixed(1)}% + 10px)`:''}"><b>${f0(o.pc)} pç</b></span></div></div>`; }).join('');
 }
 function renderCM(){
   const el=document.getElementById('p-cm'); if(!el) return;
   const R=cmRows(), L=cmFilt(R), pa=ultimaImp('pa'), ct=ultimaImp('cart');
   const sum=(A,f)=>A.reduce((s,x)=>s+f(x),0);
   const T={n:L.length,pc:sum(L,x=>x.disp),val:sum(L,x=>x.valor),semp:L.filter(x=>!(x.p>0)).length};
-  const vendR=finAgg(calcPA()).T.vend;   // a preço de venda (o Painel executivo mostra a custo)
   const F={}; R.forEach(x=>{ const f=F[x.fam]||(F[x.fam]={fam:x.fam,val:0,n:0,pc:0}); f.val+=x.valor; f.n++; f.pc+=x.disp; });
-  const FL=Object.values(F).sort((a,b)=>b.val-a.val);
+  const FL=Object.values(F).sort((a,b)=>b.pc-a.pc);
   const fams=FL.map(f=>f.fam);
   el.innerHTML=`
-  <div class="head"><h2>Comercial — itens disponíveis para venda</h2><span class="note">acima do máximo do Kanban e sem pedido</span></div>
-  <p class="note">Estoque do CD ${pa?'importado em <b>'+fmtDT(pa.t,true)+'</b>':'da posição de '+esc(DATA.dataest)} · carteira ${ct?'importada em <b>'+fmtDT(ct.t,true)+'</b>':'da base'} · o que já está vendido na carteira em aberto não aparece aqui.</p>
-  <div class="stats">
-   <div class="stat b"><div class="l">Itens para oferecer</div><div class="v">${f0(T.n)}</div><div class="s">códigos com sobra${CM.fam||CM.q||CM.so?' (no filtro)':''}</div></div>
-   <div class="stat b"><div class="l">Peças disponíveis</div><div class="v">${f0(T.pc)}</div><div class="s">acima do máximo, sem pedido</div></div>
-   <div class="stat g"><div class="l">Valor estimado</div><div class="v">${brl(T.val)}</div><div class="s">a preço médio de venda${T.semp?` · ${f0(T.semp)} sem preço`:''}</div></div>
-   <div class="stat m"><div class="l">Excesso já vendido</div><div class="v">${brl(vendR)}</div><div class="s">sai com a carteira em aberto</div></div>
+  <div class="head"><h2>Comercial — o que pode ser vendido</h2><span class="note">só o que está livre: sem pedido e sem faltar para o Kanban</span></div>
+  <p class="note">Estoque do CD ${pa?'importado em <b>'+fmtDT(pa.t,true)+'</b>':'da posição de '+esc(DATA.dataest)} · carteira ${ct?'importada em <b>'+fmtDT(ct.t,true)+'</b>':'da base'}.</p>
+  <div class="stats" id="cm-stats">
+   <div class="stat g"><div class="l">Peças para vender</div><div class="v">${f0(T.pc)}</div><div class="s">em ${f0(T.n)} códigos${CM.fam||CM.q?' (no filtro)':''}</div></div>
+   <div class="stat"><div class="l">Valor estimado</div><div class="v" style="font-size:22px">${brl(T.val)}</div><div class="s">referência: preço médio das notas${T.semp?` · ${f0(T.semp)} sem preço`:''}</div></div>
   </div>
   <div class="grid2">
-   <div class="panel"><div class="head"><h3>Valor disponível por família</h3><span class="note">toque para filtrar</span></div>${cmBars(FL.slice(0,10),f=>f.fam,f=>f.val,f=>`${f0(f.n)} itens · ${f0(f.pc)} pç`,f=>f.fam)}</div>
-   <div class="panel"><div class="head"><h3>Top 10 itens para oferecer</h3><span class="note">maior valor${CM.fam?' · '+esc(CM.fam):''}</span></div>${cmBars(L.filter(x=>x.valor>0).slice(0,10),x=>x.cod,x=>x.valor,x=>`${f0(x.disp)} pç · ${esc(String(x.desc).slice(0,34))}`,null)}</div>
+   <div class="panel"><div class="head"><h3>Peças para vender por família</h3><span class="note">toque para filtrar</span></div>${cmBars(FL.slice(0,10),f=>f.fam,f=>`${f0(f.n)} códigos · ${brl(f.val)}`,f=>f.fam)}</div>
+   <div class="panel"><div class="head"><h3>Top 10 itens para oferecer</h3><span class="note">mais peças${CM.fam?' · '+esc(CM.fam):''}</span></div>${cmBars(L.slice(0,10).map(x=>({fam:x.cod,pc:x.disp,x})),o=>o.fam,o=>`${esc(String(o.x.desc).slice(0,34))}${o.x.valor>0?' · '+brl(o.x.valor):''}`,null)}</div>
   </div>
   <div class="filters exf">
    <label class="f" for="cm-q" style="flex:1 1 180px">Buscar<input id="cm-q" type="search" value="${esc(CM.q)}" placeholder="código ou descrição"></label>
    <label class="f" for="cm-fam">Família<select id="cm-fam"><option value="">Todas</option>${fams.map(f=>`<option>${esc(f)}</option>`).join('')}</select></label>
-   <label class="f" for="cm-so">Tipo<select id="cm-so"><option value="">Todos</option><option value="kb">Kanban acima do máximo</option><option value="mto">MTO sem pedido</option></select></label>
-   <label class="f" for="cm-ord">Ordenar<select id="cm-ord"><option value="valor">Maior valor</option><option value="pecas">Mais peças</option><option value="dias">Mais dias de venda</option><option value="cod">Código</option></select></label>
+   <label class="f" for="cm-ord">Ordenar<select id="cm-ord"><option value="pecas">Mais peças</option><option value="valor">Maior valor</option><option value="cod">Código</option></select></label>
    <span class="cm-exp"><button class="btn pri" id="cm-csv">Excel (CSV)</button><button class="btn" id="cm-pdf">PDF / Imprimir</button><button class="btn" id="cm-sh">Compartilhar</button></span>
   </div>
-  <div class="tw tall cm-tab"><table><thead><tr><th>Código</th><th>Descrição</th><th>Família</th><th class="num">Disponível (pç)</th><th class="num">Preço médio</th><th class="num">Valor estimado</th><th class="num">Dias de venda</th><th class="num">Estoque</th><th class="num">Máximo</th><th class="num">Na carteira</th><th>Situação</th></tr></thead><tbody>
-   ${L.slice(0,500).map(x=>`<tr><td><b>${esc(x.cod)}</b></td><td class="desc">${esc(String(x.desc).slice(0,60))}</td><td>${esc(x.fam)}</td><td class="num"><b>${f0(x.disp)}</b></td><td class="num">${cmPreco(x)}${x.p>0&&x.nnf<5?' <span class="note" title="menos de 5 notas fiscais no período">*</span>':''}</td><td class="num"><b>${x.valor>0?brl(x.valor):'—'}</b></td><td class="num">${x.dias!=null?f0(x.dias):'—'}</td><td class="num">${f0(x.est)}</td><td class="num">${x.M?f0(x.M):'—'}</td><td class="num">${f0(x.cart)}</td><td>${cmTag(x)}</td></tr>`).join('')||'<tr><td colspan="11" class="note">Nenhum item com esse filtro.</td></tr>'}
+  <div class="tw tall cm-tab"><table><thead><tr><th>Código</th><th>Descrição</th><th>Família</th><th class="num">Pode vender (pç)</th><th class="num">Valor estimado</th></tr></thead><tbody>
+   ${L.slice(0,500).map(x=>`<tr><td><b>${esc(x.cod)}</b></td><td class="desc">${esc(String(x.desc).slice(0,60))}</td><td>${esc(x.fam)}</td><td class="num"><b style="font-size:15px">${f0(x.disp)}</b></td><td class="num note" title="${x.p>0?'preço médio R$ '+nf2.format(x.p)+'/pç'+(x.nnf<5?' · menos de 5 notas no período':''):'sem preço nas notas'}">${cmVal(x)}</td></tr>`).join('')||'<tr><td colspan="5" class="note">Nenhum item com esse filtro.</td></tr>'}
   </tbody></table></div>
-  <div class="cm-crd">${L.slice(0,150).map(x=>`<div class="cmc"><div class="cmc-h">${fotoImg(x.cod,48)}<div style="min-width:0"><b>${esc(x.cod)}</b><div class="note">${esc(String(x.desc).slice(0,56))}</div></div></div>
-    <div class="cmc-n"><span><small>Disponível</small><b>${f0(x.disp)} pç</b></span><span><small>Preço médio</small><b>${cmPreco(x)}</b></span><span><small>Valor</small><b>${x.valor>0?brl(x.valor):'—'}</b></span></div>
-    <div class="note">${esc(x.fam)} · estoque ${f0(x.est)} · máx. ${x.M?f0(x.M):'—'}${x.dias!=null?' · cobre '+f0(x.dias)+' dias de venda':''}</div>${cmTag(x)}</div>`).join('')||'<p class="note">Nenhum item com esse filtro.</p>'}</div>
+  <div class="cm-crd">${L.slice(0,150).map(x=>`<div class="cmc" style="border-left-color:var(--kg)"><div class="cmc-h">${fotoImg(x.cod,48)}<div style="min-width:0"><b>${esc(x.cod)}</b><div class="note">${esc(String(x.desc).slice(0,56))}</div></div></div>
+    <div class="cmc-n" style="grid-template-columns:1fr 1fr"><span><small>Pode vender</small><b style="font-size:20px">${f0(x.disp)} pç</b></span><span><small>Valor estimado</small><b class="note">${cmVal(x)}</b></span></div>
+    <div class="note">${esc(x.fam)}</div></div>`).join('')||'<p class="note">Nenhum item com esse filtro.</p>'}</div>
   <p class="note">${f0(L.length)} item(ns) no filtro${L.length>500?' — a tabela mostra os 500 primeiros; o Excel leva todos':''}.</p>
   <div class="panel"><div class="head"><h3>Como ler</h3></div><ul class="clean note">
-   <li><b>Disponível</b> = estoque do CD − máximo do Kanban − quantidade já vendida na carteira em aberto. Vendendo isso, o supermercado volta ao máximo e o Kanban continua repondo normalmente.</li>
-   <li><b>MTO sem pedido</b>: item feito sob pedido (sem máximo); todo o estoque que não está na carteira pode ser oferecido.</li>
-   <li><b>Preço médio</b> = faturamento ÷ quantidade nas notas fiscais de set/25 a ago/26. É uma <b>referência</b>, não a tabela de preço — confirme o preço com a tabela comercial. * = menos de 5 notas no período.</li>
-   <li><b>Dias de venda</b> = quantos dias de demanda média o disponível cobre (demanda do S&amp;OP/histórico usada no Kanban).</li></ul></div>`;
+   <li><b>Pode vender</b> = peças livres no CD: já descontados os pedidos em aberto e o que o Kanban precisa guardar. Vender isso não deixa faltar para nenhum cliente.</li>
+   <li>Item que não está na lista <b>não tem peça livre</b> para oferecer agora.</li>
+   <li><b>Valor estimado</b> = peças × preço médio das notas fiscais (set/25 a ago/26). É uma <b>referência</b>: confirme o preço na tabela comercial.</li></ul></div>`;
   const $=id=>document.getElementById(id);
-  $('cm-fam').value=CM.fam; $('cm-so').value=CM.so; $('cm-ord').value=CM.ord;
-  $('cm-fam').onchange=e=>{ CM.fam=e.target.value; renderCM(); }; $('cm-so').onchange=e=>{ CM.so=e.target.value; renderCM(); }; $('cm-ord').onchange=e=>{ CM.ord=e.target.value; renderCM(); };
+  $('cm-fam').value=CM.fam; $('cm-ord').value=CM.ord;
+  $('cm-fam').onchange=e=>{ CM.fam=e.target.value; renderCM(); }; $('cm-ord').onchange=e=>{ CM.ord=e.target.value; renderCM(); };
   const qi=$('cm-q'); qi.oninput=()=>{ CM.q=qi.value; renderCM(); const n=$('cm-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); };
   el.querySelectorAll('[data-cmf]').forEach(b=>{ const f=()=>{ CM.fam=CM.fam===b.dataset.cmf?"":b.dataset.cmf; renderCM(); }; b.onclick=f; b.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); f(); } }; });
   $('cm-csv').onclick=()=>cmCSV(L); $('cm-pdf').onclick=()=>cmPrint(L,T); $('cm-sh').onclick=()=>cmShare(L,T);
 }
 function cmCSV(L){
-  const H=["codigo","descricao","familia","subfamilia","situacao","disponivel_pc","preco_medio_venda_RS","valor_estimado_RS","dias_de_venda","estoque_cd","maximo_kanban","na_carteira","notas_fiscais_no_periodo","embalagem","pc_por_contêiner"];
+  const H=["codigo","descricao","familia","pode_vender_pc","valor_estimado_RS","preco_medio_venda_RS","embalagem","pc_por_conteiner"];
   const n2=v=>v==null?"":String(Math.round(v*100)/100).replace('.',',');
-  const rows=L.map(x=>[x.cod,x.desc,x.fam,x.sub,x.mto?"MTO sem pedido":"acima do máximo",Math.round(x.disp),n2(x.p||null),n2(x.valor||null),x.dias!=null?Math.round(x.dias):"",Math.round(x.est),Math.round(x.M),Math.round(x.cart),x.nnf,x.cont,x.q]);
+  const rows=L.map(x=>[x.cod,x.desc,x.fam,Math.round(x.disp),n2(x.valor||null),n2(x.p||null),x.cont,x.q]);
   const pa=ultimaImp('pa');
-  saveFile("itens_disponiveis_para_venda_"+hojeISO()+".csv","﻿"+[`Lean Up · AEMCO — itens acima do máximo disponíveis para venda · estoque ${pa?fmtDT(pa.t,true):DATA.dataest} · preço = média das NFs set/25-ago/26 (referência)`,H.join(";")].concat(rows.map(r=>r.map(v=>String(v??'').replace(/;/g,',').replace(/\n/g,' ')).join(";"))).join("\n"));
+  saveFile("itens_para_vender_"+hojeISO()+".csv","﻿"+[`Lean Up · AEMCO — itens que podem ser vendidos (peças livres no CD) · estoque ${pa?fmtDT(pa.t,true):DATA.dataest} · valor = preço médio das NFs set/25-ago/26 (referência)`,H.join(";")].concat(rows.map(r=>r.map(v=>String(v??'').replace(/;/g,',').replace(/\n/g,' ')).join(";"))).join("\n"));
 }
 function cmPrint(L,T){
   let el=document.getElementById('prt-prg'); if(!el){ el=document.createElement('div'); el.id='prt-prg'; document.body.appendChild(el); }
   const pa=ultimaImp('pa');
-  el.innerHTML=`<h2 style="font:700 16pt var(--display);margin:0 0 1mm">Lean Up · AEMCO — Itens disponíveis para venda</h2>
-   <p style="margin:0 0 3mm;font-size:9.5pt">Acima do máximo do Kanban e sem pedido · estoque ${pa?fmtDT(pa.t,true):esc(DATA.dataest)} · emitido em ${new Date().toLocaleString('pt-BR')}${CM.fam?' · família: <b>'+esc(CM.fam)+'</b>':''}<br>
-   <b>${f0(T.n)} itens · ${f0(T.pc)} peças · ${brl(T.val)}</b> a preço médio de venda (NFs set/25–ago/26, referência — confirmar com a tabela comercial)</p>
-   <table style="width:100%;border-collapse:collapse;font-size:8.6pt"><thead><tr>${['Código','Descrição','Família','Disponível (pç)','Preço médio','Valor estimado','Dias de venda','Situação'].map(h=>`<th style="border:1px solid #999;padding:3px 5px;text-align:left;background:#eee">${h}</th>`).join('')}</tr></thead>
-   <tbody>${L.map(x=>`<tr>${[x.cod,String(x.desc).slice(0,52),x.fam,f0(x.disp),x.p>0?'R$ '+nf2.format(x.p):'sem preço',x.valor>0?'R$ '+nf0.format(x.valor):'—',x.dias!=null?f0(x.dias):'—',x.mto?'MTO sem pedido':'acima do máximo'].map((v,i)=>`<td style="border:1px solid #bbb;padding:2px 5px${i>=3&&i<=6?';text-align:right':''}">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>
-   <p style="font-size:8pt;margin-top:3mm">Disponível = estoque do CD − máximo do Kanban − carteira em aberto. Fonte: Lean Way Consulting.</p>`;
+  el.innerHTML=`<h2 style="font:700 16pt var(--display);margin:0 0 1mm">Lean Up · AEMCO — Itens que podem ser vendidos</h2>
+   <p style="margin:0 0 3mm;font-size:9.5pt">Peças livres no CD · estoque ${pa?fmtDT(pa.t,true):esc(DATA.dataest)} · emitido em ${new Date().toLocaleString('pt-BR')}${CM.fam?' · família: <b>'+esc(CM.fam)+'</b>':''}<br>
+   <b>${f0(T.pc)} peças em ${f0(T.n)} códigos</b> · valor estimado ${brl(T.val)} (preço médio das NFs, referência — confirmar com a tabela comercial)</p>
+   <table style="width:100%;border-collapse:collapse;font-size:8.6pt"><thead><tr>${['Código','Descrição','Família','Pode vender (pç)','Valor estimado'].map(h=>`<th style="border:1px solid #999;padding:3px 5px;text-align:left;background:#eee">${h}</th>`).join('')}</tr></thead>
+   <tbody>${L.map(x=>`<tr>${[x.cod,String(x.desc).slice(0,60),x.fam,f0(x.disp),x.valor>0?'R$ '+nf0.format(x.valor):'—'].map((v,i)=>`<td style="border:1px solid #bbb;padding:2px 5px${i>=3?';text-align:right':''}">${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>
+   <p style="font-size:8pt;margin-top:3mm">Pode vender = peças livres no CD, já descontados os pedidos em aberto e o que o Kanban precisa guardar. Fonte: Lean Way Consulting.</p>`;
   document.body.classList.add('prt-prg'); setTimeout(()=>{ window.print(); setTimeout(()=>document.body.classList.remove('prt-prg'),500); },60);
 }
 async function cmShare(L,T){
-  const top=L.filter(x=>x.disp>0).slice(0,25), pa=ultimaImp('pa');
-  const txt=[`Lean Up · AEMCO — itens disponíveis para venda (acima do máximo, sem pedido)`,`Estoque de ${pa?fmtDT(pa.t,true):DATA.dataest}${CM.fam?' · '+CM.fam:''}`,`${f0(T.n)} itens · ${f0(T.pc)} pç · ${brl(T.val)} a preço médio de venda (referência)`,``]
-    .concat(top.map(x=>`• ${x.cod} — ${String(x.desc).slice(0,40)}: ${f0(x.disp)} pç${x.p>0?' · ~R$ '+nf2.format(x.p)+'/pç':''}`));
+  const top=L.slice(0,25), pa=ultimaImp('pa');
+  const txt=[`Lean Up · AEMCO — itens que podem ser vendidos (peças livres no CD)`,`Estoque de ${pa?fmtDT(pa.t,true):DATA.dataest}${CM.fam?' · '+CM.fam:''}`,`${f0(T.pc)} pç em ${f0(T.n)} códigos`,``]
+    .concat(top.map(x=>`• ${x.cod} — ${String(x.desc).slice(0,40)}: ${f0(x.disp)} pç`));
   if(L.length>top.length) txt.push(`… + ${f0(L.length-top.length)} itens (lista completa no Excel do app)`);
   const t=txt.join("\n");
-  try{ if(navigator.share){ await navigator.share({title:"Itens disponíveis para venda · AEMCO",text:t}); return; } }catch(e){ if(e&&e.name==="AbortError") return; }
-  try{ await navigator.clipboard.writeText(t); toast("Lista copiada — cole no WhatsApp ou no e-mail"); }catch(e){ saveFile("itens_disponiveis.txt",t); }
+  try{ if(navigator.share){ await navigator.share({title:"Itens para vender · AEMCO",text:t}); return; } }catch(e){ if(e&&e.name==="AbortError") return; }
+  try{ await navigator.clipboard.writeText(t); toast("Lista copiada — cole no WhatsApp ou no e-mail"); }catch(e){ saveFile("itens_para_vender.txt",t); }
 }
 
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev22", MAN_DATA="23/11/2026";
+const MAN_REV="Rev23", MAN_DATA="23/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -4792,7 +4789,7 @@ const MAN=[
   faq:[["Por que o estoque de um dia aparece com traço?","O estoque do dia é gravado quando o saldo é importado ou apontado. Sem nenhum desses no dia, não há posição."],["Como mudo a linha de base?","Só o Programador: no Fluxo de valor, em Indicadores, troque a data da Linha de base."]]},
  {id:"ov",t:"Painel: Como Estão os Supermercados",quem:"todos",tab:"ov",
   lead:"O **Painel** é a primeira tela. Mostra, de uma olhada, se os supermercados e os pedidos estão bem.",
-  telas:[{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Os **mapas** mostram um quadradinho por item, na cor da faixa em que ele está.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
+  telas:[{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Os **mapas** mostram um quadradinho por item, na cor da faixa em que ele está.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
   dica:"A data do estoque aparece no alto do menu. Estoque velho = painel velho: importe o saldo do dia.",
   faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
  {id:"qd",t:"Quadros Kanban e Modo TV",quem:"todos",tab:"qd",
@@ -4806,9 +4803,10 @@ const MAN=[
   dica:"O estoque é reservado primeiro para os pedidos com entrega mais cedo.",
   faq:[["A Expedição está vazia.","Falta importar a carteira de pedidos e o estoque de PA. Vá em Importar dados."],["O que é pedido completo?","É o pedido em que todas as linhas cabem no estoque do CD, reservando primeiro os de entrega mais cedo."],["Quando marco Expedido?","Quando o pedido separado sai da fábrica. O apontador marca no fim do dia, junto com o inventário."],["Marquei Expedido por engano.","Em Expedidos, no fim da tela de Expedição, toque em Desfazer: o pedido volta para separado."]]},
  {id:"cm",t:"Comercial: O Que Dá para Oferecer",quem:"todos",tab:"cm",
-  lead:"A tela **Comercial** lista os itens que estão **sobrando** no CD e não têm pedido: bons para oferecer ao cliente.",
-  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja o **valor disponível por família** e os **10 melhores itens** para oferecer.","Use **Buscar** para achar um item.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]}],
-  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista os itens sobrando no CD e sem pedido, com o valor por família e os 10 melhores para oferecer."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."]]},
+  lead:"A tela **Comercial** mostra **só o que pode ser vendido**: peças livres no CD, sem pedido e sem faltar para o Kanban.",
+  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},
+],
+  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista só as peças livres no CD: sem pedido e sem faltar para o Kanban."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."],["Todo o acima do máximo do Painel pode ser vendido?","Não. Uma parte já tem pedido e os Usinados são componentes, que não vão para venda. Só o CD sem pedido pode ser vendido, e é só isso que a tela Comercial mostra. A conta completa está no Painel, no quadro De onde vem o acima do máximo."]]},
  {id:"opd",t:"Ordem de Produção: o Plano do Dia",quem:"todos",tab:"op",
   lead:"Mostra o que produzir para **encher os supermercados**, dia a dia, e imprime os cartões de ordem.",
   telas:[{t:"Montar o plano",img:"m19-opd.jpg",passos:["Escolha o **início**, o número de **postos** e se o **sábado** produz.","Confira as ordens do dia: código, quantidade, contêineres e horas.","Toque em **Salvar plano (CSV)** ou **Imprimir** os cartões de ordem."]}],
@@ -4923,6 +4921,9 @@ function tourShow(){
 
 /* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
 const NEWS=[
+ {rev:23,quando:"23/11/2026",t:"Excesso com pedido separado, também nos Usinados",itens:[
+   {id:"23-cm",man:"cm",tab:"cm",sel:'#cm-stats',t:"Novo: Comercial só com o que pode vender",x:"A tela Comercial mostra só as peças livres no CD: sem pedido e sem faltar para o Kanban. A quantidade vem primeiro; o valor é uma referência."},
+   {id:"23-us",man:"ov",tab:"ov",sel:'#ov-rec',t:"Novo: de onde vem o acima do máximo",x:"No Painel, um quadro separa o acima do máximo do CD e dos Usinados em com pedido e sem pedido. Nos Usinados, os pedidos de produto acabado descem pela estrutura."}]},
  {rev:22,quando:"23/11/2026",t:"Linha do estoque acima do máximo",itens:[
    {id:"22-exc",man:"ov",tab:"ov",sel:'#hist-exc',t:"Novo: linha do excesso",x:"No Painel, em Evolução diária, a linha azul mostra dia a dia o estoque acima do máximo (CD + Usinados). Descendo = o excesso está sendo consumido."}]},
  {rev:21,quando:"23/11/2026",t:"Menu por módulos, Painel com luzes e mapa do fluxo de valor",itens:[
@@ -5331,6 +5332,45 @@ function fxVSM(d,S,E,st){
   <rect x="1020" y="706" width="200" height="44" class="bx"/>${T(1120,724,'Estoque no fluxo principal','dk','middle')}${T(1120,742,lt==null?'—':f1(lt)+' dias','pn','middle')}
   </svg></div>
   <div class="vsm-leg"><span><svg viewBox="0 0 26 16"><rect x="1" y="1" width="24" height="14" class="bx"/></svg>processo e dados do dia</span><span><svg viewBox="0 0 26 16"><path d="M1,1 H25 V15 H1 M1,6 H25 M1,11 H25" class="ln"/></svg>supermercado</span><span><svg viewBox="0 0 26 16"><path d="M5,9 a6,6 0 1 1 6,6" class="ln"/></svg>retirada puxada</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H25" class="kb"/></svg>kanban</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H9 L7,13 L15,3 L13,8 H25" class="ln"/></svg>informação eletrônica</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H25" class="mf"/></svg>material</span><span class="vsm-hint">No celular, arraste o desenho para o lado.</span></div>`;
+}
+
+/* ---------- Rev23 · excesso com pedido também nos Usinados (AUS) ----------
+   A carteira é de produto acabado. Para cada PA com pedido em aberto, o que o CD ainda não cobre
+   (carteira − estoque do PA no CD) desce a estrutura (DATA.bomu: PA → usinados do AUS e quantidade por PA).
+   A soma vira a "carteira" do usinado (r.cart): o excesso coberto por ela é excesso COM PEDIDO, como no CD.
+   Limites: não desconta peças já montadas em semiacabados intermediários (ex.: metades) nem lotes em processo;
+   PA sem estrutura na extração não desce. */
+const AUSN={t:0,m:null,n:0,pa:0,sem:0};
+function ausNeed(){
+  const now=Date.now(); if(AUSN.m&&now-AUSN.t<800) return AUSN.m;
+  const B=DATA.bomu||{}, m={}; let pa=0, sem=0;
+  for(const r of _calcPA16()){
+    const c=r.cart||0; if(!(c>0)) continue;
+    const falta=Math.max(0,c-estReal(r)); if(falta<=0) continue;
+    const L=B[r.cod]; if(!L){ sem++; continue; } pa++;
+    for(const [u,q] of L) m[u]=(m[u]||0)+falta*q;
+  }
+  AUSN.m=m; AUSN.t=now; AUSN.pa=pa; AUSN.sem=sem; AUSN.n=Object.keys(m).length;
+  return m;
+}
+const _calcPA16=calcPA, _calcUS16=calcUS;
+calcUS=function(){ const R=_calcUS16(), m=ausNeed(); R.forEach(r=>{ r.cart=Math.round(m[r.cod]||0); }); return R; };
+/* resumo para o Comercial e o Painel: quanto do "acima do máximo" tem pedido */
+function excResumo(){
+  const one=(rows)=>{ let ex=0,v=0; rows.forEach(r=>{ const e=estReal(r), M=r.M>0?r.M:0, x=Math.max(0,e-M); ex+=x; v+=Math.min(x,r.cart||0); }); return {ex,ped:v,livre:ex-v}; };
+  const PA=calcPA(), US=calcUS();
+  return {cd:one(PA),us:one(US),estr:{pa:AUSN.pa,sem:AUSN.sem}};
+}
+function excResumoHTML(){
+  const R=excResumo(), T=R.cd.ex+R.us.ex;
+  const b=(v,c)=>`<b style="color:${c||'var(--ink)'}">${f0(v)} pç</b>`;
+  return `<div class="panel" id="ov-rec" style="border-left:5px solid var(--kb)"><div class="head"><h3>De onde vem o "acima do máximo"</h3><span class="note">${f0(T)} pç = CD + Usinados · quanto tem pedido e quanto está livre</span></div>
+   <div class="tw"><table><thead><tr><th>Onde</th><th class="num">Acima do máximo</th><th class="num">Com pedido</th><th class="num">Sem pedido</th><th>O que fazer</th></tr></thead><tbody>
+    <tr><td><b>CD</b> · produto acabado</td><td class="num">${f0(R.cd.ex)}</td><td class="num">${f0(R.cd.ped)}</td><td class="num"><b>${f0(R.cd.livre)}</b></td><td style="white-space:normal;min-width:240px">Com pedido: já vendido, sai com a carteira. Sem pedido: é o que a tela <b>Comercial</b> mostra para vender.</td></tr>
+    <tr><td><b>Usinados</b> · AUS</td><td class="num">${f0(R.us.ex)}</td><td class="num">${f0(R.us.ped)}</td><td class="num"><b>${f0(R.us.livre)}</b></td><td style="white-space:normal;min-width:240px">São <b>componentes</b>: não vão para venda. Com pedido = serão usados para montar a carteira. Sem pedido = parar de fabricar até baixar.</td></tr>
+    <tr style="font-weight:700;background:var(--panel2)"><td>Total</td><td class="num">${f0(T)}</td><td class="num">${f0(R.cd.ped+R.us.ped)}</td><td class="num">${f0(R.cd.livre+R.us.livre)}</td><td></td></tr>
+   </tbody></table></div>
+   <p class="note">Disponível para venda = só o <b>CD sem pedido</b> (${b(R.cd.livre,'var(--kg)')}); o Comercial vê só essa parte. Nos Usinados, "com pedido" vem da carteira de produto acabado descida pela estrutura: o que o CD ainda não cobre vira necessidade de cada usinado (${f0(R.estr.pa)} PA com pedido entraram${R.estr.sem?`; ${f0(R.estr.sem)} sem estrutura cadastrada ficaram de fora`:''}). É uma estimativa: peças já montadas em semiacabados e lotes em processo não são descontados.</p></div>`;
 }
 
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
