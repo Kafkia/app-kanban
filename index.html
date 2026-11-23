@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev24"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev26"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2180,7 +2180,7 @@ function pctSnapshot(){
   const fP=famAgg(PA,'fam'), fU=famAgg(kU.concat(uFora),'grp'), cP=countSt(PA), cU=countSt(US.filter(r=>r.manter));
   const pk=T=>({pct:+(T.alvo?T.util/T.alvo*100:0).toFixed(1),est:Math.round(T.est),util:Math.round(T.util),alvo:Math.round(T.alvo),falta:Math.round(T.falta),exc:Math.round(T.exc),vend:Math.round(T.vend||0)});
   const cd=pk(fP.T), us=pk(fU.T); cd.verm=cP["Vermelho"]||0; us.verm=cU["Vermelho"]||0;
-  let ped=null; if(!BASE_CALC&&typeof expAlloc==="function"&&PED.linhas.length){ const S=expStats(expAlloc()); ped={comp:S.comp,inc:S.inc,pcComp:S.pcsComp,pcInc:S.pcsInc,atr:S.atrComp+S.atrInc}; }
+  let ped=null; if(!BASE_CALC&&typeof expAlloc==="function"&&PED.linhas.length){ const S=expStats(expAlloc()); ped={comp:S.comp,inc:S.inc,pcComp:S.pcsComp,pcInc:S.pcsInc,atr:S.atrComp+S.atrInc,lin:PED.linhas.length,pcCart:Math.round(Object.values(STK.cart||{}).reduce((s,c)=>s+((c&&typeof c.q==="number")?c.q:0),0))}; }   // Rev25: linhas e peças da carteira para conferir se a importação veio completa
   return {cd,us,ped,tot:+((fP.T.util+fU.T.util)/Math.max(1,fP.T.alvo+fU.T.alvo)*100).toFixed(1),rev:DATA.rev||null};   // Rev22: revisão da base que calculou o ponto
 }
 let BASE_PT=null, BASE_CALC=false;
@@ -2306,6 +2306,7 @@ function renderOV0(){
   ${excResumoHTML()}
   ${histPanel()}
   ${pedPanelOV()}
+  ${pedHistPanel()}
   ${finPanel(PA,US)}
   <div class="panel"><div class="head"><h3>Semáforo dos itens (SKUs)</h3><span class="note">quantos <b>códigos de item (SKUs)</b> estão em cada faixa — contagem de itens, não de peças</span></div>
    ${semaforo("CD · produto acabado",cP)}${semaforo("Usinados · AUS",cU)}${semLegend()}</div>
@@ -3350,7 +3351,7 @@ function renderIM(){
     <label class="f" for="im-ped">Coluna do nº do pedido<select id="im-ped"><option value="-1">— não tem —</option>${colOpts(IMP.cmap.ped)}</select></label>
     <label class="f" for="im-cli">Coluna do cliente<select id="im-cli"><option value="-1">— não tem —</option>${colOpts(IMP.cmap.cli)}</select></label>
     <label class="f" for="im-dt">Coluna da data de entrega<select id="im-dt"><option value="-1">— não tem —</option>${colOpts(IMP.cmap.dt)}</select></label>
-    ${(()=>{ const x=linhasPedido(body); return x?`<p class="note">Lido: <b>${f0(x.np)} pedidos</b> em ${f0(x.L.length)} linhas${x.semData?` · <b style="color:var(--kr)">${f0(x.semData)} linhas sem data de entrega reconhecida</b>`:''}. Os pedidos incluem também itens MTO e fora do Kanban.</p>`:'<p class="warn">Sem a coluna do pedido o app só grava o total por item; a aba Expedição não consegue dizer quais pedidos estão completos.</p>'; })()}`:''}
+    ${(()=>{ const x=linhasPedido(body); const cq=body.filter(r=>(r[IMP.cmap.cod]||'').trim()&&numBR(r[IMP.cmap.qtd])>0).length, falta=x?cq-x.L.length:0; return x?`<p class="note">Lido: <b>${f0(x.np)} pedidos</b> em ${f0(x.L.length)} linhas${x.semData?` · <b style="color:var(--kr)">${f0(x.semData)} linhas sem data de entrega reconhecida</b>`:''}. Os pedidos incluem também itens MTO e fora do Kanban.</p>${falta>0&&falta>=0.2*cq?`<p class="warn"><b>Atenção: ${f0(falta)} de ${f0(cq)} linhas com quantidade estão sem número de pedido</b> e ficariam de fora da Expedição (pedidos completos × incompletos). Confira a coluna do pedido: ela precisa estar preenchida em todas as linhas do arquivo.</p>`:''}`:'<p class="warn">Sem a coluna do pedido o app só grava o total por item; a aba Expedição não consegue dizer quais pedidos estão completos.</p>'; })()}`:''}
     <div class="stats">
      <div class="stat g"><div class="l">Linhas prontas</div><div class="v">${f0(ok)}</div><div class="s">${cnt.zeros?`inclui ${f0(cnt.zeros)} com zeros à esquerda corrigidos`:'código encontrado'}</div></div>
      <div class="stat y"><div class="l">Código não cadastrado</div><div class="v">${f0(nf)}</div><div class="s">detalhado abaixo</div></div>
@@ -4714,6 +4715,7 @@ function renderCM(){
   <div class="panel"><div class="head"><h3>Como ler</h3></div><ul class="clean note">
    <li><b>Pode vender</b> = peças livres no CD: já descontados os pedidos em aberto e o que o Kanban precisa guardar. Vender isso não deixa faltar para nenhum cliente.</li>
    <li>Item que não está na lista <b>não tem peça livre</b> para oferecer agora.</li>
+   <li>Peça que o CD usa para <b>montar kits</b> (ex.: o pino do kit de engate) fica guardada para os kits; aqui aparece só o que sobrar.</li>
    <li><b>Valor estimado</b> = peças × preço médio das notas fiscais (set/25 a ago/26). É uma <b>referência</b>: confirme o preço na tabela comercial.</li></ul></div>`;
   const $=id=>document.getElementById(id);
   $('cm-fam').value=CM.fam; $('cm-ord').value=CM.ord;
@@ -4753,7 +4755,7 @@ async function cmShare(L,T){
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev24", MAN_DATA="23/11/2026";
+const MAN_REV="Rev26", MAN_DATA="23/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -4816,7 +4818,7 @@ const MAN=[
   faq:[["Por que o estoque de um dia aparece com traço?","O estoque do dia é gravado quando o saldo é importado ou apontado. Sem nenhum desses no dia, não há posição."],["Como mudo a linha de base?","Só o Programador: no Fluxo de valor, em Indicadores, troque a data da Linha de base."]]},
  {id:"ov",t:"Painel: Como Estão os Supermercados",quem:"todos",tab:"ov",
   lead:"O **Painel** é a primeira tela. Mostra, de uma olhada, se os supermercados e os pedidos estão bem.",
-  telas:[{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Os **mapas** mostram um quadradinho por item, na cor da faixa em que ele está.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Use os botões **Total**, **Sem pedido** e **Com pedido** para ver cada parte. Ao lado, o quadro **Hoje** mostra CD e Usinados divididos em sem pedido e com pedido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
+  telas:[{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Pedidos completos dia a dia",img:"m25-ped.jpg",passos:["No Painel, o gráfico **Pedidos completos × incompletos · dia a dia** mostra cada dia desde o início: barra **verde** = pedidos completos, **vermelha** = incompletos.","A linha **verde** é o **% de pedidos completos**; a **azul tracejada** é o **% abastecido do CD** no mesmo dia.","Se as duas sobem juntas, encher os supermercados está aumentando os pedidos completos.","Dia em **cinza** = carteira importada incompleta: não compare esse dia."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Use os botões **Total**, **Sem pedido** e **Com pedido** para ver cada parte. Ao lado, o quadro **Hoje** mostra CD e Usinados divididos em sem pedido e com pedido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
   dica:"A data do estoque aparece no alto do menu. Estoque velho = painel velho: importe o saldo do dia.",
   faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
  {id:"qd",t:"Quadros Kanban e Modo TV",quem:"todos",tab:"qd",
@@ -4948,6 +4950,10 @@ function tourShow(){
 
 /* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
 const NEWS=[
+ {rev:26,quando:"23/11/2026",t:"Componentes de kits fora do Comercial",itens:[
+   {id:"26-kit",man:"cm",tab:"cm",sel:'#cm-stats',t:"Novo: componentes de kits",x:"Peça que o CD usa para montar um kit com pedido (ex.: o pino do kit de engate) não aparece mais como disponível para venda."}]},
+ {rev:25,quando:"23/11/2026",t:"Pedidos completos dia a dia",itens:[
+   {id:"25-ped",man:"ov",tab:"ov",sel:'#ped-hist',t:"Novo: pedidos completos dia a dia",x:"No Painel, um gráfico mostra desde o início quantos pedidos estavam completos e incompletos em cada dia, junto com o % abastecido do CD."}]},
  {rev:24,quando:"23/11/2026",t:"Excesso: o que é livre e o que tem pedido",itens:[
    {id:"24-exc",man:"ov",tab:"ov",sel:'#hist-exc .exf2',t:"Novo: filtro do excesso",x:"No gráfico do Estoque acima do máximo, escolha Total, Sem pedido ou Com pedido. Ao lado, o quadro Hoje divide CD e Usinados nas duas partes."}]},
  {rev:23,quando:"23/11/2026",t:"Excesso com pedido separado, também nos Usinados",itens:[
@@ -5278,7 +5284,7 @@ const _renderEX20=renderEX;
 renderEX=function(){ _renderEX20(); const el=document.getElementById('p-ex'); if(!el) return; const old=document.getElementById('ex-expd'); if(old) old.remove();
   const h=expedidosHTML(); if(h){ el.insertAdjacentHTML('beforeend',h); el.querySelectorAll('[data-xund]').forEach(b=>b.onclick=()=>expSep(b.dataset.xund,"separado")); } };
 
-/* Rev21 — Painel: situação em três cores (bem, atenção, ruim) e mapa dos itens dos supermercados */
+/* Rev21 — Painel: situação em três cores (bem, atenção, ruim). Rev26: mapa de quadrados retirado a pedido do João */
 const SIT_W={ok:"Bem",warn:"Atenção",bad:"Ruim"};
 function sitSt(v,g,y,low){ return low?(v<=g?"ok":v<=y?"warn":"bad"):(v>=g?"ok":v>=y?"warn":"bad"); }
 function sitLamp(s,t){ return `<span class="lamp ${s}">${t||SIT_W[s]}</span>`; }
@@ -5294,8 +5300,6 @@ function sitHTML(){
   return `<div class="sit-wrap" id="sit21">
   <div class="sit-h"><b>Situação agora</b><span class="sit-leg">${sitLamp('ok')}${sitLamp('warn')}${sitLamp('bad')}</span></div>
   <div class="sit-g">${t('Supermercado do CD',f0(S.cd.pct)+'%','abastecido sobre o máximo',sitSt(S.cd.pct,80,60),'pa')}${t('Supermercado de Usinados',f0(S.us.pct)+'%','abastecido sobre o máximo',sitSt(S.us.pct,80,60),'us')}${pd==null?'':t('Pedidos completos',f0(pd)+'%',`${f0(S.ped.comp)} de ${f0(S.ped.comp+S.ped.inc)} pedidos`,sitSt(pd,90,70),'ex')}${t('Itens na vermelha',f0(vm),`de ${f0(n)} itens do Kanban`,sitSt(pv,5,15,1),'pr')}${t('Acima do máximo',f0(ex)+' pç','sobra nos dois supermercados',sitSt(pe,10,30,1),'cm')}</div>
-  <div class="sit-m"><div><h4>Mapa do CD · cada quadrado é um item</h4>${sitMapa(PA)}</div><div><h4>Mapa de Usinados · cada quadrado é um item</h4>${sitMapa(US)}</div></div>
-  <div class="sit-l"><span><i class="q bad"></i>Vermelha</span><span><i class="q warn"></i>Amarela</span><span><i class="q ok"></i>Verde</span><span><i class="q over"></i>Acima do máximo</span><span><i class="q nd"></i>Sem saldo informado</span></div>
   <details class="sit-c"><summary>Como as cores são definidas</summary><ul><li>Supermercado: bem a partir de 80% do máximo, atenção de 60% a 79%, ruim abaixo de 60%.</li><li>Pedidos completos: bem a partir de 90%, atenção de 70% a 89%, ruim abaixo de 70%.</li><li>Itens na vermelha: bem até 5% dos itens, atenção até 15%, ruim acima disso.</li><li>Acima do máximo: bem até 10% do máximo, atenção até 30%, ruim acima disso.</li><li>São limites iniciais: podem ser ajustados com o uso.</li></ul></details></div>`;
 }
 const _renderOV21=renderOV;
@@ -5403,6 +5407,64 @@ function excResumoHTML(){
 }
 /* Rev24: filtro do gráfico do excesso (Total | Sem pedido | Com pedido) — troca só o bloco, sem redesenhar o Painel */
 document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-excm]'); if(!b) return; EXCM=b.dataset.excm; const el=document.getElementById('hist-exc'); if(el) el.outerHTML=excBlock(histPoints()); });
+/* ---------- Rev25 · pedidos completos × incompletos dia a dia (desde o primeiro registro) ----------
+   Um ponto por dia de importação (coleção historico, campo ped). Barras = nº de pedidos (verde completos, vermelho incompletos);
+   linha verde = % de pedidos completos; linha azul tracejada = % abastecido do CD no mesmo dia (para comparar).
+   Dia com carteira importada incompleta (peças dos pedidos < metade da carteira por item, ou, nos registros antigos,
+   < 1/4 da mediana) fica em cinza e fora da linha: o número de completos dele não é comparável. */
+function pedHistPts(){
+  const P=Object.values(HIST).filter(h=>h&&h.d&&h.ped&&(h.ped.comp+h.ped.inc)>0).sort((a,b)=>a.d<b.d?-1:1).map(h=>Object.assign({},h));
+  const pc=h=>(h.ped.pcComp||0)+(h.ped.pcInc||0), V=P.map(pc).sort((a,b)=>a-b), med=V.length?V[Math.floor(V.length/2)]:0;
+  P.forEach(h=>{ const c=pc(h); h.ruim=h.ped.pcCart>0?c<0.5*h.ped.pcCart:(med>0&&c<0.25*med); h.pctC=(h.ped.comp/(h.ped.comp+h.ped.inc))*100; });
+  return P;
+}
+function pedHistChart(P){
+  const W=760,H=250,L=44,R=48,T=22,B=40, iw=W-L-R, ih=H-T-B, n=P.length, st=iw/Math.max(1,n), bw=Math.min(34,st*0.62);
+  const mx=Math.max(1,...P.map(h=>h.ped.comp+h.ped.inc)), top=excNice(mx*1.1);
+  const y=v=>T+ih*(1-v/top), yp=v=>T+ih*(1-Math.max(0,Math.min(100,v))/100), x=i=>L+st*i+st/2, fd=d=>d.slice(8,10)+'/'+d.slice(5,7);
+  let g='';
+  for(const v of [0,0.5,1]){ g+=`<line x1="${L}" x2="${L+iw}" y1="${y(top*v)}" y2="${y(top*v)}" stroke="var(--line)" ${v?'stroke-dasharray="3 4"':''}/><text x="${L-6}" y="${y(top*v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${f0(top*v)}</text><text x="${L+iw+6}" y="${yp(100*v)+4}" font-size="11" fill="var(--muted)">${f0(100*v)}%</text>`; }
+  const step=Math.max(1,Math.ceil(n/12));
+  P.forEach((h,i)=>{ const c=h.ped.comp, ii=h.ped.inc, xb=x(i)-bw/2, yb=T+ih, hc=ih*c/top, hi=ih*ii/top;
+    const cc=h.ruim?'var(--empty)':'var(--kg)', ci=h.ruim?'var(--panel2)':'var(--kr)';
+    g+=`<g><rect x="${xb}" y="${yb-hc}" width="${bw}" height="${Math.max(0,hc-1)}" rx="3" fill="${cc}"/><rect x="${xb}" y="${yb-hc-hi}" width="${bw}" height="${Math.max(0,hi-1)}" rx="3" fill="${ci}"${h.ruim?' stroke="var(--muted)" stroke-dasharray="3 2"':''}/>
+     <rect x="${x(i)-st/2}" y="${T}" width="${st}" height="${ih}" fill="transparent"><title>${fd(h.d)}: ${f0(c)} completos · ${f0(ii)} incompletos (${f0(h.pctC)}% completos) · CD ${f1(h.cd.pct)}% abastecido${h.ruim?' · CARTEIRA IMPORTADA INCOMPLETA — não comparar':''}</title></rect>
+     ${i%step===0||i===n-1?`<text x="${x(i)}" y="${H-B+15}" text-anchor="middle" font-size="10.5" fill="${h.ruim?'var(--muted)':'var(--ink)'}">${fd(h.d)}</text>`:''}</g>`; });
+  const ok=P.map((h,i)=>({h,i})).filter(o=>!o.h.ruim);
+  if(ok.length>1){ g+=`<path d="${ok.map((o,k)=>`${k?'L':'M'}${x(o.i).toFixed(1)},${yp(o.h.cd.pct).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--kb)" stroke-width="2" stroke-dasharray="5 4"/>`;
+    g+=`<path d="${ok.map((o,k)=>`${k?'L':'M'}${x(o.i).toFixed(1)},${yp(o.h.pctC).toFixed(1)}`).join(' ')}" fill="none" stroke="#15803D" stroke-width="2.5"/>`; }
+  ok.forEach(o=>{ g+=`<circle cx="${x(o.i)}" cy="${yp(o.h.pctC)}" r="3.5" fill="#15803D" stroke="var(--panel)" stroke-width="1.5"/>`; });
+  const last=ok[ok.length-1]; if(last) g+=`<text x="${x(last.i)}" y="${yp(last.h.pctC)-9}" text-anchor="middle" font-size="12" font-weight="700" fill="#15803D">${f0(last.h.pctC)}%</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:280px;display:block" role="img" aria-label="Pedidos completos e incompletos dia a dia">${g}</svg>`;
+}
+function pedHistPanel(){
+  const P=pedHistPts(); if(!P.length) return '';
+  const ok=P.filter(h=>!h.ruim), a=ok[0], b=ok[ok.length-1], ruins=P.filter(h=>h.ruim);
+  const fdt=d=>fmtDT(d+'T12:00:00');
+  const res=a&&b&&a!==b?`De <b>${fdt(a.d)}</b> a <b>${fdt(b.d)}</b>: pedidos completos <b>${f0(a.ped.comp)} → ${f0(b.ped.comp)}</b> (${f0(a.pctC)}% → <b style="color:${b.pctC>=a.pctC?'var(--kg)':'var(--kr)'}">${f0(b.pctC)}%</b>) · CD abastecido ${f0(a.cd.pct)}% → ${f0(b.cd.pct)}%.`:'';
+  return `<div class="panel" id="ped-hist"><div class="head"><h3>Pedidos completos × incompletos · dia a dia</h3><span class="note">desde ${fdt(P[0].d)} · um ponto por dia de importação</span></div>
+   ${res?`<p class="note">${res}</p>`:''}
+   ${pedHistChart(P)}
+   <div class="ovleg"><span><i style="background:var(--kg)"></i>completos</span><span><i style="background:var(--kr)"></i>incompletos</span><span><i style="background:#15803D"></i><b>% de pedidos completos</b></span><span><i style="background:var(--kb)"></i>% abastecido do CD (tracejado)</span>${ruins.length?`<span><i style="background:var(--empty)"></i>carteira importada incompleta</span>`:''}</div>
+   ${ruins.length?`<p class="note"><b>Atenção:</b> em ${ruins.map(h=>fdt(h.d)).join(', ')} a carteira por pedido entrou incompleta (poucas linhas ou peças frente aos outros dias). Esses dias ficam em cinza e fora das linhas — o número de completos deles não é comparável. Reimporte a carteira com o número do pedido em todas as linhas.</p>`:''}
+   <p class="note">Leitura: com os supermercados mais cheios, mais pedidos ficam completos. Se a linha verde subir junto com a azul, o Kanban está fazendo efeito na expedição.</p></div>`;
+}
+/* ---------- Rev26 · componentes do CD usados em kits montados no próprio CD ----------
+   Ex.: o pino 054.253-7 não é vendido sozinho, mas o CD monta o kit CC31 (pino + mola + contrapino) a partir dele.
+   A carteira do kit que o CD não cobre (carteira − estoque do kit) vira carteira do componente (r.cartInd) e o
+   excesso dele passa a contar como "com pedido" — não aparece para o Comercial. Só entram pais montados/embalados
+   no CD (processo em CDPROC). Montagens da fábrica (ex.: cardans na Montagem) puxam do depósito de produção, não do CD. */
+const CDPROC=["P8"];
+const PAN={t:0,m:null};
+function paNeed(){
+  const now=Date.now(); if(PAN.m&&now-PAN.t<800) return PAN.m;
+  const B=DATA.bompa||{}, m={};
+  for(const r of _calcPA16()){ if(!CDPROC.includes(r.proc)) continue; const c=r.cart||0; if(!(c>0)) continue;
+    const falta=Math.max(0,c-estReal(r)); if(falta<=0) continue; const L=B[r.cod]; if(!L) continue;
+    for(const [u,q] of L) m[u]=(m[u]||0)+falta*q; }
+  PAN.m=m; PAN.t=now; return m;
+}
+calcPA=function(){ const R=_calcPA16(), m=paNeed(); R.forEach(r=>{ const i=Math.round(m[r.cod]||0); r.cartDir=r.cart||0; r.cartInd=i; r.cart=(r.cart||0)+i; }); return R; };
 
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,

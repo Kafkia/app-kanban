@@ -1,4 +1,4 @@
-const CACHE = 'kanban-aemco-rev24-11231711';
+const CACHE = 'kanban-aemco-rev26-11232057';
 const FILES = ['./', './index.html', './Manual_Kanban_AEMCO.pdf', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-192.png', './icons/maskable-512.png', './icons/apple-touch-icon.png', './icons/icon-32.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
