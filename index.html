@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev21"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev22"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2172,7 +2172,7 @@ function pctSnapshot(){
   const pk=T=>({pct:+(T.alvo?T.util/T.alvo*100:0).toFixed(1),est:Math.round(T.est),util:Math.round(T.util),alvo:Math.round(T.alvo),falta:Math.round(T.falta),exc:Math.round(T.exc),vend:Math.round(T.vend||0)});
   const cd=pk(fP.T), us=pk(fU.T); cd.verm=cP["Vermelho"]||0; us.verm=cU["Vermelho"]||0;
   let ped=null; if(!BASE_CALC&&typeof expAlloc==="function"&&PED.linhas.length){ const S=expStats(expAlloc()); ped={comp:S.comp,inc:S.inc,pcComp:S.pcsComp,pcInc:S.pcsInc,atr:S.atrComp+S.atrInc}; }
-  return {cd,us,ped,tot:+((fP.T.util+fU.T.util)/Math.max(1,fP.T.alvo+fU.T.alvo)*100).toFixed(1)};
+  return {cd,us,ped,tot:+((fP.T.util+fU.T.util)/Math.max(1,fP.T.alvo+fU.T.alvo)*100).toFixed(1),rev:DATA.rev||null};   // Rev22: revisão da base que calculou o ponto
 }
 let BASE_PT=null, BASE_CALC=false;
 function basePoint(){   // ponto da base (posição de DATA.dataest), calculado sem os apontamentos
@@ -2223,13 +2223,36 @@ function histChart(pts){
   }
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:260px;display:block" role="img" aria-label="Evolução diária do abastecimento">${g}</svg>`;
 }
+/* Rev22: evolução do estoque acima do máximo (pç), uma linha azul = CD + Usinados */
+function excNice(v){ if(v<=0) return 10; const p=Math.pow(10,Math.floor(Math.log10(v))), m=v/p; return (m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p; }
+function excChart(pts){
+  if(!pts.length) return '<p class="note">Sem pontos ainda.</p>';
+  const W=720,H=210,L=56,R=86,T=16,B=38, iw=W-L-R, ih=H-T-B, C='var(--kb)';
+  const v=p=>(p.cd.exc||0)+(p.us.exc||0), top=excNice(Math.max(...pts.map(v))*1.1);
+  const x=i=>L+(pts.length>1?i/(pts.length-1):0.5)*iw, y=val=>T+(1-Math.max(0,Math.min(top,val))/top)*ih;
+  const fd=d=>{ const [a,m,dd]=d.split('-'); return dd+'/'+m; }, fk=n=>n>=1000?f0(n/1000)+' mil':f0(n);
+  let g='';
+  for(let k=0;k<=4;k++){ const val=top*k/4; g+=`<line x1="${L}" x2="${L+iw}" y1="${y(val)}" y2="${y(val)}" stroke="var(--line)" stroke-dasharray="${k?'3 4':''}"/><text x="${L-8}" y="${y(val)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${fk(val)}</text>`; }
+  const step=Math.max(1,Math.ceil(pts.length/8));
+  pts.forEach((p,i)=>{ if(i%step===0||i===pts.length-1) g+=`<text x="${x(i)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="var(--muted)">${fd(p.d)}</text>`; });
+  pts.forEach((p,i)=>{ if(i&&p.rev&&p.rev!==pts[i-1].rev&&!p.base) g+=`<line x1="${x(i)}" x2="${x(i)}" y1="${T}" y2="${T+ih}" stroke="var(--muted)" stroke-dasharray="2 3"/><text x="${x(i)-4}" y="${T+10}" text-anchor="end" font-size="10" fill="var(--muted)">base ${esc(p.rev)}</text>`; });
+  g+=`<path d="${pts.map((p,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(v(p)).toFixed(1)}`).join(' ')}" fill="none" stroke="${C}" stroke-width="2.5" stroke-linejoin="round"/>`;
+  pts.forEach((p,i)=>{ g+=`<g><circle cx="${x(i)}" cy="${y(v(p))}" r="4" fill="${C}" stroke="var(--panel)" stroke-width="2"/><circle cx="${x(i)}" cy="${y(v(p))}" r="11" fill="transparent"><title>${fd(p.d)}${p.base?' (base)':''} · ${f0(v(p))} pç acima do máximo · CD ${f0(p.cd.exc)} pç · Usinados ${f0(p.us.exc)} pç${p.rev?' · base '+p.rev:''}</title></circle></g>`; });
+  const last=pts[pts.length-1]; g+=`<text x="${x(pts.length-1)+9}" y="${y(v(last))+4}" font-size="12" font-weight="700" fill="var(--ink)">${fk(v(last))} pç</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:240px;display:block" role="img" aria-label="Evolução do estoque acima do máximo">${g}</svg>`;
+}
+function excTrend(pts){ if(pts.length<2) return ''; const v=p=>(p.cd.exc||0)+(p.us.exc||0), a=pts[pts.length-2], b=pts[pts.length-1], d=v(b)-v(a);
+  return d<0?`<b style="color:var(--kg)">▼ ${f0(-d)} pç</b> desde ${fmtDT(a.d+'T12:00:00')}`:(d>0?`<b style="color:var(--kr)">▲ ${f0(d)} pç</b> desde ${fmtDT(a.d+'T12:00:00')}`:`sem mudança desde ${fmtDT(a.d+'T12:00:00')}`); }
 function histPanel(){
   const pts=histPoints(); const last=pts.slice(-10).reverse();
   return `<div class="panel"><div class="head"><h3>Evolução diária do abastecimento</h3><span class="note">um ponto por dia de importação do estoque · ${f0(pts.length)} dia(s)</span></div>
    ${histChart(pts)}
    <div class="ovleg"><span><i style="background:#2F6DB5"></i><b>CD · produto acabado</b></span><span><i style="background:#C27C0E"></i><b>Usinados · AUS</b></span><span class="note">% abastecido = peças dentro das faixas ÷ máximo do supermercado · passe o mouse nos pontos</span></div>
-   <details style="margin-top:8px"><summary class="note">Tabela dos últimos ${last.length} dias</summary><div class="tw"><table><thead><tr><th>Data</th><th class="num">CD %</th><th class="num">CD faltam (pç)</th><th class="num">CD acima (pç)</th><th class="num">AUS %</th><th class="num">AUS faltam (pç)</th><th class="num">AUS acima (pç)</th><th class="num">Total %</th></tr></thead><tbody>
-   ${last.map(p=>`<tr><td>${fmtDT(p.d+'T12:00:00')}${p.base?' <span class="note">(base)</span>':''}</td><td class="num">${f1(p.cd.pct)}</td><td class="num">${f0(p.cd.falta)}</td><td class="num">${f0(p.cd.exc)}</td><td class="num">${f1(p.us.pct)}</td><td class="num">${f0(p.us.falta)}</td><td class="num">${f0(p.us.exc)}</td><td class="num">${f1(p.tot)}</td></tr>`).join('')}</tbody></table></div></details>
+   <div id="hist-exc" style="margin-top:14px"><div class="head"><h3>Estoque acima do máximo</h3><span class="note">CD + Usinados, em peças · ${excTrend(pts)}</span></div>
+   ${excChart(pts)}
+   <div class="ovleg"><span><i style="background:var(--kb)"></i><b>Acima do máximo (CD + Usinados)</b></span><span class="note">descendo = o excesso está sendo consumido · passe o mouse nos pontos para ver CD e Usinados separados · a linha tracejada marca a troca da base de itens (muda o que conta como excesso)</span></div></div>
+   <details style="margin-top:8px"><summary class="note">Tabela dos últimos ${last.length} dias</summary><div class="tw"><table><thead><tr><th>Data</th><th class="num">CD %</th><th class="num">CD faltam (pç)</th><th class="num">CD acima (pç)</th><th class="num">AUS %</th><th class="num">AUS faltam (pç)</th><th class="num">AUS acima (pç)</th><th class="num">Total acima (pç)</th><th class="num">Total %</th></tr></thead><tbody>
+   ${last.map(p=>`<tr><td>${fmtDT(p.d+'T12:00:00')}${p.base?' <span class="note">(base)</span>':''}</td><td class="num">${f1(p.cd.pct)}</td><td class="num">${f0(p.cd.falta)}</td><td class="num">${f0(p.cd.exc)}</td><td class="num">${f1(p.us.pct)}</td><td class="num">${f0(p.us.falta)}</td><td class="num">${f0(p.us.exc)}</td><td class="num">${f0((p.cd.exc||0)+(p.us.exc||0))}</td><td class="num">${f1(p.tot)}</td></tr>`).join('')}</tbody></table></div></details>
    <p class="note">O ponto do dia é gravado automaticamente quando alguém importa o estoque (CD ou Usinados); importações no mesmo dia atualizam o mesmo ponto. O primeiro ponto é a posição da base (${esc(DATA.dataest)}).</p></div>`;
 }
 function renderOV(){ renderOV0(); pedPanelBind(); }
@@ -4706,7 +4729,7 @@ async function cmShare(L,T){
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev21", MAN_DATA="23/11/2026";
+const MAN_REV="Rev22", MAN_DATA="23/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -4769,9 +4792,9 @@ const MAN=[
   faq:[["Por que o estoque de um dia aparece com traço?","O estoque do dia é gravado quando o saldo é importado ou apontado. Sem nenhum desses no dia, não há posição."],["Como mudo a linha de base?","Só o Programador: no Fluxo de valor, em Indicadores, troque a data da Linha de base."]]},
  {id:"ov",t:"Painel: Como Estão os Supermercados",quem:"todos",tab:"ov",
   lead:"O **Painel** é a primeira tela. Mostra, de uma olhada, se os supermercados e os pedidos estão bem.",
-  telas:[{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Os **mapas** mostram um quadradinho por item, na cor da faixa em que ele está.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**."]}],
+  telas:[{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Os **mapas** mostram um quadradinho por item, na cor da faixa em que ele está.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
   dica:"A data do estoque aparece no alto do menu. Estoque velho = painel velho: importe o saldo do dia.",
-  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."]]},
+  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
  {id:"qd",t:"Quadros Kanban e Modo TV",quem:"todos",tab:"qd",
   lead:"Cada **processo** tem o seu quadro, igual ao quadro físico da fábrica.",
   telas:[{t:"Ver o quadro",img:"m19-qd.jpg",passos:["Escolha o **processo** no alto.","O quadro mostra os itens daquele processo; **Situação agora** conta quantos estão em cada cor.","Toque em **Abrir este quadro no modo TV** para deixar numa televisão da área."]}],
@@ -4900,6 +4923,8 @@ function tourShow(){
 
 /* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
 const NEWS=[
+ {rev:22,quando:"23/11/2026",t:"Linha do estoque acima do máximo",itens:[
+   {id:"22-exc",man:"ov",tab:"ov",sel:'#hist-exc',t:"Novo: linha do excesso",x:"No Painel, em Evolução diária, a linha azul mostra dia a dia o estoque acima do máximo (CD + Usinados). Descendo = o excesso está sendo consumido."}]},
  {rev:21,quando:"23/11/2026",t:"Menu por módulos, Painel com luzes e mapa do fluxo de valor",itens:[
    {id:"21-mod",man:"telas",sel:'aside.side #nav1, #mnav',t:"Novo: menu por módulos",x:"As telas são as mesmas, agora agrupadas na ordem do trabalho: Painel, Fluxo de valor, Planejar, Produzir, Estocar, Expedir e Ajuda e ajustes."},
    {id:"21-abas",man:"telas",tab:"pa",sel:'#mtabs',t:"Novo: abas no alto",x:"Cada módulo mostra as suas telas em abas no alto. Toque na aba para trocar de tela."},
