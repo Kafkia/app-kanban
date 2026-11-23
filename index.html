@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev18"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev21"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1516,6 +1516,152 @@ body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .
 .opv-ip{text-align:right}.opv-ip b{display:block;font:700 30px/1 var(--display)}.opv-ip span{font-size:13px;color:var(--muted)}
 .opv-is{grid-column:2/4;font-size:14px;font-weight:700;color:var(--muted)}
 
+/* Rev19 · ajuda: manual, guia de novidades e assistente */
+.mn-bar{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}.mn-bar input{flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit}
+.mn-idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px;margin-bottom:18px}
+.mn-idx button{display:flex;gap:8px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:8px 10px;font:600 13px inherit;cursor:pointer}
+.mn-idx button b,.mn-n{flex:0 0 auto;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:7px;background:#E8912D;color:#fff;font:700 14px var(--display)}
+.mn-idx button.off{opacity:.35}
+.mn-sec{border:1px solid var(--line);border-radius:14px;background:var(--panel);margin-bottom:16px;overflow:hidden;scroll-margin-top:80px}
+.mn-sec>header{display:flex;align-items:center;gap:12px;background:var(--navy);color:#fff;padding:12px 16px}.mn-sec>header h3{margin:0;font:700 22px var(--display);letter-spacing:.02em;color:#fff;flex:1}
+.mn-sec>header .mn-n{width:34px;height:34px;font-size:19px}
+.mn-tag{font:700 11px var(--body,inherit);letter-spacing:.08em;text-transform:uppercase;background:#E8912D;color:#fff;border-radius:999px;padding:3px 10px}.mn-tag.adm{background:#5B2A86}
+.mn-body{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,1.25fr);gap:18px;padding:16px}
+@media (max-width:900px){.mn-body{grid-template-columns:1fr}}
+.mn-lead{font-size:17px;line-height:1.45;margin:0 0 10px}.mn-txt h4{margin:14px 0 6px;font:700 16px var(--display);letter-spacing:.03em;color:#C9741B}
+.mn-st{list-style:none;margin:0;padding:0;counter-reset:st}.mn-st li{counter-increment:st;position:relative;padding:4px 0 6px 36px;font-size:15px;line-height:1.4}
+.mn-st li:before{content:counter(st);position:absolute;left:0;top:3px;width:24px;height:24px;border-radius:50%;background:#E8912D;color:#fff;font:700 13px/24px var(--display);text-align:center}
+.mn-dica{background:var(--navy);color:#fff;border-radius:10px;padding:10px 14px;font-size:14.5px;margin:12px 0 0}
+.mn-tb{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}.mn-tb th{text-align:left;padding:6px 10px 6px 0;white-space:nowrap;vertical-align:top}.mn-tb td{padding:6px 0;color:var(--muted)}.mn-tb tr{border-top:1px solid var(--line)}
+.mn-hist{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:8px}.mn-hist>div{border:1px solid var(--line);border-radius:10px;padding:10px}.mn-hist>div>b{display:block;margin:6px 0 2px}.mn-hist p{margin:0;font-size:14px;color:var(--muted)}
+.mn-faq{margin-top:12px}.mn-faq details{border-top:1px solid var(--line);padding:7px 0}.mn-faq summary{cursor:pointer;font-weight:700;font-size:14.5px}.mn-faq p{margin:6px 0 2px;color:var(--muted);font-size:14.5px}
+.mn-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.mn-imgs{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;justify-content:center}.mn-imgs figure{margin:0;flex:1 1 240px;max-width:520px}.mn-imgs img{width:100%;height:auto;border:6px solid #16233B;border-radius:16px;display:block;background:#fff}
+.mn-imgs figcaption{text-align:center;font-size:12px;color:var(--muted);margin-top:4px}
+#asst-fab{position:fixed;right:18px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:9000;width:52px;height:52px;border-radius:50%;border:0;background:#E8912D;color:#fff;font:700 28px var(--display);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.28)}
+@media (max-width:900px){#asst-fab{bottom:calc(140px + env(safe-area-inset-bottom,0px));right:14px}}
+#asst{position:fixed;right:18px;bottom:calc(146px + env(safe-area-inset-bottom,0px));z-index:9001;width:min(380px,calc(100vw - 24px));max-height:min(560px,calc(100vh - 170px));display:flex;flex-direction:column;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.35);overflow:hidden}
+#asst[hidden]{display:none}
+@media (max-width:900px){#asst{right:12px;bottom:calc(200px + env(safe-area-inset-bottom,0px));max-height:calc(100vh - 230px)}}
+.as-h{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:#fff;padding:10px 14px;font-size:16px}.as-h button{background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer;padding:4px 8px}
+#asst-log{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:160px}
+.am{max-width:88%;padding:9px 12px;border-radius:12px;font-size:14.5px;line-height:1.4}.am.bot{background:var(--panel2);align-self:flex-start;border-bottom-left-radius:4px}.am.eu{background:var(--navy);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.ac{display:flex;flex-wrap:wrap;gap:6px}.ac button{border:1px solid #E8912D;background:transparent;color:var(--ink);border-radius:999px;padding:7px 12px;font:600 13px inherit;cursor:pointer;text-align:left}
+#asst-f{display:flex;gap:6px;padding:10px;border-top:1px solid var(--line)}#asst-f input{flex:1;min-width:0;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit}
+.as-n{font-size:11px;color:var(--muted);padding:0 12px 8px}
+#nv-layer{position:fixed;inset:0;pointer-events:none;z-index:8000}
+.nv-flag{position:absolute;pointer-events:auto;border:0;background:#E8912D;color:#fff;font:700 11px var(--display);letter-spacing:.08em;border-radius:999px;padding:3px 8px;cursor:pointer;box-shadow:0 0 0 0 rgba(232,145,45,.7);animation:nvp 1.8s infinite}
+.nv-flag.demo{position:static;display:inline-block;animation:none;pointer-events:none}
+@keyframes nvp{0%{box-shadow:0 0 0 0 rgba(232,145,45,.7)}70%{box-shadow:0 0 0 10px rgba(232,145,45,0)}100%{box-shadow:0 0 0 0 rgba(232,145,45,0)}}
+@media (prefers-reduced-motion:reduce){.nv-flag{animation:none}}
+#nv-pop,#tr-card{position:fixed;z-index:9500;background:var(--panel);color:var(--ink);border-radius:14px;padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,.4);border:1px solid var(--line)}
+#nv-pop h4,#tr-card h4{margin:0 0 6px;font:700 19px var(--display);letter-spacing:.02em}#nv-pop p,#tr-card p{margin:0 0 10px;font-size:15px;line-height:1.45}
+.tr-b{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.tr-k{font:700 11px var(--body,inherit);letter-spacing:.1em;color:#C9741B;text-transform:uppercase;margin-bottom:4px}
+#tr{position:fixed;inset:0;z-index:9400}#tr-hole{position:fixed;border-radius:12px;box-shadow:0 0 0 9999px rgba(10,18,36,.66);outline:3px solid #E8912D;transition:all .2s ease;pointer-events:none}
+#nv-modal{position:fixed;inset:0;z-index:9600;background:rgba(10,18,36,.6);display:grid;place-items:center;padding:14px}
+.nv-box{width:min(560px,100%);max-height:calc(100vh - 28px);display:flex;flex-direction:column;background:var(--panel);color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.nv-top{background:var(--navy);color:#fff;font:700 22px var(--display);letter-spacing:.06em;padding:14px 18px}.nv-in{padding:14px 18px;overflow:auto}.nv-in h4{margin:10px 0 4px;font:700 17px var(--display);color:#C9741B}.nv-in ul{margin:0 0 6px;padding-left:18px}.nv-in li{margin:5px 0;font-size:15px;line-height:1.4}
+.nv-b{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;padding:12px 18px;border-top:1px solid var(--line)}
+@media print{#asst-fab,#asst,#nv-layer,#tr,#nv-modal,.mn-bar,.mn-idx,.mn-acts{display:none!important}.mn-sec{break-inside:avoid}}
+
+/* Rev20 · apontamento, fluxo ao vivo (VSM), expedido */
+.apv-top{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:10px}
+.apv-kpi{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}.apv-kpi>div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 12px;text-align:center;min-width:86px}
+.apv-kpi b{display:block;font:700 22px var(--display)}.apv-kpi span{font-size:12px;color:var(--muted)}
+.apv-chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 8px}.apv-chips button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:6px 12px;font:600 13px inherit;cursor:pointer}.apv-chips button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.apv-p{margin:14px 0}.apv-p h3{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;font:700 18px var(--display);margin:0 0 6px}
+.apr{display:grid;grid-template-columns:minmax(220px,2.2fr) repeat(3,minmax(64px,.55fr)) minmax(80px,.7fr) minmax(80px,.7fr) auto;gap:8px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:6px}
+.apr.and{border-left:5px solid var(--kb)}
+.apr-i{display:flex;gap:8px;align-items:flex-start;min-width:0}.apr-i b{font:700 17px var(--display)}.apr-i small{display:block;color:var(--muted);font-size:12px;line-height:1.3}
+.apr-i small b{font:700 12px var(--body)}.apr-dot{flex:0 0 auto;width:12px;height:12px;border-radius:50%;margin-top:5px}.apr-and{color:var(--kb)}
+.apr-n{text-align:right}.apr-n b{display:block;font:700 18px var(--display)}.apr-n small{font-size:11px;color:var(--muted)}
+.apr-in{display:flex;flex-direction:column;font-size:11px;color:var(--muted);font-weight:700}.apr-in input{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;font:600 15px var(--mono);background:var(--panel);color:var(--ink);text-align:right}
+.apr-b{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:900px){.apr{grid-template-columns:1fr 1fr 1fr}.apr-i{grid-column:1/-1}.apr-b{grid-column:1/-1}}
+.fx-top{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:12px}
+.fx-lane{border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:10px 12px;margin-bottom:12px}
+.fx-lh{font:700 15px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}.fx-lh small{font:400 12px var(--body);text-transform:none;letter-spacing:0;color:var(--muted);margin-left:6px}
+.fx-row{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+.fx-st{display:flex;gap:6px;align-items:stretch;flex:0 1 255px;min-width:240px}
+.fx-tri{flex:0 0 62px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.fx-tri span{font-size:30px;line-height:1;color:var(--ky)}.fx-tri b{font:700 15px var(--display)}.fx-tri small{font-size:10px;color:var(--muted)}
+.fx-box{flex:1;background:var(--panel);border:2px solid var(--navy);border-radius:10px;padding:8px 10px;min-width:0}
+.fx-t{font-size:13px;color:var(--muted);margin-bottom:4px}.fx-t b{color:var(--ink);font:700 15px var(--display)}
+.fx-big b{font:700 28px var(--display)}.fx-big span{font-size:12px;color:var(--muted);margin-left:4px}
+.fx-bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin:4px 0 6px}.fx-bar div{height:100%}
+.fx-k{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}.fx-k b{color:var(--ink)}
+.fx-arrow{align-self:center;font:700 26px var(--display);color:var(--muted)}
+.fx-sm{flex:0 1 220px;min-width:190px;background:var(--ky-soft);border:2px solid var(--ky);border-radius:10px;padding:8px 12px;display:flex;flex-direction:column;justify-content:center;color:var(--ink)}
+.fx-smt{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.fx-sm b{font:700 24px var(--display)}.fx-sm span{font-size:12px}
+.fx-exp{flex:0 1 230px;border-color:var(--kg)}
+@media (max-width:700px){.fx-arrow{width:100%;text-align:center;transform:rotate(90deg)}}
+.exp-ok{margin-top:14px}.exp-ok summary{cursor:pointer;padding:6px 0}
+
+/* Rev21 — abas do módulo, situação em três cores e mapa dos itens */
+.shellbar{position:sticky;top:0;z-index:5;background:var(--panel)}
+.shellbar header.bar{position:static}
+.mtabs{display:flex;gap:2px;padding:0 18px;border-bottom:1px solid var(--line);background:var(--panel);overflow-x:auto}
+.mtabs button{background:none;border:0;border-bottom:3px solid transparent;padding:11px 14px 8px;font:600 15px var(--body);color:var(--muted);white-space:nowrap;cursor:pointer}
+.mtabs button:hover{color:var(--ink)}
+.mtabs button[aria-current="page"]{color:var(--ink);border-bottom-color:var(--gold)}
+.vtabs{display:none}
+.lamp{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:3px 10px 3px 8px;font:700 13px var(--body);white-space:nowrap}
+.lamp::before{content:"";width:10px;height:10px;flex:none}
+.lamp.ok{background:var(--kg-soft);color:var(--kg)}.lamp.ok::before{background:var(--kg);border-radius:50%}
+.lamp.warn{background:var(--ky-soft);color:var(--ink)}.lamp.warn::before{background:var(--ky);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.lamp.bad{background:var(--kr-soft);color:var(--kr)}.lamp.bad::before{background:var(--kr)}
+.sit-wrap{display:flex;flex-direction:column;gap:12px;margin:0 0 18px}
+.sit-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.sit-h b{font:700 20px var(--display);letter-spacing:.05em;text-transform:uppercase}
+.sit-leg{display:inline-flex;gap:6px;flex-wrap:wrap}
+.sit-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.sit-t{border:2px solid var(--line);border-radius:12px;padding:12px 14px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:5px;background:var(--panel);color:var(--ink);cursor:pointer;font:inherit}
+.sit-t>span:first-child{font:700 13px var(--body);letter-spacing:.06em;text-transform:uppercase}
+.sit-t b{font:700 40px/1 var(--display);font-variant-numeric:tabular-nums}
+.sit-t small{font-size:13px;color:var(--muted)}
+.sit-t.ok{border-color:var(--kg);background:var(--kg-soft)}.sit-t.warn{border-color:var(--ky);background:var(--ky-soft)}.sit-t.bad{border-color:var(--kr);background:var(--kr-soft)}
+.sit-t .lamp{background:var(--panel)}
+.sit-m{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.sit-m>div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+.sit-m h4{margin:0 0 8px;font:600 12px var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.mapa{display:flex;flex-wrap:wrap;gap:3px}
+.q{width:14px;height:14px;border-radius:3px;display:inline-block;flex:none}
+.q.bad{background:var(--kr)}.q.warn{background:var(--ky)}.q.ok{background:var(--kg)}.q.over{background:#7C8BD0}.q.nd{background:var(--line)}
+.sit-l{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted)}
+.sit-l span{display:inline-flex;align-items:center;gap:6px}
+.sit-c{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.sit-c summary{font-weight:700;cursor:pointer}
+.sit-c ul{margin:8px 0 0;padding-left:18px;color:var(--muted)}
+@media (max-width:900px){.mtabs{padding:0 6px}.mtabs button{padding:12px 12px 9px;font-size:15px}.mnav button{font-size:10.5px}}
+.content{overflow-x:clip}
+@media print{.shellbar{position:static}.sit-c{display:none}}
+
+/* Rev21 — mapa do fluxo de valor (VSM) */
+.vsm-w{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;margin:0 0 10px}
+.vsm{display:block;width:100%;min-width:1060px;height:auto}
+.vsm text{font-family:var(--body);fill:var(--ink)}
+.vsm .bx{fill:var(--panel);stroke:var(--ink);stroke-width:1.6}
+.vsm .ln,.vsm-leg .ln{fill:none;stroke:var(--ink);stroke-width:1.6}
+.vsm .mf,.vsm-leg .mf{fill:none;stroke:var(--ink);stroke-width:3.2}
+.vsm .inf{fill:none;stroke:var(--ink);stroke-width:1.2}
+.vsm .kb,.vsm-leg .kb{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:6 5}
+.vsm .ah{fill:var(--ink)}
+.vsm .pid{font-size:11px;font-weight:700;letter-spacing:.08em;fill:var(--muted)}
+.vsm .pn{font-size:14px;font-weight:700}
+.vsm .dk{font-size:12px;fill:var(--muted)}
+.vsm .dv{font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.vsm .sv{font-size:12px;font-weight:700}
+.vsm .smn{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.vsm .nt{font-size:11.5px;fill:var(--muted)}
+.vsm .sx.ok{fill:var(--kg-soft);stroke:var(--kg)}.vsm .sx.warn{fill:var(--ky-soft);stroke:var(--ky)}.vsm .sx.bad{fill:var(--kr-soft);stroke:var(--kr)}.vsm .sx.nd{fill:var(--panel2);stroke:var(--line)}
+.vsm .sx{stroke-width:1.6}
+.vsm-leg{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin:0 0 18px;align-items:center}
+.vsm-leg span{display:inline-flex;align-items:center;gap:6px}
+.vsm-leg svg{width:26px;height:16px}
+.vsm-leg .bx{fill:var(--panel);stroke:var(--ink);stroke-width:1.6}
+.vsm-hint{display:none}
+@media (max-width:900px){.vsm-hint{display:inline-flex;font-weight:700;color:var(--ink)}.mnav button{font-size:10px;padding-left:0;padding-right:0}}
+
 
 [hidden]{display:none!important}
 #kb-gate{position:fixed;inset:0;z-index:2147483000;background:var(--paper,#F2F4F7);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:max(16px,env(safe-area-inset-top)) 16px 24px}
@@ -1546,12 +1692,8 @@ body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .
 <div class="app" id="app">
 <aside class="side" id="side">
   <div class="logo"><div class="brandlogos"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCACQAoUDASIAAhEBAxEB/8QAHgABAAIBBQEBAAAAAAAAAAAAAAgJBwEDBAUGAgr/xABQEAABAwMCBAIECQgHBQYHAAABAAIDBAUGBxEIEiExCUETUWFxFCI2N4GRobHBIzJScnN0stEVGTVCVIKSFhcYYvAkM1NVVpQlQ0aDk6Lh/8QAHAEAAgIDAQEAAAAAAAAAAAAAAAUEBgEDBwII/8QAOhEAAQMDAgQDBgQFAwUAAAAAAQACAwQFEQYhEhMxQVFhcQcUIjOBkSM0QtEyUqHB4RYkYnKSsbLw/9oADAMBAAIRAxEAPwCz1ERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEREIRERCEREQhEXFuFzo7ZA+oq52MDRvsT1Xgbxq1QNje22tc8t6blp2SK8aktlibmulDT2Gdz9EworXV3A/gMJHj2WSEWAarVy/umPI4Rs36fGO62jq5kDOrJmv9hcVQne2XT7X8OHnzwrGNDXIjO33Ug0WHLHrM9mxusTuXz2BKyPj2YWbI4BNRVLevZpOxVvsetLNqAhlJMOP+U7H7JLcLDXW0cUzDw+I6LvERFa0mREJAG5OwXnMjzqyY43/tVQ1zvU3r1+hQ664UttiM9W8MaO5OFvp6aareI4Wlx8l6NFhe+6yVJe422M7eW4IXTx6r5BKfjTtafIBxXOa32u6epJOBrnP82jIVnh0XcpWcZAHqpAIsE0uq9/ilHwjlez1glexsur1nqHR01eXRyP7EtO31pha/abp+5vEfN4HHoHbKNV6UuVK3i4eIeW6yKi2aSspq2Fs1NK17XDfod1vLoDHtkaHMOQVW3NLTg9UREXpYRERCEREc5rQXOIAHclCERcOS9WeE8st1o2H1OnaPxXy2/wBiedmXqhJ9lQz+azgrGQuci24amnqBzU88co9bHB33LcWFlEREIREXzJJHE3nlkaxo83HYIQvpFwX36xxnaS80LT6nVDB+K0Zf7FIdo71QuPsqGH8VnBWMhc9F8xTRTt54ZWSN9bXAhfSwsoiIhCIvl8scY3kkawetx2Xw2qpXnlbUxEnyDwUIW6iIhCIiIQiIiEIiLbmqqamHNUVEcQ9b3hv3oQtxFwHZBYWnZ17oB76ln819RXuzTECG7UbyewbO0/is4KxkLmojXNcA5rgQexBRYWUREQhEXw+eCLpJMxn6zgFrHNDL/wB1Kx/6rgUIX0iIhCIiIQiIhIaCXEADzKEIi2vh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" alt="Colombo AEMCO"></div><b>Lean Up</b><span id="rev">Kanban</span></div>
-  <div class="navgrp">Operação</div>
+  <div class="navgrp">Módulos</div>
   <nav id="nav1"></nav>
-  <div class="navgrp">Supermercados</div>
-  <nav id="nav2"></nav>
-  <div class="navgrp">Configuração</div>
-  <nav id="nav3"></nav>
   <div class="sidefoot">
     <span id="sync">modo local</span>
     <span id="who">—</span>
@@ -1560,6 +1702,7 @@ body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .
   </div>
 </aside>
 <main class="mainarea">
+<div class="shellbar">
 <header class="bar">
   <button class="mtoggle" id="mtog" aria-label="Menu">☰</button>
   <div><div class="crumb" id="crumb">Operação</div><h1 id="ptitle">Visão geral</h1></div>
@@ -1568,6 +1711,8 @@ body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .
   <span class="chip" id="chip2">—</span>
   <a class="leanai" href="https://claude.ai/artifact/3DEwuDUUwSdNTw9X4aBFGw" target="_blank" rel="noopener" title="Lean AI Systems · abrir o app de bolso"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M17.3 4.5A8.7 8.7 0 1 0 20.5 13.9" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><circle cx="12" cy="12" r="2.1" fill="currentColor"/></svg><i>LEAN AI</i></a>
 </header>
+<nav class="mtabs" id="mtabs" aria-label="Telas do módulo" hidden></nav>
+</div>
 <div class="content">
 <section class="pane" id="p-ov"></section>
 <section class="pane" id="p-qd" hidden></section>
@@ -1590,7 +1735,7 @@ body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .
       <option value="cur">Ocupação atual (Mapa Lógico)</option>
     </select></label>
     <label class="f" for="cd-rua">Rua<select id="cd-rua"><option value="">Todas</option><option>D</option><option>E</option><option>F</option><option value="GHI">G, H e I</option></select></label>
-    <label class="f" for="cd-find">Localizar item<input id="cd-find" type="search" placeholder="ex.: CC20"></label>
+    <label class="f" for="cd-find">Localizar item<input id="cd-find" type="search" placeholder="ex.: código do item"></label>
     <button class="btn" id="cd-reset">Vista geral</button>
     <button class="btn" id="cd-corr">Vista do corredor</button>
   </div>
@@ -1607,6 +1752,8 @@ body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .
 <section class="pane" id="p-par" hidden></section>
 <section class="pane" id="p-im" hidden></section>
 <section class="pane" id="p-pd" hidden></section>
+<section class="pane" id="p-man" hidden></section>
+<section class="pane" id="p-fx" hidden></section>
 </div>
 </main>
 </div>
@@ -1842,7 +1989,7 @@ function excPanel(lab,list,unid,nota){
    "Acima do máximo" soma duas coisas: o excesso dos itens kanban (estoque − máximo) e o estoque
    parado em itens MTO, cujo máximo é zero. No CD, a parte já vendida vem da carteira em aberto. */
 function origTag(r){ if(!r.orig) return '';
-  const k=r.orig.startsWith('Anota')?'anotação Kandi':(r.orig.startsWith('Sugest')?'Estudo Kandi':(r.orig.startsWith('Pol')?'política tubos':'modelo'));
+  const k=r.orig.startsWith('Anota')?'anotação da revisão':(r.orig.startsWith('Sugest')?'estudo':(r.orig.startsWith('Pol')?'política tubos':'modelo'));
   const cm=r.clsm==="MTO + buffer"?CLS_US_BUF:(r.clsm==="MTO + buffer CD"?(r.comp?CLS_PA_BUF:"MTO"):r.clsm); const mud=cm&&cm!==r.cls;
   return `<br><span class="note" title="${esc(r.orig+(r.nota?' — '+r.nota:''))}">${k}${mud?' · era '+esc(r.clsm):''}</span>`; }
 function famAgg(rows,key){
@@ -2022,7 +2169,7 @@ function pctSnapshot(){
   const PA=calcPA(), US=calcUS();
   const kU=US.filter(r=>r.manter&&r.cls!=="MTO"), uFora=US.filter(r=>!(r.manter&&r.cls!=="MTO")).map(r=>Object.assign({},r,{M:0}));
   const fP=famAgg(PA,'fam'), fU=famAgg(kU.concat(uFora),'grp'), cP=countSt(PA), cU=countSt(US.filter(r=>r.manter));
-  const pk=T=>({pct:+(T.alvo?T.util/T.alvo*100:0).toFixed(1),util:Math.round(T.util),alvo:Math.round(T.alvo),falta:Math.round(T.falta),exc:Math.round(T.exc),vend:Math.round(T.vend||0)});
+  const pk=T=>({pct:+(T.alvo?T.util/T.alvo*100:0).toFixed(1),est:Math.round(T.est),util:Math.round(T.util),alvo:Math.round(T.alvo),falta:Math.round(T.falta),exc:Math.round(T.exc),vend:Math.round(T.vend||0)});
   const cd=pk(fP.T), us=pk(fU.T); cd.verm=cP["Vermelho"]||0; us.verm=cU["Vermelho"]||0;
   let ped=null; if(!BASE_CALC&&typeof expAlloc==="function"&&PED.linhas.length){ const S=expStats(expAlloc()); ped={comp:S.comp,inc:S.inc,pcComp:S.pcsComp,pcInc:S.pcsInc,atr:S.atrComp+S.atrInc}; }
   return {cd,us,ped,tot:+((fP.T.util+fU.T.util)/Math.max(1,fP.T.alvo+fU.T.alvo)*100).toFixed(1)};
@@ -2041,16 +2188,17 @@ function histPoints(){
 }
 let histT=null;
 const histKey=o=>o?Object.keys(o).sort().map(k=>k+":"+o[k]).join(","):"";
+function stkUlt(){ let m=""; ["pa","us"].forEach(k=>{ const o=(STK&&STK[k])||{}; for(const c in o){ const t=o[c]&&o[c].t; if(t&&t>m) m=t; } }); return m||null; }
 function histCheck(){   // grava/atualiza o ponto do dia da última importação (CD ou Usinados)
   clearTimeout(histT);
   histT=setTimeout(()=>{
-    const pa=ultimaImp('pa'), us=ultimaImp('us'); const t=[pa&&pa.t,us&&us.t,PED.meta&&PED.meta.t].filter(Boolean).sort().pop(); if(!t) return;
+    const pa=ultimaImp('pa'), us=ultimaImp('us'); const t=[pa&&pa.t,us&&us.t,PED.meta&&PED.meta.t,stkUlt()].filter(Boolean).sort().pop(); if(!t) return;   // Rev20: inventário apontado também grava o dia
     const dt=new Date(t); if(isNaN(dt)) return; const d=dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');
     const p=Object.assign({d,t:new Date().toISOString(),u:UID||"",impPA:pa?pa.t:null,impUS:us?us.t:null},pctSnapshot());
     const h=HIST[d];
-    const same=h&&h.cd&&h.us&&Math.abs(h.cd.pct-p.cd.pct)<0.05&&Math.abs(h.us.pct-p.us.pct)<0.05&&h.cd.falta===p.cd.falta&&h.us.falta===p.us.falta&&h.cd.exc===p.cd.exc&&h.us.exc===p.us.exc&&histKey(h.ped)===histKey(p.ped);
+    const same=h&&h.cd&&h.us&&Math.abs(h.cd.pct-p.cd.pct)<0.05&&Math.abs(h.us.pct-p.us.pct)<0.05&&h.cd.falta===p.cd.falta&&h.us.falta===p.us.falta&&h.cd.exc===p.cd.exc&&h.us.exc===p.us.exc&&h.cd.est===p.cd.est&&h.us.est===p.us.est&&histKey(h.ped)===histKey(p.ped);
     if(same) return;
-    const sig=d+"|"+[p.cd.pct.toFixed(1),p.us.pct.toFixed(1),p.cd.falta,p.us.falta,p.cd.exc,p.us.exc,histKey(p.ped)].join("|");
+    const sig=d+"|"+[p.cd.pct.toFixed(1),p.us.pct.toFixed(1),p.cd.falta,p.us.falta,p.cd.exc,p.us.exc,p.cd.est,p.us.est,histKey(p.ped)].join("|");
     if(histCheck.sig===sig&&Date.now()-(histCheck.at||0)<300000) return;   // Rev15: nunca regrava o mesmo ponto em sequência
     histCheck.sig=sig; histCheck.at=Date.now();
     HIST[d]=p;
@@ -2554,12 +2702,12 @@ function renderPR(){
   const el=document.getElementById('p-pr');
   const open=ORD.filter(o=>o.status!=="concluída"), done=ORD.filter(o=>o.status==="concluída").slice(0,30);
   const cols=[["liberada","Liberadas"],["em produção","Em produção"]];
-  if(!isProg()) PR.view="op"; else if(PR.view!=="op"&&PR.view!=="pg") PR.view="pg";
-  const op=PR.view==="op";
+  if(!isProg()) PR.view="op"; else if(PR.view!=="op"&&PR.view!=="pg"&&PR.view!=="ap") PR.view="pg";
+  const op=PR.view==="op", ap=PR.view==="ap";
   el.innerHTML=`
   <div class="head"><h2>Programação da produção puxada</h2><span class="note">${DB?'Dados compartilhados entre PCP e chão de fábrica':'Modo local: ordens e apontamentos ficam só nesta tela'}</span></div>
-  <div class="vtabs"><button data-view="op" class="${op?'on':''}"><span>▶</span> Operação<small>o que fazer agora em cada máquina</small></button>${isProg()?`<button data-view="pg" class="${op?'':'on'}"><span>🗓</span> Programador<small>fila, capacidade e sequência</small></button>`:''}</div>
-  ${op?'<div id="opv"></div><details class="apd"><summary>Apontar estoque (contagem manual)</summary>':''}
+  <div class="vtabs"><button data-view="op" class="${op?'on':''}"><span>▶</span> Operação<small>o que fazer agora em cada máquina</small></button>${isProg()?`<button data-view="pg" class="${(op||ap)?'':'on'}"><span>🗓</span> Programador<small>fila, capacidade e sequência</small></button><button data-view="ap" class="${ap?'on':''}"><span>✎</span> Apontamento<small>produção boa e perdas de todas as máquinas</small></button>`:''}</div>
+  ${op?'<div id="opv"></div><details class="apd"><summary>Apontar estoque (contagem manual)</summary>':ap?'<div id="apv"></div><details class="apd" id="apv-inv"><summary>Inventário do fim do dia (apontar estoque)</summary>':''}
   <div class="grid2">
    <div class="panel"><h3>1 · Apontar estoque</h3>
     <div class="filters">
@@ -2572,15 +2720,15 @@ function renderPR(){
      <textarea id="ap-bulk" rows="5" style="width:100%;margin-top:6px" placeholder="CODIGO;QTD&#10;ex.: 1234;420"></textarea>
      <button class="btn" id="ap-bulk-go" style="margin-top:6px">Gravar inventário</button></details>
    </div>
-   ${op?'':`<div class="panel"><h3>Como a programação funciona</h3>
+   ${(op||ap)?'':`<div class="panel"><h3>Como a programação funciona</h3>
     <p class="note">1. O consumo baixa o estoque e <b>libera cartões</b> (máximo − estoque, em contêineres inteiros), que caem na fila do primeiro processo da rota do item.<br>
     2. Escolha o processo (P1 a P8), confira a capacidade e <b>programe os cartões por dia</b> — manualmente ou com “Programar fila automaticamente” (ordem: fura-fila, MTO, vermelho, amarelo; o verde fica formando lote e só entra quando o estoque chega na faixa amarela).<br>
     3. No chão de fábrica, na tela <b>Operação</b>: cada máquina vê a sua sequência e aperta <b>Comecei</b> e <b>Terminei</b>. Concluir na última etapa dá entrada no supermercado; nas etapas intermediárias o cartão segue para a fila do processo seguinte.</p>
     <p class="note">Rotas (as mesmas dos Quadros Kanban): terminais do CD → P7 Pintura → P8 Embalagem · cardans → P6 Montagem → P8 · juntas, CTV’s e demais do CD → P8 · tubos e barras → P2 · proteções → P4 · cruzetas compradas → P5 · demais comprados → P1 · usinados: terminais em processo e embreagens → P3, metades de cardan → P6.</p>
    </div>`}
   </div>
-  ${op?'</details>':''}
-  ${op?'':`<div class="head"><h2>2 · Programação digital dos cartões por processo</h2><span class="note">${DB?'Compartilhada entre PCP e chão de fábrica':'Modo local: fica só neste navegador'}</span></div>
+  ${(op||ap)?'</details>':''}
+  ${(op||ap)?'':`<div class="head"><h2>2 · Programação digital dos cartões por processo</h2><span class="note">${DB?'Compartilhada entre PCP e chão de fábrica':'Modo local: fica só neste navegador'}</span></div>
   <div id="prg"></div>
   ${expProgPanel()}
   ${ORD.length?`  <div class="head"><h2>4 · Ordens avulsas (modelo anterior)</h2><span class="note">${f0(open.length)} abertas</span></div>
@@ -2602,7 +2750,7 @@ function renderPR(){
   document.getElementById('ap-bulk-go').onclick=async()=>{ const lines=document.getElementById('ap-bulk').value.split(/\n/).map(l=>l.split(/[;\t,]/)).filter(p=>p.length>=2&&p[0].trim()); const src=new Set((PR.tipo==="pa"?DATA.pa:DATA.us).map(x=>x[0])); const ch={}; let bad=0; lines.forEach(([c,q])=>{ c=c.trim(); const v=parseFloat(String(q).replace(/\./g,'').replace(',','.')); if(src.has(c)&&!isNaN(v)) ch[c]=v; else bad++; }); if(!Object.keys(ch).length){ toast("Nenhuma linha válida: use código;quantidade"); return; } if(await writeStock(PR.tipo,ch)) toast(`${Object.keys(ch).length} itens gravados${bad?` · ${bad} linhas ignoradas`:''}`); };
   el.querySelectorAll('button[data-a]').forEach(b=>b.onclick=()=>ordAction(b.dataset.a,b.dataset.id));
   const cl=document.getElementById('pr-clean'); if(cl) cl.onclick=cleanOld;
-  if(op) renderOPV(); else { renderPRG(); expProgBind(); }
+  if(op) renderOPV(); else if(ap) renderAPV(); else { renderPRG(); expProgBind(); }
 }
 function showItem(){
   const box=document.getElementById('ap-item'); if(!box) return;
@@ -3610,13 +3758,14 @@ async function grupoMaq(p,dia,tipo,cod,i){
   toast(`${cod}: operação ${i+1} agora na ${nw}`); renderPRG();
 }
 /* conclui os cartões na etapa: segue para o próximo processo ou dá entrada no supermercado */
-async function concluirCartoes(cs,p,dia,tipo,cod){
-  let ent=0; const prox0=cs[0].rota[(cs[0].et||0)+1];
+async function concluirCartoes(cs,p,dia,tipo,cod,entOver){   // Rev20: entOver = peças boas apontadas (perdas não entram no supermercado)
+  let ent=0, fin=0; const prox0=cs[0].rota[(cs[0].et||0)+1];
   for(const c of cs){
     const prox=c.rota[(c.et||0)+1];
-    if(prox) await cartUpd(c.id,{status:"fila",proc:prox,et:(c.et||0)+1,dia:"",seq:0,wc:null,op:0,opn:null,["fim_"+p]:new Date().toISOString()});
-    else { await cartUpd(c.id,{status:"ok",concl:new Date().toISOString(),etDia:dia}); ent+=c.q; }
+    if(prox) await cartUpd(c.id,{status:"fila",proc:prox,et:(c.et||0)+1,dia:"",seq:0,wc:null,op:0,opn:null,["fim_"+p]:new Date().toISOString(),["pd_"+p]:dia});
+    else { await cartUpd(c.id,{status:"ok",concl:new Date().toISOString(),etDia:dia}); ent+=c.q; fin++; }
   }
+  if(fin&&entOver!=null&&entOver>=0) ent=Math.round(entOver);
   if(ent>0){ const rows=tipo==="pa"?calcPA():calcUS(); const r=rows.find(x=>x.cod===cod); const base=r&&r.est!=null?r.est:0;
     await writeStock(tipo,{[cod]:base+ent}); toast(`${cod}: entrada de ${f0(ent)} pç no supermercado`); }
   else toast(`${cod}: ${cs.length} cartão(ões) seguem para ${prox0?procNome(prox0):'a próxima etapa'}`);
@@ -3655,11 +3804,14 @@ async function opAcao(a,W,key){
   if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return; }
   const g=opLotes(W).find(x=>x.key===key); if(!g||!g.lib.length) return; const now=new Date().toISOString();
   if(a==="ini"){ for(const c of g.lib){ await cartUpd(c.id,{status:"prod",opn:g.i,inicio:c.inicio||now}); c.status="prod"; c.opn=g.i; } toast(`${g.cod}: começou na ${opvNome(W)[0]}`); }
-  if(a==="fim"&&g.sem) await concluirCartoes(g.lib.slice(),g.proc,g.dia,g.tipo,g.cod);
+  let boaTot=null;
+  if(a==="fim"){ const hj=ymd(opHoje()), ga=apLotes(g.dia>hj?g.dia:hj).find(x=>x.key===g.key);   // Rev20: TERMINEI também vira apontamento (tudo bom)
+    if(ga){ boaTot=ga.boa+ga.rest; await aptAdd(aptRegistro(ga,ga.rest,0,true)); } }
+  if(a==="fim"&&g.sem) await concluirCartoes(g.lib.slice(),g.proc,g.dia,g.tipo,g.cod,boaTot);
   else if(a==="fim"){ const fim=[];
     for(const c of g.lib){ const n=c.wc.length; let nx=g.i+1; while(nx<n&&!c.wc[nx]) nx++;
       if(nx<n){ await cartUpd(c.id,{op:nx,opn:null,status:"prod"}); c.op=nx; c.opn=null; c.status="prod"; } else fim.push(c); }
-    if(fim.length){ await concluirCartoes(fim,g.proc,g.dia,g.tipo,g.cod); fim.forEach(c=>{ c.op=c.wc.length; }); }
+    if(fim.length){ await concluirCartoes(fim,g.proc,g.dia,g.tipo,g.cod,boaTot); fim.forEach(c=>{ c.op=c.wc.length; }); }
     else toast(`${g.cod}: pronto na ${opvNome(W)[0]} — leve para ${g.dep.w}`); }
   renderOPV();
 }
@@ -3707,8 +3859,10 @@ function renderOPV(){
 /* ---------- armazenamento dos cartões ---------- */
 function cartInit(){
   if(typeof DB!=="undefined"&&DB){
-    DB.collection("cartoes").orderBy("criado","asc").limit(3000).onSnapshot(q=>{ CART=q.docs.map(d=>Object.assign({id:d.id},d.data())); if(TAB==="pr") rerender(); },()=>{});
+    DB.collection("cartoes").orderBy("criado","asc").onSnapshot(q=>{ const lim=ymd(new Date(Date.now()-45*864e5));   // Rev20: sem teto de 3.000; concluídos há mais de 45 dias ficam fora da tela
+      CART=q.docs.map(d=>Object.assign({id:d.id},d.data())).filter(c=>!(c.status==="ok"&&String(c.concl||c.criado||"").slice(0,10)<lim)); if(TAB==="pr"||TAB==="fx") rerender(); },()=>{});
   } else { try{ CART=JSON.parse(localStorage.getItem(CART_LS)||"[]"); }catch(e){ CART=[]; } }
+  aptInit();
 }
 function cartLocalSave(){ try{ localStorage.setItem(CART_LS,JSON.stringify(CART)); }catch(e){} }
 async function cartAdd(o){ if(DB){ if(!WRITE_OK){ toast("Seu acesso é só leitura"); return false; } await DB.collection("cartoes").add(o); return true; }
@@ -3825,7 +3979,10 @@ async function grupoAcao(a,p,dia,tipo,cod){
   if(!cs.length) return;
   const dias=prgDias(), i=dias.indexOf(dia);
   if(a==="ini"){ for(const c of cs) if(c.status==="prog") await cartUpd(c.id,{status:"prod",inicio:new Date().toISOString()}); toast(`${cod}: em produção`); }
-  if(a==="ok") await concluirCartoes(cs,p,dia,tipo,cod);
+  if(a==="ok"){   // Rev20: concluir pelo quadro do dia registra o apontamento do que faltava (tudo bom)
+    const base=[dia,p,tipo,cod].join("|"), g0={key:base+"|ok",base,dia,proc:p,tipo,cod,i:99,wc:"",opn:"Concluído pelo Programador",ult:true,cs};
+    const c0=apCalc(g0), ab=aptAbertoBase(base), boa=Math.max(0,c0.plan-ab.boa-ab.perda);
+    await aptAdd(aptRegistro(Object.assign(g0,{plan:c0.plan}),boa,0,true)); await concluirCartoes(cs,p,dia,tipo,cod,ab.boa+boa); }
   if(a==="volta"){ for(const c of cs){ if((c.et||0)===0) await cartDel(c.id); else await cartUpd(c.id,{status:"fila",dia:"",seq:0,wc:null,op:0,opn:null}); } toast(`${cod}: cartões voltaram para a fila`); }
   if(a==="prox"||a==="ant"){ const nd=dias[i+(a==="prox"?1:-1)]; if(!nd){ toast("Fora do horizonte: mude a data de início"); return; }
     for(const c of cs) if(c.status==="prog") await cartUpd(c.id,{dia:nd}); }
@@ -3998,7 +4155,8 @@ function expAlloc(){
     const o=P0[ped]||(P0[ped]={ped:String(ped),cli:cli||"",dt:"",L:{}});
     if(cli&&!o.cli) o.cli=cli; if(dt&&(!o.dt||dt<o.dt)) o.dt=dt; o.L[cod]=(o.L[cod]||0)+q; }
   const ords=Object.values(P0).map(o=>{ const sep=EXPST[pedKey(o.ped)]||null;
-    return Object.assign(o,{lines:Object.entries(o.L).map(([cod,q])=>({cod,q})),sep:sep&&sep.st?sep:null,pz:expPrazo(o.dt,hoje)}); });
+    return Object.assign(o,{lines:Object.entries(o.L).map(([cod,q])=>({cod,q})),sep:sep&&sep.st?sep:null,pz:expPrazo(o.dt,hoje)}); })
+    .filter(o=>!(o.sep&&o.sep.st==="expedido"));   // Rev20: expedido saiu da fábrica — não reserva mais estoque
   const pri=o=>o.sep?(o.sep.st==="separado"?0:1):2;
   ords.sort((a,b)=>(pri(a)-pri(b))||((a.dt||"9999")<(b.dt||"9999")?-1:(a.dt||"9999")>(b.dt||"9999")?1:0)||(a.ped<b.ped?-1:1));
   const av={}; const disp=c=>(av[c]!=null?av[c]:(av[c]=Math.max(0,est(c))));
@@ -4031,7 +4189,7 @@ async function expSep(ped,st,extra,quiet){
   if(st){ const prev=EXPST[k]||{}; const d=Object.assign({ped:String(ped),ok:[]},prev,extra||{},{st,t:(prev.st===st&&prev.t)?prev.t:new Date().toISOString(),u:(prev.st===st&&prev.u)?prev.u:(UID||""),ut:new Date().toISOString(),uu:UID||""});
     EXPST[k]=d; expReset(); if(PK.ped) pkRender(); if(DB){ try{ await DB.doc("expedicao/"+k).set(d); }catch(e){ toast("Não gravou ("+(e.code||"erro")+")"); } } }
   else { delete EXPST[k]; expReset(); if(DB){ try{ await DB.doc("expedicao/"+k).delete(); }catch(e){} } }
-  if(!quiet) toast(st==="separando"?`Pedido ${ped}: em separação`:st==="separado"?`Pedido ${ped}: separado ✓`:`Pedido ${ped}: voltou para a fila`);
+  if(!quiet) toast(st==="separando"?`Pedido ${ped}: em separação`:st==="expedido"?`Pedido ${ped}: expedido 🚚`:st==="separado"?`Pedido ${ped}: separado ✓`:`Pedido ${ped}: voltou para a fila`);
   rerender(); if(PK.ped) pkRender();
 }
 /* ---------- lista de separação (picking) ---------- */
@@ -4304,7 +4462,7 @@ function renderEX(){
        `<div class="exc-a">📍 ${esc(rua(o)||'nenhum item com posição no CD')}</div>`}${tpChips(o)}
      ${k==="and"?`<div class="pk-prog sm"><div style="width:${o.nL?nOk/o.nL*100:0}%"></div></div><div class="note">${nOk}/${o.nL} linhas · ${o.sep.u?esc(quemNome(o.sep.u))+' · ':''}desde ${fmtDT(o.sep.t,true)}</div>${nPb?`<div class="exc-f">⚠ ${nPb} item(ns) com problema</div>`:''}`:''}
      ${k==="ok"?`<div class="note">separado ${fmtDT(o.sep.t,true)}${o.sep.u?' por '+esc(quemNome(o.sep.u)):''}</div>${o.sep.pend?`<div class="exc-f">⚠ concluído com ${o.sep.pend} pendência(s)</div>`:''}`:''}
-     <div class="exc-b">${k==="sep"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Separar ▶</button>`:k==="and"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Continuar ▶</button>`:k==="ok"?`<button class="btn" data-xa="pick" data-p="${esc(o.ped)}">Ver lista</button>`:`<button class="btn" data-xa="det" data-p="${esc(o.ped)}">Detalhe</button>`}<button class="btn" data-xa="cd" data-p="${esc(o.ped)}">CD 3D</button></div></div>`; };
+     <div class="exc-b">${k==="sep"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Separar ▶</button>`:k==="and"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Continuar ▶</button>`:k==="ok"?`<button class="btn pri" data-xa="exp" data-p="${esc(o.ped)}">🚚 Expedido</button><button class="btn" data-xa="pick" data-p="${esc(o.ped)}">Ver lista</button>`:`<button class="btn" data-xa="det" data-p="${esc(o.ped)}">Detalhe</button>`}<button class="btn" data-xa="cd" data-p="${esc(o.ped)}">CD 3D</button></div></div>`; };
   const sel=E.ords.find(o=>o.ped===EXP.sel);
   const stPill=o=>o.sep?(o.sep.st==="separado"?'<span class="pill" style="background:var(--kb);color:#fff">separado</span>':'<span class="pill" style="background:var(--ky);color:#15223B">em separação</span>'):(o.comp?'<span class="pill p-MTS">completo</span>':'<span class="pill p-MTO">incompleto</span>');
   const F=col==="inc"?expFaltas(E):null;
@@ -4355,6 +4513,7 @@ function renderEX(){
     else if(a==="cd") verNoCD(p);
     else if(a==="pick"&&o){ if(!o.sep) expSep(p,"separando",{ok:[]}); pkAbrir(p); }
     else if(a==="volta") expSep(p,null);
+    else if(a==="exp") expMarcarExp(p,o);
     else if(a==="prt"&&o) pickPrint(o); else if(a==="pcsv"&&o) pickCSV(o); });
   faltaBind();
   const ec=document.getElementById('ex-endcsv'); if(ec) ec.onclick=endDiagCSV;
@@ -4544,6 +4703,611 @@ async function cmShare(L,T){
   try{ await navigator.clipboard.writeText(t); toast("Lista copiada — cole no WhatsApp ou no e-mail"); }catch(e){ saveFile("itens_disponiveis.txt",t); }
 }
 
+/* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
+   Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
+   Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
+const MAN_REV="Rev21", MAN_DATA="23/11/2026";
+const MAN=[
+ {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
+  lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
+  telas:[{t:"Entrar",img:"m19-entrar.jpg",passos:["Digite o seu **PIN**. Ele é pessoal: não empreste.","Toque em **Entrar**. O app lembra de você neste aparelho.","A **nuvem ☁** no canto mostra se está tudo enviado. Toque nela para **Sincronizar agora**, **Trocar meu PIN** ou **Sair deste aparelho**."]},
+         {t:"Salvar na tela do celular",passos:["**iPhone (Safari):** toque em Compartilhar e depois em **Adicionar à Tela de Início**.","**Android (Chrome):** toque nos três pontinhos e depois em **Instalar app** ou **Adicionar à tela inicial**.","Pronto: o Kanban abre como um aplicativo, pelo ícone."]}],
+  dica:"Sem internet? Continue usando. O app guarda no aparelho e envia sozinho quando a conexão voltar.",
+  faq:[["Esqueci o meu PIN.","Peça um novo a um administrador. Ele gera outro PIN na nuvem ☁, em Pessoas com acesso."],["Fiquei sem internet. Perdi o que fiz?","Não. O app guarda no aparelho e envia quando a conexão voltar. A nuvem ☁ mostra quantos envios estão pendentes."],["Por que não vejo na hora o que o colega fez?","A tela busca as novidades dos outros aparelhos a cada 5 minutos. Para ver na hora, toque na nuvem ☁ e em Sincronizar agora (na tela Operação, use o botão Atualizar)."],["Como troco o meu PIN?","Toque na nuvem ☁ e em Trocar meu PIN."]]},
+ {id:"telas",t:"Conheça as Telas do App",quem:"todos",
+  lead:"Tudo fica no menu, organizado por **módulos**, na ordem do trabalho. No computador ele fica à esquerda; no celular, embaixo (toque em **Mais** para ver todos).",
+  telas:[{t:"O menu",img:"m21-menu.jpg",passos:["Toque no **módulo**: Painel, Fluxo de valor, Planejar, Produzir, Estocar, Expedir ou Ajuda e ajustes.","As **abas** no alto mostram as telas do módulo. Toque na aba para trocar de tela.","**Ajuda e ajustes** tem este Manual. O botão **?** no canto abre o assistente em qualquer tela."]}],
+  tabela:[["Painel","Como estão os supermercados e os pedidos hoje, em verde, amarelo e vermelho"],["Fluxo de valor","O mapa da fábrica (VSM) em tempo real e os indicadores"],["Planejar","Programador (fila e dias), Ordem de produção e Quadros Kanban"],["Produzir","Operação (o que fazer em cada máquina) e Apontamento (produção boa e perdas)"],["Estocar","Kanban PA, Kanban Usinados, CD em 3D, Cartões e Importar dados"],["Expedir","Expedição (pedidos completos) e Comercial (itens sobrando)"],["Ajuda e ajustes","Manual, novidades e assistente"]],
+  faq:[["Onde vejo o que tenho que produzir?","No módulo Produzir, aba Operação. Escolha a sua máquina e o app mostra o lote de agora e os próximos."],["Onde foi parar a tela que eu usava?","As telas são as mesmas; só mudaram de lugar. Programador, Ordem de produção e Quadros Kanban estão em Planejar. Operação e Apontamento estão em Produzir. Kanban PA, Kanban Usinados, CD em 3D, Cartões e Importar dados estão em Estocar. Expedição e Comercial estão em Expedir."],["Não vejo as telas Parâmetros e Premissas.","Elas são só do administrador. Para usar o app no dia a dia você não precisa delas."],["Não vejo as abas Programador e Apontamento.","Elas aparecem só para quem tem a função Programador. O administrador liga essa função na nuvem ☁, em Pessoas com acesso."]]},
+ {id:"kanban",t:"O Kanban em 1 Minuto",quem:"todos",
+  lead:"O **supermercado** é o estoque de peças prontas. Quem usa, tira. O que saiu é o que a fábrica repõe. Nada de produzir sem necessidade.",
+  telas:[{t:"As três cores",img:"m19-cores.jpg",sem:1,passos:["**Verde:** está tranquilo. Pode esperar.","**Amarelo:** atenção. Está na hora de repor.","**Vermelho:** urgente. Pode faltar: produza primeiro."]},
+         {t:"O cartão",passos:["Cada **cartão** vale uma caixa (contêiner) com uma quantidade fixa de peças.","Estoque baixou? O app **libera cartões** para repor até o máximo.","O **roxo** é pedido de cliente que passa na frente (fura-fila ou sob encomenda)."]}],
+  dica:"A ordem é sempre: roxo, vermelho, amarelo e, por último, verde.",
+  faq:[["O que significa vermelho, amarelo e verde?","Vermelho: urgente, pode faltar. Amarelo: hora de repor. Verde: tranquilo, pode esperar. Roxo é pedido de cliente que passa na frente."],["O que é supermercado?","É o estoque de peças prontas com quantidade máxima definida. O CD guarda o produto acabado e o AUS (almoxarifado de usinados) guarda as peças usinadas."],["O que é um cartão Kanban?","É o aviso de reposição. Cada cartão vale uma caixa com quantidade fixa de peças do item."],["Por que não posso produzir a mais?","Porque produzir o que ninguém pediu ocupa máquina, espaço e dinheiro, e atrasa o que está em falta. O Kanban repõe só o que saiu."],["O que é MTS e MTO?","MTS é item de estoque: tem supermercado e cartão. MTO é item feito só quando há pedido."]]},
+ {id:"op",t:"Operação: Escolha a Sua Máquina",quem:"todos",tab:"pr",view:"op",tour:"op",
+  lead:"No módulo **Produzir**, a aba **Operação** mostra o que cada máquina tem que fazer. É a tela do chão de fábrica.",
+  telas:[{t:"Escolher a máquina",img:"m19-op1.jpg",passos:["Toque em **Produzir**. A aba **Operação** já vem aberta.","Toque no quadro da **sua máquina**. O número mostra quantos lotes ela tem.","Máquina sem serviço fica em **Outras máquinas**."]}],
+  dica:"O app lembra da máquina neste aparelho. Para mudar, toque em Trocar máquina.",
+  faq:[["Minha máquina não aparece.","Veja em Outras máquinas, no fim da lista. Se não estiver lá, avise o Programador: a máquina pode estar desligada ou fora do cadastro."],["Aparece 'Lotes sem máquina definida'.","São lotes que o Programador ainda não mandou para uma máquina, ou de processos sem máquina no cadastro. Toque no processo para ver e fazer esses lotes."],["Como troco de máquina?","Na tela Operação, toque em Trocar máquina e escolha outra."]]},
+ {id:"op2",t:"Operação: Comecei e Terminei",quem:"todos",tab:"pr",view:"op",tour:"op",
+  lead:"O quadro grande é o lote de **agora**. Embaixo vem a fila, **na ordem** em que deve ser feita.",
+  telas:[{t:"Faça agora",img:"m19-op2.jpg",passos:["Leia o **código**, quantas **peças** e **o que fazer**.","Toque em **COMECEI** quando iniciar o lote.","Acabou? Toque em **TERMINEI**. O app mostra **para onde levar** as peças."]},
+         {t:"Depois, nesta ordem",img:"m19-op3.jpg",passos:["A lista segue a ordem certa. **Não pule** lote.","Lote apagado com **⏳** ainda não chegou da máquina anterior.","Toque em **Atualizar** para ver o que os colegas acabaram de terminar."]}],
+  dica:"Terminou a última operação? O app dá entrada das peças no supermercado sozinho.",
+  faq:[["Apertei COMECEI no lote errado.","Avise o Programador. Ele devolve o lote para a fila ou corrige a programação."],["O lote está apagado com uma ampulheta.","Ele ainda está na máquina anterior. Quando o colega tocar em TERMINEI lá, o lote libera aqui. Toque em Atualizar para conferir."],["Posso fazer o lote de baixo primeiro?","Não. A ordem da lista é a prioridade: primeiro o roxo e o vermelho. Se precisar mudar, fale com o Programador."],["O que acontece quando toco em TERMINEI?","O lote vai para a próxima máquina do roteiro. Se era a última operação, as peças entram no supermercado ou seguem para o próximo processo."],["Aparece 'Aguardando peças'.","Os lotes desta máquina ainda estão na máquina anterior. Não há nada liberado agora."]]},
+ {id:"apont",t:"Apontamento: Produção Boa e Perdas",quem:"prog",tab:"pr",view:"ap",tour:"ap",
+  lead:"No módulo **Produzir**, a aba **Apontamento** é onde o apontador registra, para **todas as máquinas**, quanto saiu **bom** e quanto foi **perda** em cada lote.",
+  telas:[{t:"Apontar um lote",img:"m20-ap.jpg",passos:["Escolha o **dia da produção** e, se quiser, filtre pelo **processo**.","Em cada lote, digite as peças **boas** e a **perda**. O campo Boa já vem com o que falta.","Toque em **Apontar parcial** (o lote segue em andamento) ou em **Encerrar ✔** (fecha a operação)."]},
+         {t:"O que acontece ao encerrar",passos:["O lote vai para a **próxima máquina** do roteiro ou para a **fila do próximo processo**.","Na última etapa, entram no **supermercado só as peças boas**; a perda fica registrada.","Lote apontado e não encerrado fica como **WIP** (em processo) no **Fluxo de valor**."]}],
+  dica:"No fim do dia, faça também o inventário: abra Inventário do fim do dia, abaixo da lista de lotes.",
+  faq:[["Como registro uma perda?","Na tela Apontamento, digite as peças perdidas no campo Perda do lote e toque em Apontar parcial ou Encerrar."],["Qual a diferença entre Apontar parcial e Encerrar?","Apontar parcial registra e o lote continua em andamento (WIP). Encerrar registra e manda o lote para a próxima máquina, o próximo processo ou o supermercado."],["Apontei errado. Como corrijo?","Faça um novo apontamento parcial com a diferença. Se encerrou por engano, o Programador devolve o lote para a fila."],["Onde faço o inventário do fim do dia?","Em Produzir, aba Apontamento: abra Inventário do fim do dia, abaixo dos lotes. Para o estoque inteiro, use Importar dados."],["O que é WIP?","É o trabalho em processo: lotes começados e ainda não encerrados. As peças esperando o próximo processo aparecem como fila. Os dois estão no Fluxo de valor."]]},
+ {id:"pg",t:"Programador: Fila e Dias",quem:"prog",tab:"pr",view:"pg",tour:"pg",
+  lead:"Só o **Programador** vê esta tela. Ele decide o que entra em cada dia e em cada máquina.",
+  telas:[{t:"Escolher o processo",img:"m19-pg1.jpg",passos:["Em **Planejar**, abra a aba **Programador** e escolha o **processo**. O número mostra os cartões na fila.","Confira a **capacidade** do processo: horas por dia e postos.","Veja as **máquinas** e quanto de cada dia já está ocupado."]},
+         {t:"Fila e dias",img:"m19-pg2.jpg",passos:["A **fila** traz os cartões liberados, do mais urgente para o menos. Toque em **Programar fila automaticamente** ou programe item a item.","Cada coluna é um **dia**. Use os botões do lote para mudar de dia, subir, descer, concluir ou **devolver para a fila**.","Toque na **máquina** do lote para trocar por outra do mesmo grupo."]}],
+  dica:"O verde não entra sozinho: fica formando lote e só é programado quando o estoque chega no amarelo.",
+  faq:[["Quem pode programar?","Só quem tem a função Programador. O administrador liga e desliga essa função na nuvem ☁, em Pessoas com acesso."],["O app diz que não há capacidade.","Os dias do horizonte já estão cheios para alguma máquina do roteiro. Aumente os dias, ligue mais máquinas ou ajuste horas e eficiência."],["Como devolvo um lote para a fila?","Na tela Programador, no lote do dia, use o botão de devolver para a fila."],["Tenho cartões antigos sem máquina.","Na tela Programador aparece o aviso com o botão Distribuir nas máquinas. Ele manda cada lote para a máquina menos carregada do grupo."]]},
+ {id:"pg2",t:"Programador: Máquinas e Capacidade",quem:"prog",tab:"pr",view:"pg",tour:"pg",
+  lead:"O quadro **Máquinas e carga por dia** mostra cada grupo de máquinas e quanto do dia já está ocupado.",
+  telas:[{t:"Ligar e desligar máquina",img:"m19-pg3.jpg",passos:["Cada **etiqueta** é uma máquina do cadastro. Parou? **Toque nela** para desligar: o que não começou vai para outra do grupo.","Ajuste as **Horas/dia** do grupo.","Ajuste a **Eficiência %** e toque em **Salvar horas e eficiência**, no fim do quadro."]}],
+  dica:"Amarelo no quadro = dia quase cheio. Vermelho = passou do limite.",
+  faq:[["A máquina quebrou. O que faço?","Na tela Programador, toque na etiqueta da máquina para desligar. Os lotes que não começaram passam para outra máquina do mesmo grupo."],["Como o app calcula o limite do dia?","Máquinas ligadas × horas por dia × eficiência. O tempo de cada peça vem do roteiro do ERP."],["Desliguei a única máquina do grupo.","Os lotes dela ficam parados até você ligar de novo ou trocar a programação."]]},
+ {id:"apontar",t:"Apontar Estoque: a Contagem",quem:"todos",tab:"pr",view:"op",
+  lead:"Contou as peças no supermercado? Aponte no app. É o estoque que acende as cores e libera os cartões.",
+  telas:[{t:"Apontar um item",img:"m19-ap.jpg",passos:["Em **Produzir**, na aba **Operação**, abra **Apontar estoque**.","Escolha o **supermercado** (PA ou Usinados) e digite o **código**.","Digite a **quantidade contada** e grave. As faixas do item aparecem na hora."]}],
+  dica:"Tem muitos itens? Use Colar inventário: uma linha por item, no formato CODIGO;QUANTIDADE.",
+  faq:[["Como corrijo um estoque errado?","Aponte de novo o item com a quantidade certa. Vale sempre o último apontamento."],["Posso lançar vários itens de uma vez?","Sim. Em Apontar estoque, abra Colar inventário e cole uma linha por item: CODIGO;QUANTIDADE. Para o estoque inteiro, use Importar dados."]]},
+ {id:"fx",t:"Fluxo de Valor: o Mapa da Fábrica em Tempo Real",quem:"todos",tab:"fx",tour:"fx",
+  lead:"O **Fluxo de valor** mostra a fábrica como um mapa do fluxo de valor (VSM): fornecedores, processos, supermercados, expedição e clientes. Muda conforme os apontamentos.",
+  telas:[{t:"Ler o mapa",img:"m21-fx.jpg",passos:["Cada **caixa** é um processo, com os dados do dia: programado, conformes, perdas, em processo e cartões na fila. A etiqueta mostra a **aderência** em verde, amarelo ou vermelho.","Os **supermercados** de Usinados (AUS) e do CD mostram quanto do máximo está abastecido, as peças e os dias de consumo.","As setas tracejadas são o **kanban** voltando para a programação. Embaixo, a **linha do tempo** mostra os dias de estoque do fluxo."]}],
+  dica:"A tela se atualiza sozinha a cada 1 minuto enquanto estiver aberta. Para ver na hora, toque em Atualizar. No celular, arraste o mapa para o lado.",
+  faq:[["O que é aderência?","É a produção boa dividida pelo programado do dia, em cada processo. 100% = fez tudo o que foi programado."],["O que são os dias de consumo no supermercado?","É por quantos dias o estoque do supermercado dura no ritmo médio de consumo."],["O que são os cartões na fila?","São os cartões liberados pelo consumo que esperam ser programados naquele processo."]]},
+ {id:"ind",t:"Indicadores: o Dia Contra a Linha de Base",quem:"todos",tab:"fx",
+  lead:"Na mesma tela do **Fluxo de valor**, abaixo do mapa, os **indicadores** mostram se a fábrica melhorou desde o início.",
+  telas:[{t:"Indicadores",img:"m21-ind.jpg",passos:["A tabela compara o dia com a **linha de base** (a posição antes do início).","Variação **verde** = melhorou; **vermelha** = piorou.","Em **Evolução dia a dia** você acompanha estoque, pedidos, expedição, produção e perdas."]}],
+  faq:[["Por que o estoque de um dia aparece com traço?","O estoque do dia é gravado quando o saldo é importado ou apontado. Sem nenhum desses no dia, não há posição."],["Como mudo a linha de base?","Só o Programador: no Fluxo de valor, em Indicadores, troque a data da Linha de base."]]},
+ {id:"ov",t:"Painel: Como Estão os Supermercados",quem:"todos",tab:"ov",
+  lead:"O **Painel** é a primeira tela. Mostra, de uma olhada, se os supermercados e os pedidos estão bem.",
+  telas:[{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Os **mapas** mostram um quadradinho por item, na cor da faixa em que ele está.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**."]}],
+  dica:"A data do estoque aparece no alto do menu. Estoque velho = painel velho: importe o saldo do dia.",
+  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."]]},
+ {id:"qd",t:"Quadros Kanban e Modo TV",quem:"todos",tab:"qd",
+  lead:"Cada **processo** tem o seu quadro, igual ao quadro físico da fábrica.",
+  telas:[{t:"Ver o quadro",img:"m19-qd.jpg",passos:["Escolha o **processo** no alto.","O quadro mostra os itens daquele processo; **Situação agora** conta quantos estão em cada cor.","Toque em **Abrir este quadro no modo TV** para deixar numa televisão da área."]}],
+  faq:[["Como coloco o quadro na TV?","Em Planejar, aba Quadros Kanban, escolha o processo e toque em Abrir este quadro no modo TV."]]},
+ {id:"ex",t:"Expedição: Pedidos Completos",quem:"todos",tab:"ex",
+  lead:"A **Expedição** cruza os pedidos em aberto com o estoque do CD e mostra o que **já dá para separar**.",
+  telas:[{t:"Separar",img:"m20-ex.jpg",passos:["Importe a **carteira de pedidos** e o **estoque de PA** em Importar dados.","Pedido **completo**: todas as linhas cabem no estoque. Pode separar.","Pedido **incompleto**: o app mostra **o que falta produzir** para completar."]},
+         {t:"Expedido (fim do dia)",img:"m20-exp.jpg",passos:["Pedido separado e carregado? Toque em **🚚 Expedido** no cartão do pedido.","Ele sai da fila e **não reserva mais estoque**.","Em **Expedidos**, no fim da tela, aparece o que saiu; **Desfazer** volta para separado."]}],
+  dica:"O estoque é reservado primeiro para os pedidos com entrega mais cedo.",
+  faq:[["A Expedição está vazia.","Falta importar a carteira de pedidos e o estoque de PA. Vá em Importar dados."],["O que é pedido completo?","É o pedido em que todas as linhas cabem no estoque do CD, reservando primeiro os de entrega mais cedo."],["Quando marco Expedido?","Quando o pedido separado sai da fábrica. O apontador marca no fim do dia, junto com o inventário."],["Marquei Expedido por engano.","Em Expedidos, no fim da tela de Expedição, toque em Desfazer: o pedido volta para separado."]]},
+ {id:"cm",t:"Comercial: O Que Dá para Oferecer",quem:"todos",tab:"cm",
+  lead:"A tela **Comercial** lista os itens que estão **sobrando** no CD e não têm pedido: bons para oferecer ao cliente.",
+  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja o **valor disponível por família** e os **10 melhores itens** para oferecer.","Use **Buscar** para achar um item.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]}],
+  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista os itens sobrando no CD e sem pedido, com o valor por família e os 10 melhores para oferecer."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."]]},
+ {id:"opd",t:"Ordem de Produção: o Plano do Dia",quem:"todos",tab:"op",
+  lead:"Mostra o que produzir para **encher os supermercados**, dia a dia, e imprime os cartões de ordem.",
+  telas:[{t:"Montar o plano",img:"m19-opd.jpg",passos:["Escolha o **início**, o número de **postos** e se o **sábado** produz.","Confira as ordens do dia: código, quantidade, contêineres e horas.","Toque em **Salvar plano (CSV)** ou **Imprimir** os cartões de ordem."]}],
+  faq:[["Qual a diferença para o Programador?","A Ordem de produção é um plano para encher os supermercados. O Programador cuida do dia a dia por cartão e por máquina, que o operador acompanha na aba Operação."]]},
+ {id:"kc",t:"Cartões: Imprimir os Cartões Kanban",quem:"todos",tab:"kc",
+  lead:"Aqui você imprime os **cartões** que ficam nas caixas e no quadro.",
+  telas:[{t:"Imprimir",img:"m19-kc.jpg",passos:["Escolha o **supermercado**: PA (CD) ou Usinados (AUS).","**Busque** e marque os itens.","Toque em **Imprimir** ou em **Salvar HTML para imprimir**."]}],
+  faq:[["Como imprimo os cartões?","Em Cartões, escolha o supermercado, busque e marque os itens e toque em Imprimir."],["Quantos cartões cada item tem?","A tela Cartões mostra, por item, as peças por cartão e a quantidade de cartões verdes, amarelos e vermelhos."]]},
+ {id:"im",t:"Importar Dados do ERP",quem:"todos",tab:"im",
+  lead:"Traz para o app o **estoque** e os **pedidos** que saem do ERP, sem digitar item por item.",
+  telas:[{t:"Importar",img:"m19-im.jpg",passos:["Escolha **o que está importando** (estoque do CD, estoque de usinados, carteira de pedidos…).","Toque em **Escolher arquivo** e confira as **colunas** do código e da quantidade.","Confira o **conteúdo** e toque em **Aplicar**."]}],
+  dica:"Importe o estoque todo dia, de preferência no começo do turno.",
+  faq:[["Qual arquivo eu importo?","O relatório exportado do ERP, em planilha ou CSV. Na tela Importar dados, escolha primeiro o que está importando; o app mostra as colunas que precisa."],["Importei errado.","Importe de novo o arquivo certo. Vale a última importação."]]},
+ {id:"sm",t:"Supermercados: CD em 3D e Listas",quem:"todos",tab:"pa",
+  lead:"As telas do módulo **Estocar** mostram onde cada item fica e as faixas de cada um.",
+  telas:[{t:"Kanban PA e Kanban Usinados",img:"m19-pa.jpg",passos:["Cada linha é um item, com as faixas **verde**, **amarela** e **vermelha** e o **máximo**.","Use **Buscar** para achar o item.","**Salvar CSV** leva a lista para a planilha."]},
+         {t:"CD em 3D",img:"m21-cd.jpg",passos:["Mostra as **ruas** do CD com a cor de cada posição.","Use **Localizar item** para achar o endereço.","A lista de **transição** mostra o que mudar de endereço."]}],
+  faq:[["Onde vejo o máximo de um item?","Em Kanban PA (produto acabado) ou Kanban Usinados. Busque o código e veja as faixas e o máximo."],["Como acho o endereço de um item no CD?","Em CD em 3D, use Localizar item."]]},
+ {id:"adm",t:"Para Administradores: Pessoas e Programador",quem:"adm",
+  lead:"O administrador cuida de quem entra no app e de quem pode programar. Tudo fica na **nuvem ☁**.",
+  telas:[{t:"Pessoas com acesso",img:"m19-adm.jpg",passos:["Toque na **nuvem ☁** e em **Pessoas com acesso (PINs)**.","Para incluir: escreva o **nome**, toque em **Gerar PIN** e em **Salvar**. Entregue o PIN só para a pessoa.","Toque em **Programador** ao lado do nome para liberar (ou tirar) a programação."]},
+         {t:"Base e parâmetros",passos:["**Publicar nova base (.json)** troca a base de itens para todos.","**Parâmetros** e **Premissas** ficam no módulo Ajuda e ajustes, só para o administrador.","Quem não é administrador recebe só o resultado pronto, sem o método."]}],
+  faq:[["Como libero alguém para programar?","Na nuvem ☁, em Pessoas com acesso, toque em Programador ao lado do nome. Só o administrador faz isso."],["Como cadastro uma pessoa?","Na nuvem ☁, em Pessoas com acesso: nome, Gerar PIN e Salvar. O PIN é entregue só para a pessoa."]]},
+ {id:"exemplo",t:"Exemplo Simulado: Um Lote do Vermelho ao Supermercado",quem:"todos",
+  lead:"Veja o caminho de um item de exemplo, do aviso até a peça pronta.",
+  historia:[["O estoque baixou","A contagem do item caiu para a faixa **vermelha**. O app liberou os cartões para repor até o máximo."],["O Programador programou","Na tela Programador o lote entrou em **hoje**, com a máquina de cada operação."],["O operador fez","Na 1ª máquina o operador viu **FAÇA AGORA · URGENTE**, tocou em **COMECEI** e depois em **TERMINEI**. O lote liberou para a máquina seguinte."],["A peça chegou","Na última operação, **TERMINEI** deu entrada no supermercado. O item voltou para o **verde**."]],
+  faq:[]},
+ {id:"duvidas",t:"Dúvidas Rápidas",quem:"todos",lead:"As perguntas que mais aparecem. Se a sua não estiver aqui, toque no **?** e pergunte ao assistente.",faq:[]}
+];
+const MAN_SEC=id=>MAN.find(s=>s.id===id);
+function manVe(s){ return s.quem!=="adm"||isAdmin(); }
+function manB(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>'); }
+function manFaqAll(){ const o=[]; MAN.forEach(s=>{ if(manVe(s)) (s.faq||[]).forEach(f=>o.push({s,q:f[0],a:f[1]})); }); return o; }
+const MANST={sec:null,q:""};
+
+/* ---------- aba Manual ---------- */
+function renderMAN(){
+  const el=document.getElementById('p-man'); if(!el) return;
+  const secs=MAN.filter(manVe), q=nrm(MANST.q), hit=s=>!q||nrm([s.t,s.lead,...(s.telas||[]).flatMap(t=>[t.t,...t.passos]),...(s.faq||[]).flat()].join(' ')).includes(q);
+  const tag=s=>s.quem==="prog"?'<span class="mn-tag">Programador</span>':s.quem==="adm"?'<span class="mn-tag adm">Administrador</span>':'';
+  el.innerHTML=`<div class="head"><h2>Manual do app</h2><span class="note">${MAN_REV} · ${MAN_DATA} · passo a passo, tela por tela</span></div>
+  <div class="mn-bar"><input id="mn-q" type="search" placeholder="Procurar no manual (ex.: máquina, PIN, pedido)" value="${esc(MANST.q)}" aria-label="Procurar no manual">
+   <button class="btn pri" id="mn-nov">★ O que há de novo</button><button class="btn" id="mn-ast">? Perguntar ao assistente</button><a class="btn" id="mn-pdf" href="Manual_Kanban_AEMCO.pdf" target="_blank" rel="noopener">Baixar o manual (PDF)</a></div>
+  <div class="mn-idx">${secs.map((s,i)=>`<button type="button" data-ms="${s.id}" class="${hit(s)?'':'off'}"><b>${i+1}</b>${esc(s.t)}</button>`).join('')}</div>
+  ${secs.map((s,i)=>!hit(s)?'':`<article class="mn-sec" id="mn-${s.id}"><header><span class="mn-n">${i+1}</span><h3>${esc(s.t)}</h3>${tag(s)}</header>
+    <div class="mn-body"><div class="mn-txt"><p class="mn-lead">${manB(s.lead)}</p>
+     ${(s.telas||[]).map((t,k)=>`<h4>Tela ${k+1} · ${esc(t.t)}</h4><ol class="mn-st">${t.passos.map(p=>`<li>${manB(p)}</li>`).join('')}</ol>`).join('')}
+     ${s.tabela?`<table class="mn-tb">${s.tabela.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</table>`:''}
+     ${s.historia?`<div class="mn-hist">${s.historia.map((h,k)=>`<div><span class="mn-n">${k+1}</span><b>${esc(h[0])}</b><p>${manB(h[1])}</p></div>`).join('')}</div>`:''}
+     ${s.dica?`<p class="mn-dica">${manB(s.dica)}</p>`:''}
+     ${s.id==="duvidas"?`<div class="mn-faq">${manFaqAll().map(f=>`<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}</div>`:(s.faq&&s.faq.length?`<div class="mn-faq"><h4>Dúvidas desta tela</h4>${s.faq.map(f=>`<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join('')}</div>`:'')}
+     <div class="mn-acts">${s.tab?`<button class="btn" data-ir="${s.id}">Ir para esta tela</button>`:''}${s.tour&&(s.quem!=="prog"||isProg())?`<button class="btn pri" data-guia="${s.id}">▶ Me mostre na tela</button>`:''}</div></div>
+     <div class="mn-imgs">${(s.telas||[]).filter(t=>t.img).map(t=>`<figure><img loading="lazy" src="${t.img}" alt="Tela de exemplo: ${esc(t.t)}" onerror="this.closest('figure').remove()"><figcaption>${esc(t.t)}</figcaption></figure>`).join('')}</div></div></article>`).join('')}
+  <p class="note">As telas do manual usam itens e máquinas de exemplo. Fonte: Lean Way Consulting.</p>`;
+  const qi=document.getElementById('mn-q'); qi.oninput=()=>{ MANST.q=qi.value; clearTimeout(renderMAN.h); renderMAN.h=setTimeout(()=>{ renderMAN(); const n=document.getElementById('mn-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); },350); };
+  el.querySelectorAll('[data-ms]').forEach(b=>b.onclick=()=>{ const a=document.getElementById('mn-'+b.dataset.ms); if(a) a.scrollIntoView({behavior:'smooth',block:'start'}); });
+  el.querySelectorAll('[data-ir]').forEach(b=>b.onclick=()=>manIr(b.dataset.ir));
+  el.querySelectorAll('[data-guia]').forEach(b=>b.onclick=()=>{ const s=MAN_SEC(b.dataset.guia); manIr(s.id); setTimeout(()=>tourStart(TOURS[s.tour]),350); });
+  document.getElementById('mn-nov').onclick=()=>newsModal(true);
+  document.getElementById('mn-ast').onclick=()=>asstOpen();
+  if(location.protocol==="file:"){ const p=document.getElementById('mn-pdf'); if(p) p.remove(); }
+}
+function manIr(id){ const s=MAN_SEC(id); if(!s||!s.tab) return; if(s.view){ PR.view=((s.view==="pg"||s.view==="ap")&&!isProg())?"op":s.view; try{ localStorage.setItem("aemco-kd18-prv",PR.view); }catch(e){} } go(s.tab); window.scrollTo(0,0); }
+function manAbrir(id){ MANST.q=""; go('man'); setTimeout(()=>{ const a=document.getElementById('mn-'+id); if(a) a.scrollIntoView({block:'start'}); },120); }
+
+/* ---------- guia na tela (holofote + balão) ---------- */
+const TOURS={
+ op:[{pre:()=>{ PR.view="op"; go('pr'); },sel:'#mtabs [data-p="pr:op"]',t:"Tela da Operação",x:"Esta é a tela do chão de fábrica. Ela mostra o que cada máquina tem que fazer, na ordem certa."},
+     {sel:'#opv .opv-ms, #opv .opv-top',t:"A sua máquina",x:"Toque no quadro da sua máquina. O número mostra quantos lotes ela tem. Depois de escolher, o nome dela fica no alto."},
+     {sel:'#opv .opv-now, #opv .opv-vazio',t:"Faça agora",x:"O quadro grande é o lote de agora: código, peças, o que fazer e para onde levar depois. A cor mostra a urgência."},
+     {sel:'#opv .opv-btn',t:"Comecei e Terminei",x:"Toque em COMECEI quando iniciar. Quando acabar, toque em TERMINEI: o lote segue para a próxima máquina ou entra no supermercado."},
+     {sel:'#opv .opv-list',t:"Depois, nesta ordem",x:"A fila da máquina. Siga a ordem. Lote apagado com ⏳ ainda não chegou da máquina anterior."},
+     {sel:'#opv-sync',t:"Atualizar",x:"A tela busca as novidades a cada 5 minutos. Toque em Atualizar para ver na hora o que os colegas terminaram."}],
+ pg:[{pre:()=>{ PR.view="pg"; go('pr'); },sel:'#mtabs [data-p="pr:pg"]',t:"Tela do Programador",x:"Só o Programador vê esta tela. Aqui se decide o que entra em cada dia e em cada máquina."},
+     {sel:'#pg-auto',t:"Programar a fila",x:"Programa sozinho os cartões liberados, do mais urgente para o menos urgente, respeitando a capacidade de cada máquina."},
+     {sel:'#p-pr .rchip[data-rec]',t:"Máquinas do cadastro",x:"Cada etiqueta é uma máquina. Toque para desligar ou ligar. Ao desligar, o que não começou nela passa para outra do grupo."},
+     {sel:'#gm-sv',t:"Horas e eficiência",x:"Ajuste as horas por dia e a eficiência de cada grupo e salve. O limite do dia é máquinas ligadas × horas × eficiência."},
+     {sel:'#p-pr .wcl',t:"Máquinas do lote",x:"Cada lote mostra por quais máquinas vai passar. Toque na máquina para trocar por outra do mesmo grupo."}],
+ ap:[{pre:()=>{ PR.view="ap"; go('pr'); },sel:'#mtabs [data-p="pr:ap"]',t:"Tela de Apontamento",x:"Aqui o apontador registra a produção de todas as máquinas, lote por lote."},
+     {sel:'#apv-d',t:"Dia da produção",x:"Escolha o dia. Dá para apontar até 6 dias para trás."},
+     {sel:'.apv-chips',t:"Processo",x:"Filtre pelo processo para ver só os lotes dele."},
+     {sel:'.apr .apr-in',t:"Boa e perda",x:"Digite as peças boas e a perda do lote. O campo Boa já vem com o que falta."},
+     {sel:'.apr [data-apa="p"]',t:"Apontar parcial",x:"Registra e o lote continua em andamento. Fica como WIP no Fluxo de valor."},
+     {sel:'.apr [data-apa="e"]',t:"Encerrar",x:"Registra e manda o lote para a próxima máquina, o próximo processo ou o supermercado — só as peças boas."}],
+ fx:[{pre:()=>go('fx'),sel:'#p-fx .vsm-w',t:"O fluxo da fábrica",x:"O desenho é o mapa do fluxo de valor: fornecedores, processos, supermercados, expedição e clientes."},
+     {sel:'#p-fx .vsm-leg',t:"Como ler o desenho",x:"A legenda mostra o que é cada símbolo: processo, supermercado, retirada, kanban, informação e material."},
+     {sel:'#p-fx .vsm-w',t:"Caixa do processo",x:"Produção boa × programado, aderência, perdas e o que está em processo (WIP)."},
+     {sel:'#p-fx .vsm-w',t:"Supermercados",x:"Estoque total e quanto do supermercado está abastecido."},
+     {sel:'#fx-base',t:"Linha de base",x:"Os indicadores comparam cada dia com esta data. Só o Programador muda."}],
+ ajuda:[{sel:'#mtabs button[data-p="man"], aside.side nav button[data-mod="cf"], #mnav button[data-m="mais"]',t:"Manual do app",x:"O passo a passo de cada tela fica aqui, com busca e versão em PDF."},
+     {sel:'#asst-fab',t:"Assistente",x:"Ficou com dúvida? Toque no ? em qualquer tela. O assistente pergunta o que você precisa e explica."}]
+};
+let TOUR=null;
+function tourStart(steps,fim){ if(!steps||!steps.length) return; tourEnd(true); TOUR={steps,i:0,fim}; const d=document.createElement('div'); d.id="tr"; d.innerHTML='<div id="tr-hole"></div><div id="tr-card" role="dialog" aria-live="polite"></div>'; document.body.appendChild(d); tourShow(); }
+function tourEnd(silent){ const d=document.getElementById('tr'); if(d) d.remove(); const f=TOUR&&TOUR.fim; TOUR=null; if(f&&!silent) f(); }
+function tourEl(sel){ if(!sel) return null; for(const s of sel.split(',')){ const e=[...document.querySelectorAll(s.trim())].find(x=>{ const r=x.getBoundingClientRect(); return r.width>1&&r.right>4&&r.left<innerWidth-4; }); if(e) return e; } return null; }
+function tourShow(){
+  if(!TOUR) return; const st=TOUR.steps[TOUR.i]; try{ if(st.pre) st.pre(); }catch(e){}
+  setTimeout(()=>{ if(!TOUR) return; const hole=document.getElementById('tr-hole'), card=document.getElementById('tr-card'); if(!hole||!card) return;
+    const el=tourEl(st.sel); if(el) el.scrollIntoView({block:'center'});
+    setTimeout(()=>{ if(!TOUR) return; const n=TOUR.steps.length, vw=innerWidth, vh=innerHeight; let r=el?el.getBoundingClientRect():null; if(r&&(r.width<2||r.bottom<0||r.top>vh)) r=null;
+      if(r){ const p=6; hole.style.cssText=`left:${Math.max(4,r.left-p)}px;top:${Math.max(4,r.top-p)}px;width:${Math.min(vw-8,r.width+2*p)}px;height:${Math.min(vh-8,r.height+2*p)}px`; } else hole.style.cssText="left:50%;top:38%;width:0;height:0";
+      card.innerHTML=`<div class="tr-k">${TOUR.i+1} de ${n}</div><h4>${esc(st.t)}</h4><p>${esc(st.x)}</p>${r?'':'<p class="note">Este item não está na tela agora. Siga para o próximo.</p>'}
+        <div class="tr-b"><button class="btn" id="tr-x">Fechar</button>${TOUR.i?'<button class="btn" id="tr-a">Voltar</button>':''}<button class="btn pri" id="tr-n">${TOUR.i<n-1?'Próximo':'Entendi'}</button></div>`;
+      const cw=Math.min(360,vw-24); card.style.width=cw+"px"; const ch=card.offsetHeight; let top,left;
+      if(r){ top=r.bottom+14+ch<vh?r.bottom+14:(r.top-14-ch>0?r.top-14-ch:vh-ch-12); left=Math.min(vw-cw-12,Math.max(12,r.left+r.width/2-cw/2)); } else { top=vh*0.42; left=(vw-cw)/2; }
+      card.style.top=top+"px"; card.style.left=left+"px";
+      document.getElementById('tr-x').onclick=()=>tourEnd(); const a=document.getElementById('tr-a'); if(a) a.onclick=()=>{ TOUR.i--; tourShow(); };
+      document.getElementById('tr-n').onclick=()=>{ if(st.id&&r) newsSeen(st.id); if(TOUR.i<n-1){ TOUR.i++; tourShow(); } else tourEnd(); };
+    },260); },st.pre?350:30);
+}
+
+/* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
+const NEWS=[
+ {rev:21,quando:"23/11/2026",t:"Menu por módulos, Painel com luzes e mapa do fluxo de valor",itens:[
+   {id:"21-mod",man:"telas",sel:'aside.side #nav1, #mnav',t:"Novo: menu por módulos",x:"As telas são as mesmas, agora agrupadas na ordem do trabalho: Painel, Fluxo de valor, Planejar, Produzir, Estocar, Expedir e Ajuda e ajustes."},
+   {id:"21-abas",man:"telas",tab:"pa",sel:'#mtabs',t:"Novo: abas no alto",x:"Cada módulo mostra as suas telas em abas no alto. Toque na aba para trocar de tela."},
+   {id:"21-sit",man:"ov",tab:"ov",sel:'#sit21 .sit-g',t:"Novo: Situação agora",x:"No alto do Painel, luzes verde, amarela e vermelha mostram se os supermercados e os pedidos estão bem, em atenção ou ruins."},
+   {id:"21-vsm",man:"fx",tab:"fx",sel:'#p-fx .vsm-w',t:"Novo: mapa do fluxo de valor",x:"A fábrica como um VSM com os símbolos padrão: processos, supermercados, kanban e linha do tempo. Abaixo do mapa ficam os indicadores contra a linha de base. Tudo muda conforme os apontamentos."}]},
+ {rev:20,quando:"20/11/2026",t:"Apontamento com perdas e expedido",itens:[
+   {id:"20-ap",so:"prog",man:"apont",tab:"pr",view:"ap",sel:'#mtabs [data-p="pr:ap"]',t:"Novo: Apontamento",x:"Uma tela só para apontar todas as máquinas: peças boas e perdas de cada lote. Apontar parcial deixa o lote em andamento; Encerrar manda adiante."},
+   {id:"20-exp",man:"ex",tab:"ex",sel:'[data-xa="exp"], #ex-expd',t:"Novo: Expedido",x:"No fim do dia, marque os pedidos que saíram. Eles deixam de reservar estoque e entram no indicador de expedição."}]},
+ {rev:19,quando:"19/11/2026",t:"Manual, guia de novidades e assistente",itens:[
+   {id:"19-man",sel:'#mtabs button[data-p="man"], aside.side nav button[data-mod="cf"], #mnav button[data-m="mais"]',t:"Novo: Manual do app",x:"O passo a passo de todas as telas, com busca e PDF. Fica no menu, em Ajuda e ajustes (no celular, toque em Mais)."},
+   {id:"19-ast",sel:'#asst-fab',t:"Novo: Assistente",x:"Toque no ? em qualquer tela. O assistente pergunta o que você precisa, explica e mostra na tela."}]},
+ {rev:18,quando:"19/11/2026",t:"Programação por máquina: telas Operação e Programador",itens:[
+   {id:"18-op",tab:"pr",view:"op",sel:'#mtabs [data-p="pr:op"]',t:"Novo: tela da Operação",x:"A tela Operação, no módulo Produzir: cada máquina vê o que fazer agora e a fila, na ordem certa."},
+   {id:"18-maq",tab:"pr",view:"op",sel:'#opv .opv-ms, #opv .opv-top',t:"Novo: escolha a sua máquina",x:"Toque na sua máquina para ver os lotes dela. O app lembra da escolha neste aparelho."},
+   {id:"18-btn",tab:"pr",view:"op",sel:'#opv .opv-btn',t:"Novo: COMECEI e TERMINEI",x:"Toque em COMECEI ao iniciar o lote e em TERMINEI ao acabar. O lote segue sozinho para a próxima máquina ou para o supermercado."},
+   {id:"18-pg",so:"prog",tab:"pr",view:"pg",sel:'#mtabs [data-p="pr:pg"]',t:"Novo: tela do Programador",x:"Programar, mudar dias e capacidade agora é só de quem tem a função Programador."},
+   {id:"18-rec",so:"prog",tab:"pr",view:"pg",sel:'#p-pr .rchip[data-rec]',t:"Novo: máquinas do cadastro",x:"As máquinas vêm do cadastro de centros de trabalho. Toque na etiqueta para desligar ou ligar uma máquina."},
+   {id:"18-wcl",so:"prog",tab:"pr",view:"pg",sel:'#p-pr .wcl',t:"Novo: máquina de cada lote",x:"Cada lote programado mostra por quais máquinas vai passar. Toque para trocar a máquina."}]}
+];
+const NV_OFF=()=>{ try{ return localStorage.getItem('aemco-kd-nonews')==='1'; }catch(e){ return false; } };   // usado só nos testes automáticos
+const NVK=()=>"aemco-kd-nov-"+((window.KB&&KB.state&&KB.state.nome)||"local");
+function nvGet(){ try{ return JSON.parse(localStorage.getItem(NVK())||"{}"); }catch(e){ return {}; } }
+function nvSet(o){ try{ localStorage.setItem(NVK(),JSON.stringify(o)); }catch(e){} }
+function nvVale(it){ return it.so!=="prog"||isProg(); }
+function newsItens(){ const v=nvGet().ids||{}; return NEWS.flatMap(n=>n.itens.filter(nvVale).map(it=>Object.assign({rev:n.rev},it))).filter(it=>!v[it.id]); }
+function newsSeen(id){ const o=nvGet(); o.ids=o.ids||{}; o.ids[id]=1; nvSet(o); newsFlags(); }
+function newsTour(){ const its=newsItens(); if(!its.length){ toast("Você já viu todas as novidades"); return; }
+  tourStart(its.map(it=>({id:it.id,t:it.t.replace(/^Novo: (.)/,(m,c)=>c.toUpperCase()),x:it.x,sel:it.sel,pre:it.tab?()=>{ if(it.view){ PR.view=it.view; } if(TAB!==it.tab||it.view) go(it.tab); }:null}))); }
+function newsModal(force){
+  const o=nvGet(), rev=NEWS[0].rev, pend=newsItens(); if(!force&&(NV_OFF()||o.modal===rev||!pend.length)) return;
+  o.modal=rev; nvSet(o); const old=document.getElementById('nv-modal'); if(old) old.remove();
+  const d=document.createElement('div'); d.id="nv-modal"; d.innerHTML=`<div class="nv-box" role="dialog" aria-modal="true" aria-label="O que há de novo"><div class="nv-top">★ O QUE HÁ DE NOVO</div>
+    <div class="nv-in">${NEWS.map(n=>{ const its=n.itens.filter(nvVale); return its.length?`<h4>Rev${n.rev} · ${esc(n.t)}</h4><ul>${its.map(it=>`<li><b>${esc(it.t.replace(/^Novo: /,''))}.</b> ${esc(it.x)}</li>`).join('')}</ul>`:''; }).join('')}
+    <p class="note">As bandeiras <span class="nv-flag demo">NOVO</span> aparecem nas telas onde algo mudou. Toque nelas para ver a explicação.</p></div>
+    <div class="nv-b"><button class="btn" id="nv-dep">Agora não</button><button class="btn" id="nv-man">Abrir o manual</button><button class="btn pri" id="nv-go">▶ Me mostre</button></div></div>`;
+  document.body.appendChild(d); const fecha=()=>d.remove();
+  document.getElementById('nv-dep').onclick=fecha; document.getElementById('nv-man').onclick=()=>{ fecha(); go('man'); };
+  document.getElementById('nv-go').onclick=()=>{ fecha(); newsTour(); }; d.onclick=e=>{ if(e.target===d) fecha(); };
+}
+function newsFlags(){
+  let L=document.getElementById('nv-layer'); if(!L){ L=document.createElement('div'); L.id="nv-layer"; document.body.appendChild(L); }
+  if(TOUR||NV_OFF()||document.getElementById('nv-modal')){ L.innerHTML=""; return; }
+  const its=newsItens().filter(it=>!it.tab||(it.tab===TAB&&(!it.view||PR.view===it.view))), vivos=new Set();
+  its.forEach(it=>{ const el=tourEl(it.sel); if(!el) return; const r=el.getBoundingClientRect(); if(r.width<2||r.bottom<60||r.top>innerHeight-10||r.right<8||r.left>innerWidth-8) return; vivos.add(it.id);
+    let f=L.querySelector('[data-nv="'+it.id+'"]'); if(!f){ f=document.createElement('button'); f.type="button"; f.className="nv-flag"; f.dataset.nv=it.id; f.textContent="NOVO"; f.setAttribute('aria-label',it.t); f.onclick=()=>newsPop(it,f); L.appendChild(f); }
+    f.style.left=Math.max(4,Math.min(innerWidth-58,r.right-30))+"px"; f.style.top=Math.max(4,r.top-12)+"px"; });
+  L.querySelectorAll('[data-nv]').forEach(f=>{ if(!vivos.has(f.dataset.nv)) f.remove(); });
+  const p=document.getElementById('nv-pop'); if(p&&!vivos.has(p.dataset.id)) p.remove();
+}
+function newsPop(it,f){ const old=document.getElementById('nv-pop'); if(old) old.remove(); const r=f.getBoundingClientRect(), p=document.createElement('div'); p.id="nv-pop"; p.dataset.id=it.id;
+  p.innerHTML=`<h4>${esc(it.t)}</h4><p>${esc(it.x)}</p><div class="tr-b"><button class="btn" id="nvp-m">Ver no manual</button><button class="btn pri" id="nvp-ok">Entendi</button></div>`;
+  document.body.appendChild(p); const w=Math.min(320,innerWidth-24); p.style.width=w+"px"; p.style.left=Math.max(12,Math.min(innerWidth-w-12,r.left-w/2))+"px"; p.style.top=(r.bottom+10+p.offsetHeight<innerHeight?r.bottom+10:Math.max(12,r.top-10-p.offsetHeight))+"px";
+  document.getElementById('nvp-ok').onclick=()=>{ p.remove(); newsSeen(it.id); };
+  document.getElementById('nvp-m').onclick=()=>{ p.remove(); newsSeen(it.id); manAbrir(it.man||(it.rev===19?"telas":(it.so==="prog"?"pg":"op"))); };
+}
+
+/* ---------- assistente (responde com o conteúdo do manual; nada sai do aparelho) ---------- */
+const AST={open:false,log:[]};
+const AST_STOP=new Set("a o os as de da do das dos e ou um uma que como onde por para pra com sem em no na nos nas se eu me meu minha isso este esta esse essa aqui ali la ja nao sim mais menos muito pouco ser estar ter fazer faz faco fazer posso pode quero preciso tem tenho foi esta estou qual quais quando porque pq ao aos mas so app tela".split(" "));
+const AST_SIN={senha:"pin",codigo:"pin",recurso:"maquina",maquinas:"maquina",equipamento:"maquina",cartoes:"cartao",lotes:"lote",ordem:"lote",saldo:"estoque",inventario:"estoque",contagem:"estoque",contar:"estoque",pedidos:"pedido",carteira:"pedido",cliente:"pedido",programacao:"programar",programador:"programar",agendar:"programar",quebrou:"desligar",parou:"desligar",parada:"desligar",manutencao:"desligar",cores:"cor",vermelha:"vermelho",amarela:"amarelo",imprimo:"imprimir",impressao:"imprimir",televisao:"tv",celular:"instalar",baixar:"instalar",internet:"conexao",offline:"conexao",sinal:"conexao",errei:"errado",erro:"errado",engano:"errado",iniciar:"comecei",comecar:"comecei",inicio:"comecei",terminar:"terminei",acabei:"terminei",finalizar:"terminei",concluir:"terminei",vender:"oferecer",venda:"oferecer",sobra:"sobrando",excesso:"sobrando",separar:"expedicao",separacao:"expedicao",erp:"importar",datasul:"importar",planilha:"importar",excel:"importar",endereco:"cd",refugo:"perda",perdas:"perda",sucata:"perda",perdi:"perda",apontamento:"apontar",apontei:"apontar",apontado:"apontar",vsm:"fluxo",fluxos:"fluxo",indicadores:"indicador",expedir:"expedido",expedi:"expedido",saiu:"expedido",carregado:"expedido",carregou:"expedido",aderencia:"aderencia",encerrei:"encerrar",fechar:"encerrar",acesso:"pin",cadastrar:"pessoa",cadastro:"pessoa",usuario:"pessoa",liberar:"pessoa"};
+function nrm(s){ return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,""); }
+function astTok(s){ return nrm(s).split(/[^a-z0-9]+/).filter(w=>w.length>1&&!AST_STOP.has(w)).map(w=>AST_SIN[w]||w).map(w=>w.length>4&&w.endsWith("s")?w.slice(0,-1):w); }
+function astBusca(q){ const qt=[...new Set(astTok(q))]; if(!qt.length) return [];
+  return manFaqAll().map(f=>{ const tq=new Set(astTok(f.q)), ta=new Set(astTok(f.a+" "+f.s.t)); let sc=0; qt.forEach(w=>{ if(tq.has(w)) sc+=3; else if(ta.has(w)) sc+=1; else if([...tq].some(x=>x.length>3&&(x.startsWith(w)||w.startsWith(x)))) sc+=1.5; }); return {f,sc:sc/Math.sqrt(qt.length)}; }).filter(x=>x.sc>=1.4).sort((a,b)=>b.sc-a.sc).slice(0,4); }
+function astSecAtual(){ if(TAB==="fx") return MAN_SEC("fx"); if(TAB==="pr") return MAN_SEC(isProg()&&PR.view==="ap"?"apont":(PR.view==="pg"&&isProg()?"pg":"op2")); if(TAB==="us"||TAB==="cd") return MAN_SEC("sm"); if(TAB==="op") return MAN_SEC("opd"); return MAN.find(s=>s.tab===TAB&&manVe(s))||MAN_SEC("telas"); }
+function astBot(html,chips){ AST.log.push({b:1,html,chips:chips||[]}); astDraw(); }
+function astEu(t){ AST.log.push({b:0,html:esc(t)}); }
+function astChipsSec(s){ return (s.faq||[]).slice(0,4).map(f=>({t:f[0],k:"q",v:f[0]})); }
+function astInicio(){ const s=astSecAtual(); AST.log=[]; astBot(`Oi! Sou o assistente do Kanban. Você está em <b>${esc(s.t)}</b>.<br>O que você precisa?`,[...astChipsSec(s),{t:"Dúvida de outra tela",k:"secs"},{t:"▶ Me mostre esta tela",k:"tour",v:s.id},{t:"★ O que há de novo",k:"news"}]); }
+function astResp(q){ astEu(q); const r=astBusca(q);
+  if(!r.length){ astBot("Não achei uma resposta pronta para isso. Sobre qual parte do app é a sua dúvida?",astSecChips()); return; }
+  const f=r[0].f; astBot(`<b>${esc(f.q)}</b><br>${esc(f.a)}`,[{t:"Ver no manual",k:"man",v:f.s.id},...(f.s.tour&&(f.s.quem!=="prog"||isProg())?[{t:"▶ Me mostre na tela",k:"tour",v:f.s.id}]:[]),...r.slice(1).map(x=>({t:x.f.q,k:"q",v:x.f.q})),{t:"Não era isso",k:"secs"}]); }
+function astSecChips(){ return MAN.filter(s=>manVe(s)&&s.faq&&s.faq.length).map(s=>({t:s.t.replace(/:.*$/,''),k:"sec",v:s.id})).filter((c,i,a)=>a.findIndex(x=>x.t===c.t)===i); }
+function astAcao(c){
+  if(c.k==="q") return astResp(c.v);
+  if(c.k==="secs"){ astEu(c.t); return astBot("Sobre qual parte é a dúvida?",astSecChips()); }
+  if(c.k==="sec"){ const s=MAN_SEC(c.v), irm=MAN.filter(x=>manVe(x)&&x.t.replace(/:.*$/,'')===s.t.replace(/:.*$/,'')); astEu(c.t); return astBot(`<b>${esc(s.t.replace(/:.*$/,''))}.</b> ${manB(s.lead)}<br>Qual é a dúvida?`,[...irm.flatMap(x=>(x.faq||[]).map(f=>({t:f[0],k:"q",v:f[0]}))).slice(0,7),{t:"Ver no manual",k:"man",v:s.id},{t:"Outra parte",k:"secs"}]); }
+  if(c.k==="man"){ asstClose(); return manAbrir(c.v); }
+  if(c.k==="tour"){ const s=MAN_SEC(c.v); asstClose(); if(s.tour&&(s.quem!=="prog"||isProg())){ manIr(s.id); return setTimeout(()=>tourStart(TOURS[s.tour]),350); } if(s.tab){ manIr(s.id); return toast("Esta é a tela "+s.t.replace(/:.*$/,'')); } return manAbrir(s.id); }
+  if(c.k==="news"){ asstClose(); return newsModal(true); }
+}
+function astDraw(){ const b=document.getElementById('asst-log'); if(!b) return;
+  b.innerHTML=AST.log.map((m,i)=>`<div class="am ${m.b?'bot':'eu'}">${m.html}</div>${m.b&&i===AST.log.length-1&&m.chips.length?`<div class="ac">${m.chips.map((c,k)=>`<button type="button" data-c="${k}">${esc(c.t)}</button>`).join('')}</div>`:''}`).join('');
+  const last=AST.log[AST.log.length-1]; b.querySelectorAll('[data-c]').forEach(x=>x.onclick=()=>astAcao(last.chips[+x.dataset.c])); b.scrollTop=b.scrollHeight; }
+function asstOpen(){ let p=document.getElementById('asst'); if(!p){ p=document.createElement('div'); p.id="asst"; p.innerHTML=`<div class="as-h"><b>? Assistente do Kanban</b><button type="button" id="asst-x" aria-label="Fechar assistente">✕</button></div><div id="asst-log" aria-live="polite"></div>
+    <form id="asst-f"><input id="asst-q" type="text" placeholder="Escreva a sua dúvida" aria-label="Escreva a sua dúvida" autocomplete="off"><button class="btn pri" type="submit">Enviar</button></form><div class="as-n">Respondo com o conteúdo do manual. Nada do que você escreve sai deste aparelho.</div>`;
+    document.body.appendChild(p); document.getElementById('asst-x').onclick=asstClose;
+    document.getElementById('asst-f').onsubmit=e=>{ e.preventDefault(); const i=document.getElementById('asst-q'), v=i.value.trim(); if(!v) return; i.value=""; astResp(v); }; }
+  p.hidden=false; AST.open=true; newsSeen("19-ast"); astInicio(); }
+function asstClose(){ const p=document.getElementById('asst'); if(p) p.hidden=true; AST.open=false; }
+function helpInit(){
+  if(document.getElementById('asst-fab')) return;
+  const f=document.createElement('button'); f.id="asst-fab"; f.type="button"; f.textContent="?"; f.title="Assistente: tire a sua dúvida"; f.setAttribute('aria-label',"Abrir o assistente"); f.onclick=()=>AST.open?asstClose():asstOpen(); document.body.appendChild(f);
+  setInterval(newsFlags,900); addEventListener('scroll',newsFlags,{passive:true}); addEventListener('resize',newsFlags);
+  setTimeout(()=>newsModal(false),1800);
+}
+setTimeout(helpInit,1500);
+
+/* ===== Rev20 · apontamento central (produção boa + perdas), WIP, fluxo ao vivo (VSM), indicadores e expedido =====
+   Apontamentos ficam na coleção "apont" (um documento por registro, nunca reescrito). Cada registro:
+   {d: dia da produção, k: lote+operação, base: lote, dia, proc, tipo, cod, i: operação, wc: máquina, opn, boa, perda, enc, ult, n, cs:[cartões], t, u}
+   ult = última operação do lote dentro do processo (é o que conta como produzido no processo). */
+const APT_LS="aemco-kd20-apt", IND_LS="aemco-kd20-ind", IND_BASE0="2026-11-23";
+let APT=[], IND={base:IND_BASE0};
+function aptInit(){
+  try{ IND=Object.assign({base:IND_BASE0},JSON.parse(localStorage.getItem(IND_LS)||"{}")); }catch(e){}
+  if(typeof DB!=="undefined"&&DB){
+    DB.collection("apont").onSnapshot(q=>{ APT=q.docs.map(d=>Object.assign({id:d.id},d.data())); if(TAB==="pr"||TAB==="fx") rerender(); },()=>{});
+    DB.doc("kanban/ind").onSnapshot(s=>{ if(s.exists) IND=Object.assign({base:IND_BASE0},s.data()); if(TAB==="fx") rerender(); },()=>{});
+  } else { try{ APT=JSON.parse(localStorage.getItem(APT_LS)||"[]"); }catch(e){ APT=[]; } }
+}
+const temDB=()=>typeof DB!=="undefined"&&!!DB;
+function aptNovoId(){ return "a"+Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+async function aptAdd(r){
+  const id=aptNovoId(), o=Object.assign({t:new Date().toISOString(),u:UID||""},r);
+  if(temDB()){
+    if(!WRITE_OK){ toast("Seu acesso é só leitura"); return false; }
+    try{ await DB.doc("apont/"+id).set(o); }catch(e){ toast("Não gravou o apontamento ("+(e.code||"erro")+")"); return false; }
+  }
+  if(!APT.some(a=>a.id===id)) APT.push(Object.assign({id},o));
+  if(!temDB()){ try{ localStorage.setItem(APT_LS,JSON.stringify(APT.slice(-6000))); }catch(e){} }
+  return true;
+}
+async function indSalvar(patch){
+  if(!isProg()){ toast("Somente o Programador altera a linha de base"); return false; }
+  IND=Object.assign({},IND,patch,{t:new Date().toISOString(),u:UID||""});
+  try{ localStorage.setItem(IND_LS,JSON.stringify(IND)); }catch(e){}
+  if(temDB()) return await writeDoc("kanban/ind",IND);
+  return true;
+}
+
+/* ---------- lotes e saldos ---------- */
+function aptSince(k){   // apontamentos do lote-operação desde o último encerramento
+  const L=APT.filter(a=>a.k===k).sort((a,b)=>a.t<b.t?-1:a.t>b.t?1:0); let j=-1; L.forEach((a,i)=>{ if(a.enc) j=i; }); return L.slice(j+1); }
+function apCalc(g){
+  const ids=new Set(g.cs.map(c=>c.id)), n=g.cs.reduce((s,c)=>s+(+c.q||0),0);
+  let pAnt=0;   // perdas destes cartões em operações/processos anteriores (proporcional aos cartões em comum)
+  APT.forEach(a=>{ if(!(+a.perda>0)||!Array.isArray(a.cs)||!a.cs.length||a.k===g.key) return; if(a.proc===g.proc&&!(a.i<g.i)) return;
+    const inter=a.cs.filter(id=>ids.has(id)).length; if(inter) pAnt+=(+a.perda)*inter/a.cs.length; });
+  const plan=Math.max(0,Math.round(n-pAnt)), S=aptSince(g.key);
+  const boa=S.reduce((s,a)=>s+(+a.boa||0),0), perda=S.reduce((s,a)=>s+(+a.perda||0),0);
+  return {n,plan,boa,perda,rest:Math.max(0,plan-boa-perda)};
+}
+const APV={d:"",p:"",q:""};
+function apDia(){ return APV.d||ymd(opHoje()); }
+function apLotes(dRef){
+  const d=dRef||apDia(), m={};
+  CART.forEach(c=>{
+    if((c.status!=="prog"&&c.status!=="prod")||!c.dia||c.dia>d) return;
+    const ops=opsDe(c.cod,c.proc,c.rota), wc=(ops&&Array.isArray(c.wc)&&c.wc.length===ops.length)?c.wc:null;
+    let i=0, w=null, opn=procNome(c.proc), ult=true;
+    if(wc&&wc.some(Boolean)){ i=c.op||0; while(i<wc.length&&!wc[i]) i++; if(i>=wc.length) return; w=wc[i]; opn=OPSN[ops[i][5]]||("Operação "+(i+1));
+      let nx=i+1; while(nx<wc.length&&!wc[nx]) nx++; ult=nx>=wc.length; }
+    const base=[c.dia,c.proc,c.tipo,c.cod].join("|"), key=base+"|"+i;
+    const g=m[key]||(m[key]={key,base,dia:c.dia,proc:c.proc,tipo:c.tipo,cod:c.cod,desc:c.desc,i,wc:w,opn,ult,cs:[],prio:9,seq:99999});
+    g.cs.push(c); g.prio=Math.min(g.prio,c.prio==null?2:c.prio); g.seq=Math.min(g.seq,c.seq||0);
+  });
+  return Object.values(m).map(g=>Object.assign(g,apCalc(g),{and:g.cs.some(c=>c.status==="prod")}))
+    .sort((a,b)=>(a.proc<b.proc?-1:a.proc>b.proc?1:0)||String(a.wc||"").localeCompare(String(b.wc||""))||(a.dia<b.dia?-1:a.dia>b.dia?1:0)||(a.prio-b.prio)||(a.seq-b.seq));
+}
+/* registra um apontamento a partir de um lote (usado pela tela do apontador, pela Operação e pelo Programador) */
+function aptRegistro(g,boa,perda,enc,d){
+  return {d:d||ymd(opHoje()),k:g.key,base:g.base,dia:g.dia,proc:g.proc,tipo:g.tipo,cod:g.cod,i:g.i,wc:g.wc||"",opn:g.opn||"",
+    boa:Math.max(0,Math.round(boa||0)),perda:Math.max(0,Math.round(perda||0)),enc:!!enc,ult:!!g.ult,n:g.plan!=null?g.plan:null,cs:g.cs.map(c=>c.id)};
+}
+function aptAbertoBase(base){   // boas (última operação) e perdas ainda não encerradas do lote
+  const ks=[...new Set(APT.filter(a=>a.base===base).map(a=>a.k))]; let boa=0,perda=0;
+  ks.forEach(k=>aptSince(k).forEach(a=>{ if(a.ult) boa+=(+a.boa||0); perda+=(+a.perda||0); })); return {boa,perda}; }
+async function apEncerrar(g,boaTot){
+  const cs=g.cs.slice();
+  if(!g.ult){
+    let dest="";
+    for(const c of cs){ let nx=g.i+1; while(nx<c.wc.length&&!c.wc[nx]) nx++; dest=c.wc[nx]||dest; await cartUpd(c.id,{op:nx,opn:null,status:"prod"}); c.op=nx; c.opn=null; c.status="prod"; }
+    toast(`${g.cod}: operação encerrada — segue para ${dest||'a próxima máquina'}`); return; }
+  await concluirCartoes(cs,g.proc,g.dia,g.tipo,g.cod,boaTot);
+}
+async function apAcao(key,enc,row){
+  if(!isProg()){ toast("Somente o Programador (apontador) registra aqui"); return; }
+  if(temDB()&&!WRITE_OK){ toast("Seu acesso é só leitura"); return; }
+  const g=apLotes().find(x=>x.key===key); if(!g){ toast("Este lote não está mais aberto"); renderAPV(); return; }
+  const num=s=>{ const v=Math.round(+String(s==null?"":s).replace(",",".")); return isFinite(v)&&v>0?v:0; };
+  const boa=num(row.querySelector('[data-f="b"]').value), perda=num(row.querySelector('[data-f="p"]').value);
+  if(!enc&&!(boa>0||perda>0)){ toast("Digite a quantidade boa ou a perda"); return; }
+  if(boa+perda>Math.max(g.plan,1)*2+50){ toast("Quantidade muito acima do programado — confira"); return; }
+  row.querySelectorAll('button').forEach(b=>b.disabled=true);
+  const now=new Date().toISOString(), boaTot=g.boa+boa;
+  if(!await aptAdd(aptRegistro(g,boa,perda,enc,apDia()))){ renderAPV(); return; }
+  if(!enc){
+    for(const c of g.cs) if(c.status!=="prod"){ await cartUpd(c.id,{status:"prod",opn:g.i,inicio:c.inicio||now}); c.status="prod"; c.opn=g.i; }
+    toast(`${g.cod}: ${f0(boa)} bom${perda?' · '+f0(perda)+' de perda':''} — lote segue em andamento`); renderAPV(); return; }
+  await apEncerrar(g,boaTot);
+  renderAPV();
+}
+
+/* ---------- tela do APONTADOR (dentro da Programação) ---------- */
+function apDiaLab(dia,ref){ if(dia===ref) return "hoje"; if(dia<ref) return "atrasado · "+dbr(deYMD(dia)); return dbr(deYMD(dia)); }
+function apResumo(d){
+  const A=APT.filter(a=>a.d===d), boa=A.filter(a=>a.ult).reduce((s,a)=>s+(+a.boa||0),0), perda=A.reduce((s,a)=>s+(+a.perda||0),0);
+  return {boa,perda,n:A.length};
+}
+function renderAPV(){
+  const box=document.getElementById('apv'); if(!box) return;
+  const hoje=ymd(opHoje()), d=apDia(), L=apLotes(d), procs=[...new Set(L.map(g=>g.proc))].sort();
+  if(APV.p&&!procs.includes(APV.p)) APV.p="";
+  const F=L.filter(g=>(!APV.p||g.proc===APV.p)&&(!APV.q||nrm(g.cod+" "+(g.desc||"")+" "+(g.wc||"")).includes(nrm(APV.q))));
+  const R=apResumo(d), dias=[]; for(let k=0;k<7;k++){ const x=new Date(opHoje()); x.setDate(x.getDate()-k); dias.push(ymd(x)); }
+  const grp={}; F.forEach(g=>{ (grp[g.proc]=grp[g.proc]||[]).push(g); });
+  box.innerHTML=`<div class="apv">
+   <div class="apv-top">
+    <label class="f" for="apv-d">Dia da produção<select id="apv-d">${dias.map(x=>`<option value="${x}"${x===d?' selected':''}>${x===hoje?'Hoje · ':''}${DIASEM[deYMD(x).getDay()]} ${dbr(deYMD(x))}</option>`).join('')}</select></label>
+    <label class="f" for="apv-q" style="flex:1;min-width:180px">Procurar<input id="apv-q" type="search" placeholder="código, descrição ou máquina" value="${esc(APV.q)}"></label>
+    <div class="apv-kpi"><div><b>${f0(R.boa)}</b><span>pç boas</span></div><div><b>${f0(R.perda)}</b><span>pç de perda</span></div><div><b>${f0(L.length)}</b><span>lotes abertos</span></div></div>
+   </div>
+   <div class="apv-chips"><button type="button" class="${APV.p?'':'on'}" data-apf="">Todos (${L.length})</button>${procs.map(p=>`<button type="button" class="${APV.p===p?'on':''}" data-apf="${p}">${p} · ${esc(procNome(p))} (${L.filter(g=>g.proc===p).length})</button>`).join('')}</div>
+   <p class="note">Para cada lote: digite as peças <b>boas</b> e a <b>perda</b>. <b>Apontar parcial</b> registra e o lote segue em andamento (fica como WIP). <b>Encerrar</b> registra e manda o lote para a próxima máquina, para o próximo processo ou para o supermercado (entram só as peças boas).</p>
+   ${F.length?Object.keys(grp).sort().map(p=>{ const P=fxProc(p,d); return `<section class="apv-p"><h3>${p} · ${esc(procNome(p))}<span class="note">programado ${f0(P.prog)} pç · produzido ${f0(P.boa)} · perdas ${f0(P.perda)}</span></h3>
+     ${grp[p].map(g=>{ const pr=OPPR(g.prio); return `<div class="apr${g.and?' and':''}" data-k="${esc(g.key)}">
+      <div class="apr-i"><span class="apr-dot" style="background:${pr.c}" title="${pr.t}"></span><div><b>${esc(g.cod)}</b><small>${esc(String(g.desc||'').slice(0,60))}</small>
+        <small>${apDiaLab(g.dia,d)} · ${esc(g.opn)}${g.wc?' · <b>'+esc(g.wc)+'</b>':''}${g.ult?'':' · depois: próxima máquina'}${g.and?' · <b class="apr-and">em andamento</b>':''}</small></div></div>
+      <div class="apr-n"><b>${f0(g.plan)}</b><small>programado</small></div>
+      <div class="apr-n"><b>${f0(g.boa)}</b><small>já bom</small></div>
+      <div class="apr-n"><b>${f0(g.perda)}</b><small>já perda</small></div>
+      <label class="apr-in">Boa<input type="number" min="0" step="1" inputmode="numeric" data-f="b" value="${g.rest}" aria-label="Peças boas de ${esc(g.cod)}"></label>
+      <label class="apr-in">Perda<input type="number" min="0" step="1" inputmode="numeric" data-f="p" value="0" aria-label="Perda de ${esc(g.cod)}"></label>
+      <div class="apr-b"><button type="button" class="btn" data-apa="p">Apontar parcial</button><button type="button" class="btn pri" data-apa="e">Encerrar ✔</button></div>
+     </div>`; }).join('')}</section>`; }).join('')
+   :`<div class="opv-vazio"><b>Nenhum lote aberto</b><span>${L.length?'Nada com esse filtro.':'Não há cartões programados até este dia. Programe na tela do Programador.'}</span></div>`}
+  </div>`;
+  document.getElementById('apv-d').onchange=e=>{ APV.d=e.target.value===hoje?"":e.target.value; renderAPV(); };
+  const qi=document.getElementById('apv-q'); qi.oninput=()=>{ APV.q=qi.value; clearTimeout(renderAPV.h); renderAPV.h=setTimeout(()=>{ renderAPV(); const n=document.getElementById('apv-q'); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } },300); };
+  box.querySelectorAll('[data-apf]').forEach(b=>b.onclick=()=>{ APV.p=b.dataset.apf; renderAPV(); });
+  box.querySelectorAll('.apr').forEach(row=>row.querySelectorAll('[data-apa]').forEach(b=>b.onclick=()=>apAcao(row.dataset.k,b.dataset.apa==="e",row)));
+}
+
+/* ---------- FLUXO AO VIVO (VSM) ---------- */
+const FX={d:""};
+function fxDia(){ return FX.d||ymd(opHoje()); }
+function fxProc(p,d){
+  const sum=a=>a.reduce((s,c)=>s+(+c.q||0),0), cs=CART.filter(c=>c.proc===p);
+  const prog=CART.filter(c=>(c.proc===p&&c.dia===d)||c["pd_"+p]===d), A=APT.filter(a=>a.proc===p&&a.d===d);
+  const wip=cs.filter(c=>c.status==="prod"), agu=cs.filter(c=>c.status==="prog"&&c.dia&&c.dia<=d), fila=cs.filter(c=>c.status==="fila");
+  return {prog:sum(prog),nprog:prog.length,boa:A.filter(a=>a.ult).reduce((s,a)=>s+(+a.boa||0),0),perda:A.reduce((s,a)=>s+(+a.perda||0),0),
+    wip:sum(wip),nwip:wip.length,agu:sum(agu),fila:sum(fila),nfila:fila.length};
+}
+function fxExp(d){ const L=Object.values(EXPST).filter(x=>x&&x.st==="expedido"&&x.ted===d); return {n:L.length,pcs:L.reduce((s,x)=>s+(+x.pcs||0),0)}; }
+function fxSnap(d){   // posição do dia: hoje = ao vivo; outros dias = histórico diário
+  const hoje=ymd(opHoje());
+  if(d===hoje){ try{ return pctSnapshot(); }catch(e){ return null; } }
+  return HIST[d]||null;
+}
+function fxEst(x){ return x?(x.est!=null?x.est:((x.util||0)+(x.exc||0))):null; }
+function fxBase(){   // ponto da linha de base: o do dia escolhido, ou o último antes dele
+  const b=IND.base||IND_BASE0; if(HIST[b]) return {d:b,h:HIST[b]};
+  const ds=Object.keys(HIST).filter(x=>x<=b).sort(); return ds.length?{d:ds[ds.length-1],h:HIST[ds[ds.length-1]]}:{d:b,h:null};
+}
+function fxDiaInd(d){
+  const ps=PROC_PRG.map(p=>fxProc(p,d)), prog=ps.reduce((s,x)=>s+x.prog,0), boa=ps.reduce((s,x)=>s+x.boa,0), perda=ps.reduce((s,x)=>s+x.perda,0);
+  const S=fxSnap(d), E=fxExp(d);
+  return {d,prog,boa,perda,ader:prog>0?boa/prog*100:null,pperda:prog>0?perda/prog*100:null,
+    estCD:S?fxEst(S.cd):null,estUS:S?fxEst(S.us):null,pCD:S&&S.cd?S.cd.pct:null,pUS:S&&S.us?S.us.pct:null,
+    comp:S&&S.ped?S.ped.comp:null,expN:E.n,expP:E.pcs};
+}
+const FX_L1=["P1","P2","P3","P4","P5"], FX_L2=["P6","P7","P8"];
+function fxCor(v){ return v==null?'var(--line)':(v>=90?'var(--kg)':v>=70?'var(--ky)':'var(--kr)'); }
+function fxBox(p,d){
+  const x=fxProc(p,d), ad=x.prog>0?x.boa/x.prog*100:null, pp=x.prog>0?x.perda/x.prog*100:null;   // perda sobre o programado do dia
+  return `<div class="fx-st"><div class="fx-tri" title="Cartões liberados esperando programação (estoque entre processos)"><span aria-hidden="true">▲</span><b>${f0(x.fila)}</b><small>fila (pç)</small></div>
+   <div class="fx-box"><div class="fx-t"><b>${p}</b> ${esc(procNome(p))}</div>
+    <div class="fx-big"><b>${f0(x.boa)}</b><span>de ${f0(x.prog)} pç programadas</span></div>
+    <div class="fx-bar"><div style="width:${ad==null?0:Math.min(100,ad)}%;background:${fxCor(ad)}"></div></div>
+    <div class="fx-k"><span>Aderência <b>${ad==null?'—':f0(ad)+'%'}</b></span><span>Perdas <b>${f0(x.perda)} pç</b>${pp!=null&&x.perda?' ('+f1(pp)+'% do prog.)':''}</span></div>
+    <div class="fx-k"><span>Em processo (WIP) <b>${f0(x.wip)} pç</b></span><span>A iniciar <b>${f0(x.agu)} pç</b></span></div></div></div>`;
+}
+function fxSM(t,x,n){ return `<div class="fx-sm"><div class="fx-smt">${t}</div><b>${x?f0(fxEst(x)):'—'} pç</b><span>${x?f1(x.pct)+'% abastecido · '+f0(x.verm||0)+' itens no vermelho':'sem posição de estoque'}</span>${n||''}</div>`; }
+function fxDelta(a,b,bom,pp){ if(a==null||b==null) return '<span class="note">—</span>'; const dv=b-a; if(Math.abs(dv)<1e-9) return '<span class="note">=</span>';
+  const ok=bom==null?null:(bom>0?dv>0:dv<0); return `<b style="color:${ok==null?'var(--ink)':ok?'var(--kg)':'var(--kr)'}">${dv>0?'+':''}${pp?f1(dv)+' p.p.':f0(dv)}</b>${!pp&&a?` <span class="note">(${dv>0?'+':''}${f0(dv/a*100)}%)</span>`:''}`; }
+function renderFX(){
+  const el=document.getElementById('p-fx'); if(!el) return;
+  const hoje=ymd(opHoje()), d=fxDia(), dias=[]; for(let k=0;k<14;k++){ const x=new Date(opHoje()); x.setDate(x.getDate()-k); dias.push(ymd(x)); }
+  const S=fxSnap(d), E=fxExp(d), st=(typeof expStats==="function"&&PED.linhas.length)?expStats(expAlloc()):null;
+  const B=fxBase(), I0=Object.assign(fxDiaInd(B.d),B.h?{estCD:fxEst(B.h.cd),estUS:fxEst(B.h.us),pCD:B.h.cd?B.h.cd.pct:null,pUS:B.h.us?B.h.us.pct:null,comp:B.h.ped?B.h.ped.comp:null}:{}), I1=fxDiaInd(d);
+  const evo=[]; { const a=deYMD(B.d), z=deYMD(hoje); for(let x=new Date(a);x<=z&&evo.length<45;x.setDate(x.getDate()+1)) evo.push(fxDiaInd(ymd(x))); }
+  const linhas=[["Estoque do CD (pç)","estCD",null],["Estoque dos Usinados (pç)","estUS",null],["Abastecimento do CD (%)","pCD",1,1],["Abastecimento dos Usinados (%)","pUS",1,1],
+    ["Pedidos completos (nº)","comp",1],["Pedidos expedidos no dia (nº)","expN",1],["Peças expedidas no dia","expP",1],["Produção boa no dia (pç)","boa",1],["Perdas no dia (pç)","perda",-1],["Aderência ao programado (%)","ader",1,1]];
+  const v=(o,k,pp)=>o[k]==null?'—':(pp?f1(o[k])+'%':f0(o[k]));
+  el.innerHTML=`<div class="head"><h2>Fluxo de valor em tempo real</h2><span class="note">mapa do fluxo de valor (VSM) com a produção, as perdas e os estoques do dia, conforme os apontamentos</span></div>
+  <div class="fx-top"><label class="f" for="fx-d">Dia<select id="fx-d">${dias.map(x=>`<option value="${x}"${x===d?' selected':''}>${x===hoje?'Hoje · ':''}${DIASEM[deYMD(x).getDay()]} ${dbr(deYMD(x))}</option>`).join('')}</select></label>
+   ${window.KB?'<button class="btn" id="fx-sync">🔄 Atualizar</button>':''}<span class="note">${d===hoje?'Atualiza sozinho a cada 1 minuto enquanto esta tela estiver aberta.':'Dia passado: estoque do histórico diário daquele dia.'}</span></div>
+  ${fxVSM(d,S,E,st)}
+  <div class="panel"><div class="head"><h3>Indicadores × linha de base</h3>
+    <label class="f" for="fx-base">Linha de base<input id="fx-base" type="date" value="${esc(IND.base||IND_BASE0)}" ${isProg()?'':'disabled'}></label></div>
+   <p class="note">Linha de base: posição de <b>${dbr(deYMD(B.d))}</b>${B.d!==(IND.base||IND_BASE0)?` (último registro antes de ${dbr(deYMD(IND.base||IND_BASE0))})`:''}${B.h?'':' — ainda sem registro de estoque nesse dia; ele é gravado quando o saldo é importado ou apontado'}. ${isProg()?'Só o Programador altera.':''}</p>
+   <div class="tw"><table><thead><tr><th>Indicador</th><th class="num">Linha de base · ${dbr(deYMD(B.d))}</th><th class="num">${d===hoje?'Hoje':'Dia'} · ${dbr(deYMD(d))}</th><th class="num">Variação</th></tr></thead><tbody>
+    ${linhas.map(([lab,k,bom,pp])=>`<tr><td>${lab}</td><td class="num">${v(I0,k,pp)}</td><td class="num">${v(I1,k,pp)}</td><td class="num">${fxDelta(I0[k],I1[k],bom,pp)}</td></tr>`).join('')}
+   </tbody></table></div>
+   <details class="apd" ${evo.length>1?'open':''}><summary>Evolução dia a dia desde a linha de base</summary><div class="tw"><table><thead><tr><th>Dia</th><th class="num">Estoque CD</th><th class="num">Estoque AUS</th><th class="num">% CD</th><th class="num">% AUS</th><th class="num">Pedidos completos</th><th class="num">Expedidos (nº · pç)</th><th class="num">Programado</th><th class="num">Produção boa</th><th class="num">Perdas</th><th class="num">Aderência</th></tr></thead><tbody>
+    ${evo.slice().reverse().map(o=>`<tr><td>${DIASEM[deYMD(o.d).getDay()]} ${dbr(deYMD(o.d))}</td><td class="num">${v(o,'estCD')}</td><td class="num">${v(o,'estUS')}</td><td class="num">${v(o,'pCD',1)}</td><td class="num">${v(o,'pUS',1)}</td><td class="num">${v(o,'comp')}</td><td class="num">${f0(o.expN)} · ${f0(o.expP)}</td><td class="num">${f0(o.prog)}</td><td class="num">${f0(o.boa)}</td><td class="num">${f0(o.perda)}</td><td class="num">${o.ader==null?'—':f0(o.ader)+'%'}</td></tr>`).join('')}
+   </tbody></table></div></details></div>`;
+  document.getElementById('fx-d').onchange=e=>{ FX.d=e.target.value===hoje?"":e.target.value; renderFX(); };
+  const sb=document.getElementById('fx-sync'); if(sb) sb.onclick=async()=>{ sb.disabled=true; sb.textContent='Atualizando…'; try{ await KB.syncNow(); }catch(e){} renderFX(); };
+  const bi=document.getElementById('fx-base'); if(bi&&!bi.disabled) bi.onchange=async()=>{ if(!/^\d{4}-\d{2}-\d{2}$/.test(bi.value)) return; if(await indSalvar({base:bi.value})) toast("Linha de base: "+dbr(deYMD(bi.value))); renderFX(); };
+}
+setInterval(()=>{ try{ if(TAB==="fx"&&!document.hidden&&window.KB&&KB.syncNow) KB.syncNow(); }catch(e){} },60000);
+
+/* ---------- EXPEDIDO (fim do dia) ---------- */
+async function expMarcarExp(ped,o){
+  await expSep(ped,"expedido",{ted:ymd(new Date()),pcs:o?o.pcs:0,nL:o?o.nL:0,cli:o?(o.cli||""):"",dt:o?(o.dt||""):""});
+}
+function expedidosHTML(){
+  const L=Object.values(EXPST).filter(x=>x&&x.st==="expedido").sort((a,b)=>String(b.ted||"").localeCompare(String(a.ted||""))||String(b.t||"").localeCompare(String(a.t||"")));
+  if(!L.length) return '';
+  const hoje=ymd(new Date()), h=L.filter(x=>x.ted===hoje);
+  return `<details class="panel exp-ok" id="ex-expd"${h.length?' open':''}><summary><b>🚚 Expedidos</b> · hoje ${f0(h.length)} pedido(s) · ${f0(h.reduce((s,x)=>s+(+x.pcs||0),0))} pç · ${f0(L.length)} registrado(s) no total</summary>
+   <div class="tw"><table><thead><tr><th>Dia</th><th>Pedido</th><th>Cliente</th><th class="num">Linhas</th><th class="num">Peças</th><th>Registrado por</th><th></th></tr></thead><tbody>
+   ${L.slice(0,120).map(x=>`<tr><td>${x.ted?dbr(deYMD(x.ted)):'—'}</td><td><b>${esc(x.ped)}</b></td><td>${esc(x.cli||'—')}</td><td class="num">${f0(x.nL||0)}</td><td class="num">${f0(x.pcs||0)}</td><td>${esc(typeof quemNome==="function"?quemNome(x.u||''):(x.u||''))}</td><td><button type="button" class="btn" data-xund="${esc(x.ped)}">Desfazer</button></td></tr>`).join('')}
+   </tbody></table></div><p class="note">Pedido expedido sai da fila de separação e não reserva mais estoque. O estoque do CD baixa no inventário do fim do dia.</p></details>`;
+}
+
+/* Expedição: acrescenta a lista de expedidos no fim da tela (sem mexer no restante do quadro) */
+const _renderEX20=renderEX;
+renderEX=function(){ _renderEX20(); const el=document.getElementById('p-ex'); if(!el) return; const old=document.getElementById('ex-expd'); if(old) old.remove();
+  const h=expedidosHTML(); if(h){ el.insertAdjacentHTML('beforeend',h); el.querySelectorAll('[data-xund]').forEach(b=>b.onclick=()=>expSep(b.dataset.xund,"separado")); } };
+
+/* Rev21 — Painel: situação em três cores (bem, atenção, ruim) e mapa dos itens dos supermercados */
+const SIT_W={ok:"Bem",warn:"Atenção",bad:"Ruim"};
+function sitSt(v,g,y,low){ return low?(v<=g?"ok":v<=y?"warn":"bad"):(v>=g?"ok":v>=y?"warn":"bad"); }
+function sitLamp(s,t){ return `<span class="lamp ${s}">${t||SIT_W[s]}</span>`; }
+function sitMapa(rows){ const o={"Vermelho":0,"Amarelo":1,"Verde":2}, c=r=>r.st==="Vermelho"?"bad":r.st==="Amarelo"?"warn":r.st==="Verde"?"ok":r.st==="sem dado"?"nd":"over";
+  return `<div class="mapa">${rows.slice().sort((a,b)=>(o[a.st]===undefined?3:o[a.st])-(o[b.st]===undefined?3:o[b.st])).map(r=>`<i class="q ${c(r)}" title="${esc(r.cod)} · ${esc(String(r.st))}"></i>`).join('')}</div>`; }
+function sitHTML(){
+  let S; try{ S=pctSnapshot(); }catch(e){ return ''; }
+  const PA=calcPA().filter(r=>r.cls!=="MTO"&&r.M>0), US=calcUS().filter(r=>r.manter&&r.cls!=="MTO"&&r.M>0);
+  const n=PA.length+US.length, vm=(S.cd.verm||0)+(S.us.verm||0), pv=n?vm/n*100:0;
+  const pd=S.ped&&(S.ped.comp+S.ped.inc)?S.ped.comp/(S.ped.comp+S.ped.inc)*100:null;
+  const ex=S.cd.exc+S.us.exc, al=S.cd.alvo+S.us.alvo, pe=al?ex/al*100:0;
+  const t=(tt,v,h,s,p)=>`<button type="button" class="sit-t ${s}" data-sit="${p}"><span>${tt}</span><b>${v}</b>${sitLamp(s)}<small>${h}</small></button>`;
+  return `<div class="sit-wrap" id="sit21">
+  <div class="sit-h"><b>Situação agora</b><span class="sit-leg">${sitLamp('ok')}${sitLamp('warn')}${sitLamp('bad')}</span></div>
+  <div class="sit-g">${t('Supermercado do CD',f0(S.cd.pct)+'%','abastecido sobre o máximo',sitSt(S.cd.pct,80,60),'pa')}${t('Supermercado de Usinados',f0(S.us.pct)+'%','abastecido sobre o máximo',sitSt(S.us.pct,80,60),'us')}${pd==null?'':t('Pedidos completos',f0(pd)+'%',`${f0(S.ped.comp)} de ${f0(S.ped.comp+S.ped.inc)} pedidos`,sitSt(pd,90,70),'ex')}${t('Itens na vermelha',f0(vm),`de ${f0(n)} itens do Kanban`,sitSt(pv,5,15,1),'pr')}${t('Acima do máximo',f0(ex)+' pç','sobra nos dois supermercados',sitSt(pe,10,30,1),'cm')}</div>
+  <div class="sit-m"><div><h4>Mapa do CD · cada quadrado é um item</h4>${sitMapa(PA)}</div><div><h4>Mapa de Usinados · cada quadrado é um item</h4>${sitMapa(US)}</div></div>
+  <div class="sit-l"><span><i class="q bad"></i>Vermelha</span><span><i class="q warn"></i>Amarela</span><span><i class="q ok"></i>Verde</span><span><i class="q over"></i>Acima do máximo</span><span><i class="q nd"></i>Sem saldo informado</span></div>
+  <details class="sit-c"><summary>Como as cores são definidas</summary><ul><li>Supermercado: bem a partir de 80% do máximo, atenção de 60% a 79%, ruim abaixo de 60%.</li><li>Pedidos completos: bem a partir de 90%, atenção de 70% a 89%, ruim abaixo de 70%.</li><li>Itens na vermelha: bem até 5% dos itens, atenção até 15%, ruim acima disso.</li><li>Acima do máximo: bem até 10% do máximo, atenção até 30%, ruim acima disso.</li><li>São limites iniciais: podem ser ajustados com o uso.</li></ul></details></div>`;
+}
+const _renderOV21=renderOV;
+renderOV=function(){ _renderOV21();
+  try{ const el=document.getElementById('p-ov'), old=document.getElementById('sit21'); if(old) old.remove();
+    const d=document.createElement('div'); d.innerHTML=sitHTML(); const n=d.firstElementChild; if(!n) return; el.prepend(n);
+    n.querySelectorAll('[data-sit]').forEach(b=>b.onclick=()=>{ const p=b.dataset.sit; if(p==='pr') goKey(isProg()?'pr:pg':'pr:op'); else go(p); window.scrollTo(0,0); });
+  }catch(e){ console.error(e); } };
+
+/* Rev21 — Fluxo de valor em tempo real, desenhado com os ícones padrão do mapa do fluxo de valor (VSM) */
+const VSM_N={P1:"Recebimento",P2:"Serra",P3:"Usinagem",P4:"Furadeira",P5:"Cruzeta",P6:"Montagem cardan",P7:"Pintura",P8:"Seladora"};
+function fxCob(){ const U=calcUS().filter(r=>r.manter&&r.cls!=="MTO"&&r.M>0), P=calcPA().filter(r=>r.cls!=="MTO"&&r.M>0), s=(R,k)=>R.reduce((a,r)=>a+(+r[k]||0),0), du=s(U,'D'), dp=s(P,'D'), eu=s(U,'est'), ep=s(P,'est');
+  return {us:du?eu/du:null,cd:dp?ep/dp:null,eu,ep}; }
+function fxVSM(d,S,E,st){
+  const hoje=ymd(opHoje()), C=d===hoje?fxCob():{us:null,cd:null,eu:null,ep:null}, W=1240, H=764, bw=150;
+  const T=(x,y,t,c,a)=>`<text x="${x}" y="${y}" class="${c||''}"${a?` text-anchor="${a}"`:''}>${t}</text>`;
+  const sc=(v,g,y)=>v==null?'nd':v>=g?'ok':v>=y?'warn':'bad';
+  const box=(x,y,id,nome,rows,stv,stt,tag)=>`<g><rect x="${x}" y="${y}" width="${bw}" height="42" class="bx"/><rect x="${x}" y="${y+42}" width="${bw}" height="${rows.length*17+8}" class="bx"/>
+    ${T(x+8,y+16,esc(id),'pid')}${T(x+8,y+35,esc(nome),'pn')}
+    ${stt===undefined?'':`<rect x="${x+bw-56}" y="${y+4}" width="50" height="18" rx="9" class="sx ${stv}"><title>Aderência ao programado no dia</title></rect>${T(x+bw-31,y+17,stt,'sv','middle')}`}
+    ${rows.map((r,k)=>T(x+8,y+60+k*17,r[0],'dk')+T(x+bw-8,y+60+k*17,r[1],'dv','end')).join('')}</g>`;
+  const proc=(p,x,y,tag)=>{ const q=fxProc(p,d), ad=q.prog>0?q.boa/q.prog*100:null;
+    return box(x,y,p,VSM_N[p]||procNome(p),[['Programado',f0(q.prog)+' pç'],['Conformes',f0(q.boa)+' pç'],['Perdas',f0(q.perda)+' pç'],['Em processo',f0(q.wip)+' pç'],['Cartões na fila',f0(q.nfila)]],sc(ad,90,70),ad==null?'—':f0(ad)+'%',tag); };
+  const sm=(x,y,nome,o,est,dias)=>{ const p=o?o.pct:null;
+    return `<g><path d="M${x},${y} H${x+64} V${y+60} H${x} M${x},${y+20} H${x+64} M${x},${y+40} H${x+64}" class="ln"/>${T(x+32,y-9,nome,'smn','middle')}
+     <rect x="${x-14}" y="${y+68}" width="92" height="22" rx="11" class="sx ${sc(p,80,60)}"/>${T(x+32,y+83,p==null?'sem saldo':f0(p)+'% do máx.','sv','middle')}
+     ${T(x+32,y+106,est==null?'':f0(est)+' pç','dv','middle')}${T(x+32,y+122,dias==null?'':f1(dias)+' dias','dk','middle')}</g>`; };
+  const fac=(x,y,t)=>`<g><path d="M${x},${y+62} V${y+18} L${x+40},${y} V${y+18} L${x+80},${y} V${y+18} L${x+120},${y} V${y+62} Z" class="bx"/>${T(x+60,y+46,t,'pn','middle')}</g>`;
+  const truck=(x,y)=>`<g><rect x="${x}" y="${y}" width="26" height="16" class="bx"/><path d="M${x+26},${y+5} h9 l7,6 v5 h-16 z" class="bx"/><circle cx="${x+8}" cy="${y+18}" r="4" class="bx"/><circle cx="${x+33}" cy="${y+18}" r="4" class="bx"/></g>`;
+  const pull=(x,y)=>`<path d="M${x-8},${y+3} a8,8 0 1 1 8,8" class="ln" marker-end="url(#vsmA)"/>`;
+  const card=(x,y)=>`<path d="M${x},${y} h9 l5,5 v13 h-14 z" class="bx"/>`;
+  const y1=176, y2=346, y3=530, pe=S&&S.ped?S.ped:null;
+  const exRows=[['Pedidos completos',pe?f0(pe.comp):'—'],['Incompletos',pe?f0(pe.inc):'—'],['Separados',st?f0(st.sepOk):'—'],['Expedidos no dia',f0(E.n)],['Peças expedidas',f0(E.pcs)]];
+  const lt=(C.us!=null&&C.cd!=null)?C.us+C.cd:null;
+  return `<div class="vsm-w"><svg class="vsm" viewBox="0 0 ${W} ${H}" role="img" aria-label="Mapa do fluxo de valor em tempo real: fornecedores, processos, supermercados, expedição e clientes">
+  <defs><marker id="vsmA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+  ${fac(40,24,'Fornecedores')}${fac(1080,24,'Clientes')}
+  <rect x="500" y="20" width="240" height="66" class="bx"/>${T(620,46,'Controle da produção','pn','middle')}${T(620,66,'app Kanban + ERP','dk','middle')}
+  <path d="M1080,50 L925,50 L900,64 L920,36 L895,50 L744,50" class="ln" marker-end="url(#vsmA)"/>${T(910,24,'carteira de pedidos','dk','middle')}
+  <path d="M500,50 L345,50 L320,64 L340,36 L315,50 L164,50" class="ln" marker-end="url(#vsmA)"/>${T(330,24,'pedidos de compra','dk','middle')}
+  <path d="M620,86 V98" class="ln" marker-end="url(#vsmA)"/><rect x="560" y="100" width="120" height="36" class="bx"/>${T(620,115,'OXOX','pn','middle')}${T(620,130,'programação diária','dk','middle')}
+  <path d="M372,184 V119 H558" class="kb" marker-end="url(#vsmA)"/>${card(365,142)}${T(465,112,'cartões liberados','dk','middle')}
+  <path d="M912,184 V119 H682" class="kb" marker-end="url(#vsmA)"/>${card(905,142)}${T(797,112,'cartões liberados','dk','middle')}
+  <path d="M590,136 V152 H215 V174" class="inf" marker-end="url(#vsmA)"/><path d="M620,136 V160 H535 V174" class="inf" marker-end="url(#vsmA)"/><path d="M650,136 V152 H755 V174" class="inf" marker-end="url(#vsmA)"/>
+  <path d="M100,86 V587 H138" class="mf" marker-end="url(#vsmA)"/><path d="M100,216 H138" class="mf" marker-end="url(#vsmA)"/>${truck(78,120)}
+  ${proc('P3',140,y1)}<path d="M290,216 H338" class="mf" marker-end="url(#vsmA)"/>
+  ${sm(340,186,'Supermercado AUS',S&&S.us,C.eu!=null?C.eu:(S&&S.us?fxEst(S.us):null),C.us)}
+  <path d="M406,216 H458" class="mf" marker-end="url(#vsmA)"/>${pull(432,186)}
+  ${proc('P7',460,y1)}<path d="M612,205 H678 M612,227 H678" class="ln"/>${T(645,220,'FIFO →','pn','middle')}
+  ${proc('P8',680,y1)}<path d="M830,216 H878" class="mf" marker-end="url(#vsmA)"/>
+  ${sm(880,186,'Supermercado CD',S&&S.cd,C.ep!=null?C.ep:(S&&S.cd?fxEst(S.cd):null),C.cd)}
+  <path d="M946,216 H998" class="mf" marker-end="url(#vsmA)"/>${pull(972,186)}
+  ${box(1000,y1,'Saída','Expedição',exRows)}
+  <path d="M1150,216 H1175 V90" class="mf" marker-end="url(#vsmA)"/>${truck(1184,138)}
+  <path d="M406,236 H430 V401 H458" class="mf" marker-end="url(#vsmA)"/>${pull(444,372)}
+  ${proc('P6',460,y2)}<path d="M610,401 H755 V313" class="mf" marker-end="url(#vsmA)"/>${T(683,394,'FIFO →','pn','middle')}
+  ${proc('P1',140,y3)}${proc('P2',310,y3)}${proc('P4',480,y3)}${proc('P5',650,y3)}
+  <path d="M215,530 V512 M385,530 V512 M555,530 V512 M725,530 V512 M215,512 H860 V236 H878" class="mf" marker-end="url(#vsmA)"/>${T(538,504,'tubos, proteções, cruzetas e comprados repõem o CD','dk','middle')}
+  ${T(140,692,'Linha do tempo · dias de consumo parados em cada supermercado','dk')}
+  <path d="M140,742 H290 V714 H460 V742 H610 V714 H680 V742 H830 V714 H1000" class="ln"/>
+  ${T(375,708,C.us==null?'—':f1(C.us)+' dias','dv','middle')}${T(375,758,'AUS','dk','middle')}${T(645,708,'fila','dk','middle')}${T(915,708,C.cd==null?'—':f1(C.cd)+' dias','dv','middle')}${T(915,758,'CD','dk','middle')}
+  ${T(215,758,'Usinagem','dk','middle')}${T(535,758,'Pintura','dk','middle')}${T(755,758,'Seladora','dk','middle')}
+  <rect x="1020" y="706" width="200" height="44" class="bx"/>${T(1120,724,'Estoque no fluxo principal','dk','middle')}${T(1120,742,lt==null?'—':f1(lt)+' dias','pn','middle')}
+  </svg></div>
+  <div class="vsm-leg"><span><svg viewBox="0 0 26 16"><rect x="1" y="1" width="24" height="14" class="bx"/></svg>processo e dados do dia</span><span><svg viewBox="0 0 26 16"><path d="M1,1 H25 V15 H1 M1,6 H25 M1,11 H25" class="ln"/></svg>supermercado</span><span><svg viewBox="0 0 26 16"><path d="M5,9 a6,6 0 1 1 6,6" class="ln"/></svg>retirada puxada</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H25" class="kb"/></svg>kanban</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H9 L7,13 L15,3 L13,8 H25" class="ln"/></svg>informação eletrônica</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H25" class="mf"/></svg>material</span><span class="vsm-hint">No celular, arraste o desenho para o lado.</span></div>`;
+}
+
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,
    mas o WebGL não existe e a cena não aparece. Aqui o app testa antes e, sem WebGL,
@@ -4697,29 +5461,46 @@ function renderPD(){
   const ed=document.getElementById('pd-ed'); if(ed) ed.onclick=()=>{ PD_EDIT=itens.map(([s,t,d])=>[s,pdTxt(t),pdTxt(d)]); renderPD(); };
 }
 /* ---------- navegação (shell SaaS) ---------- */
-const NAV=[
- [1,"ov","Painel","◱"],[1,"qd","Quadros Kanban","▦"],[1,"pr","Programação","▶"],[1,"ex","Expedição","⛟"],[1,"cm","Comercial","$"],[1,"op","Ordem de produção","🗓"],[1,"kc","Cartões","▤"],[1,"im","Importar dados","⇪"],
- [2,"cd","CD em 3D","◨"],[2,"pa","Kanban PA","●"],[2,"us","Kanban Usinados","◐"],
- [3,"par","Parâmetros","⚙"],[3,"pd","Premissas","!"],
+/* Rev21: módulos pelo fluxo de valor na lateral; as telas de cada módulo ficam em abas no topo */
+const MODS=[
+ ["pn","Painel","◱",[["ov","Painel"]]],
+ ["fv","Fluxo de valor","⇄",[["fx","Fluxo de valor"]],"VSM"],
+ ["pl","Planejar","🗓",[["pr:pg","Programador"],["op","Ordem de produção"],["qd","Quadros Kanban"]]],
+ ["pz","Produzir","▶",[["pr:op","Operação"],["pr:ap","Apontamento"]]],
+ ["es","Estocar","▦",[["pa","Kanban PA"],["us","Kanban Usinados"],["cd","CD em 3D"],["kc","Cartões"],["im","Importar dados"]]],
+ ["ex","Expedir","⛟",[["ex","Expedição"],["cm","Comercial"]]],
+ ["cf","Ajuda e ajustes","?",[["man","Manual"],["par","Parâmetros"],["pd","Premissas"]]]
 ];
-const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],ex:["Operação","Expedição — Kanban de pedidos"],cm:["Operação","Comercial — itens disponíveis para venda"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
+const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],fx:["Fluxo de valor","Fluxo de valor — VSM em tempo real"],ex:["Operação","Expedição — Kanban de pedidos"],cm:["Operação","Comercial — itens disponíveis para venda"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
  cd:["Supermercados","CD em 3D"],pa:["Supermercados","Kanban de PA"],us:["Supermercados","Kanban de Usinados"],
- par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
+ man:["Ajuda","Manual do app"],par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
+const MODLAST={};
+const modTabs=m=>m[3].filter(t=>(isAdmin()||(t[0]!=="par"&&t[0]!=="pd"))&&(isProg()||(t[0]!=="pr:pg"&&t[0]!=="pr:ap")));
+const tabKey=()=>TAB==="pr"?"pr:"+(PR.view||"op"):TAB;
+const modOf=k=>MODS.find(m=>m[3].some(t=>t[0]===k))||MODS[0];
+function goKey(k){ const a=k.split(":"); if(a[0]==="pr"&&a[1]){ PR.view=a[1]; try{ localStorage.setItem("aemco-kd18-prv",PR.view); }catch(e){} } go(a[0]); }
+function goMod(id){ const m=MODS.find(x=>x[0]===id), ts=modTabs(m); if(!ts.length) return; const k=MODLAST[id]&&ts.some(t=>t[0]===MODLAST[id])?MODLAST[id]:ts[0][0]; goKey(k); window.scrollTo(0,0); }
+function shellSync(){
+  const k=tabKey(), m=modOf(k); MODLAST[m[0]]=k;
+  document.querySelectorAll('aside.side nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.mod===m[0]?"page":"false"));
+  document.querySelectorAll('#mnav button').forEach(b=>b.setAttribute('aria-current',(b.dataset.m===m[0]||(b.dataset.m==="mais"&&m[0]==="cf"))?"page":"false"));
+  const ts=modTabs(m), mt=document.getElementById('mtabs');
+  if(mt){ mt.hidden=ts.length<2; mt.innerHTML=ts.map(t=>`<button type="button" data-p="${t[0]}" aria-current="${t[0]===k?"page":"false"}">${t[1]}</button>`).join('');
+    mt.querySelectorAll('button').forEach(b=>b.onclick=()=>{ goKey(b.dataset.p); window.scrollTo(0,0); });
+    const on=mt.querySelector('[aria-current="page"]'); if(on&&on.scrollIntoView) try{ on.scrollIntoView({block:"nearest",inline:"nearest"}); }catch(e){} }
+  document.getElementById('crumb').textContent=m[1];
+}
 function buildNav(){
-  for(const g of [1,2,3]){
-    document.getElementById('nav'+g).innerHTML=NAV.filter(n=>n[0]===g&&(isAdmin()||(n[1]!=="par"&&n[1]!=="pd"))).map(n=>
-      `<button data-p="${n[1]}"><span class="ic">${n[3]}</span>${n[2]}<span class="cnt" id="cnt-${n[1]}" hidden></span></button>`).join('');
-  }
-  document.querySelectorAll('aside.side nav button').forEach(b=>b.onclick=()=>{ go(b.dataset.p); document.getElementById('side').classList.remove('open'); });
+  const nv=document.getElementById('nav1');
+  nv.innerHTML=MODS.filter(m=>modTabs(m).length).map(m=>`<button data-mod="${m[0]}"><span class="ic">${m[2]}</span>${m[1]}</button>`).join('');
   const side=document.getElementById('side'), mb=document.getElementById('mback');
   const menu=(o)=>{ side.classList.toggle('open',o); if(mb) mb.hidden=!o; };
+  nv.querySelectorAll('button').forEach(b=>b.onclick=()=>{ menu(false); goMod(b.dataset.mod); });
   document.getElementById('mtog').onclick=()=>menu(!side.classList.contains('open'));
   if(mb) mb.onclick=()=>menu(false);
-  document.querySelectorAll('aside.side nav button').forEach(b=>b.addEventListener('click',()=>{ menu(false); window.scrollTo(0,0); }));
-  const MN=[["ov","Painel","◱"],["qd","Quadros","▦"],["pr","Programar","▶"],["ex","Expedição","⛟"]];
   const mn=document.getElementById('mnav');
-  if(mn){ mn.innerHTML=MN.map(([id,l,ic])=>`<button data-m="${id}"><span class="ic">${ic}</span>${l}</button>`).join('')+`<button data-m="mais"><span class="ic">☰</span>Mais</button>`;
-    mn.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(b.dataset.m==="mais") menu(true); else { menu(false); go(b.dataset.m); window.scrollTo(0,0); } }); }
+  if(mn){ mn.innerHTML=MODS.slice(0,6).filter(m=>modTabs(m).length).map(m=>`<button data-m="${m[0]}"><span class="ic">${m[2]}</span>${m[4]||m[1]}</button>`).join('')+`<button data-m="mais"><span class="ic">☰</span>Mais</button>`;
+    mn.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(b.dataset.m==="mais") menu(true); else { menu(false); goMod(b.dataset.m); } }); }
   document.getElementById('tvbtn').onclick=()=>openTV(QD.proc);
   document.getElementById('rev').textContent="Kanban · "+estCurto();
 }
@@ -4738,11 +5519,8 @@ function chips(){
 function go(tab,soft){
   if(!isAdmin()&&(tab==="par"||tab==="pd")) tab="ov";   // Rev14: parâmetros e premissas só para o administrador
   TAB=tab; try{ localStorage.setItem("aemco-kd4-tab",tab); }catch(e){}
-  document.querySelectorAll('aside.side nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.p===tab?"page":"false"));
-  const mainIds=["ov","qd","pr","ex"];
-  document.querySelectorAll('#mnav button').forEach(b=>b.setAttribute('aria-current',(b.dataset.m===tab||(b.dataset.m==="mais"&&!mainIds.includes(tab)))?"page":"false"));
   document.querySelectorAll('section.pane').forEach(s=>s.hidden=(s.id!=='p-'+tab));
-  const t=TITLES[tab]||["",""]; document.getElementById('crumb').textContent=t[0]; document.getElementById('ptitle').textContent=t[1];
+  const t=TITLES[tab]||["",""]; document.getElementById('ptitle').textContent=t[1];
   const sy=window.scrollY;
   ({ov:renderOV,qd:renderQD,cd:()=>CD3.init(),pa:()=>renderList('pa'),us:()=>renderList('us'),
     kc:()=>{ if(soft) return; renderKC(); },
@@ -4753,8 +5531,10 @@ function go(tab,soft){
     op:()=>{ if(soft&&document.activeElement&&document.getElementById('p-op').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderOP(); },
     par:()=>{ if(soft&&document.activeElement&&document.getElementById('p-par').contains(document.activeElement)) return; renderPar(); },
     im:()=>{ if(soft&&document.activeElement&&document.getElementById('p-im').contains(document.activeElement)) return; renderIM(); },
+    man:()=>{ if(soft) return; renderMAN(); },
+    fx:()=>{ if(soft&&document.activeElement&&document.getElementById('p-fx').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderFX(); },
     })[tab]();
-  chips();
+  chips(); shellSync();
   if(soft) window.scrollTo(0,sy);
 }
 buildNav();
@@ -4878,7 +5658,7 @@ function askSetup(){
     const b = card(`${HEAD}
       <h2>Primeira instalação</h2>
       <p class="kb-sub">Digite o <b>código de instalação</b> que apareceu no Supabase e crie o <b>seu PIN de administrador</b> (6 a 12 números). Depois, em ☁ › Pessoas com acesso, você cadastra o PIN de cada pessoa.</p>
-      <label>Seu nome<input id="kb-nome" autocomplete="name" value="${escH(ST.nome)}" placeholder="Ex.: João Bosco"></label>
+      <label>Seu nome<input id="kb-nome" autocomplete="name" value="${escH(ST.nome)}" placeholder="Ex.: Nome Sobrenome"></label>
       <label>Código de instalação<input id="kb-cod" autocomplete="off" spellcheck="false" style="text-transform:uppercase"></label>
       <label>Seu PIN (6 a 12 números)<input id="kb-p1" type="password" inputmode="numeric" autocomplete="new-password"></label>
       <label>Repita o PIN<input id="kb-p2" type="password" inputmode="numeric" autocomplete="new-password"></label>
@@ -5130,7 +5910,7 @@ function panel(){
   $("kb-mp").onclick = meuPin;
 }
 /* ---------------- pessoas com acesso (só administrador) ---------------- */
-const SUGERIDOS = ["Rafael Kandi", "Kelvin Troes", "Cristiano Silva", "Alex Bertino", "Luis Colombo", "Neto Colombo", "Hugo Matsuo"];
+const SUGERIDOS = [];   // Rev21: nenhum nome de pessoa no site público
 const pinRand = () => { const a = new Uint32Array(1); crypto.getRandomValues(a); return String(100000 + a[0] % 900000); };
 const errTxt = e => ({ novo: "PIN inválido: use de 6 a 12 números.", repetido: "Esse PIN já é de outra pessoa — escolha outro.", nome: "Informe o nome.", proprio: "Você não pode tirar o próprio acesso de administrador.", admin: "Só o administrador faz isso.", soinclui: "Essa pessoa já tem acesso. Para trocar o PIN, o perfil ou remover, fale com o administrador.", soequipe: "Você só pode incluir pessoas com perfil equipe.", pin: "Seu PIN não vale mais — entre de novo.", bloqueado: "Muitas tentativas erradas. Aguarde 15 minutos." })[e] || ("Não gravou: " + escH(e));
 async function usersPanel(msg){

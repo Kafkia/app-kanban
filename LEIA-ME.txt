@@ -1,13 +1,13 @@
-APP KANBAN AEMCO – versão instalável (PWA) – Rev15
+APP KANBAN AEMCO – versão instalável (PWA) – Rev21
 =====================================================
 
 O QUE É
-- O mesmo app de operação do Kanban (Visão geral, Quadros, Programação digital dos cartões por
-  processo P1 a P8, Ordem de produção, Cartões, Kanban PA e Usinados, CD e Fábrica em 3D),
+- O app de operação do Kanban, por módulos: Painel, Fluxo de valor (VSM), Planejar, Produzir,
+  Estocar, Expedir e Ajuda e ajustes (com o Manual e o PDF do manual),
   instalável no celular e no notebook.
 - Todos usam a mesma base online: estoque apontado, ordens e parâmetros aparecem para a equipe inteira.
-- ACESSO SÓ COM PIN PESSOAL: só as pessoas cadastradas entram (Rafael Kandi, Kelvin Troes,
-  Cristiano Silva, Alex Bertino e o administrador). Sem PIN válido nenhum dado aparece.
+- ACESSO SÓ COM PIN PESSOAL: só as pessoas cadastradas pelo administrador entram.
+  Sem PIN válido nenhum dado aparece.
 - SEM dados da AEMCO neste site: itens, faixas e estoques só descem da base online depois do PIN.
 
 PUBLICAR NO GITHUB PAGES (repositório app-kanban)
@@ -21,7 +21,7 @@ BASE ONLINE (uma vez só)
    No resultado aparece o CÓDIGO DE INSTALAÇÃO (8 caracteres). Anote.
 2. Abra o app > tela "Primeira instalação" > seu nome + código de instalação +
    seu PIN de administrador (6 a 12 números). O código deixa de valer assim que o admin é criado.
-3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev15.json
+3. Ainda como administrador: "Publicar base de itens" > escolha base_kanban_Rev21.json
    (fica na pasta Aretia > 03 - Kanban — NÃO suba esse arquivo no GitHub) > Publicar para todos.
 4. ☁ > Pessoas com acesso > cadastre o PIN de cada pessoa (digite ou "Gerar PIN") e entregue
    pessoalmente. O nome da pessoa fica gravado em tudo o que ela apontar.
