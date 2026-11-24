@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev30"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev31"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1692,6 +1692,7 @@ details.panel>summary{cursor:pointer;padding:2px 0}
 .selo{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c);white-space:nowrap}
 .selo.s2{background:var(--kg-soft)}.selo.s1{background:var(--ky-soft)}
 .cs-u{display:inline-block;font:12px var(--mono);background:var(--panel2);border-radius:6px;padding:1px 6px;margin:1px 0}
+.cs-u.lim{box-shadow:inset 0 0 0 1.5px var(--kr);color:var(--kr);border:1px dashed var(--kr)}
 /* ===== Rev28 ===== */
 .pd-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:14px}
 .pd-k{background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--muted);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
@@ -4807,7 +4808,7 @@ async function cmShare(L,T){
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev30", MAN_DATA="24/11/2026";
+const MAN_REV="Rev31", MAN_DATA="24/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -4885,7 +4886,7 @@ const MAN=[
   faq:[["A Expedição está vazia.","Falta importar a carteira de pedidos e o estoque de PA. Vá em Importar dados."],["O que é pedido completo?","É o pedido em que todas as linhas cabem no estoque do CD, reservando primeiro os de entrega mais cedo."],["Quando marco Expedido?","Quando o pedido separado sai da fábrica. O apontador marca no fim do dia, junto com o inventário."],["Marquei Expedido por engano.","Em Expedidos, no fim da tela de Expedição, toque em Desfazer: o pedido volta para separado."]]},
  {id:"cm",t:"Comercial: Pode Vender e Sugestão de Venda",quem:"todos",tab:"cm",
   lead:"O módulo **Comercial** tem duas telas. **Pode vender** mostra só as peças livres no CD, sem pedido e sem faltar para o Kanban. **Sugestão de venda** mostra produtos que, vendidos, consomem usinados parados acima do máximo no AUS.",
-  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},{t:"Sugestão de venda",img:"m27-cs.jpg",passos:["Abra **Comercial › Sugestão de venda**. No alto: quantas peças de usinado estão paradas sem pedido e quanto as sugestões alcançam.","Cada produto mostra selos de **Giro**, **Frequência** e **Valor**: **Alto**, **Médio** ou **Baixo**, comparando os produtos da lista entre si.","**Até (un.)** é quantas unidades consomem o excesso do usinado principal do produto. **Receita** é essas unidades a **preço médio de venda** do produto acabado. **Excesso que consome** é o valor a custo desses usinados.","O quadro verde **Receita possível** soma as sugestões sem usar o mesmo usinado duas vezes (o teto) e mostra também quanto seria em cerca de 3 meses de venda. O mesmo valor aparece no Resumo financeiro do Painel.","O mesmo usinado serve a vários produtos: as quantidades não se somam. Produto com peças livres no CD sai primeiro do CD."]}
+  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},{t:"Sugestão de venda",img:"m27-cs.jpg",passos:["Abra **Comercial › Sugestão de venda**. No alto: quantas peças de usinado estão paradas sem pedido e quanto as sugestões alcançam.","Cada produto mostra selos de **Giro**, **Frequência** e **Valor**: **Alto**, **Médio** ou **Baixo**, comparando os produtos da lista entre si.","**Até (un.)** é quantas unidades completas saem só com o excesso: para no usinado que acaba primeiro (marcado em vermelho). O excesso é repartido na ordem de prioridade, então as unidades da lista podem ser somadas. **Receita** é essas unidades a **preço médio de venda** do produto acabado. **Excesso que consome** é o valor a custo desses usinados.","O quadro verde **Receita possível** soma as linhas da lista (o teto) e mostra também quanto seria em cerca de 3 meses de venda. O mesmo valor aparece no Resumo financeiro do Painel.","Os demais usinados do produto (sem excesso) saem do supermercado normal, que o Kanban repõe. Produto com peças livres no CD sai primeiro do CD."]}
 ],
   faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista só as peças livres no CD: sem pedido e sem faltar para o Kanban."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."],["Todo o acima do máximo do Painel pode ser vendido?","Não. Uma parte já tem pedido e os Usinados são componentes, que não vão para venda. Só o CD sem pedido pode ser vendido, e é só isso que a tela Pode vender mostra. A conta completa está no Painel, no quadro De onde vem o acima do máximo."],["Para que serve a Sugestão de venda?","Para vender o que está parado nos Usinados. Usinado não é vendido sozinho: ele sai quando a montagem faz o produto. A tela lista os produtos que usam esse excesso, dos mais fáceis de vender para os menos."],["Por que não aparece o número de vendas?","A tela compara os produtos com selos Alto, Médio e Baixo. Para oferecer ao cliente, o selo basta."]]},
  {id:"opd",t:"Ordem de Produção: o Plano do Dia",quem:"todos",tab:"op",
@@ -5002,6 +5003,8 @@ function tourShow(){
 
 /* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
 const NEWS=[
+ {rev:31,quando:"24/11/2026",t:"Sugestão de venda sem contar o mesmo excesso duas vezes",itens:[
+   {id:"31-cs",man:"cm",tab:"cs",sel:'#p-cs .cs-tab thead',t:"Mudou: unidades da Sugestão de venda",x:"Cada produto agora para no usinado em excesso que acaba primeiro, e o excesso é repartido entre os produtos na ordem de prioridade: as unidades da lista podem ser somadas sem faltar peça."}]},
  {rev:30,quando:"24/11/2026",t:"Receita a preço de venda com o excesso do AUS",itens:[
    {id:"30-cs",man:"cm",tab:"cs",sel:'#cs-stats .stat:nth-child(3)',t:"Novo: receita a preço de venda na Sugestão de venda",x:"Cada produto sugerido mostra a receita a preço médio de venda, e o quadro verde soma a receita possível sem usar o mesmo usinado duas vezes."},
    {id:"30-fin",man:"ov",tab:"ov",sel:'#p-ov .fin .gain2',t:"Novo: venda de produto acabado no Resumo financeiro",x:"O Resumo financeiro do Painel mostra quanto dá para vender em produto acabado usando o excesso do AUS, a preço de venda."}]},
@@ -5821,55 +5824,59 @@ function csAus(){   // usinados com excesso SEM pedido
     const c=custoDe(r.cod); m[r.cod]={cod:r.cod,desc:r.desc,livre:l,cu:c?c.u:0}; }
   return m;
 }
-function csRows(){
+function csRows(){   // Rev31: unidades limitadas pelo usinado em excesso mais escasso e excesso repartido entre os produtos, sem contar duas vezes
   const A=csAus(), B=DATA.bomu||{}, livreCD={}; try{ cmRows().forEach(x=>{ livreCD[x.cod]=x.disp; }); }catch(e){}
-  const out=[]; let semVenda=0;
+  const C=[]; let semVenda=0;
   for(const r of calcPA()){
-    const L=(B[r.cod]||[]).filter(([u,q])=>q>0&&A[u]); if(!L.length) continue;
+    const T0={}; for(const [u,q] of (B[r.cod]||[])) if(q>0) T0[u]=(T0[u]||0)+q;   // usinado repetido na estrutura: soma
+    const T=Object.entries(T0), L=T.filter(([u])=>A[u]); if(!L.length) continue;
     if(!(r.D>0)&&!(r.nnf>0)){ semVenda++; continue; }
-    let pri=null; for(const [u,q] of L){ if(A[u].livre<q) continue; const v=A[u].livre*A[u].cu; if(!pri||v>pri.v||(v===pri.v&&A[u].livre>pri.l)) pri={u,q,v,l:A[u].livre}; }
-    if(!pri) continue; const N=Math.floor(A[pri.u].livre/pri.q+1e-9); if(N<1) continue;
-    const val=L.reduce((s,[u,q])=>s+Math.min(A[u].livre,N*q)*A[u].cu,0), pc=L.reduce((s,[u,q])=>s+Math.min(A[u].livre,N*q),0);
-    out.push({cod:r.cod,desc:r.desc,fam:r.fam||"Outros",D:r.D||0,nnf:r.nnf||0,preco:r.preco||0,bom:L,pri:pri.u,rec:N*(r.preco||0),us:L.map(([u])=>u).sort((a,b)=>A[b].livre*A[b].cu-A[a].livre*A[a].cu),N,val,pc,cd:livreCD[r.cod]||0});
+    const Nmax=Math.min(...L.map(([u,q])=>Math.floor(A[u].livre/q+1e-9))); if(Nmax<1) continue;   // só sai completo até o usinado em excesso que acaba primeiro
+    C.push({cod:r.cod,desc:r.desc,fam:r.fam||"Outros",D:r.D||0,nnf:r.nnf||0,preco:r.preco||0,bom:L,Nmax,semExc:T.filter(([u])=>!A[u]).map(([u])=>u),
+      us:L.map(([u])=>u).sort((a,b)=>A[b].livre*A[b].cu-A[a].livre*A[a].cu),cd:livreCD[r.cod]||0,v0:L.reduce((s,[u,q])=>s+Nmax*q*A[u].cu,0)});
   }
-  const terc=(k)=>{ const v=out.map(x=>x[k]).filter(x=>x>0).sort((a,b)=>a-b), q=f=>v.length?v[Math.min(v.length-1,Math.floor(f*v.length))]:0, a=q(2/3), b=q(1/3);
-    out.forEach(x=>{ x["s_"+k]=x[k]>0&&x[k]>=a?2:(x[k]>0&&x[k]>=b?1:0); }); };
+  const terc=(k)=>{ const v=C.map(x=>x[k]).filter(x=>x>0).sort((a,b)=>a-b), q=f=>v.length?v[Math.min(v.length-1,Math.floor(f*v.length))]:0, a=q(2/3), b=q(1/3);
+    C.forEach(x=>{ x["s_"+k]=x[k]>0&&x[k]>=a?2:(x[k]>0&&x[k]>=b?1:0); }); };
   terc("D"); terc("nnf"); terc("preco");
-  out.forEach(x=>{ x.prio=x.s_D+x.s_nnf+x.s_preco; });
-  return {L:out,A,semVenda};
+  C.forEach(x=>{ x.prio=x.s_D+x.s_nnf+x.s_preco; });
+  C.sort((a,b)=>b.prio-a.prio||b.v0-a.v0||(a.cod<b.cod?-1:1));   // ordem de prioridade: quem vem antes fica com o excesso
+  const al=csPlano(C,A), out=[]; let semSaldo=0;
+  for(const x of C){ const g=al.lin.get(x); if(!g){ semSaldo++; continue; }
+    out.push(Object.assign(x,{ord:out.length,N:g.N,lim:g.lim,val:g.cus,pc:g.pc,rec:g.N*(x.preco||0)})); }
+  return {L:out,C,A,semVenda,semSaldo};
 }
 const SELO=["Baixo","Médio","Alto"], SELOC=["var(--muted)","var(--ky)","var(--kg)"];
 const selo=s=>`<span class="selo s${s}" style="--c:${SELOC[s]}">${SELO[s]}</span>`;
 function csFilt(R){ const q=CS.q.trim().toUpperCase();
   const L=R.filter(x=>(!CS.fam||x.fam===CS.fam)&&(!q||x.cod.toUpperCase().includes(q)||String(x.desc).toUpperCase().includes(q)||x.us.some(u=>u.toUpperCase().includes(q))));
-  const o={prio:(a,b)=>b.prio-a.prio||b.val-a.val,rec:(a,b)=>b.rec-a.rec,val:(a,b)=>b.val-a.val,un:(a,b)=>b.N-a.N}[CS.ord]||((a,b)=>b.prio-a.prio); return L.sort(o); }
+  const o={prio:(a,b)=>a.ord-b.ord,rec:(a,b)=>b.rec-a.rec,val:(a,b)=>b.val-a.val,un:(a,b)=>b.N-a.N}[CS.ord]||((a,b)=>b.prio-a.prio); return L.sort(o); }
 function renderCS(){
-  const el=document.getElementById('p-cs'), {L,A,semVenda}=csRows(), F=csFilt(L.slice());
+  const el=document.getElementById('p-cs'), {L,C,A,semVenda,semSaldo}=csRows(), F=csFilt(L.slice());
   const totU=Object.values(A), vU=totU.reduce((s,x)=>s+x.livre*x.cu,0), pU=totU.reduce((s,x)=>s+x.livre,0);
-  const cob=new Set(); L.forEach(x=>x.us.forEach(u=>cob.add(u))); const vCob=[...cob].reduce((s,u)=>s+A[u].livre*A[u].cu,0);
-  const fams=[...new Set(L.map(x=>x.fam))].sort(), PLo=L.slice().sort((a,b)=>b.prio-a.prio||b.val-a.val), PL=csPlano(PLo,A), PL3=csPlano(PLo,A,63);   // Rev30: receita a preço de venda, sem contar o mesmo usinado duas vezes
+  const vCob=L.reduce((s,x)=>s+x.val,0);
+  const fams=[...new Set(L.map(x=>x.fam))].sort(), PL=csPlano(C,A), PL3=csPlano(C,A,63);   // Rev30: receita a preço de venda, sem contar o mesmo usinado duas vezes
   el.innerHTML=`<div class="head"><h2>Sugestão de venda · excesso do supermercado AUS</h2><span class="note">produtos acabados que usam usinados parados acima do máximo, sem pedido</span></div>
    <div class="stats" id="cs-stats">
     <div class="stat"><div class="l">Usinados parados (sem pedido)</div><div class="v">${f0(pU)} pç</div><div class="s">${f0(totU.length)} códigos · ${brl(vU)} a custo</div></div>
     <div class="stat g"><div class="l">Produtos sugeridos</div><div class="v">${f0(L.length)}</div><div class="s">vendendo, consomem esse excesso</div></div>
     <div class="stat g"><div class="l">Receita possível · preço de venda</div><div class="v" style="font-size:22px">${brl(PL.rec)}</div><div class="s">${f0(PL.n)} produtos · ${f0(PL.un)} un. · consome ${brl(PL.cus)} do excesso a custo (${vU?f0(PL.cus/vU*100):0}%)${PL.mg!=null?` · margem bruta estimada ${brl(PL.mg)}${PL.nmg<PL.n?` (${f0(PL.nmg)} de ${f0(PL.n)} produtos com custo)`:''}`:''} · no ritmo de 3 meses de venda: ${brl(PL3.rec)}</div></div>
-    <div class="stat"><div class="l">Excesso que as sugestões alcançam</div><div class="v" style="font-size:22px">${brl(vCob)}</div><div class="s">${vU?f0(vCob/vU*100):0}% do excesso do AUS a custo</div></div></div>
+    <div class="stat"><div class="l">Excesso que as sugestões consomem</div><div class="v" style="font-size:22px">${brl(vCob)}</div><div class="s">${vU?f0(vCob/vU*100):0}% do excesso do AUS a custo</div></div></div>
    <div class="filters">
     <label class="f" for="cs-q">Buscar<input class="in" id="cs-q" value="${esc(CS.q)}" placeholder="código, descrição ou usinado"></label>
     <label class="f" for="cs-fam">Família<select id="cs-fam"><option value="">Todas</option>${fams.map(f=>`<option value="${esc(f)}" ${f===CS.fam?'selected':''}>${esc(f)}</option>`).join('')}</select></label>
     <label class="f" for="cs-ord">Ordenar<select id="cs-ord"><option value="prio" ${CS.ord==="prio"?'selected':''}>Prioridade (giro + frequência + valor)</option><option value="rec" ${CS.ord==="rec"?'selected':''}>Receita a preço de venda (R$)</option><option value="val" ${CS.ord==="val"?'selected':''}>Excesso que consome (R$ a custo)</option><option value="un" ${CS.ord==="un"?'selected':''}>Unidades</option></select></label>
     <button class="btn" id="cs-csv">Salvar CSV</button></div>
    <div class="tw tall"><table class="cs-tab"><thead><tr><th>Produto</th><th>Família</th><th>Giro</th><th>Frequência</th><th>Valor</th><th class="num">Até (un.)</th><th class="num">Receita (preço de venda)</th><th>Usinados em excesso que usa</th><th class="num">Excesso que consome (a custo)</th></tr></thead><tbody>
-    ${F.slice(0,300).map(x=>`<tr><td><b>${esc(x.cod)}</b><br><span class="note">${esc(x.desc)}</span>${x.cd?`<br><span class="tag" title="Este produto já tem peças livres no CD (tela Pode vender): a venda sai primeiro do CD">${f0(x.cd)} pç livres no CD</span>`:''}</td><td>${esc(x.fam)}</td><td>${selo(x.s_D)}</td><td>${selo(x.s_nnf)}</td><td>${selo(x.s_preco)}</td><td class="num"><b>${f0(x.N)}</b></td><td class="num"><b>${x.preco>0?brl(x.rec):'—'}</b>${x.preco>0?`<br><span class="note">${brl(x.preco)}/un.</span>`:''}</td>
-      <td class="desc" style="white-space:normal;min-width:180px">${x.us.slice(0,3).map(u=>`<span class="cs-u" title="${esc(A[u].desc)} · ${f0(A[u].livre)} pç sem pedido acima do máximo">${esc(u)}</span>`).join(' ')}${x.us.length>3?` <span class="note">+${x.us.length-3}</span>`:''}</td><td class="num"><b>${brl(x.val)}</b><br><span class="note">${f0(x.pc)} pç</span></td></tr>`).join('')||'<tr><td colspan="9" class="note">Nenhum produto com esse filtro.</td></tr>'}
+    ${F.slice(0,300).map(x=>`<tr><td><b>${esc(x.cod)}</b><br><span class="note">${esc(x.desc)}</span>${x.cd?`<br><span class="tag" title="Este produto já tem peças livres no CD (tela Pode vender): a venda sai primeiro do CD">${f0(x.cd)} pç livres no CD</span>`:''}</td><td>${esc(x.fam)}</td><td>${selo(x.s_D)}</td><td>${selo(x.s_nnf)}</td><td>${selo(x.s_preco)}</td><td class="num"><b>${f0(x.N)}</b>${x.N<x.Nmax?`<br><span class="note" title="O resto do excesso dos usinados deste produto já ficou para produtos de prioridade maior">de ${f0(x.Nmax)} · resto já usado por produtos de prioridade maior</span>`:''}</td><td class="num"><b>${x.preco>0?brl(x.rec):'—'}</b>${x.preco>0?`<br><span class="note">${brl(x.preco)}/un.</span>`:''}</td>
+      <td class="desc" style="white-space:normal;min-width:180px">${[x.lim,...x.us.filter(u=>u!==x.lim)].filter(Boolean).slice(0,3).map(u=>`<span class="cs-u${u===x.lim?' lim':''}" title="${esc(A[u].desc)} · ${f0(A[u].livre)} pç sem pedido acima do máximo${u===x.lim?' · é o que limita as unidades':''}">${esc(u)}</span>`).join(' ')}${x.us.length>3?` <span class="note">+${x.us.length-3}</span>`:''}${x.semExc.length?`<br><span class="note" title="${esc(x.semExc.join(', '))}">+ ${f0(x.semExc.length)} usinado${x.semExc.length>1?'s':''} sem excesso (sai do supermercado normal)</span>`:''}</td><td class="num"><b>${brl(x.val)}</b><br><span class="note">${f0(x.pc)} pç</span></td></tr>`).join('')||'<tr><td colspan="9" class="note">Nenhum produto com esse filtro.</td></tr>'}
    </tbody></table></div>
    ${F.length>300?`<p class="note">Mostrando 300 de ${f0(F.length)} — use a busca ou a família.</p>`:''}
    <div class="panel"><div class="head"><h3>Como ler</h3></div><ul class="note" style="margin:0;padding-left:18px">
     <li>Cada produto usa um ou mais <b>usinados que estão parados no AUS acima do máximo e sem pedido</b>. Vender o produto faz a montagem consumir esses usinados.</li>
     <li><b>Giro</b>, <b>Frequência</b> e <b>Valor</b> comparam os produtos da lista entre si: <b>Alto</b> = terço de cima, <b>Médio</b> = terço do meio, <b>Baixo</b> = terço de baixo. Giro = quanto sai; frequência = em quantas vendas aparece; valor = preço de venda.</li>
-    <li><b>Até (un.)</b>: quantas unidades do produto consomem todo o excesso do usinado principal dele (o de maior valor parado). <b>Receita</b>: essas unidades vezes o <b>preço médio de venda</b> do produto acabado (notas fiscais). <b>Excesso que consome</b>: valor a custo dos usinados em excesso usados nessas unidades.</li>
-    <li><b>Receita possível</b> (quadro verde): soma das sugestões na ordem de prioridade, sem usar o mesmo usinado duas vezes. É o teto: supõe vender todas as unidades. "No ritmo de 3 meses de venda" limita cada produto ao que ele vende em cerca de 3 meses. A margem bruta estimada é receita menos o custo do produto acabado (material + conversão do ERP), só para os produtos que têm custo no cadastro.</li>
-    <li>O mesmo usinado pode servir a vários produtos: as quantidades <b>não se somam</b> — vendido um, a sugestão dos outros diminui na próxima atualização.</li>
+    <li><b>Até (un.)</b>: quantas unidades completas saem só com o excesso: para no usinado em excesso que <b>acaba primeiro</b> (marcado em vermelho). O excesso é repartido na ordem de prioridade: o produto de cima fica com o que precisa e o de baixo só com o que sobrou, então <b>as unidades da lista podem ser somadas</b>.${semSaldo?` ${f0(semSaldo)} produtos ficaram fora porque o excesso que usariam já foi para produtos de prioridade maior.`:''} <b>Receita</b>: essas unidades vezes o <b>preço médio de venda</b> do produto acabado (notas fiscais). <b>Excesso que consome</b>: valor a custo dos usinados em excesso usados nessas unidades.</li>
+    <li><b>Receita possível</b> (quadro verde): soma das linhas da lista. É o teto: supõe vender todas as unidades. "No ritmo de 3 meses de venda" limita cada produto ao que ele vende em cerca de 3 meses. A margem bruta estimada é receita menos o custo do produto acabado (material + conversão do ERP), só para os produtos que têm custo no cadastro.</li>
+    <li>Os demais usinados do produto ("sem excesso") saem do supermercado normal, que o Kanban repõe.</li>
     <li>Produto com <b>peças livres no CD</b> sai primeiro do CD (tela Pode vender); só depois a montagem consome os usinados.${semVenda?` ${f0(semVenda)} produtos que usam esse excesso ficaram fora por não terem venda no período.`:''}</li></ul></div>`;
   const q=document.getElementById('cs-q'); q.oninput=()=>{ CS.q=q.value; clearTimeout(renderCS.t); renderCS.t=setTimeout(()=>{ renderCS(); const n=document.getElementById('cs-q'); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } },250); };
   document.getElementById('cs-fam').onchange=e=>{ CS.fam=e.target.value; renderCS(); };
@@ -6225,23 +6232,25 @@ function renderPEXP(){
   const sp=document.getElementById('pe-per'); if(sp) sp.onchange=()=>{ PES.per=sp.value; renderPEXP(); };
 }
 
-/* ===================== Rev30 =====================
+/* ===================== Rev30 (Rev31: repartição do excesso) =====================
    Venda de produto acabado com o excesso do AUS, a preço de venda:
    - Sugestão de venda: receita de cada produto (unidades × preço médio de venda) e receita possível sem dupla contagem
    - Resumo financeiro do Painel: quadro com a receita possível e o excesso do AUS que ela consome
 */
-/* soma das sugestões na ordem dada, sem usar o mesmo usinado duas vezes */
-function csPlano(L,A,dias){   // dias: limita cada produto a esse número de dias de venda no ritmo da demanda (sem: teto)
+/* reparte o excesso entre os produtos na ordem dada: cada produto sai completo até o usinado em excesso que acaba primeiro
+   e só usa o que sobrou dos produtos anteriores (Rev31); dias: limita cada produto a esse número de dias de venda (sem: teto) */
+function csPlano(L,A,dias){
   const rest={}; for(const u in A) rest[u]=A[u].livre;
-  const P={rec:0,cus:0,mg:null,n:0,un:0,semPreco:0,nmg:0};
-  for(const x of L){ const pq=(x.bom||[]).find(([u])=>u===x.pri); if(!pq) continue;
-    let N=Math.floor((rest[x.pri]||0)/pq[1]+1e-9); if(dias) N=Math.min(N,Math.floor((x.D||0)*dias+1e-9)); if(N<1) continue;
-    let cus=0; for(const [u,q] of x.bom){ const c=Math.min(rest[u]||0,N*q); rest[u]=(rest[u]||0)-c; cus+=c*(A[u]?A[u].cu:0); }
-    P.n++; P.un+=N; P.cus+=cus;
+  const P={rec:0,cus:0,mg:null,n:0,un:0,semPreco:0,nmg:0,lin:new Map()};
+  for(const x of L){ const bom=x.bom||[]; if(!bom.length) continue;
+    let N=Infinity, lim=null; for(const [u,q] of bom){ const k=Math.floor((rest[u]||0)/q+1e-9); if(k<N){ N=k; lim=u; } }
+    if(dias) N=Math.min(N,Math.floor((x.D||0)*dias+1e-9)); if(!(N>=1)||!isFinite(N)) continue;
+    let cus=0, pc=0; for(const [u,q] of bom){ rest[u]-=N*q; cus+=N*q*(A[u]?A[u].cu:0); pc+=N*q; }
+    P.lin.set(x,{N,lim,cus,pc}); P.n++; P.un+=N; P.cus+=cus;
     if(x.preco>0){ P.rec+=N*x.preco; const c=custoDe(x.cod); if(c){ P.mg=(P.mg||0)+N*(x.preco-c.u); P.nmg++; } } else P.semPreco++; }
   return P; }
 function csPlanoPainel(){   // mesma ordem padrão da tela Sugestão de venda (prioridade)
-  let r=null;   /* sem cache: o estoque pode ter mudado entre um render e outro */ try{ const {L,A}=csRows(); const o=L.slice().sort((a,b)=>b.prio-a.prio||b.val-a.val); const vU=Object.values(A).reduce((s,x)=>s+x.livre*x.cu,0); r=Object.assign(csPlano(o,A),{vU,p3:csPlano(o,A,63)}); }catch(e){ console.error(e); r=null; }
+  let r=null;   /* sem cache: o estoque pode ter mudado entre um render e outro */ try{ const {C,A}=csRows(); const vU=Object.values(A).reduce((s,x)=>s+x.livre*x.cu,0); r=Object.assign(csPlano(C,A),{vU,p3:csPlano(C,A,63)}); }catch(e){ console.error(e); r=null; }
   return r; }
 
 const _finPanel30=finPanel;
