@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev28"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev29"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1699,6 +1699,16 @@ details.panel>summary{cursor:pointer;padding:2px 0}
 .pd-k span{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}.pd-k b{font:700 30px var(--display);color:var(--ink)}.pd-k small{color:var(--muted);font-size:12.5px}.pd-k .lamp{align-self:flex-start}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #tema-btn{border:1px solid var(--line)}
+/* Rev29 */
+.pd-mg .pd-k b{font-size:24px}
+.pd-leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted);margin:6px 0 2px 4px}
+.pd-leg span{display:inline-flex;align-items:center;gap:6px}.pd-leg i{display:inline-block;width:22px;height:0}.pd-leg i.sq{width:12px;height:12px;border-radius:3px;border:0}
+.pd-sel{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}.pd-sel select,.pd-sel input{min-height:36px}
+.pd-sel select{max-width:min(240px,70vw);padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);font:inherit}
+.pd-et{display:inline-flex;flex-wrap:wrap;gap:6px}.pd-c{border:1.5px solid var(--navy);background:var(--panel);color:var(--navy);border-radius:999px;padding:6px 14px;min-height:36px;font:600 13px var(--body);cursor:pointer}
+.pd-c.on{background:var(--navy);color:#fff}
+[data-theme="dark"] .pd-c{border-color:var(--line);color:var(--ink)} [data-theme="dark"] .pd-c.on{background:var(--gold,#B8942F);color:#15223B}
+#p-pdia .panel>.head,#p-pexp .panel>.head{flex-wrap:wrap;gap:8px}
 
 
 [hidden]{display:none!important}
@@ -1760,6 +1770,7 @@ details.panel>summary{cursor:pointer;padding:2px 0}
 <section class="pane" id="p-cs" hidden></section>
 <section class="pane" id="p-sg" hidden></section>
 <section class="pane" id="p-pdia" hidden></section>
+<section class="pane" id="p-pexp" hidden></section>
 <section class="pane" id="p-op" hidden></section>
 <section class="pane" id="p-kc" hidden></section>
 <section class="pane" id="p-cd" hidden>
@@ -4793,7 +4804,7 @@ async function cmShare(L,T){
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev28", MAN_DATA="24/11/2026";
+const MAN_REV="Rev29", MAN_DATA="24/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -4856,9 +4867,9 @@ const MAN=[
   faq:[["Por que o estoque de um dia aparece com traço?","O estoque do dia é gravado quando o saldo é importado ou apontado. Sem nenhum desses no dia, não há posição."],["Como mudo a linha de base?","Só o Programador: no Fluxo de valor, em Indicadores, troque a data da Linha de base."]]},
  {id:"ov",t:"Painel: Como Estão os Supermercados",quem:"todos",tab:"ov",
   lead:"O **Painel** é a primeira tela. Mostra, de uma olhada, se os supermercados e os pedidos estão bem.",
-  telas:[{t:"Produção do dia",img:"m28-pdia.jpg",passos:["No Painel, abra a aba **Produção do dia**. Ela é atualizada com o MPD132 todo dia às 9h.","No alto, cinco quadros com luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim): produzido no último dia contra a mediana de 4 semanas, ordens previstas na semana que terminaram, ordens atrasadas, refugo e OEE.","O gráfico mostra as peças produzidas por dia; cada barra já vem na cor da sua situação. Abaixo, ordens por etapa, os itens mais produzidos e a lista das ordens mais atrasadas.","O **OEE** aparece quando o registro de paradas de máquina chegar junto com o MPD132."]},{t:"Evolução do abastecimento",img:"m27-ab.jpg",passos:["O gráfico mostra o **% abastecido** do **CD** (azul) e dos **Usinados** (laranja) a cada dia em que o estoque foi atualizado. A linha verde tracejada marca **80%** (bem).","Acima do gráfico, a tabela compara **hoje** com a **última atualização**, a **semana**, o **mês** e o **início**: ▲ verde = subiu, ▼ vermelho = desceu, em **p.p.** (pontos percentuais) e em peças abastecidas.","Escolha **7 dias**, **30 dias** ou **Desde o início**. Passe o mouse (ou toque) no gráfico para ver o dia.","Quando o app muda, o alto do Painel mostra **só o que é novo desde a última vez que você abriu**. O quadro aparece uma vez; **Me mostre** aponta cada novidade na tela."]},{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Pedidos completos dia a dia",img:"m25-ped.jpg",passos:["No Painel, o gráfico **Pedidos completos × incompletos · dia a dia** mostra cada dia desde o início: barra **verde** = pedidos completos, **vermelha** = incompletos.","A linha **verde** é o **% de pedidos completos**; a **azul tracejada** é o **% abastecido do CD** no mesmo dia.","Se as duas sobem juntas, encher os supermercados está aumentando os pedidos completos.","Dia em **cinza** = carteira importada incompleta: não compare esse dia."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Use os botões **Total**, **Sem pedido** e **Com pedido** para ver cada parte. Ao lado, o quadro **Hoje** mostra CD e Usinados divididos em sem pedido e com pedido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
+  telas:[{t:"Produção do dia",img:"m29-pdia.jpg",passos:["No Painel, abra a aba **Produção do dia**. Ela é atualizada com o MPD132 todo dia às 9h.","No alto, quadros com luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim): produzido no último dia, ordens previstas na semana que terminaram, ordens atrasadas, refugo e OEE.","Logo abaixo, as metas: **mediana** dos dias úteis dos últimos 12 meses (ou de todo o histórico, se ainda não houver 12 meses), **takt** (tempo disponível ÷ demanda do S&OP) e **capacidade no mix** (quantas peças por dia cabem até a máquina mais carregada chegar a 100%).","No gráfico, escolha a etapa (**Total**, **Usinagem**, **Montagem**) e o **período** (últimos 30 dias ou um mês). Cada barra vem na cor da sua situação contra a mediana; as linhas mostram mediana, takt e capacidade."]},{t:"Expedição do dia",img:"m29-exp.jpg",passos:["No Painel, abra a aba **Expedição do dia**: peças faturadas por dia, pela aba Faturamento do MPD132.","Os quadros mostram o último dia, a mediana dos dias úteis, o **takt** da expedição e a **capacidade de embarque** informada no ERP.","Escolha o **grupo** (Terminais, Cruzetas, Cardans…) e o **período**. A tabela Por grupo mostra quanto cada grupo atendeu da demanda do S&OP."]},{t:"Evolução do abastecimento",img:"m27-ab.jpg",passos:["O gráfico mostra o **% abastecido** do **CD** (azul) e dos **Usinados** (laranja) a cada dia em que o estoque foi atualizado. A linha verde tracejada marca **80%** (bem).","Acima do gráfico, a tabela compara **hoje** com a **última atualização**, a **semana**, o **mês** e o **início**: ▲ verde = subiu, ▼ vermelho = desceu, em **p.p.** (pontos percentuais) e em peças abastecidas.","Escolha **7 dias**, **30 dias** ou **Desde o início**. Passe o mouse (ou toque) no gráfico para ver o dia.","Quando o app muda, o alto do Painel mostra **só o que é novo desde a última vez que você abriu**. O quadro aparece uma vez; **Me mostre** aponta cada novidade na tela."]},{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Pedidos completos dia a dia",img:"m25-ped.jpg",passos:["No Painel, o gráfico **Pedidos completos × incompletos · dia a dia** mostra cada dia desde o início: barra **verde** = pedidos completos, **vermelha** = incompletos.","A linha **verde** é o **% de pedidos completos**; a **azul tracejada** é o **% abastecido do CD** no mesmo dia.","Se as duas sobem juntas, encher os supermercados está aumentando os pedidos completos.","Dia em **cinza** = carteira importada incompleta: não compare esse dia."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Use os botões **Total**, **Sem pedido** e **Com pedido** para ver cada parte. Ao lado, o quadro **Hoje** mostra CD e Usinados divididos em sem pedido e com pedido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
   dica:"A data do estoque aparece no alto do menu. Estoque velho = painel velho: importe o saldo do dia.",
-  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que significam as cores dos gráficos?","Todo gráfico e quadro do app segue a mesma regra: verde = bem, amarelo = atenção, vermelho = ruim. O fundo dos gráficos mostra as três faixas, e os pontos e barras já vêm na cor da situação. Os limites de cada indicador estão em Como as cores são definidas, no Painel."],["O app ficou escuro à noite.","É o modo noturno automático: o app escurece no pôr do sol e clareia no nascer do sol. No alto da tela, o botão ☀/☾ troca entre automático, sempre claro e sempre escuro."],["O que é p.p.?","Ponto percentual: a diferença entre dois percentuais. De 36% para 41% são 5 p.p. a mais."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
+  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que significam as cores dos gráficos?","Todo gráfico e quadro do app segue a mesma regra: verde = bem, amarelo = atenção, vermelho = ruim. O fundo dos gráficos mostra as três faixas, e os pontos e barras já vêm na cor da situação. Os limites de cada indicador estão em Como as cores são definidas, no Painel."],["O app ficou escuro à noite.","É o modo noturno automático: o app escurece no pôr do sol e clareia no nascer do sol. No alto da tela, o botão ☀/☾ troca entre automático, sempre claro e sempre escuro."],["O que é o takt?","É o ritmo que atende a demanda: tempo disponível no dia dividido pela demanda diária do S&OP. Ex.: 21 h × 3.600 s ÷ 9.000 pç/dia = 8,4 s por peça. A linha azul do gráfico mostra a mesma demanda em peças por dia."],["Como é calculada a capacidade no mix?","Para cada grupo de máquina, soma a carga da demanda do S&OP de cada item × o tempo de ciclo do roteiro do ERP. A capacidade é quantas peças por dia cabem, no mesmo mix, até o grupo mais carregado chegar a 100%. O tempo de setup não entra nesse cálculo."],["Por que a mediana usa 12 meses?","Para comparar o dia com um ritmo estável. Enquanto o histórico tiver menos de 12 meses, a mediana usa todo o período disponível, e o quadro avisa isso."],["O que é p.p.?","Ponto percentual: a diferença entre dois percentuais. De 36% para 41% são 5 p.p. a mais."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
  {id:"qd",t:"Quadros Kanban e Modo TV",quem:"todos",tab:"qd",
   lead:"Cada **processo** tem o seu quadro, igual ao quadro físico da fábrica.",
   telas:[{t:"Ver o quadro",img:"m19-qd.jpg",passos:["Escolha o **processo** no alto.","O quadro mostra os itens daquele processo; **Situação agora** conta quantos estão em cada cor.","Toque em **Abrir este quadro no modo TV** para deixar numa televisão da área."]}],
@@ -4988,6 +4999,10 @@ function tourShow(){
 
 /* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
 const NEWS=[
+ {rev:29,quando:"24/11/2026",t:"Takt e capacidade, Expedição do dia e escolha do mês",itens:[
+   {id:"29-meta",man:"ov",tab:"pdia",sel:'#p-pdia .pd-mg',t:"Novo: takt e capacidade na Produção do dia",x:"Além da mediana, o gráfico mostra o takt (demanda do S&OP) e a capacidade no mix, com filtro por etapa: Total, Usinagem e Montagem."},
+   {id:"29-exp",man:"ov",tab:"pexp",sel:'#mtabs [data-p="pexp"], #p-pexp .pd-g',t:"Novo: Expedição do dia",x:"No Painel, a aba Expedição do dia mostra as peças faturadas por dia e por grupo, com mediana, takt e capacidade de embarque."},
+   {id:"29-mes",man:"ov",tab:"pdia",sel:'#pd-per',t:"Novo: escolha do mês e mediana de 12 meses",x:"Escolha o mês no campo Período. A mediana usa os últimos 12 meses ou todo o histórico disponível."}]},
  {rev:28,quando:"24/11/2026",t:"Produção do dia, cores em tudo e modo noturno",itens:[
    {id:"28-pdia",man:"ov",tab:"pdia",sel:'#p-pdia .pd-g, #mtabs [data-p="pdia"]',t:"Novo: Produção do dia",x:"No Painel, a aba Produção do dia mostra o que foi produzido, as ordens atrasadas, o cumprimento da semana e o refugo, atualizados com o MPD132."},
    {id:"28-gyr",man:"ov",tab:"ov",sel:'#ab-panel .ab-k',t:"Novo: verde, amarelo e vermelho em todos os gráficos",x:"Todos os gráficos e quadros mostram a situação em três cores: verde = bem, amarelo = atenção, vermelho = ruim."},
@@ -5612,20 +5627,23 @@ function mpdPacote(T,nome,mod){   // abas lidas → pacote {cd, aus, cart}
   const cart=[];
   for(let i=1;i<I.length;i++){ const r=I[i]; const q=numBR(r[kq]), c=String(r[ki]??"").trim(), p=String(r[kp]??"").trim(); if(!c||!p||isNaN(q)||q<=0) continue;
     cart.push([p,String(kc>=0?r[kc]??"":"").trim(),c,q,kd>=0?dataISO(r[kd]):""]); }
-  const prod=(!T["Movimentos"]&&!T["Ordens"])?null:mpdProducao(T["Movimentos"],T["Ordens"],mpdDataNome(nome)||(mod?dLocal(new Date(mod)):dLocal(new Date())));
-  return {fonte:"MPD132",v:1,arquivo:nome||"",prod,data:mpdDataNome(nome)||(mod?dLocal(new Date(mod)):""),mod:mod?new Date(mod).toISOString():"",gerado:new Date().toISOString(),dep:MPD_DEP,cd:cdm,aus,cart};
+  const ref=mpdDataNome(nome)||(mod?dLocal(new Date(mod)):dLocal(new Date()));
+  const prod=(!T["Movimentos"]&&!T["Ordens"])?null:mpdProducao(T["Movimentos"],T["Ordens"],ref);
+  const exp=(T["Faturamento"]&&T["Agrupamento Familias"])?mpdExpedicao(T["Faturamento"],T["Agrupamento Familias"],T["Familias de Item"],ref):null;   // Rev29: expedição
+  return {fonte:"MPD132",v:1,arquivo:nome||"",prod,exp,data:mpdDataNome(nome)||(mod?dLocal(new Date(mod)):""),mod:mod?new Date(mod).toISOString():"",gerado:new Date().toISOString(),dep:MPD_DEP,cd:cdm,aus,cart};
 }
 function mpdValida(pk){ const obj=o=>o&&typeof o==="object"&&!Array.isArray(o)&&Object.values(o).every(v=>typeof v==="number"&&isFinite(v));
   if(!pk||pk.fonte!=="MPD132"||!obj(pk.cd)||!obj(pk.aus)||!Array.isArray(pk.cart)) throw new Error("não é um pacote do MPD132");
   if(pk.data&&!/^\d{4}-\d{2}-\d{2}$/.test(pk.data)) throw new Error("data do pacote inválida");
   if(!pk.cart.every(l=>Array.isArray(l)&&l.length>=5&&typeof l[3]==="number"&&isFinite(l[3])&&(!l[4]||/^\d{4}-\d{2}-\d{2}$/.test(l[4])))) throw new Error("linhas da carteira inválidas");
   if(pk.prod!=null&&!(typeof pk.prod==="object"&&pk.prod.dias&&typeof pk.prod.dias==="object"&&Object.keys(pk.prod.dias).every(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&pk.prod.dias[d]&&typeof pk.prod.dias[d]==="object"&&Object.values(pk.prod.dias[d]).every(v=>typeof v==="number"&&isFinite(v)))&&prodOK(pk.prod))) pk.prod=null;
+  if(pk.exp!=null&&!expOK(pk.exp)) pk.exp=null;
   pk.arquivo=String(pk.arquivo||""); pk.cart=pk.cart.map(l=>[String(l[0]),String(l[1]),String(l[2]),l[3],String(l[4]||"")]); return pk; }
 async function mpdArquivo(f){
   MPD.busy=true; MPD.erro=""; MPD.pk=null; MPD.msg="Lendo "+f.name+"…"; mpdCard();
   try{
     if(/\.json$/i.test(f.name)) MPD.pk=mpdValida(JSON.parse(await f.text()));
-    else { const T=await xlsxAbas(await f.arrayBuffer(),["Estoques","Pedido Itens","Movimentos","Ordens"],MPD_FILTRO,["Movimentos","Ordens"]); MPD.pk=mpdPacote(T,f.name,f.lastModified); }
+    else { const T=await xlsxAbas(await f.arrayBuffer(),["Estoques","Pedido Itens","Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento"],MPD_FILTRO,["Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento"]); MPD.pk=mpdPacote(T,f.name,f.lastModified); }
     MPD.msg="";
   }catch(e){ MPD.erro=String(e&&e.message||e); MPD.msg=""; }
   MPD.busy=false; mpdCard();
@@ -5650,8 +5668,14 @@ async function mpdAplicar(){
     await passo("carteira","pedido\tcliente\tcodigo\tsaldo\tentrega\n"+pk.cart.map(x=>[x[0],x[1],x[2],x[3],x[4]].map(tsvCel).join("\t")).join("\n"),{cod:2,qtd:3,ped:0,cli:1,dt:4});
     const R=mpdResumo(pk), meta={t:new Date().toISOString(),u:UID||"",arquivo:pk.arquivo,data:pk.data,mod:pk.mod||"",auto:!!pk.auto,cd:Math.round(R.cdP),us:Math.round(R.usP),lin:R.lin,ped:R.ped};
     MPDULT=meta; await writeDoc("kanban/mpd",meta);
-    if(pk.prod&&pk.prod.dias){ PROD=Object.assign({},pk.prod,{arquivo:pk.arquivo,data:pk.data,t:meta.t}); await writeDoc("kanban/producao",PROD); }   // Rev28: produção do dia
-    MPD.msg=`Pronto: CD, Usinados e carteira atualizados pelo ${pk.arquivo||"MPD132"}.`; MPD.pk=null; toast("MPD132 aplicado");
+    if(window.KB&&KB.state&&!KB.state.pronto){ try{ await KB.syncNow(); }catch(e){} }   // Rev29: o histórico só é juntado depois de ler o servidor
+    const sinc=!(window.KB&&KB.state&&!KB.state.pronto);
+    const doServ=async p=>{ try{ if(!DB) return null; const s=await DB.doc(p).get(); return s&&s.exists?s.data():null; }catch(e){ return null; } };   // Rev29: junta com o que está no servidor, não só com a memória
+    const velhos=async(p,mem)=>{ const sv=await doServ(p); return Object.assign({},(sv&&sv.dias)||{},(mem&&mem.dias)||{}); };
+    if(sinc&&pk.prod&&pk.prod.dias){ PROD=Object.assign({},pk.prod,{dias:histJunta(await velhos("kanban/producao",PROD),pk.prod.dias),arquivo:pk.arquivo,data:pk.data,t:meta.t}); await writeDoc("kanban/producao",PROD); }   // Rev28: produção do dia · Rev29: histórico acumulado
+    if(sinc&&pk.exp&&pk.exp.dias){ EXPD=Object.assign({},pk.exp,{dias:histJunta(await velhos("kanban/expedicao",EXPD),pk.exp.dias),arquivo:pk.arquivo,data:pk.data,t:meta.t}); await writeDoc("kanban/expedicao",EXPD); }   // Rev29: expedição
+    try{ metasSync(true); }catch(e){}
+    MPD.msg=`Pronto: CD, Usinados e carteira atualizados pelo ${pk.arquivo||"MPD132"}.${sinc?"":" Produção e expedição não foram gravadas porque o app ainda não sincronizou com o servidor: aplique de novo daqui a pouco."}`; MPD.pk=null; toast("MPD132 aplicado");
   }catch(e){ MPD.erro="Parou no meio: "+String(e&&e.message||e); }
   Object.assign(IMP,bk); MPD.busy=false; renderIM();
 }
@@ -5900,10 +5924,10 @@ const ORD_FIM=new Set(["terminada","finalizada"]), ORD_FORA=new Set(["manutencao
 const UN_PC=new Set(["pc","pç","pca","peca","peça","un","und"]);
 function mpdProducao(M,O,ref){
   const out={ref,dias:{},ult:null,top:[],unOutras:0,ord:null};
-  const lim=d=>{ const t=new Date(ref+"T12:00:00").getTime()-d*864e5; return dLocal(new Date(t)); }, d60=lim(60);
+  const lim=d=>{ const t=new Date(ref+"T12:00:00").getTime()-d*864e5; return dLocal(new Date(t)); };
   if(M&&M.length){ const h=Array.from(M[0],x=>x||""), ic=mpdCol(h,"it_codigo"), idt=mpdCol(h,"dt_trans"), iq=mpdCol(h,"quantidade"), iu=mpdCol(h,"un"), idp=mpdCol(h,"cod_depos"), it=mpdCol(h,"tipo_trans_desc");
     const porItem={};
-    for(let i=1;i<M.length;i++){ const r=M[i], d=dataISO(r[idt]), q=numBR(r[iq]); if(!d||!isFinite(q)) continue; if(d>=ref||d<d60) continue;   // o dia do arquivo pode estar pela metade
+    for(let i=1;i<M.length;i++){ const r=M[i], d=dataISO(r[idt]), q=numBR(r[iq]); if(!d||!isFinite(q)) continue; if(d>=ref) continue;   // o dia do arquivo pode estar pela metade (Rev29: guarda todos os dias do arquivo; o histórico acumula no servidor)
       if(it>=0&&!/^entr/i.test(String(r[it]??""))) continue;
       if(!UN_PC.has(nrmNome(String(r[iu]??"")).replace(/\./g,""))){ out.unOutras++; continue; }
       const dep=String(r[idp]??"").trim().toUpperCase()||"—", D=out.dias[d]||(out.dias[d]={}); D[dep]=(D[dep]||0)+q;
@@ -5929,7 +5953,7 @@ function prodOK(p){ try{ if(!p||typeof p!=="object") return false; if(p.top!=nul
   if(o.porEtapa!=null&&!(typeof o.porEtapa==="object"&&Object.values(o.porEtapa).every(v=>v&&typeof v==="object"))) return false;
   return true; }catch(e){ return false; } }
 function prodLer(){ if(prodLer.ok) return; if(!DB){ if((prodLer.n=(prodLer.n||0)+1)<40) setTimeout(prodLer,1500); return; }
-  prodLer.ok=true; try{ DB.doc("kanban/producao").onSnapshot(s=>{ PROD=s.exists?s.data():null; if(TAB==="pdia") renderPDIA(); },()=>{}); }catch(e){} }
+  prodLer.ok=true; try{ DB.doc("kanban/producao").onSnapshot(s=>{ PROD=s.exists?s.data():null; const el=document.getElementById('p-pdia'); if(TAB==="pdia"&&!(el&&document.activeElement&&el.contains(document.activeElement)&&/INPUT|SELECT/.test(document.activeElement.tagName))) renderPDIA(); },()=>{}); }catch(e){} }
 prodLer();
 const DEP_NOME={MON:"Montagem",USI:"Usinagem",EXP:"Expedição",CDA:"CD",CDT:"CD (trânsito)",PRO:"Processo"};
 function renderPDIA(){
@@ -5990,6 +6014,208 @@ function temaBotao(){ if(document.getElementById("tema-btn")) return; const c=do
   b.onclick=()=>{ const o=["auto","light","dark"], m=o[(o.indexOf(temaModo())+1)%3]; try{ localStorage.setItem("aemco-tema",m); }catch(e){} temaAplica(); rerender(); };
   c.parentElement.insertBefore(b,c.nextSibling); temaAplica(); if(typeof newsFlags==="function") setTimeout(newsFlags,300); }
 temaAplica(); setInterval(temaAplica,60000); setTimeout(temaBotao,0);
+
+/* ===================== Rev29 =====================
+   1) Produção do dia: takt (demanda do S&OP no mix do S&OP) e capacidade no mix (roteiro do ERP × máquinas) como metas, além da mediana
+   2) Nova aba Expedição (Painel): peças faturadas por dia (aba Faturamento do MPD132), mesma lógica de cores, metas e mediana
+   3) Escolha do mês; mediana dos últimos 12 meses (ou de todo o histórico que houver, se for menor)
+   4) Histórico acumulado no servidor a cada MPD132 (produção e expedição)
+*/
+
+/* ---------- limites novos (entram sozinhos na tabela de Parâmetros) ---------- */
+LIM_DEF.exp={t:"Expedição do dia (% da mediana dos mesmos tipos de dia)",b:95,a:80,low:false};
+LIM_DEF.dem={t:"Atendimento da demanda do S&OP (% da demanda)",b:95,a:80,low:false};
+LIM_DEF.ocup={t:"Uso da capacidade (% da capacidade)",b:85,a:100,low:true};
+
+/* ---------- histórico: junta o que já estava no servidor com o arquivo novo ---------- */
+function histJunta(velho,novo,dias){ const out={}, ks=Object.keys(novo||{}).sort(), ini=ks[0]||"9999", fimN=ks[ks.length-1]||"";
+  if(velho&&typeof velho==="object") for(const d in velho){ if((d<ini||d>fimN)&&/^\d{4}-\d{2}-\d{2}$/.test(d)&&velho[d]&&typeof velho[d]==="object") out[d]=velho[d]; }   // o arquivo novo manda no período que ele cobre
+  for(const d of ks) out[d]=novo[d];
+  const todos=Object.keys(out).sort(), fim=todos[todos.length-1]; if(!fim) return out;
+  const corte=dLocal(new Date(new Date(fim+"T12:00:00").getTime()-(dias||400)*864e5)); for(const d of todos) if(d<corte) delete out[d];
+  return out; }
+
+/* ---------- expedição: peças faturadas por dia e por grupo de família (MPD132) ---------- */
+function mpdExpedicao(F,AG,FI,ref){
+  const out={ref,dias:{},ult:null,top:[],cap:{},semGrupo:0};
+  const ha=Array.from(AG[0]||[],x=>x||""), af=mpdCol(ha,"Familia"), ad=mpdCol(ha,"Descricao"), grp={};
+  for(let i=1;i<AG.length;i++){ const r=AG[i], f=String(r[af]??"").trim(), g=String(r[ad]??"").trim(); if(f&&g) grp[f]=g; }
+  const nomes=[...new Set(Object.values(grp))];
+  if(FI&&FI.length){ const hf=Array.from(FI[0],x=>x||""), fn=mpdCol(hf,"Nome"), fc=mpdCol(hf,"Capacidade");
+    for(let i=1;i<FI.length;i++){ const r=FI[i], n=nrmNome(String(r[fn]??"")), c=numBR(r[fc]); if(!n||!(c>0)) continue; const g=nomes.find(x=>nrmNome(x)===n); if(g) out.cap[g]=c; } }
+  const h=Array.from(F[0]||[],x=>x||""), ie=mpdCol(h,"Emissao"), ic=mpdCol(h,"Codigo"), iq=mpdCol(h,"Qtd.Fat","Qtd"), ifm=mpdCol(h,"Familia");
+  if(ie<0||iq<0||ifm<0) return out;
+  const porItem={};
+  for(let i=1;i<F.length;i++){ const r=F[i], g=grp[String(r[ifm]??"").trim()]; if(!g){ out.semGrupo++; continue; }
+    const d=dataISO(r[ie]), q=numBR(r[iq]); if(!d||!isFinite(q)||d>=ref) continue;   // o dia do arquivo pode estar pela metade
+    const D=out.dias[d]||(out.dias[d]={}); D[g]=(D[g]||0)+q; const k=d+"|"+String(r[ic]??"").trim()+"|"+g; porItem[k]=(porItem[k]||0)+q; }
+  const ds=Object.keys(out.dias).sort(); out.ult=ds.length?ds[ds.length-1]:null;
+  if(out.ult) out.top=Object.entries(porItem).filter(([k])=>k.startsWith(out.ult+"|")).map(([k,q])=>{ const a=k.split("|"); return [a[1],a[2],Math.round(q)]; }).sort((a,b)=>b[2]-a[2]).slice(0,15);
+  return out; }
+function expOK(p){ try{ if(!p||typeof p!=="object"||!p.dias||typeof p.dias!=="object") return false;
+  if(!Object.keys(p.dias).every(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&p.dias[d]&&typeof p.dias[d]==="object"&&Object.values(p.dias[d]).every(v=>typeof v==="number"&&isFinite(v)))) return false;
+  if(p.top!=null&&!(Array.isArray(p.top)&&p.top.every(t=>Array.isArray(t)&&t.length>=3))) return false;
+  if(p.cap!=null&&!(typeof p.cap==="object"&&Object.values(p.cap).every(v=>typeof v==="number"&&isFinite(v)))) return false;
+  return true; }catch(e){ return false; } }
+let EXPD=null, METAS=null;
+function expLer(){ if(expLer.ok) return; if(!DB){ if((expLer.n=(expLer.n||0)+1)<40) setTimeout(expLer,1500); return; }
+  const rr=t=>{ const el=document.getElementById('p-'+t); if(TAB!==t||!el) return; if(document.activeElement&&el.contains(document.activeElement)&&/INPUT|SELECT/.test(document.activeElement.tagName)) return; t==="pexp"?renderPEXP():renderPDIA(); };   // não apaga o que está sendo digitado
+  expLer.ok=true; try{ DB.doc("kanban/expedicao").onSnapshot(s=>{ EXPD=s.exists?s.data():null; rr("pexp"); },()=>{});
+    DB.doc("kanban/metas").onSnapshot(s=>{ METAS=s.exists?s.data():null; expLer.metasOk=true; rr("pexp"); rr("pdia"); },()=>{}); }catch(e){} }
+expLer();
+
+/* ---------- metas: takt e capacidade no mix do S&OP (calculadas no acesso do João; a equipe lê o resultado) ---------- */
+const hExp=()=>(P.hexp>0?P.hexp:P.tod);
+function capGM(code){ const o=(P.capgm||{})[code]; const m=o>0?o:gmMaq(code); if(!(m>0)) return null; return m*gmHoras(code)*gmEf(code)/100; }
+function metasCalc(){
+  if(!isDono()||typeof calcPA!=="function"||typeof calcUS!=="function") return null;
+  const pa=calcPA(), us=calcUS(), gm={}, E={USI:{D:0,sem:0},MON:{D:0,sem:0}}, X={};
+  const add=(cod,D,et)=>{ const R=ROT[cod]; if(!R) return false; let ok=false;
+    R.forEach(o=>{ if(o[4]||!(o[1]>0)) return; const g=gm[o[0]]||(gm[o[0]]={h:0,et:{}}); g.h+=D*o[1]/3600; g.et[et]=1; ok=true; }); return ok; };
+  us.forEach(r=>{ if(!(r.D>0)) return; E.USI.D+=r.D; if(!add(r.cod,r.D,"USI")) E.USI.sem+=r.D; });
+  pa.forEach(r=>{ if(!(r.D>0)) return; X[r.fam]=(X[r.fam]||0)+r.D; if(r.comp) return; E.MON.D+=r.D; if(!add(r.cod,r.D,"MON")) E.MON.sem+=r.D; });   // comprado e vendido direto não passa pela montagem
+  const G=Object.entries(gm).map(([gi,v])=>{ const c=GMS[gi]||["?",""], cap=capGM(c[0]); return {c:c[0],n:c[1]||"",h:v.h,cap,oc:cap?v.h/cap:null,et:Object.keys(v.et)}; }).sort((a,b)=>(b.oc||0)-(a.oc||0)||b.h-a.h);
+  const lim=et=>G.find(g=>g.oc!=null&&(!et||g.et.includes(et)))||null;
+  const r3=v=>Math.round(v*1000)/1000, mk=(D,g)=>({D:r3(D),cap:g&&g.oc>0?r3(D/g.oc):null,garg:g?[g.c,g.n,r3(g.oc)]:null});
+  const exp={}; for(const k in X) exp[k]=r3(X[k]);
+  return {G,out:{rev:String(DATA.rev||""),tod:P.tod,hexp:hExp(),prod:{USI:mk(E.USI.D,lim("USI")),MON:mk(E.MON.D,lim("MON")),TOT:mk(E.USI.D+E.MON.D,lim(null))},sem:{USI:r3(E.USI.sem),MON:r3(E.MON.sem)},exp}}; }
+function metasSync(forca){ if(!isDono()) return null; let r=null; try{ r=metasCalc(); }catch(e){ return null; } if(!r) return null;
+  const key=jsonEst(r.out), cur=METAS?jsonEst(Object.assign({},METAS,{t:undefined})):"";
+  const pronto=!!(DB&&WRITE_OK&&(forca||expLer.metasOk)&&!(window.KB&&KB.state&&!KB.state.pronto));   // só grava depois de ler o que já está no servidor
+  if(key!==cur&&pronto&&(forca||metasSync.k!==key)){ metasSync.k=key; METAS=Object.assign({},r.out,{t:new Date().toISOString()}); writeDoc("kanban/metas",METAS); }
+  return r; }
+
+const jsonEst=o=>JSON.stringify(o,(k,v)=>v&&typeof v==="object"&&!Array.isArray(v)?Object.keys(v).sort().reduce((a,x)=>(a[x]=v[x],a),{}):v);   // mesma ordem de chaves (o servidor reordena)
+
+/* ---------- utilidades de período e mediana ---------- */
+const pdFds=d=>{ const w=new Date(d+'T12:00:00').getDay(); return w===0||w===6; };
+const pdMediana=a=>{ a=a.filter(v=>v>0).sort((x,y)=>x-y); return a.length?(a.length%2?a[(a.length-1)/2]:(a[a.length/2-1]+a[a.length/2])/2):null; };
+const MESN=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const mesNome=m=>MESN[+m.slice(5,7)-1]+"/"+m.slice(0,4), dbr2=d=>d.slice(8,10)+"/"+d.slice(5,7), dbr4=d=>d.slice(8,10)+"/"+d.slice(5,7)+"/"+d.slice(0,4);
+/* mediana por tipo de dia nos últimos 12 meses (ou em todo o histórico, se for menor) */
+function pdMed(ds,val){ const fim=ds[ds.length-1]; if(!fim) return {u:null,f:null,nu:0,nf:0,de:null,ate:null,meses:0};
+  const ini=dLocal(new Date(new Date(fim+"T12:00:00").getTime()-365*864e5)), J=ds.filter(d=>d>ini), u=[], f=[];
+  J.forEach(d=>{ const v=val(d); if(v>0) (pdFds(d)?f:u).push(v); });
+  const de=J[0]||fim, meses=Math.max(1,Math.round((new Date(fim+"T12:00:00")-new Date(de+"T12:00:00"))/864e5/30.44));
+  return {u:pdMediana(u),f:pdMediana(f),nu:u.filter(v=>v>0).length,nf:f.filter(v=>v>0).length,de,ate:fim,meses}; }
+function pdPeriodo(ds,per){ if(per&&/^\d{4}-\d{2}$/.test(per)) return ds.filter(d=>d.slice(0,7)===per); const fim=ds[ds.length-1]; if(!fim) return []; const ini=dLocal(new Date(new Date(fim+"T12:00:00").getTime()-29*864e5)); return ds.filter(d=>d>=ini); }   // 30 dias corridos até o último dia com dado
+function pdMeses(ds){ return [...new Set(ds.map(d=>d.slice(0,7)))].sort().reverse(); }
+const pdSel=(id,per,ds,extra)=>`<label class="pd-sel">Período <select id="${id}" aria-label="Período do gráfico"><option value="30"${per==="30"?" selected":""}>Últimos 30 dias</option>${pdMeses(ds).map(m=>`<option value="${m}"${per===m?" selected":""}>${mesNome(m)}</option>`).join('')}</select></label>${extra||''}`;
+
+/* ---------- gráfico de barras com mediana e metas (sem textos em cima das barras) ---------- */
+function pdChart(o){   // o: {dias, val, med, lim, linhas:[{v,c,dash,t}], un}
+  const last=o.dias, W=760,H=270,L=56,R=16,T=24,B=30, iw=W-L-R, ih=H-T-B, medU=o.med.u;
+  const vs=last.map(o.val), base=Math.max(1,...vs.map(v=>Math.min(v,medU?medU*2.5:Infinity)),...o.linhas.filter(l=>l.v>0).map(l=>l.v));
+  const mx=excNice((base*1.1||1)/4)*4, y=v=>T+(1-Math.min(v,mx)/mx)*ih, slot=iw/Math.max(1,last.length), bw=Math.max(3,Math.min(26,slot*.62));
+  let g=medU?gyrBands(o.lim,L,L+iw,y,mx,medU/100):'';
+  for(let k=0;k<=4;k++){ const v=mx*k/4; g+=`<line x1="${L}" x2="${L+iw}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="${k?'3 5':''}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${v>=1000?f1(v/1000).replace(/,0$/,'')+' mil':f0(v)}</text>`; }
+  last.forEach((d,i)=>{ const v0=vs[i], md=pdFds(d)?o.med.f:o.med.u, s=gyr(md&&v0>0?v0/md*100:(md?0:null),o.lim), x=L+i*slot+(slot-bw)/2;
+    if(v0>mx) g+=`<text x="${(x+bw/2).toFixed(1)}" y="${T-8}" text-anchor="middle" font-size="10" fill="var(--ink)">${f0(v0/1000)} mil↑</text>`;
+    g+=`<rect x="${x.toFixed(1)}" y="${y(v0).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,T+ih-y(v0)).toFixed(1)}" rx="3" fill="${GYR_C[s]}"><title>${esc(dbr4(d))}${pdFds(d)?' (fim de semana)':''} · ${f0(v0)} ${o.un||'pç'}${md?' · '+f0(v0/md*100)+'% da mediana de '+(pdFds(d)?'fins de semana':'dias úteis'):''} · ${GYR_T[s]}</title></rect>`;
+    const stp=Math.max(1,Math.ceil(last.length/10)); if((i%stp===0&&i<=last.length-1-Math.ceil(stp*0.6))||i===last.length-1) g+=`<text x="${(x+bw/2).toFixed(1)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(dbr2(d))}</text>`; });
+  o.linhas.forEach(l=>{ if(!(l.v>0)) return; const yy=Math.max(T,y(l.v)); g+=`<line x1="${L}" x2="${L+iw}" y1="${yy}" y2="${yy}" stroke="${l.c}" stroke-width="${l.w||2}" stroke-dasharray="${l.dash||''}"><title>${esc(l.t)}</title></line>${l.v>mx?`<text x="${L+iw}" y="${T-8}" text-anchor="end" font-size="10" fill="${l.c}">${esc(l.curto||'')} ${f0(l.v)}↑</text>`:''}`; });
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:300px;display:block" role="img" aria-label="${esc(o.aria||'Gráfico por dia')}">${g}</svg>
+   <div class="pd-leg">${o.linhas.filter(l=>l.v>0).map(l=>`<span><i style="border-top:${l.w||2}px ${l.dash?'dashed':'solid'} ${l.c}"></i>${esc(l.t)}</span>`).join('')}
+    <span><i class="sq" style="background:var(--kg)"></i>${esc(gyrLeg(o.lim))} da mediana</span></div>`; }
+const metaCard=(t,v,s,sub)=>`<div class="pd-k pd-m ${s}"><span>${t}</span><b>${v}</b>${gyrLamp(s)}<small>${sub}</small></div>`;
+const ftk=v=>v<100?f1(v):f0(v), C_TAKT="#2F6DB5", C_CAP="#8A4FBF";
+
+/* ---------- 1) Produção do dia ---------- */
+const PDS={per:"30",et:"TOT"};
+const ET_NOME={TOT:"Total",USI:"Usinagem",MON:"Montagem"};
+const _renderPDIA28=renderPDIA;
+renderPDIA=function(){
+  const el=document.getElementById('p-pdia'); if(!el) return; let GM=null;
+  if(isDono()){ const r=metasSync(); GM=r&&r.G; }
+  _renderPDIA28(); const P0=PROD; if(!P0||!P0.dias||!Object.keys(P0.dias).length||!prodOK(P0)) return;
+  const ds=Object.keys(P0.dias).sort(), et=PDS.et, val=d=>{ const D=P0.dias[d]||{}; return et==="TOT"?Object.values(D).reduce((s,v)=>s+v,0):(D[et]||0); };
+  const med=pdMed(ds,val), ult=P0.ult||ds[ds.length-1], mdU=pdFds(ult)?med.f:med.u, hoje=val(ult), pctMed=mdU?hoje/mdU*100:null, sP=gyr(pctMed,"prod");
+  const M=METAS&&METAS.prod&&METAS.prod[et], tod=(METAS&&METAS.tod)||P.tod, Dd=M&&M.D>0?M.D:null, cap=M&&M.cap>0?M.cap:null, takt=Dd?tod*3600/Dd:null;
+  const per=PDS.per, dias=pdPeriodo(ds,per), uteis=dias.filter(d=>!pdFds(d)&&val(d)>0), totP=dias.reduce((s,d)=>s+val(d),0), medP=uteis.length?uteis.reduce((s,d)=>s+val(d),0)/uteis.length:null;
+  const sDem=gyr(Dd&&med.u?med.u/Dd*100:null,"dem"), sCap=gyr(cap&&Dd?Dd/cap*100:null,"ocup"), sPer=gyr(Dd&&medP?medP/Dd*100:null,"dem");
+  /* 1º quadro: mesma lógica, agora contra a mediana de 12 meses e na etapa escolhida */
+  const k1=el.querySelector('.pd-g .pd-k'); if(k1){ k1.className='pd-k '+sP; k1.innerHTML=`<span>Produzido no último dia${et!=="TOT"?' · '+ET_NOME[et]:''}</span><b>${f0(hoje)} pç</b>${gyrLamp(sP)}<small>${mdU?`${f0(pctMed)}% da mediana ${pdFds(ult)?'dos fins de semana':'dos dias úteis'} (${f0(mdU)} pç)`:'sem mediana ainda'}</small>`; }
+  const metas=`<div class="pd-g pd-mg">
+    ${metaCard('Mediana dos dias úteis',med.u?f0(med.u)+' pç':'—',sDem,`${med.de?`de ${dbr4(med.de)} a ${dbr4(med.ate)} · ${f0(med.nu)} dias úteis${med.meses<12?' (todo o histórico disponível)':' (12 meses)'}`:''}${Dd&&med.u?` · ${f0(med.u/Dd*100)}% da demanda`:''}`)}
+    ${metaCard('Takt (demanda do S&OP)',takt?ftk(takt)+' s/pç':'—',Dd?sDem:'nd',Dd?`demanda de ${f0(Dd)} pç/dia no mix do S&OP · ${f1(tod)} h/dia`:'aparece quando o João abrir esta tela')}
+    ${metaCard('Capacidade no mix',cap?f0(cap)+' pç/dia':'—',cap?sCap:'nd',cap?`gargalo ${esc(M.garg[0])} (${esc(M.garg[1])}) · demanda usa ${f0(Dd/cap*100)}% da capacidade`:(M?'sem roteiro ou máquinas para calcular':'aparece quando o João abrir esta tela'))}
+    ${metaCard(per==="30"?'Últimos 30 dias':mesNome(per),f0(totP)+' pç',medP?sPer:'nd',medP?`média de ${f0(medP)} pç por dia útil${Dd?' · '+f0(medP/Dd*100)+'% da demanda':''}`:'sem dias úteis com produção')}</div>`;
+  const chips=`<div class="pd-et" role="group" aria-label="Etapa">${["TOT","USI","MON"].map(k=>`<button type="button" class="pd-c${et===k?' on':''}" data-pdet="${k}" aria-pressed="${et===k}">${ET_NOME[k]}</button>`).join('')}</div>`;
+  const chart=pdChart({dias,val,med,lim:"prod",aria:"Produção por dia",linhas:[{v:med.u,c:"var(--ink)",dash:"6 4",t:`mediana dos dias úteis ${f0(med.u)} pç`,curto:"mediana"},{v:Dd,c:C_TAKT,t:`takt ${ftk(takt)} s/pç = ${f0(Dd)} pç/dia (demanda do S&OP)`,curto:"takt",w:2.5},{v:cap,c:C_CAP,dash:"2 3",t:`capacidade no mix ${f0(cap)} pç/dia`,curto:"capacidade",w:2.5}]});
+  /* troca o gráfico antigo pelo novo */
+  const pan=[...el.querySelectorAll('.panel')].find(p=>p.querySelector('svg[aria-label="Produção por dia"]'));
+  if(pan){ const hd=pan.querySelector('.head'); hd.innerHTML=`<h3>Produção por dia · ${per==="30"?'últimos 30 dias':mesNome(per)}${et!=="TOT"?' · '+ET_NOME[et]:''}</h3><div class="filters">${chips}${pdSel('pd-per',per,ds)}</div>`;
+    const sv=pan.querySelector('svg'); const box=document.createElement('div'); box.innerHTML=chart+`<p class="note">Barra = peças que entraram no estoque pelo apontamento do ERP. Cor: comparada com a mediana do mesmo tipo de dia (dia útil contra dias úteis, sábado e domingo contra fins de semana). Takt = ${f1(tod)} h/dia ÷ demanda diária do S&OP, com o mix (proporção de cada item) do S&OP. Capacidade no mix = quantas peças por dia cabem até o grupo de máquina mais carregado chegar a 100%, pelo tempo de ciclo do roteiro do ERP (sem o tempo de setup).</p>`; sv.replaceWith(box);
+    const tb=pan.querySelector('.tw'); if(tb&&per!=="30"){ const deps=[...new Set(dias.flatMap(d=>Object.keys(P0.dias[d]).filter(k=>P0.dias[d][k]>0)))]; tb.innerHTML=`<table><thead><tr><th>Dia</th>${deps.map(d=>`<th class="num">${esc(DEP_NOME[d]||d)}</th>`).join('')}<th class="num">Total</th></tr></thead><tbody>${dias.slice().reverse().map(d=>`<tr><td>${esc(dbr4(d))}</td>${deps.map(k=>`<td class="num">${f0(P0.dias[d][k]||0)}</td>`).join('')}<td class="num"><b>${f0(Object.values(P0.dias[d]).reduce((s,v)=>s+v,0))}</b></td></tr>`).join('')}</tbody></table>`; tb.style.maxHeight="360px"; }
+    pan.insertAdjacentHTML('beforebegin',metas); }
+  if(GM) el.insertAdjacentHTML('beforeend',capPainel(GM,P0,ds));
+  el.querySelectorAll('[data-pdet]').forEach(b=>b.onclick=()=>{ PDS.et=b.dataset.pdet; renderPDIA(); });
+  const sp=document.getElementById('pd-per'); if(sp) sp.onchange=()=>{ PDS.per=sp.value; renderPDIA(); };
+  capPainelBind();
+};
+
+/* painel só do João: carga por grupo de máquina no mix do S&OP, postos e horas */
+function capPainel(G,P0,ds){
+  const real=et=>pdMed(ds,d=>{ const D=P0.dias[d]||{}; return et==="TOT"?Object.values(D).reduce((s,v)=>s+v,0):(D[et]||0); }).u;
+  const av=["USI","MON"].map(et=>{ const M=METAS&&METAS.prod&&METAS.prod[et], r=real(et); return M&&M.cap&&r&&r>M.cap*1.02?`<li><b>${ET_NOME[et]}</b>: a mediana real (${f0(r)} pç/dia) já passa da capacidade calculada (${f0(M.cap)} pç/dia). O cadastro do gargalo <b>${esc(M.garg[0])}</b> deve ter menos postos que a realidade: confira o número de postos abaixo.</li>`:''; }).join('');
+  const L=G.filter(g=>g.h>=0.05).slice(0,18), sem=(METAS&&METAS.sem)||{};
+  return `<div class="panel" id="cap-gm"><div class="head"><h3>Capacidade no mix · carga por grupo de máquina</h3><span class="tag">só você vê</span></div>
+   <p class="note">Carga = demanda diária do S&OP de cada item × tempo de ciclo de cada operação do roteiro do ERP. Capacidade = postos × horas/dia × eficiência. Postos = máquinas ativas no cadastro de centros de trabalho (Programador), a menos que você informe outro número aqui (útil para montagem e operações manuais, que dependem de pessoas). ${sem.USI||sem.MON?`Sem roteiro no ERP: ${f0(sem.USI||0)} pç/dia de usinados e ${f0(sem.MON||0)} pç/dia de produtos ficam fora da carga.`:''}</p>
+   ${av?`<ul class="note" style="color:var(--kr)">${av}</ul>`:''}
+   <div class="tw" style="max-height:440px"><table><thead><tr><th>Grupo de máquina</th><th>Etapa</th><th class="num">Carga h/dia</th><th class="num">Postos</th><th class="num">Horas/dia</th><th class="num">Eficiência %</th><th class="num">Capacidade h/dia</th><th>Uso</th></tr></thead><tbody>
+   ${L.map(g=>{ const cad=gmMaq(g.c), ov=(P.capgm||{})[g.c]; return `<tr><td><b>${esc(g.c)}</b><br><span class="note">${esc(g.n)}</span></td><td class="note">${g.et.map(e=>ET_NOME[e]).join(' + ')}</td><td class="num">${f1(g.h)}</td>
+     <td class="num"><input class="in" type="number" min="0" max="500" step="1" style="width:70px" data-capgm="${esc(g.c)}" value="${ov>0?ov:''}" placeholder="${cad==null?'—':cad}" aria-label="Postos de ${esc(g.c)}"></td>
+     <td class="num">${f1(gmHoras(g.c))}</td><td class="num">${f0(gmEf(g.c))}</td><td class="num">${g.cap==null?'<span class="note">sem máquina no cadastro · não limita</span>':f1(g.cap)}</td><td>${g.oc==null?'—':gyrLamp(gyr(g.oc*100,"ocup"),f0(g.oc*100)+'%')}</td></tr>`; }).join('')}</tbody></table></div>
+   <div class="filters"><label class="pd-sel">Horas por dia da expedição <input class="in" id="cap-hexp" type="number" min="1" max="24" step="0.5" style="width:74px" value="${P.hexp>0?P.hexp:''}" placeholder="${f1(P.tod)}"></label>
+    <button class="btn pri" id="cap-sv">Salvar postos e horas</button><button class="btn" id="cap-rs">Voltar ao cadastro</button></div>
+   <p class="note">Horas/dia e eficiência de cada grupo vêm do Programador. Campo de postos vazio = usa o cadastro. Ao salvar, o takt e a capacidade são recalculados e gravados para a equipe.</p></div>`; }
+function capPainelBind(){ const sv=document.getElementById('cap-sv'); if(!sv) return;
+  sv.onclick=()=>{ const o={}; let ok=true; document.querySelectorAll('[data-capgm]').forEach(i=>{ if(i.value==="") return; const v=+i.value; if(!isFinite(v)||v<0||v>500){ ok=false; return; } if(v>0) o[i.dataset.capgm]=v; });
+    const hx=document.getElementById('cap-hexp').value, h=+hx; if(hx!==""&&(!isFinite(h)||h<1||h>24)) ok=false;
+    if(!ok){ toast("Confira os números: postos de 0 a 500 e horas de 1 a 24"); return; }
+    P.capgm=Object.assign({},P.capgm||{},o); document.querySelectorAll('[data-capgm]').forEach(i=>{ if(i.value===""||+i.value===0) delete P.capgm[i.dataset.capgm]; });
+    if(hx==="") delete P.hexp; else P.hexp=h; saveParams(); metasSync(true); toast("Postos e horas salvos"); renderPDIA(); };
+  document.getElementById('cap-rs').onclick=()=>{ delete P.capgm; delete P.hexp; saveParams(); metasSync(true); toast("Voltou ao cadastro"); renderPDIA(); }; }
+
+/* ---------- 2) Expedição ---------- */
+const PES={per:"30",g:"*"};
+function renderPEXP(){
+  const el=document.getElementById('p-pexp'); if(!el) return; if(isDono()) metasSync(); const E0=EXPD;
+  if(!E0||!E0.dias||!Object.keys(E0.dias).length||!expOK(E0)){ el.innerHTML=`<div class="head"><h2>Expedição do dia</h2></div><div class="panel"><p class="note">Ainda não há dados de expedição. Eles chegam com a atualização pelo <b>MPD132</b> (aba Faturamento), todo dia às 9h.</p></div>`; return; }
+  const ds=Object.keys(E0.dias).sort(), soma=o=>Object.values(o||{}).reduce((s,v)=>s+v,0), tot={}; ds.forEach(d=>{ for(const k in E0.dias[d]) tot[k]=(tot[k]||0)+E0.dias[d][k]; });
+  const grupos=Object.keys(tot).sort((a,b)=>tot[b]-tot[a]); if(PES.g!=="*"&&!grupos.includes(PES.g)) PES.g="*";
+  const g=PES.g, val=d=>g==="*"?soma(E0.dias[d]):((E0.dias[d]||{})[g]||0), med=pdMed(ds,val), ult=E0.ult||ds[ds.length-1], mdU=pdFds(ult)?med.f:med.u, hoje=val(ult), pctMed=mdU?hoje/mdU*100:null;
+  const XM=(METAS&&METAS.exp)||null, dOf=k=>{ if(!XM) return null; const n=nrmNome(k); let s=0, ach=false; for(const f in XM) if(nrmNome(f)===n){ s+=XM[f]; ach=true; } return ach?s:null; };
+  const Dd=XM?(g==="*"?Object.values(XM).reduce((s,v)=>s+v,0):dOf(g)):null, hx=(METAS&&METAS.hexp)||P.hexp||P.tod, takt=Dd>0?hx*3600/Dd:null;
+  const capG=E0.cap||{}, cap=g==="*"?(Object.keys(capG).length?soma(capG):null):(capG[g]||null);
+  const per=PES.per, dias=pdPeriodo(ds,per), uteis=dias.filter(d=>!pdFds(d)&&val(d)>0), totP=dias.reduce((s,d)=>s+val(d),0), medP=uteis.length?uteis.reduce((s,d)=>s+val(d),0)/uteis.length:null;
+  const sH=gyr(pctMed,"exp"), sDem=gyr(Dd&&med.u?med.u/Dd*100:null,"dem"), sCap=gyr(cap&&med.u?med.u/cap*100:null,"ocup"), sPer=gyr(Dd&&medP?medP/Dd*100:null,"dem");
+  const card=(t,v,s,sub)=>`<div class="pd-k ${s}"><span>${t}</span><b>${v}</b>${gyrLamp(s)}<small>${sub}</small></div>`;
+  const nomeG=g==="*"?"todos os grupos":g;
+  const sel=`<label class="pd-sel">Grupo <select id="pe-g" aria-label="Grupo de família"><option value="*">Todos os grupos</option>${grupos.map(x=>`<option value="${esc(x)}"${g===x?' selected':''}>${esc(x)}</option>`).join('')}</select></label>`;
+  const chart=pdChart({dias,val,med,lim:"exp",aria:"Expedição por dia",linhas:[{v:med.u,c:"var(--ink)",dash:"6 4",t:`mediana dos dias úteis ${f0(med.u)} pç`,curto:"mediana"},{v:Dd,c:C_TAKT,t:`takt ${ftk(takt)} s/pç = ${f0(Dd)} pç/dia (demanda do S&OP)`,curto:"takt",w:2.5},{v:cap,c:C_CAP,dash:"2 3",t:`capacidade de embarque ${f0(cap)} pç/dia`,curto:"capacidade",w:2.5}]});
+  const linhasG=grupos.map(x=>{ const v=d=>(E0.dias[d]||{})[x]||0, ut=dias.filter(d=>!pdFds(d)&&v(d)>0), t=dias.reduce((s,d)=>s+v(d),0), m=ut.length?ut.reduce((s,d)=>s+v(d),0)/ut.length:null, D=dOf(x), c=capG[x]||null;
+    return {x,t,m,D,c}; }).filter(r=>r.t>0||r.D>0);
+  el.innerHTML=`<div class="head"><h2>Expedição do dia</h2><span class="note">MPD132 ${esc(E0.arquivo||'')} · peças faturadas (aba Faturamento) · último dia com nota: <b>${esc(dbr4(ult))}</b></span></div>
+   <div class="pd-g">${card('Expedido no último dia',f0(hoje)+' pç',sH,mdU?`${f0(pctMed)}% da mediana ${pdFds(ult)?'dos fins de semana':'dos dias úteis'} (${f0(mdU)} pç) · ${esc(nomeG)}`:'sem mediana ainda')}
+    ${card('Mediana dos dias úteis',med.u?f0(med.u)+' pç':'—',Dd?sDem:'nd',`${med.de?`de ${dbr4(med.de)} a ${dbr4(med.ate)} · ${f0(med.nu)} dias úteis${med.meses<12?' (todo o histórico disponível)':' (12 meses)'}`:''}${Dd&&med.u?` · ${f0(med.u/Dd*100)}% da demanda`:''}`)}
+    ${card('Takt (demanda do S&OP)',takt?ftk(takt)+' s/pç':'—',Dd?sDem:'nd',Dd?`demanda de ${f0(Dd)} pç/dia · ${f1(hx)} h/dia de expedição`:(XM?'grupo sem demanda no S&OP':'aparece quando o João abrir esta tela'))}
+    ${card('Capacidade de embarque',cap?f0(cap)+' pç/dia':'—',cap?sCap:'nd',cap?`a mediana usa ${f0(med.u/cap*100)}% da capacidade${g==="*"?` · soma de ${Object.keys(capG).length} famílias com capacidade no ERP`:''}`:'o ERP não traz capacidade para este grupo')}
+    ${card(per==="30"?'Últimos 30 dias':mesNome(per),f0(totP)+' pç',medP?sPer:'nd',medP?`média de ${f0(medP)} pç por dia útil${Dd?' · '+f0(medP/Dd*100)+'% da demanda':''}`:'sem dias úteis com expedição')}</div>
+   <div class="panel"><div class="head"><h3>Expedição por dia · ${per==="30"?'últimos 30 dias':mesNome(per)} · ${esc(nomeG)}</h3><div class="filters">${sel}${pdSel('pe-per',per,ds)}</div></div>
+    ${chart}
+    <p class="note">Barra = peças faturadas no dia (data de emissão da nota), dos grupos de família do MPD132. Cor: comparada com a mediana do mesmo tipo de dia. Takt = ${f1(hx)} h/dia ÷ demanda diária do S&OP dos produtos do grupo. Capacidade = "Capacidade Diária Embarques" das famílias no MPD132.</p></div>
+   <div class="panel"><div class="head"><h3>Por grupo · ${per==="30"?'últimos 30 dias':mesNome(per)}</h3><span class="note">atendimento = média por dia útil ÷ demanda do S&OP · ${esc(gyrLeg("dem"))}</span></div>
+     <div class="tw" style="max-height:420px"><table><thead><tr><th>Grupo</th><th class="num">Expedido (pç)</th><th class="num">Média/dia útil</th><th class="num">Demanda pç/dia</th><th>Atendimento</th><th class="num">Capacidade pç/dia</th></tr></thead><tbody>
+     ${linhasG.map(r=>`<tr><td><b>${esc(r.x)}</b></td><td class="num">${f0(r.t)}</td><td class="num">${r.m==null?'—':f0(r.m)}</td><td class="num">${r.D>0?f0(r.D):'—'}</td><td>${r.D>0&&r.m!=null?gyrLamp(gyr(r.m/r.D*100,"dem"),f0(r.m/r.D*100)+'%'):'—'}</td><td class="num">${r.c?f0(r.c):'—'}${r.c&&r.m!=null?' '+gyrLamp(gyr(r.m/r.c*100,"ocup"),f0(r.m/r.c*100)+'%'):''}</td></tr>`).join('')}</tbody></table></div></div>
+   <div class="grid2">
+    <div class="panel"><div class="head"><h3>Mais expedidos no último dia</h3></div><div class="tw"><table><thead><tr><th>Item</th><th>Grupo</th><th class="num">Peças</th></tr></thead><tbody>
+     ${(E0.top||[]).map(t=>`<tr><td><b>${esc(t[0])}</b></td><td>${esc(t[1])}</td><td class="num">${f0(t[2])}</td></tr>`).join('')}</tbody></table></div></div>
+   <div class="panel"><div class="head"><h3>Dias do período</h3></div><div class="tw" style="max-height:420px"><table><thead><tr><th>Dia</th><th class="num">Expedido (pç)</th><th>Contra a mediana</th></tr></thead><tbody>
+    ${dias.slice().reverse().map(d=>{ const v=val(d), md=pdFds(d)?med.f:med.u; return `<tr><td>${esc(dbr4(d))}${pdFds(d)?' <span class="note">fim de semana</span>':''}</td><td class="num">${f0(v)}</td><td>${md?gyrLamp(gyr(v/md*100,"exp"),f0(v/md*100)+'%'):'—'}</td></tr>`; }).join('')}</tbody></table></div></div></div>`;
+  const sg=document.getElementById('pe-g'); if(sg) sg.onchange=()=>{ PES.g=sg.value; renderPEXP(); };
+  const sp=document.getElementById('pe-per'); if(sp) sp.onchange=()=>{ PES.per=sp.value; renderPEXP(); };
+}
 
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,
@@ -6146,7 +6372,7 @@ function renderPD(){
 /* ---------- navegação (shell SaaS) ---------- */
 /* Rev21: módulos pelo fluxo de valor na lateral; as telas de cada módulo ficam em abas no topo */
 const MODS=[
- ["pn","Painel","◱",[["ov","Painel"],["pdia","Produção do dia"]]],
+ ["pn","Painel","◱",[["ov","Painel"],["pdia","Produção do dia"],["pexp","Expedição do dia"]]],
  ["fv","Fluxo de valor","⇄",[["fx","Fluxo de valor"]],"VSM"],
  ["pl","Planejar","🗓",[["pr:pg","Programador"],["op","Ordem de produção"],["qd","Quadros Kanban"]]],
  ["pz","Produzir","▶",[["pr:op","Operação"],["pr:ap","Apontamento"]]],
@@ -6157,7 +6383,7 @@ const MODS=[
 ];
 const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],fx:["Fluxo de valor","Fluxo de valor — VSM em tempo real"],ex:["Operação","Expedição — Kanban de pedidos"],cm:["Operação","Comercial — itens disponíveis para venda"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
  cd:["Supermercados","CD em 3D"],pa:["Supermercados","Kanban de PA"],us:["Supermercados","Kanban de Usinados"],
- man:["Ajuda","Manual do app"],sg:["Ajuda","Siglas usadas no app"],pdia:["Painel","Produção do dia"],cs:["Comercial","Sugestão de venda · excesso do AUS"],par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
+ man:["Ajuda","Manual do app"],sg:["Ajuda","Siglas usadas no app"],pdia:["Painel","Produção do dia"],pexp:["Painel","Expedição do dia"],cs:["Comercial","Sugestão de venda · excesso do AUS"],par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
 const MODLAST={};
 const modTabs=m=>m[3].filter(t=>(isDono()||(t[0]!=="par"&&t[0]!=="pd"))&&(isProg()||(t[0]!=="pr:pg"&&t[0]!=="pr:ap")));
 const tabKey=()=>TAB==="pr"?"pr:"+(PR.view||"op"):TAB;
@@ -6218,6 +6444,7 @@ function go(tab,soft){
     man:()=>{ if(soft) return; renderMAN(); },
     sg:()=>{ if(soft) return; renderSG(); },
     pdia:()=>{ if(soft&&document.activeElement&&document.getElementById('p-pdia').contains(document.activeElement)) return; renderPDIA(); },
+    pexp:()=>{ if(soft&&document.activeElement&&document.getElementById('p-pexp').contains(document.activeElement)) return; renderPEXP(); },
     cs:()=>{ if(soft&&document.activeElement&&document.getElementById('p-cs').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderCS(); },
     fx:()=>{ if(soft&&document.activeElement&&document.getElementById('p-fx').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderFX(); },
     })[tab]();
