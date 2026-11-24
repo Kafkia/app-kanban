@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev26"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev27"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1669,6 +1669,30 @@ body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .
 .vsm-leg .bx{fill:var(--panel);stroke:var(--ink);stroke-width:1.6}
 .vsm-hint{display:none}
 @media (max-width:900px){.vsm-hint{display:inline-flex;font-weight:700;color:var(--ink)}.mnav button{font-size:10px;padding-left:0;padding-right:0}}
+/* ===== Rev27 ===== */
+#epei-m{position:fixed;inset:0;z-index:9600;background:rgba(10,18,36,.6);display:grid;place-items:center;padding:14px}
+#epei-m .nv-box{width:min(760px,100%)}#epei-m p{margin:6px 0;line-height:1.5}
+.epi{display:inline-grid;place-items:center;width:17px;height:17px;margin-left:4px;border-radius:50%;border:0;background:var(--kb);color:#fff;font:700 11px/1 var(--display);cursor:pointer;vertical-align:middle}
+.mpd{border-left:5px solid var(--kg)}
+.mpd-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
+.mpd-g>div{background:var(--panel2);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}.mpd-g b{font:700 20px var(--display);word-break:break-all}.mpd-g small{color:var(--muted);font-size:12px}
+.ab-p{border-top:4px solid #2F6DB5}
+.ab-k table{min-width:620px}.ab-k td,.ab-k th{vertical-align:middle}.ab-k th small{font-weight:400;color:var(--muted)}
+.ab-d b{display:block;font-size:14px;white-space:nowrap}.ab-d small{color:var(--muted);font-size:11.5px;white-space:nowrap}
+.ab-big{font:700 22px var(--display)}
+.ab-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.ab-per{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px}.ab-per .btn{padding:4px 12px;border-radius:999px}
+.ab-w{position:relative}.ab-svg{display:block;max-height:320px;touch-action:pan-y}
+.ab-ln{stroke-dasharray:1;stroke-dashoffset:1;animation:abdraw 1.1s ease-out forwards}
+@keyframes abdraw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.ab-ln{animation:none;stroke-dashoffset:0}}
+.ab-tip{position:absolute;top:8px;min-width:170px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:13px;pointer-events:none;z-index:3}
+.ab-tip div{margin-top:3px}.ab-tip .note{font-size:11.5px}
+.nv-card{border-left:5px solid #C9741B;background:linear-gradient(90deg,rgba(201,116,27,.08),transparent 60%),var(--panel)}
+.nv-rv{margin:6px 0}.nv-rv .tag{margin-right:6px}.nv-rv ul{margin:4px 0 0;padding-left:18px}.nv-rv li{margin:2px 0}
+.selo{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;color:var(--c);box-shadow:inset 0 0 0 1.5px var(--c);white-space:nowrap}
+.selo.s2{background:var(--kg-soft)}.selo.s1{background:var(--ky-soft)}
+.cs-u{display:inline-block;font:12px var(--mono);background:var(--panel2);border-radius:6px;padding:1px 6px;margin:1px 0}
 
 
 [hidden]{display:none!important}
@@ -1727,6 +1751,8 @@ body.eq #p-pa .tw.tall table tr>*:nth-child(n+7):nth-child(-n+9),body.eq #p-us .
 <section class="pane" id="p-pr" hidden></section>
 <section class="pane" id="p-ex" hidden></section>
 <section class="pane" id="p-cm" hidden></section>
+<section class="pane" id="p-cs" hidden></section>
+<section class="pane" id="p-sg" hidden></section>
 <section class="pane" id="p-op" hidden></section>
 <section class="pane" id="p-kc" hidden></section>
 <section class="pane" id="p-cd" hidden>
@@ -2247,7 +2273,10 @@ function excChart(pts){
   const step=Math.max(1,Math.ceil(pts.length/8));
   pts.forEach((p,i)=>{ if(i%step===0||i===pts.length-1) g+=`<text x="${x(i)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="var(--muted)">${fd(p.d)}</text>`; });
   pts.forEach((p,i)=>{ if(i&&p.rev&&p.rev!==pts[i-1].rev&&!p.base) g+=`<line x1="${x(i)}" x2="${x(i)}" y1="${T}" y2="${T+ih}" stroke="var(--muted)" stroke-dasharray="2 3"/><text x="${x(i)-4}" y="${T+10}" text-anchor="end" font-size="10" fill="var(--muted)">base ${esc(p.rev)}</text>`; });
-  g+=`<path d="${pts.map((p,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(v(p)).toFixed(1)}`).join(' ')}" fill="none" stroke="${C}" stroke-width="2.5" stroke-linejoin="round"/>`;
+  { const PP=pts.map((p,i)=>[x(i),y(v(p))]), dd=(typeof abPath==="function")?abPath(PP):PP.map((q,i)=>`${i?'L':'M'}${q[0].toFixed(1)},${q[1].toFixed(1)}`).join(' ');   // Rev27: curva suave com área
+    g+=`<defs><linearGradient id="exg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F6DB5" stop-opacity=".25"/><stop offset="1" stop-color="#2F6DB5" stop-opacity="0"/></linearGradient></defs>`;
+    if(PP.length>1) g+=`<path d="${dd} L${PP[PP.length-1][0].toFixed(1)},${T+ih} L${PP[0][0].toFixed(1)},${T+ih} Z" fill="url(#exg)"/>`;
+    g+=`<path d="${dd}" fill="none" stroke="${C}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`; }
   pts.forEach((p,i)=>{ g+=`<g><circle cx="${x(i)}" cy="${y(v(p))}" r="4" fill="${C}" stroke="var(--panel)" stroke-width="2"/><circle cx="${x(i)}" cy="${y(v(p))}" r="11" fill="transparent"><title>${fd(p.d)}${p.base?' (base)':''} · ${f0(excV(p,"tot"))} pç acima do máximo: ${f0(excV(p,"livre"))} sem pedido + ${f0(excV(p,"ped"))} com pedido · CD ${f0(p.cd.exc)} pç (${f0(p.cd.vend||0)} com pedido) · Usinados ${f0(p.us.exc)} pç (${f0(p.us.vend||0)} com pedido)${p.rev?' · base '+p.rev:''}</title></circle></g>`; });
   const last=pts[pts.length-1]; g+=`<text x="${x(pts.length-1)+9}" y="${y(v(last))+4}" font-size="12" font-weight="700" fill="var(--ink)">${fk(v(last))} pç</text>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:240px;display:block" role="img" aria-label="Evolução do estoque acima do máximo">${g}</svg>`;
@@ -2303,8 +2332,8 @@ function renderOV0(){
    ${saudeCard("Supermercado do CD · produto acabado","Produtos prontos para expedir.",fP.T,cP["Vermelho"]||0,"SKUs")}
    ${saudeCard("Supermercado de Usinados · AUS","Peças usinadas que abastecem a montagem.",fU2.T,cU["Vermelho"]||0,"SKUs","us")}
   </div>
-  ${excResumoHTML()}
   ${histPanel()}
+  ${excResumoHTML()}
   ${pedPanelOV()}
   ${pedHistPanel()}
   ${finPanel(PA,US)}
@@ -2383,7 +2412,7 @@ function renderList(kind){
    <button class="btn" id="${kind}-csv">Salvar CSV</button>
   </div>
   <div class="tw tall"><table><thead><tr><th>Código</th><th>Descrição</th><th>${us?'Grupo':'Família · tipo'}</th><th>ABC·XYZ</th><th>Classe</th>
-   <th class="num">D pç/dia</th><th class="num">Reserva</th><th class="num">LT</th><th class="num">EPEI</th><th class="num">Verde</th><th class="num">Amarela</th><th class="num">Vermelha</th><th class="num">Máx</th><th class="num">Cob. d</th>
+   <th class="num">D pç/dia</th><th class="num">Reserva</th><th class="num">LT</th><th class="num">EPEI${epeiBtn()}</th><th class="num">Verde</th><th class="num">Amarela</th><th class="num">Vermelha</th><th class="num">Máx</th><th class="num">Cob. d</th>
    <th class="num">Lote</th><th class="num">Pç/cartão</th><th class="num">Cartões V/A/R</th><th>Cartões</th>
    ${us?'<th>Por que está no supermercado</th><th class="num">Canais</th>':'<th>Papel no CD</th><th class="num">Cap./pos.</th><th class="num">Pos. V/A/R</th><th>Posições</th><th class="num">Ocup. hoje</th><th>End. proposto</th>'}
    <th class="num">${us?'':'Pedido especial acima de'}</th><th class="num">Estoque</th><th>Status</th></tr></thead><tbody>`;
@@ -4755,7 +4784,7 @@ async function cmShare(L,T){
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev26", MAN_DATA="23/11/2026";
+const MAN_REV="Rev27", MAN_DATA="24/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -4765,9 +4794,9 @@ const MAN=[
   faq:[["Esqueci o meu PIN.","Peça um novo a um administrador. Ele gera outro PIN na nuvem ☁, em Pessoas com acesso."],["Fiquei sem internet. Perdi o que fiz?","Não. O app guarda no aparelho e envia quando a conexão voltar. A nuvem ☁ mostra quantos envios estão pendentes."],["Por que não vejo na hora o que o colega fez?","A tela busca as novidades dos outros aparelhos a cada 5 minutos. Para ver na hora, toque na nuvem ☁ e em Sincronizar agora (na tela Operação, use o botão Atualizar)."],["Como troco o meu PIN?","Toque na nuvem ☁ e em Trocar meu PIN."]]},
  {id:"telas",t:"Conheça as Telas do App",quem:"todos",
   lead:"Tudo fica no menu, organizado por **módulos**, na ordem do trabalho. No computador ele fica à esquerda; no celular, embaixo (toque em **Mais** para ver todos).",
-  telas:[{t:"O menu",img:"m21-menu.jpg",passos:["Toque no **módulo**: Painel, Fluxo de valor, Planejar, Produzir, Estocar, Expedir ou Ajuda e ajustes.","As **abas** no alto mostram as telas do módulo. Toque na aba para trocar de tela.","**Ajuda e ajustes** tem este Manual. O botão **?** no canto abre o assistente em qualquer tela."]}],
-  tabela:[["Painel","Como estão os supermercados e os pedidos hoje, em verde, amarelo e vermelho"],["Fluxo de valor","O mapa da fábrica (VSM) em tempo real e os indicadores"],["Planejar","Programador (fila e dias), Ordem de produção e Quadros Kanban"],["Produzir","Operação (o que fazer em cada máquina) e Apontamento (produção boa e perdas)"],["Estocar","Kanban PA, Kanban Usinados, CD em 3D, Cartões e Importar dados"],["Expedir","Expedição (pedidos completos) e Comercial (itens sobrando)"],["Ajuda e ajustes","Manual, novidades e assistente"]],
-  faq:[["Onde vejo o que tenho que produzir?","No módulo Produzir, aba Operação. Escolha a sua máquina e o app mostra o lote de agora e os próximos."],["Onde foi parar a tela que eu usava?","As telas são as mesmas; só mudaram de lugar. Programador, Ordem de produção e Quadros Kanban estão em Planejar. Operação e Apontamento estão em Produzir. Kanban PA, Kanban Usinados, CD em 3D, Cartões e Importar dados estão em Estocar. Expedição e Comercial estão em Expedir."],["Não vejo as telas Parâmetros e Premissas.","Elas são só do administrador. Para usar o app no dia a dia você não precisa delas."],["Não vejo as abas Programador e Apontamento.","Elas aparecem só para quem tem a função Programador. O administrador liga essa função na nuvem ☁, em Pessoas com acesso."]]},
+  telas:[{t:"O menu",img:"m21-menu.jpg",passos:["Toque no **módulo**: Painel, Fluxo de valor, Planejar, Produzir, Estocar, Expedir, Comercial ou Ajuda e ajustes.","As **abas** no alto mostram as telas do módulo. Toque na aba para trocar de tela.","**Ajuda e ajustes** tem este Manual e as **Siglas**. O botão **?** no canto abre o assistente em qualquer tela."]}],
+  tabela:[["Painel","Como estão os supermercados e os pedidos hoje, em verde, amarelo e vermelho"],["Fluxo de valor","O mapa da fábrica (VSM) em tempo real e os indicadores"],["Planejar","Programador (fila e dias), Ordem de produção e Quadros Kanban"],["Produzir","Operação (o que fazer em cada máquina) e Apontamento (produção boa e perdas)"],["Estocar","Kanban PA, Kanban Usinados, CD em 3D, Cartões e Importar dados"],["Expedir","Expedição (pedidos completos)"],["Comercial","Pode vender (peças livres no CD) e Sugestão de venda (produtos que usam o excesso do AUS)"],["Ajuda e ajustes","Manual, Siglas, novidades e assistente"]],
+  faq:[["Onde vejo o que tenho que produzir?","No módulo Produzir, aba Operação. Escolha a sua máquina e o app mostra o lote de agora e os próximos."],["Onde foi parar a tela que eu usava?","As telas são as mesmas; só mudaram de lugar. Programador, Ordem de produção e Quadros Kanban estão em Planejar. Operação e Apontamento estão em Produzir. Kanban PA, Kanban Usinados, CD em 3D, Cartões e Importar dados estão em Estocar. Expedição está em Expedir. Pode vender e Sugestão de venda estão no módulo Comercial."],["Não vejo as telas Parâmetros e Premissas.","Elas são só do coordenador do método. Para usar o app no dia a dia você não precisa delas. Em Ajuda e ajustes, a aba Siglas explica as siglas usadas no app."],["Não vejo as abas Programador e Apontamento.","Elas aparecem só para quem tem a função Programador. O administrador liga essa função na nuvem ☁, em Pessoas com acesso."]]},
  {id:"kanban",t:"O Kanban em 1 Minuto",quem:"todos",
   lead:"O **supermercado** é o estoque de peças prontas. Quem usa, tira. O que saiu é o que a fábrica repõe. Nada de produzir sem necessidade.",
   telas:[{t:"As três cores",img:"m19-cores.jpg",sem:1,passos:["**Verde:** está tranquilo. Pode esperar.","**Amarelo:** atenção. Está na hora de repor.","**Vermelho:** urgente. Pode faltar: produza primeiro."]},
@@ -4818,9 +4847,9 @@ const MAN=[
   faq:[["Por que o estoque de um dia aparece com traço?","O estoque do dia é gravado quando o saldo é importado ou apontado. Sem nenhum desses no dia, não há posição."],["Como mudo a linha de base?","Só o Programador: no Fluxo de valor, em Indicadores, troque a data da Linha de base."]]},
  {id:"ov",t:"Painel: Como Estão os Supermercados",quem:"todos",tab:"ov",
   lead:"O **Painel** é a primeira tela. Mostra, de uma olhada, se os supermercados e os pedidos estão bem.",
-  telas:[{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Pedidos completos dia a dia",img:"m25-ped.jpg",passos:["No Painel, o gráfico **Pedidos completos × incompletos · dia a dia** mostra cada dia desde o início: barra **verde** = pedidos completos, **vermelha** = incompletos.","A linha **verde** é o **% de pedidos completos**; a **azul tracejada** é o **% abastecido do CD** no mesmo dia.","Se as duas sobem juntas, encher os supermercados está aumentando os pedidos completos.","Dia em **cinza** = carteira importada incompleta: não compare esse dia."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Use os botões **Total**, **Sem pedido** e **Com pedido** para ver cada parte. Ao lado, o quadro **Hoje** mostra CD e Usinados divididos em sem pedido e com pedido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
+  telas:[{t:"Evolução do abastecimento",img:"m27-ab.jpg",passos:["O gráfico mostra o **% abastecido** do **CD** (azul) e dos **Usinados** (laranja) a cada dia em que o estoque foi atualizado. A linha verde tracejada marca **80%** (bem).","Acima do gráfico, a tabela compara **hoje** com a **última atualização**, a **semana**, o **mês** e o **início**: ▲ verde = subiu, ▼ vermelho = desceu, em **p.p.** (pontos percentuais) e em peças abastecidas.","Escolha **7 dias**, **30 dias** ou **Desde o início**. Passe o mouse (ou toque) no gráfico para ver o dia.","Quando o app muda, o alto do Painel mostra **só o que é novo desde a última vez que você abriu**. O quadro aparece uma vez; **Me mostre** aponta cada novidade na tela."]},{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Pedidos completos dia a dia",img:"m25-ped.jpg",passos:["No Painel, o gráfico **Pedidos completos × incompletos · dia a dia** mostra cada dia desde o início: barra **verde** = pedidos completos, **vermelha** = incompletos.","A linha **verde** é o **% de pedidos completos**; a **azul tracejada** é o **% abastecido do CD** no mesmo dia.","Se as duas sobem juntas, encher os supermercados está aumentando os pedidos completos.","Dia em **cinza** = carteira importada incompleta: não compare esse dia."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Use os botões **Total**, **Sem pedido** e **Com pedido** para ver cada parte. Ao lado, o quadro **Hoje** mostra CD e Usinados divididos em sem pedido e com pedido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
   dica:"A data do estoque aparece no alto do menu. Estoque velho = painel velho: importe o saldo do dia.",
-  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
+  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que é p.p.?","Ponto percentual: a diferença entre dois percentuais. De 36% para 41% são 5 p.p. a mais."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
  {id:"qd",t:"Quadros Kanban e Modo TV",quem:"todos",tab:"qd",
   lead:"Cada **processo** tem o seu quadro, igual ao quadro físico da fábrica.",
   telas:[{t:"Ver o quadro",img:"m19-qd.jpg",passos:["Escolha o **processo** no alto.","O quadro mostra os itens daquele processo; **Situação agora** conta quantos estão em cada cor.","Toque em **Abrir este quadro no modo TV** para deixar numa televisão da área."]}],
@@ -4831,11 +4860,11 @@ const MAN=[
          {t:"Expedido (fim do dia)",img:"m20-exp.jpg",passos:["Pedido separado e carregado? Toque em **🚚 Expedido** no cartão do pedido.","Ele sai da fila e **não reserva mais estoque**.","Em **Expedidos**, no fim da tela, aparece o que saiu; **Desfazer** volta para separado."]}],
   dica:"O estoque é reservado primeiro para os pedidos com entrega mais cedo.",
   faq:[["A Expedição está vazia.","Falta importar a carteira de pedidos e o estoque de PA. Vá em Importar dados."],["O que é pedido completo?","É o pedido em que todas as linhas cabem no estoque do CD, reservando primeiro os de entrega mais cedo."],["Quando marco Expedido?","Quando o pedido separado sai da fábrica. O apontador marca no fim do dia, junto com o inventário."],["Marquei Expedido por engano.","Em Expedidos, no fim da tela de Expedição, toque em Desfazer: o pedido volta para separado."]]},
- {id:"cm",t:"Comercial: O Que Dá para Oferecer",quem:"todos",tab:"cm",
-  lead:"A tela **Comercial** mostra **só o que pode ser vendido**: peças livres no CD, sem pedido e sem faltar para o Kanban.",
-  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},
+ {id:"cm",t:"Comercial: Pode Vender e Sugestão de Venda",quem:"todos",tab:"cm",
+  lead:"O módulo **Comercial** tem duas telas. **Pode vender** mostra só as peças livres no CD, sem pedido e sem faltar para o Kanban. **Sugestão de venda** mostra produtos que, vendidos, consomem usinados parados acima do máximo no AUS.",
+  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},{t:"Sugestão de venda",img:"m27-cs.jpg",passos:["Abra **Comercial › Sugestão de venda**. No alto: quantas peças de usinado estão paradas sem pedido e quanto as sugestões alcançam.","Cada produto mostra selos de **Giro**, **Frequência** e **Valor**: **Alto**, **Médio** ou **Baixo**, comparando os produtos da lista entre si.","**Até (un.)** é quantas unidades consomem o excesso do usinado principal do produto. **Excesso que consome** é o valor a custo desses usinados.","O mesmo usinado serve a vários produtos: as quantidades não se somam. Produto com peças livres no CD sai primeiro do CD."]}
 ],
-  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista só as peças livres no CD: sem pedido e sem faltar para o Kanban."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."],["Todo o acima do máximo do Painel pode ser vendido?","Não. Uma parte já tem pedido e os Usinados são componentes, que não vão para venda. Só o CD sem pedido pode ser vendido, e é só isso que a tela Comercial mostra. A conta completa está no Painel, no quadro De onde vem o acima do máximo."]]},
+  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista só as peças livres no CD: sem pedido e sem faltar para o Kanban."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."],["Todo o acima do máximo do Painel pode ser vendido?","Não. Uma parte já tem pedido e os Usinados são componentes, que não vão para venda. Só o CD sem pedido pode ser vendido, e é só isso que a tela Pode vender mostra. A conta completa está no Painel, no quadro De onde vem o acima do máximo."],["Para que serve a Sugestão de venda?","Para vender o que está parado nos Usinados. Usinado não é vendido sozinho: ele sai quando a montagem faz o produto. A tela lista os produtos que usam esse excesso, dos mais fáceis de vender para os menos."],["Por que não aparece o número de vendas?","A tela compara os produtos com selos Alto, Médio e Baixo. Para oferecer ao cliente, o selo basta."]]},
  {id:"opd",t:"Ordem de Produção: o Plano do Dia",quem:"todos",tab:"op",
   lead:"Mostra o que produzir para **encher os supermercados**, dia a dia, e imprime os cartões de ordem.",
   telas:[{t:"Montar o plano",img:"m19-opd.jpg",passos:["Escolha o **início**, o número de **postos** e se o **sábado** produz.","Confira as ordens do dia: código, quantidade, contêineres e horas.","Toque em **Salvar plano (CSV)** ou **Imprimir** os cartões de ordem."]}],
@@ -4846,8 +4875,8 @@ const MAN=[
   faq:[["Como imprimo os cartões?","Em Cartões, escolha o supermercado, busque e marque os itens e toque em Imprimir."],["Quantos cartões cada item tem?","A tela Cartões mostra, por item, as peças por cartão e a quantidade de cartões verdes, amarelos e vermelhos."]]},
  {id:"im",t:"Importar Dados do ERP",quem:"todos",tab:"im",
   lead:"Traz para o app o **estoque** e os **pedidos** que saem do ERP, sem digitar item por item.",
-  telas:[{t:"Importar",img:"m19-im.jpg",passos:["Escolha **o que está importando** (estoque do CD, estoque de usinados, carteira de pedidos…).","Toque em **Escolher arquivo** e confira as **colunas** do código e da quantidade.","Confira o **conteúdo** e toque em **Aplicar**."]}],
-  dica:"Importe o estoque todo dia, de preferência no começo do turno.",
+  telas:[{t:"Atualizar tudo pelo MPD132",img:"m27-mpd.jpg",passos:["No alto da tela, em **Atualização completa · MPD132**, toque em **Escolher o MPD132…** e escolha o arquivo do dia (.xlsx do ERP).","O app lê o estoque do **CD** (depósito CDA), dos **Usinados** (AUS) e a **carteira de pedidos**, e mostra o resumo. Confira a data do arquivo.","Toque em **Aplicar tudo**. Itens do Kanban que não vierem no arquivo ficam com zero."]},{t:"Importar",img:"m19-im.jpg",passos:["Escolha **o que está importando** (estoque do CD, estoque de usinados, carteira de pedidos…).","Toque em **Escolher arquivo** e confira as **colunas** do código e da quantidade.","Confira o **conteúdo** e toque em **Aplicar**."]}],
+  dica:"O MPD132 do dia atualiza tudo de uma vez. Confira se a data do arquivo é de hoje antes de aplicar.",
   faq:[["Qual arquivo eu importo?","O relatório exportado do ERP, em planilha ou CSV. Na tela Importar dados, escolha primeiro o que está importando; o app mostra as colunas que precisa."],["Importei errado.","Importe de novo o arquivo certo. Vale a última importação."]]},
  {id:"sm",t:"Supermercados: CD em 3D e Listas",quem:"todos",tab:"pa",
   lead:"As telas do módulo **Estocar** mostram onde cada item fica e as faixas de cada um.",
@@ -4950,6 +4979,12 @@ function tourShow(){
 
 /* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
 const NEWS=[
+ {rev:27,quando:"24/11/2026",t:"MPD132, abastecimento com variação e Comercial",itens:[
+   {id:"27-mpd",man:"im",tab:"im",sel:'#mpd-card',t:"Novo: atualização pelo MPD132",x:"Em Estocar › Importar dados, o MPD132 do dia atualiza de uma vez o estoque do CD, dos Usinados e a carteira de pedidos."},
+   {id:"27-ab",man:"ov",tab:"ov",sel:'#ab-panel .ab-k',t:"Novo: abastecimento com variação",x:"No Painel, o gráfico do abastecimento mostra quanto subiu ou desceu desde a última atualização, na semana, no mês e desde o início. Passe o mouse para ver cada dia."},
+   {id:"27-co",man:"cm",sel:'aside.side nav button[data-mod="co"], #mnav button[data-m="mais"]',t:"Novo: módulo Comercial",x:"O Comercial ganhou um módulo próprio, com Pode vender e Sugestão de venda."},
+   {id:"27-cs",man:"cm",tab:"cs",sel:'#cs-stats',t:"Novo: sugestão de venda",x:"Produtos que usam usinados parados no AUS, com selos de giro, frequência e valor. Vender esses produtos consome o excesso."},
+   {id:"27-sg",sel:'aside.side nav button[data-mod="cf"], #mnav button[data-m="mais"]',t:"Novo: Siglas",x:"Em Ajuda e ajustes, a aba Siglas explica as siglas usadas no app."}]},
  {rev:26,quando:"23/11/2026",t:"Componentes de kits fora do Comercial",itens:[
    {id:"26-kit",man:"cm",tab:"cm",sel:'#cm-stats',t:"Novo: componentes de kits",x:"Peça que o CD usa para montar um kit com pedido (ex.: o pino do kit de engate) não aparece mais como disponível para venda."}]},
  {rev:25,quando:"23/11/2026",t:"Pedidos completos dia a dia",itens:[
@@ -5055,7 +5090,7 @@ function helpInit(){
   if(document.getElementById('asst-fab')) return;
   const f=document.createElement('button'); f.id="asst-fab"; f.type="button"; f.textContent="?"; f.title="Assistente: tire a sua dúvida"; f.setAttribute('aria-label',"Abrir o assistente"); f.onclick=()=>AST.open?asstClose():asstOpen(); document.body.appendChild(f);
   setInterval(newsFlags,900); addEventListener('scroll',newsFlags,{passive:true}); addEventListener('resize',newsFlags);
-  setTimeout(()=>newsModal(false),1800);
+  /* Rev27: sem aviso automático — as novidades aparecem no Painel (newsCardHTML) */
 }
 setTimeout(helpInit,1500);
 
@@ -5466,6 +5501,326 @@ function paNeed(){
 }
 calcPA=function(){ const R=_calcPA16(), m=paNeed(); R.forEach(r=>{ const i=Math.round(m[r.cod]||0); r.cartDir=r.cart||0; r.cartInd=i; r.cart=(r.cart||0)+i; }); return R; };
 
+/* ===================== Rev27 =====================
+   1) Importação completa pelo MPD132 (.xlsx do ERP ou pacote .json gerado no notebook)
+   2) Painel: gráfico do abastecimento interativo + variação (última atualização, semana, mês, desde o início)
+   3) Novidades na tela inicial só desde a última revisão aberta pela pessoa
+   4) Parâmetros e Premissas só para o João; os outros veem as Siglas. EPEI explicado só para o João
+   5) Módulo Comercial: Pode vender + Sugestão de venda (produtos que consomem o excesso do AUS)
+*/
+const DONO="joao bosco";
+const nrmNome=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").trim().toLowerCase();
+function isDono(){ if(window.KB&&KB.state) return KB.state.papel==="admin"&&nrmNome(KB.state.nome)===DONO; return true; }
+
+/* ---------- Siglas (todos) ---------- */
+function renderSG(){
+  document.getElementById('p-sg').innerHTML=`<div class="head"><h2>Siglas usadas no app</h2><span class="note">${f0(SIG.length)} siglas e termos</span></div>
+   <div class="panel"><div class="gl">${SIG.map(([a,b])=>`<b>${esc(a)}</b><span>${esc(b)}</span>`).join('')}</div></div>`;
+}
+
+/* ---------- EPEI: descrição e cálculo (só o João) ---------- */
+function epeiBtn(){ return isDono()?`<button type="button" class="epi" data-epei="1" title="O que é o EPEI e como é calculado" aria-label="O que é o EPEI">i</button>`:''; }
+function epeiHTML(){
+  const cu=capUsinagem(), G=(cu.g||[]).filter(x=>x.tod!=null);
+  const tab=G.length?`<div class="tw"><table><thead><tr><th>Grupo de máquinas</th><th class="num">Disponível (h/dia)</th><th class="num">Produção (h/dia)</th><th class="num">Folga (h/dia)</th><th class="num">Setups possíveis/dia</th><th class="num">SKUs no ciclo</th><th class="num">EPEI (dias)</th></tr></thead><tbody>
+    ${G.map(x=>`<tr${x.rest&&x.ep===cu.ep?' style="font-weight:700;background:var(--panel2)"':''}><td>${esc(x.g)}${x.rest?'':' <span class="note">(fora da restrição)</span>'}</td><td class="num">${f1(x.tod)}</td><td class="num">${f1(x.tnp)}</td><td class="num">${f1(x.folga)}</td><td class="num">${f0(x.setups)}</td><td class="num">${f0(x.sk)}</td><td class="num">${x.ep==null?'—':f1(x.ep)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="note">Os números do cálculo não estão carregados neste acesso.</p>';
+  return `<h3 style="margin:0 0 6px">EPEI = ${f1(cu.ep)} dias</h3>
+   <p><b>EPEI</b> (<i>Every Part Every Interval</i>, “toda peça a cada intervalo”) é de quantos em quantos dias o recurso gargalo consegue produzir <b>todos os códigos do ciclo</b>, trocando de item (setup) só no tempo que sobra depois de produzir a demanda do dia. Quanto menor, menores os lotes e o estoque que o supermercado precisa guardar.</p>
+   <p><b>Cálculo, por grupo de máquinas</b>:<br>
+   tempo disponível = máquinas × horas por dia (${f1(P.tod)} h)<br>
+   tempo de produção = demanda por dia (${f0(cu.Dd)} pç/dia de terminais) × tempo de ciclo × participação do grupo<br>
+   folga = disponível − produção → setups possíveis = folga ÷ tempo de setup (${f0(P.setu)} min)<br>
+   EPEI do grupo = SKUs no ciclo (${f0(cu.nsku)} no total) ÷ setups possíveis por dia<br>
+   <b>EPEI do app = o maior entre os grupos que entram na restrição</b> (no mínimo 1 dia)${cu.garg?` · gargalo: <b>${esc(cu.garg.g)}</b>`:''}.</p>
+   ${tab}
+   <p class="note">Onde ele entra: lote de reposição dos usinados = demanda × EPEI (faixa verde). Só você vê esta explicação.</p>`;
+}
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-epei]'); if(!b||!isDono()) return; e.preventDefault(); e.stopPropagation();
+  const old=document.getElementById('epei-m'); if(old) old.remove();
+  const d=document.createElement('div'); d.id="epei-m"; d.innerHTML=`<div class="nv-box" role="dialog" aria-modal="true" aria-label="EPEI"><div class="nv-top">EPEI · DESCRIÇÃO E CÁLCULO</div><div class="nv-in">${epeiHTML()}</div><div class="nv-b"><button class="btn pri" id="epei-x">Fechar</button></div></div>`;
+  document.body.appendChild(d); const f=()=>d.remove(); document.getElementById('epei-x').onclick=f; d.onclick=ev=>{ if(ev.target===d) f(); }; },true);
+
+/* ---------- 1) MPD132 ---------- */
+const MPD_DEP={cd:["CDA"],us:["AUS"]};   // depósitos: CD = CDA (o mesmo que a equipe importava); Usinados = AUS
+const MPD={pk:null,busy:false,msg:"",erro:""};
+async function zipLer(buf){
+  const dv=new DataView(buf), n=buf.byteLength; let e=-1;
+  for(let i=n-22;i>=Math.max(0,n-65558);i--){ if(dv.getUint32(i,true)===0x06054b50){ e=i; break; } }
+  if(e<0) throw new Error("o arquivo não é um .xlsx válido");
+  const tot=dv.getUint16(e+10,true); let p=dv.getUint32(e+16,true); const ent={}, td=new TextDecoder();
+  for(let k=0;k<tot;k++){ if(dv.getUint32(p,true)!==0x02014b50) break;
+    const met=dv.getUint16(p+10,true), cs=dv.getUint32(p+20,true), nl=dv.getUint16(p+28,true), xl=dv.getUint16(p+30,true), cl=dv.getUint16(p+32,true), lo=dv.getUint32(p+42,true);
+    const nome=td.decode(new Uint8Array(buf,p+46,nl)); ent[nome]={met,cs,lo}; p+=46+nl+xl+cl; }
+  const ler=async nome=>{ const z=ent[nome]; if(!z) return null; const ln=dv.getUint16(z.lo+26,true), lx=dv.getUint16(z.lo+28,true), ini=z.lo+30+ln+lx, raw=new Uint8Array(buf,ini,z.cs);
+    if(z.met===0) return td.decode(raw);
+    if(typeof DecompressionStream!=="function") throw new Error("este navegador não abre .xlsx (use o Chrome atualizado)");
+    return await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text(); };
+  return {ler,nomes:Object.keys(ent)};
+}
+const xmlDec=s=>s.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&apos;/g,"'").replace(/&#(\d+);/g,(m,c)=>String.fromCharCode(+c)).replace(/&amp;/g,"&");
+const colIdx=c=>{ let n=0; for(const ch of c) n=n*26+(ch.charCodeAt(0)-64); return n-1; };
+async function xlsxAbas(buf,abas){
+  const Z=await zipLer(buf);
+  const wb=await Z.ler("xl/workbook.xml"), rel=await Z.ler("xl/_rels/workbook.xml.rels"); if(!wb||!rel) throw new Error("planilha sem a estrutura do Excel");
+  const rid={}; for(const m of rel.matchAll(/<Relationship\b[^>]*>/g)){ const id=(m[0].match(/Id="([^"]+)"/)||[])[1], t=(m[0].match(/Target="([^"]+)"/)||[])[1]; if(id&&t) rid[id]=t.replace(/^\/?(xl\/)?/,"xl/"); }
+  const alvo={}; for(const m of wb.matchAll(/<sheet\b[^>]*>/g)){ const nm=xmlDec((m[0].match(/name="([^"]+)"/)||[])[1]||""), id=(m[0].match(/r:id="([^"]+)"/)||[])[1]; if(abas.includes(nm)) alvo[nm]=rid[id]; }
+  const faltam=abas.filter(a=>!alvo[a]); if(faltam.length) throw new Error("faltam as abas: "+faltam.join(", "));
+  const ssx=await Z.ler("xl/sharedStrings.xml")||"", SS=[];
+  for(const m of ssx.matchAll(/<si>([\s\S]*?)<\/si>/g)){ let t=""; for(const x of m[1].matchAll(/<t(?:\s[^>]*)?>([\s\S]*?)<\/t>/g)) t+=x[1]; SS.push(xmlDec(t)); }
+  const out={};
+  for(const a of abas){ const x=await Z.ler(alvo[a]); const rows=[];
+    for(const r of x.matchAll(/<row\b[^>]*>([\s\S]*?)<\/row>/g)){ const lin=[];
+      for(const c of r[1].matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)){ const at=c[1], ref=(at.match(/r="([A-Z]+)\d+"/)||[])[1]; if(!ref) continue; const t=(at.match(/t="([^"]+)"/)||[])[1]||"", body=c[2]||"";
+        let v=""; if(t==="inlineStr"){ for(const y of body.matchAll(/<t(?:\s[^>]*)?>([\s\S]*?)<\/t>/g)) v+=xmlDec(y[1]); }
+        else { const vv=(body.match(/<v>([\s\S]*?)<\/v>/)||[])[1]; if(vv!=null) v=t==="s"?(SS[+vv]??""):xmlDec(vv); }
+        lin[colIdx(ref)]=v; }
+      rows.push(lin); }
+    out[a]=rows; }
+  return out;
+}
+function mpdCol(h,...nomes){ const H=h.map(x=>nrmNome(x)); for(const n of nomes){ const i=H.findIndex(x=>x.startsWith(nrmNome(n))); if(i>=0) return i; } return -1; }
+function mpdDataNome(nome){ const m=String(nome||"").match(/(\d{1,2})(jan|fev|feb|mar|abr|apr|mai|may|jun|jul|ago|aug|set|sep|out|oct|nov|dez|dec)[a-z]*[_ -]?(\d{2,4})/i); if(!m) return null;
+  const M={jan:1,fev:2,feb:2,mar:3,abr:4,apr:4,mai:5,may:5,jun:6,jul:7,ago:8,aug:8,set:9,sep:9,out:10,oct:10,nov:11,dez:12,dec:12}[m[2].toLowerCase()]; let y=+m[3]; if(y<100) y+=2000;
+  return y+"-"+String(M).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0"); }
+function mpdPacote(T,nome,mod){   // abas lidas → pacote {cd, aus, cart}
+  const E=T["Estoques"], I=T["Pedido Itens"]; if(!E||!E.length||!I||!I.length) throw new Error("abas Estoques e Pedido Itens vazias");
+  const he=E[0].map(x=>x||""), ci=mpdCol(he,"it-codigo","item"), cd=mpdCol(he,"deposito-estoq","deposito"), cq=mpdCol(he,"saldo-estoq","saldo");
+  if(ci<0||cd<0||cq<0) throw new Error("aba Estoques sem as colunas it-codigo / deposito-estoq / saldo-estoq");
+  const cdm={}, aus={};
+  for(let i=1;i<E.length;i++){ const r=E[i]; const c=String(r[ci]??"").trim(), d=String(r[cd]??"").trim().toUpperCase(), q=parseFloat(String(r[cq]??"").replace(",",".")); if(!c||isNaN(q)||!q) continue;
+    if(MPD_DEP.cd.includes(d)) cdm[c]=(cdm[c]||0)+q; else if(MPD_DEP.us.includes(d)) aus[c]=(aus[c]||0)+q; }
+  const hi=I[0].map(x=>x||""), kp=mpdCol(hi,"Nr. Pedido"), kc=mpdCol(hi,"Nome Cliente"), ki=mpdCol(hi,"Codigo do Item"), kq=mpdCol(hi,"Quantidade em Aberto","Quantidade em Aber"), kd=mpdCol(hi,"Data Entrega Item","Data Entrega");
+  if(kp<0||ki<0||kq<0) throw new Error("aba Pedido Itens sem as colunas Nr. Pedido / Codigo do Item / Quantidade em Aberto");
+  const cart=[];
+  for(let i=1;i<I.length;i++){ const r=I[i]; const q=parseFloat(String(r[kq]??"").replace(",",".")), c=String(r[ki]??"").trim(), p=String(r[kp]??"").trim(); if(!c||!p||isNaN(q)||q<=0) continue;
+    cart.push([p,String(kc>=0?r[kc]??"":"").trim(),c,q,kd>=0?dataISO(r[kd]):""]); }
+  return {fonte:"MPD132",v:1,arquivo:nome||"",data:mpdDataNome(nome)||(mod?new Date(mod).toISOString().slice(0,10):""),mod:mod?new Date(mod).toISOString():"",gerado:new Date().toISOString(),dep:MPD_DEP,cd:cdm,aus,cart};
+}
+function mpdValida(pk){ if(!pk||pk.fonte!=="MPD132"||!pk.cd||!pk.aus||!Array.isArray(pk.cart)) throw new Error("não é um pacote do MPD132"); return pk; }
+async function mpdArquivo(f){
+  MPD.busy=true; MPD.erro=""; MPD.pk=null; MPD.msg="Lendo "+f.name+"…"; mpdCard();
+  try{
+    if(/\.json$/i.test(f.name)) MPD.pk=mpdValida(JSON.parse(await f.text()));
+    else { const T=await xlsxAbas(await f.arrayBuffer(),["Estoques","Pedido Itens"]); MPD.pk=mpdPacote(T,f.name,f.lastModified); }
+    MPD.msg="";
+  }catch(e){ MPD.erro=String(e&&e.message||e); MPD.msg=""; }
+  MPD.busy=false; mpdCard();
+}
+function mpdResumo(pk){
+  const soma=o=>Object.values(o).reduce((s,v)=>s+v,0);
+  const paK=new Set(DATA.pa.filter(x=>x[6]!=="MTO").map(x=>x[0])), usK=new Set(DATA.us.filter(x=>x[14]&&x[5]!=="MTO").map(x=>x[0]));
+  const nK=(o,S,t)=>Object.keys(o).filter(c=>{ const k=classCod(c,t); return (k.st==="ok"||k.st==="zeros")&&S.has(k.cod); }).length;
+  const peds=new Set(pk.cart.map(x=>x[0]));
+  return {cdN:Object.keys(pk.cd).length,cdP:soma(pk.cd),cdK:nK(pk.cd,paK,"estoque_pa"),usN:Object.keys(pk.aus).length,usP:soma(pk.aus),usK:nK(pk.aus,usK,"estoque_us"),lin:pk.cart.length,ped:peds.size,itens:new Set(pk.cart.map(x=>x[2])).size,cartP:pk.cart.reduce((s,x)=>s+x[3],0)};
+}
+const tsvCel=v=>String(v??"").replace(/[\t\r\n"]/g," ");
+async function mpdAplicar(){
+  const pk=MPD.pk; if(!pk||MPD.busy) return; MPD.busy=true; MPD.msg="Aplicando: estoque do CD…"; mpdCard();
+  const bk={tipo:IMP.tipo,txt:IMP.txt,sep:IMP.sep,cmap:Object.assign({},IMP.cmap),hdr:IMP.hdr,completo:IMP.completo};
+  const passo=async(tipo,txt,cmap)=>{ Object.assign(IMP,{tipo,txt,sep:"\\t",cmap,hdr:true,completo:true}); renderIM(); await aplicarImport(); };
+  try{
+    await passo("estoque_pa","codigo\tsaldo\n"+Object.entries(pk.cd).map(([c,q])=>tsvCel(c)+"\t"+q).join("\n"),{cod:0,qtd:1,ped:-1,cli:-1,dt:-1});
+    MPD.msg="Aplicando: estoque dos Usinados…"; mpdCard();
+    await passo("estoque_us","codigo\tsaldo\n"+Object.entries(pk.aus).map(([c,q])=>tsvCel(c)+"\t"+q).join("\n"),{cod:0,qtd:1,ped:-1,cli:-1,dt:-1});
+    MPD.msg="Aplicando: carteira de pedidos…"; mpdCard();
+    await passo("carteira","pedido\tcliente\tcodigo\tsaldo\tentrega\n"+pk.cart.map(x=>[x[0],x[1],x[2],x[3],x[4]].map(tsvCel).join("\t")).join("\n"),{cod:2,qtd:3,ped:0,cli:1,dt:4});
+    const R=mpdResumo(pk), meta={t:new Date().toISOString(),u:UID||"",arquivo:pk.arquivo,data:pk.data,mod:pk.mod||"",auto:!!pk.auto,cd:Math.round(R.cdP),us:Math.round(R.usP),lin:R.lin,ped:R.ped};
+    MPDULT=meta; await writeDoc("kanban/mpd",meta);
+    MPD.msg=`Pronto: CD, Usinados e carteira atualizados pelo ${pk.arquivo||"MPD132"}.`; MPD.pk=null; toast("MPD132 aplicado");
+  }catch(e){ MPD.erro="Parou no meio: "+String(e&&e.message||e); }
+  Object.assign(IMP,bk); MPD.busy=false; renderIM();
+}
+let MPDULT=null;
+function mpdUltLer(){ if(mpdUltLer.ok) return; if(!DB){ if((mpdUltLer.n=(mpdUltLer.n||0)+1)<40) setTimeout(mpdUltLer,1500); return; }
+  mpdUltLer.ok=true; try{ DB.doc("kanban/mpd").onSnapshot(s=>{ MPDULT=s.exists?s.data():null; if(TAB==="im"&&!MPD.busy) mpdCard(); },()=>{}); }catch(e){} }
+function mpdCardHTML(){
+  const pk=MPD.pk, R=pk?mpdResumo(pk):null, u=MPDULT, hoje=new Date().toISOString().slice(0,10);
+  return `<div class="panel mpd" id="mpd-card"><div class="head"><h3>Atualização completa · MPD132</h3><span class="tag">estoque do CD + Usinados + carteira de pedidos</span></div>
+   <p class="note">Escolha o <b>MPD132</b> do dia (o .xlsx do ERP) ou o pacote <b>.json</b> gerado no notebook. O app lê as abas <b>Estoques</b> (depósito <b>${MPD_DEP.cd.join(", ")}</b> = CD, <b>${MPD_DEP.us.join(", ")}</b> = Usinados) e <b>Pedido Itens</b> (saldo em aberto por pedido) e atualiza tudo de uma vez. Itens do Kanban que não vierem no arquivo ficam com zero.</p>
+   ${u?`<p class="note">Última atualização pelo MPD132: <b>${fmtDT(u.t)}</b>${u.auto?' (automática)':''} · arquivo ${esc(u.arquivo||'—')}${u.data?' de '+fmtDT(u.data+'T12:00:00'):''}${u.data&&u.data!==hoje?' <b style="color:var(--kr)">· não é de hoje</b>':''}</p>`:''}
+   <div class="filters"><label class="btn pri" for="mpd-f" style="cursor:pointer">Escolher o MPD132…</label><input type="file" id="mpd-f" accept=".xlsx,.json" hidden ${MPD.busy?'disabled':''}>
+    ${R?`<button class="btn pri" id="mpd-go" ${MPD.busy?'disabled':''}>Aplicar tudo</button><button class="btn" id="mpd-cx">Cancelar</button>`:''}</div>
+   ${MPD.msg?`<p class="note"><b>${esc(MPD.msg)}</b></p>`:''}${MPD.erro?`<p class="note" style="color:var(--kr)"><b>Não deu: ${esc(MPD.erro)}</b></p>`:''}
+   ${R?`<div class="mpd-g"><div><small>Arquivo</small><b>${esc(pk.arquivo||'—')}</b><small>${pk.data?'dados de '+fmtDT(pk.data+'T12:00:00'):''}${pk.data&&pk.data!==hoje?' · <b style="color:var(--kr)">não é de hoje</b>':''}</small></div>
+     <div><small>Estoque do CD (${MPD_DEP.cd.join(", ")})</small><b>${f0(R.cdP)} pç</b><small>${f0(R.cdN)} códigos · ${f0(R.cdK)} do Kanban</small></div>
+     <div><small>Estoque dos Usinados (${MPD_DEP.us.join(", ")})</small><b>${f0(R.usP)} pç</b><small>${f0(R.usN)} códigos · ${f0(R.usK)} do supermercado</small></div>
+     <div><small>Carteira em aberto</small><b>${f0(R.cartP)} pç</b><small>${f0(R.ped)} pedidos · ${f0(R.lin)} linhas · ${f0(R.itens)} itens</small></div></div>`:''}
+  </div>`;
+}
+function mpdCard(){
+  const el=document.getElementById('p-im'); if(!el) return; const old=document.getElementById('mpd-card');
+  const d=document.createElement('div'); d.innerHTML=mpdCardHTML(); const n=d.firstElementChild;
+  if(old) old.replaceWith(n); else { const h=el.querySelector('.head'); if(h&&h.nextSibling) el.insertBefore(n,h.nextSibling); else el.prepend(n); }
+  const f=document.getElementById('mpd-f'); if(f) f.onchange=()=>{ if(f.files&&f.files[0]) mpdArquivo(f.files[0]); };
+  const g=document.getElementById('mpd-go'); if(g) g.onclick=mpdAplicar;
+  const c=document.getElementById('mpd-cx'); if(c) c.onclick=()=>{ MPD.pk=null; MPD.msg=""; MPD.erro=""; mpdCard(); };
+}
+const _renderIM27=renderIM;
+renderIM=function(){ _renderIM27(); mpdCard(); };
+mpdUltLer();
+
+/* ---------- 2) Painel: abastecimento interativo + variação ---------- */
+let AB={per:"tudo"};
+function abRef(pts,dias){ const L=pts[pts.length-1], lim=new Date(L.d+"T12:00:00").getTime()-dias*864e5; let r=null; for(const p of pts){ if(new Date(p.d+"T12:00:00").getTime()<=lim) r=p; } return r; }
+function abDelta(a,b,k){ if(!a||!b) return null; return {pp:b[k].pct-a[k].pct,pc:(b[k].util||0)-(a[k].util||0),d:a.d}; }
+function abDeltaTot(a,b){ if(!a||!b) return null; const u=p=>(p.cd.util||0)+(p.us.util||0); return {pp:(b.tot||0)-(a.tot||0),pc:u(b)-u(a),d:a.d}; }
+function abCel(x){ if(!x) return `<td class="num"><span class="note">—</span></td>`;
+  const c=x.pp>0.05?"var(--kg)":(x.pp<-0.05?"var(--kr)":"var(--muted)"), s=x.pp>0.05?"▲":(x.pp<-0.05?"▼":"■");
+  return `<td class="num ab-d"><b style="color:${c}">${s} ${f1(Math.abs(x.pp))} p.p.</b><small>${x.pc>=0?'+':'−'}${f0(Math.abs(x.pc))} pç abastecidas</small></td>`; }
+function abKpis(pts){
+  if(pts.length<2) return '';
+  const L=pts[pts.length-1], A=pts[pts.length-2], S=abRef(pts,7), M=abRef(pts,30), I=pts[0];
+  const lin=(nome,cor,k)=>`<tr><td><i class="ab-dot" style="background:${cor}"></i><b>${nome}</b></td><td class="num"><b class="ab-big">${f1(k?L[k].pct:L.tot)}%</b></td>${[A,S,M,I].map(r=>abCel(k?abDelta(r,L,k):abDeltaTot(r,L))).join('')}</tr>`;
+  const ref=r=>r?fmtDT(r.d+"T12:00:00").slice(0,5):'—';
+  return `<div class="tw ab-k"><table><thead><tr><th></th><th class="num">Hoje</th><th class="num">Última atualização<br><small>vs ${ref(A)}</small></th><th class="num">Semana<br><small>vs ${S?ref(S):'—'}</small></th><th class="num">Mês<br><small>vs ${M?ref(M):'—'}</small></th><th class="num">Desde o início<br><small>vs ${ref(I)}</small></th></tr></thead><tbody>
+   ${lin('CD · produto acabado','#2F6DB5','cd')}${lin('Usinados · AUS','#C27C0E','us')}${lin('Total','var(--ink)',null)}</tbody></table></div>`;
+}
+function abPath(P){ if(P.length<2) return P.length?`M${P[0][0]},${P[0][1]}`:''; let d=`M${P[0][0].toFixed(1)},${P[0][1].toFixed(1)}`;
+  for(let i=0;i<P.length-1;i++){ const p0=P[i-1]||P[i], p1=P[i], p2=P[i+1], p3=P[i+2]||p2, t=0.18;
+    const c1=[p1[0]+(p2[0]-p0[0])*t,p1[1]+(p2[1]-p0[1])*t], c2=[p2[0]-(p3[0]-p1[0])*t,p2[1]-(p3[1]-p1[1])*t];
+    d+=` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`; } return d; }
+function abChart(all){
+  if(!all.length) return '<p class="note">Sem pontos ainda.</p>';
+  const pts=AB.per==="tudo"?all:all.filter(p=>p.d>=(()=>{ const t=new Date(all[all.length-1].d+"T12:00:00").getTime()-(AB.per==="7"?7:30)*864e5; return new Date(t).toISOString().slice(0,10); })());
+  const W=760,H=270,L=44,R=92,T=16,B=34, iw=W-L-R, ih=H-T-B;
+  const t0=new Date(pts[0].d+"T12:00:00").getTime(), t1=new Date(pts[pts.length-1].d+"T12:00:00").getTime();
+  const x=p=>L+(t1>t0?(new Date(p.d+"T12:00:00").getTime()-t0)/(t1-t0):0.5)*iw, y=v=>T+(1-Math.max(0,Math.min(100,v))/100)*ih;
+  const SER=[['cd','CD','#2F6DB5'],['us','AUS','#C27C0E']], fd=d=>{ const a=d.split('-'); return a[2]+'/'+a[1]; };
+  let g=`<defs>${SER.map(([k,,c])=>`<linearGradient id="abg-${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".28"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient>`).join('')}</defs>`;
+  for(const v of [0,25,50,75,100]) g+=`<line x1="${L}" x2="${L+iw}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="${v?'2 5':''}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${v}%</text>`;
+  g+=`<line x1="${L}" x2="${L+iw}" y1="${y(80)}" y2="${y(80)}" stroke="var(--kg)" stroke-width="1.5" stroke-dasharray="6 4" opacity=".8"/><text x="${L+4}" y="${y(80)-5}" font-size="10.5" font-weight="700" fill="var(--kg)">bem a partir de 80%</text>`;
+  { let ult=-1e9; const xl=x(pts[pts.length-1]); pts.forEach((p,i)=>{ const xx=x(p), fim=i===pts.length-1; if(fim||(xx-ult>=42&&xl-xx>=42)){ g+=`<text x="${xx}" y="${H-B+18}" text-anchor="middle" font-size="11" fill="var(--muted)">${fd(p.d)}</text>`; ult=xx; } }); }
+  const LY={}, lst=pts[pts.length-1]; { let a=y(lst.cd.pct), u=y(lst.us.pct); if(Math.abs(a-u)<24){ const m=(a+u)/2, s=a>=u?1:-1; a=m+12*s; u=m-12*s; } LY.cd=Math.min(T+ih-6,Math.max(T+6,a)); LY.us=Math.min(T+ih-6,Math.max(T+6,u)); }
+  for(const [k,lab,c] of SER){
+    const P=pts.map(p=>[x(p),y(p[k].pct)]), d=abPath(P);
+    if(P.length>1) g+=`<path d="${d} L${P[P.length-1][0].toFixed(1)},${T+ih} L${P[0][0].toFixed(1)},${T+ih} Z" fill="url(#abg-${k})"/>`;
+    g+=`<path class="${AB.anim?'':'ab-ln'}" d="${d}" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/>`;
+    pts.forEach((p,i)=>{ g+=`<circle cx="${P[i][0].toFixed(1)}" cy="${P[i][1].toFixed(1)}" r="${i===pts.length-1?5.5:3.5}" fill="${i===pts.length-1?c:'var(--panel)'}" stroke="${c}" stroke-width="2"/>`; });
+    const lp=[P[P.length-1][0],LY[k]]; g+=`<g><rect x="${lp[0]+9}" y="${lp[1]-11}" rx="6" width="76" height="22" fill="${c}"/><text x="${lp[0]+47}" y="${lp[1]+4}" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">${f0(pts[pts.length-1][k].pct)}% ${lab}</text></g>`;
+  }
+  g+=`<line class="ab-cross" x1="0" x2="0" y1="${T}" y2="${T+ih}" stroke="var(--muted)" stroke-dasharray="3 3" visibility="hidden"/>`;
+  const dat=pts.map(p=>({d:p.d,x:+x(p).toFixed(1),cd:p.cd.pct,us:p.us.pct,tot:p.tot,cf:p.cd.falta,uf:p.us.falta,cv:p.cd.verm,uv:p.us.verm,b:!!p.base}));
+  AB.anim=true;
+  return `<div class="ab-w"><svg viewBox="0 0 ${W} ${H}" width="100%" class="ab-svg" data-ab='${esc(JSON.stringify(dat))}' data-vb="${W}" role="img" aria-label="Evolução diária do abastecimento">${g}<rect x="${L}" y="${T}" width="${iw}" height="${ih}" fill="transparent" class="ab-hit"/></svg><div class="ab-tip" hidden></div></div>`;
+}
+function abMove(svg,ev){
+  const dat=JSON.parse(svg.dataset.ab), r=svg.getBoundingClientRect(), k=(+svg.dataset.vb)/r.width, mx=(ev.clientX-r.left)*k;
+  let i=0, b=1e9; dat.forEach((p,j)=>{ const dd=Math.abs(p.x-mx); if(dd<b){ b=dd; i=j; } });
+  const p=dat[i], q=dat[i-1], cr=svg.querySelector('.ab-cross'), tip=svg.parentElement.querySelector('.ab-tip');
+  cr.setAttribute('x1',p.x); cr.setAttribute('x2',p.x); cr.setAttribute('visibility','visible');
+  const dl=(a,b)=>{ if(b==null) return ''; const v=a-b; return ` <small style="color:${v>0.05?'var(--kg)':v<-0.05?'var(--kr)':'var(--muted)'}">${v>0.05?'▲':v<-0.05?'▼':'■'} ${f1(Math.abs(v))}</small>`; };
+  tip.innerHTML=`<b>${fmtDT(p.d+'T12:00:00').slice(0,10)}${p.b?' · base':''}</b><div><i class="ab-dot" style="background:#2F6DB5"></i>CD <b>${f1(p.cd)}%</b>${dl(p.cd,q&&q.cd)}</div><div><i class="ab-dot" style="background:#C27C0E"></i>AUS <b>${f1(p.us)}%</b>${dl(p.us,q&&q.us)}</div><div class="note">Total ${f1(p.tot)}% · faltam ${f0(p.cf+p.uf)} pç · ${f0(p.cv+p.uv)} SKUs na vermelha</div>`;
+  tip.hidden=false; const px=p.x/k; tip.style.left=Math.min(r.width-180,Math.max(0,px+12))+"px";
+}
+document.addEventListener('mousemove',e=>{ const s=e.target.closest&&e.target.closest('.ab-svg'); if(s) abMove(s,e); });
+document.addEventListener('mouseout',e=>{ const s=e.target.closest&&e.target.closest('.ab-svg'); if(s&&!s.contains(e.relatedTarget)){ const c=s.querySelector('.ab-cross'); if(c) c.setAttribute('visibility','hidden'); const t=s.parentElement.querySelector('.ab-tip'); if(t) t.hidden=true; } });
+document.addEventListener('touchstart',e=>{ const s=e.target.closest&&e.target.closest('.ab-svg'); if(s&&e.touches[0]) abMove(s,e.touches[0]); },{passive:true});
+document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('[data-abper]'); if(!b) return; AB.per=b.dataset.abper; const el=document.getElementById('ab-blk'); if(el) el.outerHTML=abBlock(histPoints()); });
+function abBlock(pts){
+  const per=[["7","7 dias"],["30","30 dias"],["tudo","Desde o início"]];
+  return `<div id="ab-blk"><div class="ab-per" role="group" aria-label="Período do gráfico">${per.map(([k,t])=>`<button type="button" class="btn${AB.per===k?' pri':''}" data-abper="${k}" aria-pressed="${AB.per===k}">${t}</button>`).join('')}</div>${abChart(pts)}</div>`;
+}
+histPanel=function(){
+  const pts=histPoints(); const last=pts.slice(-10).reverse();
+  return `<div class="panel ab-p" id="ab-panel"><div class="head"><h3>Evolução diária do abastecimento</h3><span class="note">um ponto por dia de atualização do estoque · ${f0(pts.length)} dia(s) desde ${pts.length?fmtDT(pts[0].d+'T12:00:00').slice(0,10):'—'}</span></div>
+   ${abKpis(pts)}
+   ${abBlock(pts)}
+   <div class="ovleg"><span><i style="background:#2F6DB5"></i><b>CD · produto acabado</b></span><span><i style="background:#C27C0E"></i><b>Usinados · AUS</b></span><span><i style="background:var(--kg)"></i>linha tracejada = 80% (bem)</span><span class="note">% abastecido = peças dentro das faixas ÷ máximo do supermercado · passe o mouse (ou toque) no gráfico</span></div>
+   ${excBlock(pts)}
+   <details style="margin-top:8px"><summary class="note">Tabela dos últimos ${last.length} dias</summary><div class="tw"><table><thead><tr><th>Data</th><th class="num">CD %</th><th class="num">CD faltam (pç)</th><th class="num">CD acima (pç)</th><th class="num">AUS %</th><th class="num">AUS faltam (pç)</th><th class="num">AUS acima (pç)</th><th class="num">Total acima (pç)</th><th class="num">Total %</th></tr></thead><tbody>
+   ${last.map(p=>`<tr><td>${fmtDT(p.d+'T12:00:00')}${p.base?' <span class="note">(base)</span>':''}</td><td class="num">${f1(p.cd.pct)}</td><td class="num">${f0(p.cd.falta)}</td><td class="num">${f0(p.cd.exc)}</td><td class="num">${f1(p.us.pct)}</td><td class="num">${f0(p.us.falta)}</td><td class="num">${f0(p.us.exc)}</td><td class="num">${f0((p.cd.exc||0)+(p.us.exc||0))}</td><td class="num">${f1(p.tot)}</td></tr>`).join('')}</tbody></table></div></details>
+   <p class="note">Variação em <b>pontos percentuais</b> (p.p.) do % abastecido e em peças dentro das faixas. Semana e mês comparam com o último ponto de pelo menos 7 e 30 dias antes. O ponto do dia é gravado quando o estoque é atualizado (MPD132 ou importação); o primeiro ponto é a posição da base (${esc(DATA.dataest)}).</p></div>`;
+};
+
+/* ---------- 3) Novidades desde a última revisão aberta ---------- */
+let NVS=null;
+function nvAbertura(){
+  const o=nvGet(), cur=NEWS[0].rev, last=(typeof o.lastRev==="number")?o.lastRev:null;
+  const from=last==null?cur-1:last;
+  const itens=NEWS.filter(n=>n.rev>from).flatMap(n=>n.itens.filter(nvVale).map(it=>Object.assign({rev:n.rev,revT:n.t},it)));
+  o.ids=o.ids||{}; NEWS.filter(n=>n.rev<=from).forEach(n=>n.itens.forEach(it=>{ o.ids[it.id]=1; }));   // o que é de revisões já abertas não vira bandeira
+  o.lastRev=cur; nvSet(o);
+  NVS={from:last,cur,itens,fechado:false};
+}
+function newsCardHTML(){
+  if(!NVS||NVS.fechado||!NVS.itens.length||NV_OFF()) return '';
+  const revs=[...new Set(NVS.itens.map(i=>i.rev))];
+  return `<div class="panel nv-card" id="nv-card"><div class="head"><h3>★ Novidades ${NVS.from==null?'desta revisão':'desde a sua última visita'}</h3><span class="note">${NVS.from==null?'Rev'+NVS.cur:'Rev'+NVS.from+' → Rev'+NVS.cur} · aparece só uma vez</span></div>
+   ${revs.map(r=>{ const its=NVS.itens.filter(i=>i.rev===r); return `<div class="nv-rv"><span class="tag">Rev${r}</span><b>${esc(its[0].revT)}</b><ul>${its.map(it=>`<li><b>${esc(it.t.replace(/^Novo: /,''))}.</b> ${esc(it.x)}</li>`).join('')}</ul></div>`; }).join('')}
+   <div class="filters"><button class="btn pri" id="nvc-go">▶ Me mostre</button><button class="btn" id="nvc-man">Histórico no manual</button><button class="btn" id="nvc-x">Fechar</button></div></div>`;
+}
+const _renderOV27=renderOV;
+renderOV=function(){ _renderOV27();
+  try{ const el=document.getElementById('p-ov'), h=newsCardHTML(); if(!h) return; const d=document.createElement('div'); d.innerHTML=h; el.prepend(d.firstElementChild);
+    document.getElementById('nvc-x').onclick=()=>{ NVS.fechado=true; const c=document.getElementById('nv-card'); if(c) c.remove(); };
+    document.getElementById('nvc-man').onclick=()=>newsModal(true);
+    document.getElementById('nvc-go').onclick=()=>{ NVS.fechado=true; const c=document.getElementById('nv-card'); if(c) c.remove(); newsTour(); };
+  }catch(e){ console.error(e); } };
+nvAbertura();
+
+/* ---------- 5) Comercial · sugestão de venda pelo excesso do AUS ---------- */
+const CS={q:"",fam:"",ord:"prio"};
+function csAus(){   // usinados com excesso SEM pedido
+  const m={}; for(const r of calcUS()){ const e=estReal(r), M=r.M>0?r.M:0, x=Math.max(0,e-M), ped=Math.min(x,r.cart||0), l=Math.floor(x-ped+1e-9); if(l<1) continue;
+    const c=custoDe(r.cod); m[r.cod]={cod:r.cod,desc:r.desc,livre:l,cu:c?c.u:0}; }
+  return m;
+}
+function csRows(){
+  const A=csAus(), B=DATA.bomu||{}, livreCD={}; try{ cmRows().forEach(x=>{ livreCD[x.cod]=x.disp; }); }catch(e){}
+  const out=[]; let semVenda=0;
+  for(const r of calcPA()){
+    const L=(B[r.cod]||[]).filter(([u,q])=>q>0&&A[u]); if(!L.length) continue;
+    if(!(r.D>0)&&!(r.nnf>0)){ semVenda++; continue; }
+    let pri=null; for(const [u,q] of L){ const v=A[u].livre*A[u].cu; if(!pri||v>pri.v||(v===pri.v&&A[u].livre>pri.l)) pri={u,q,v,l:A[u].livre}; }
+    const N=Math.floor(A[pri.u].livre/pri.q+1e-9); if(N<1) continue;
+    const val=L.reduce((s,[u,q])=>s+Math.min(A[u].livre,N*q)*A[u].cu,0), pc=L.reduce((s,[u,q])=>s+Math.min(A[u].livre,N*q),0);
+    out.push({cod:r.cod,desc:r.desc,fam:r.fam||"Outros",D:r.D||0,nnf:r.nnf||0,preco:r.preco||0,us:L.map(([u])=>u).sort((a,b)=>A[b].livre*A[b].cu-A[a].livre*A[a].cu),N,val,pc,cd:livreCD[r.cod]||0});
+  }
+  const terc=(k)=>{ const v=out.map(x=>x[k]).filter(x=>x>0).sort((a,b)=>a-b), q=f=>v.length?v[Math.min(v.length-1,Math.floor(f*v.length))]:0, a=q(2/3), b=q(1/3);
+    out.forEach(x=>{ x["s_"+k]=x[k]>0&&x[k]>=a?2:(x[k]>0&&x[k]>=b?1:0); }); };
+  terc("D"); terc("nnf"); terc("preco");
+  out.forEach(x=>{ x.prio=x.s_D+x.s_nnf+x.s_preco; });
+  return {L:out,A,semVenda};
+}
+const SELO=["Baixo","Médio","Alto"], SELOC=["var(--muted)","var(--ky)","var(--kg)"];
+const selo=s=>`<span class="selo s${s}" style="--c:${SELOC[s]}">${SELO[s]}</span>`;
+function csFilt(R){ const q=CS.q.trim().toUpperCase();
+  const L=R.filter(x=>(!CS.fam||x.fam===CS.fam)&&(!q||x.cod.toUpperCase().includes(q)||String(x.desc).toUpperCase().includes(q)||x.us.some(u=>u.toUpperCase().includes(q))));
+  const o={prio:(a,b)=>b.prio-a.prio||b.val-a.val,val:(a,b)=>b.val-a.val,un:(a,b)=>b.N-a.N}[CS.ord]||((a,b)=>b.prio-a.prio); return L.sort(o); }
+function renderCS(){
+  const el=document.getElementById('p-cs'), {L,A,semVenda}=csRows(), F=csFilt(L.slice());
+  const totU=Object.values(A), vU=totU.reduce((s,x)=>s+x.livre*x.cu,0), pU=totU.reduce((s,x)=>s+x.livre,0);
+  const cob=new Set(); L.forEach(x=>x.us.forEach(u=>cob.add(u))); const vCob=[...cob].reduce((s,u)=>s+A[u].livre*A[u].cu,0);
+  const fams=[...new Set(L.map(x=>x.fam))].sort();
+  el.innerHTML=`<div class="head"><h2>Sugestão de venda · excesso do supermercado AUS</h2><span class="note">produtos acabados que usam usinados parados acima do máximo, sem pedido</span></div>
+   <div class="stats" id="cs-stats">
+    <div class="stat"><div class="l">Usinados parados (sem pedido)</div><div class="v">${f0(pU)} pç</div><div class="s">${f0(totU.length)} códigos · ${brl(vU)} a custo</div></div>
+    <div class="stat g"><div class="l">Produtos sugeridos</div><div class="v">${f0(L.length)}</div><div class="s">vendendo, consomem esse excesso</div></div>
+    <div class="stat"><div class="l">Excesso que as sugestões alcançam</div><div class="v" style="font-size:22px">${brl(vCob)}</div><div class="s">${vU?f0(vCob/vU*100):0}% do excesso do AUS a custo</div></div></div>
+   <div class="filters">
+    <label class="f" for="cs-q">Buscar<input class="in" id="cs-q" value="${esc(CS.q)}" placeholder="código, descrição ou usinado"></label>
+    <label class="f" for="cs-fam">Família<select id="cs-fam"><option value="">Todas</option>${fams.map(f=>`<option ${f===CS.fam?'selected':''}>${esc(f)}</option>`).join('')}</select></label>
+    <label class="f" for="cs-ord">Ordenar<select id="cs-ord"><option value="prio" ${CS.ord==="prio"?'selected':''}>Prioridade (giro + frequência + valor)</option><option value="val" ${CS.ord==="val"?'selected':''}>Excesso que consome (R$)</option><option value="un" ${CS.ord==="un"?'selected':''}>Unidades</option></select></label>
+    <button class="btn" id="cs-csv">Salvar CSV</button></div>
+   <div class="tw tall"><table class="cs-tab"><thead><tr><th>Produto</th><th>Família</th><th>Giro</th><th>Frequência</th><th>Valor</th><th class="num">Até (un.)</th><th>Usinados em excesso que usa</th><th class="num">Excesso que consome</th></tr></thead><tbody>
+    ${F.slice(0,300).map(x=>`<tr><td><b>${esc(x.cod)}</b><br><span class="note">${esc(x.desc)}</span>${x.cd?`<br><span class="tag" title="Este produto já tem peças livres no CD (tela Pode vender): a venda sai primeiro do CD">${f0(x.cd)} pç livres no CD</span>`:''}</td><td>${esc(x.fam)}</td><td>${selo(x.s_D)}</td><td>${selo(x.s_nnf)}</td><td>${selo(x.s_preco)}</td><td class="num"><b>${f0(x.N)}</b></td>
+      <td class="desc" style="white-space:normal;min-width:180px">${x.us.slice(0,3).map(u=>`<span class="cs-u" title="${esc(A[u].desc)} · ${f0(A[u].livre)} pç sem pedido acima do máximo">${esc(u)}</span>`).join(' ')}${x.us.length>3?` <span class="note">+${x.us.length-3}</span>`:''}</td><td class="num"><b>${brl(x.val)}</b><br><span class="note">${f0(x.pc)} pç</span></td></tr>`).join('')||'<tr><td colspan="8" class="note">Nenhum produto com esse filtro.</td></tr>'}
+   </tbody></table></div>
+   ${F.length>300?`<p class="note">Mostrando 300 de ${f0(F.length)} — use a busca ou a família.</p>`:''}
+   <div class="panel"><div class="head"><h3>Como ler</h3></div><ul class="note" style="margin:0;padding-left:18px">
+    <li>Cada produto usa um ou mais <b>usinados que estão parados no AUS acima do máximo e sem pedido</b>. Vender o produto faz a montagem consumir esses usinados.</li>
+    <li><b>Giro</b>, <b>Frequência</b> e <b>Valor</b> comparam os produtos da lista entre si: <b>Alto</b> = terço de cima, <b>Médio</b> = terço do meio, <b>Baixo</b> = terço de baixo. Giro = quanto sai; frequência = em quantas vendas aparece; valor = preço de venda.</li>
+    <li><b>Até (un.)</b>: quantas unidades do produto consomem todo o excesso do usinado principal dele (o de maior valor parado). <b>Excesso que consome</b>: valor a custo dos usinados em excesso usados nessas unidades.</li>
+    <li>O mesmo usinado pode servir a vários produtos: as quantidades <b>não se somam</b> — vendido um, a sugestão dos outros diminui na próxima atualização.</li>
+    <li>Produto com <b>peças livres no CD</b> sai primeiro do CD (tela Pode vender); só depois a montagem consome os usinados.${semVenda?` ${f0(semVenda)} produtos que usam esse excesso ficaram fora por não terem venda no período.`:''}</li></ul></div>`;
+  const q=document.getElementById('cs-q'); q.oninput=()=>{ CS.q=q.value; clearTimeout(renderCS.t); renderCS.t=setTimeout(()=>{ renderCS(); const n=document.getElementById('cs-q'); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } },250); };
+  document.getElementById('cs-fam').onchange=e=>{ CS.fam=e.target.value; renderCS(); };
+  document.getElementById('cs-ord').onchange=e=>{ CS.ord=e.target.value; renderCS(); };
+  document.getElementById('cs-csv').onclick=()=>{ const H=["produto","descricao","familia","giro","frequencia","valor","ate_unidades","usinados_em_excesso","excesso_que_consome_rs","excesso_que_consome_pc"];
+    const rows=F.map(x=>[x.cod,x.desc,x.fam,SELO[x.s_D],SELO[x.s_nnf],SELO[x.s_preco],x.N,x.us.join(" "),Math.round(x.val),Math.round(x.pc)]);
+    saveFile("sugestao_venda_excesso_AUS.csv","﻿"+[H].concat(rows).map(r=>r.map(v=>{ const s=String(v??""); return /[;"\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }).join(";")).join("\n"),"text/csv"); };
+}
+
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,
    mas o WebGL não existe e a cena não aparece. Aqui o app testa antes e, sem WebGL,
@@ -5615,7 +5970,7 @@ function renderPD(){
   <div class="tw"><table><thead><tr><th>Situação</th><th>Assunto</th><th>O que vale hoje</th></tr></thead><tbody>
   ${itens.map(([s,t,d])=>`<tr><td><span class="pill" style="background:${cor[s]||'var(--muted)'};color:#fff">${esc(s)}</span></td><td><b>${esc(t)}</b></td><td class="desc" style="white-space:normal;max-width:none">${d}</td></tr>`).join('')}
   </tbody></table></div>
-  <div class="panel"><div class="head"><h3>Glossário</h3></div><div class="gl">${SIG.map(([a,b])=>`<b>${esc(a)}</b><span>${esc(b)}</span>`).join('')}</div></div>`;
+  `;
   const ed=document.getElementById('pd-ed'); if(ed) ed.onclick=()=>{ PD_EDIT=itens.map(([s,t,d])=>[s,pdTxt(t),pdTxt(d)]); renderPD(); };
 }
 /* ---------- navegação (shell SaaS) ---------- */
@@ -5626,14 +5981,15 @@ const MODS=[
  ["pl","Planejar","🗓",[["pr:pg","Programador"],["op","Ordem de produção"],["qd","Quadros Kanban"]]],
  ["pz","Produzir","▶",[["pr:op","Operação"],["pr:ap","Apontamento"]]],
  ["es","Estocar","▦",[["pa","Kanban PA"],["us","Kanban Usinados"],["cd","CD em 3D"],["kc","Cartões"],["im","Importar dados"]]],
- ["ex","Expedir","⛟",[["ex","Expedição"],["cm","Comercial"]]],
- ["cf","Ajuda e ajustes","?",[["man","Manual"],["par","Parâmetros"],["pd","Premissas"]]]
+ ["ex","Expedir","⛟",[["ex","Expedição"]]],
+ ["co","Comercial","$",[["cm","Pode vender"],["cs","Sugestão de venda"]]],
+ ["cf","Ajuda e ajustes","?",[["man","Manual"],["sg","Siglas"],["par","Parâmetros"],["pd","Premissas"]]]
 ];
 const TITLES={ov:["Operação","Painel executivo"],qd:["Operação","Quadros Kanban entre processos"],pr:["Operação","Programação da produção"],fx:["Fluxo de valor","Fluxo de valor — VSM em tempo real"],ex:["Operação","Expedição — Kanban de pedidos"],cm:["Operação","Comercial — itens disponíveis para venda"],op:["Operação","Ordem de produção — encher os supermercados"],kc:["Operação","Cartões Kanban"],im:["Operação","Importar dados do ERP"],
  cd:["Supermercados","CD em 3D"],pa:["Supermercados","Kanban de PA"],us:["Supermercados","Kanban de Usinados"],
- man:["Ajuda","Manual do app"],par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
+ man:["Ajuda","Manual do app"],sg:["Ajuda","Siglas usadas no app"],cs:["Comercial","Sugestão de venda · excesso do AUS"],par:["Configuração","Parâmetros e método"],pd:["Configuração","Premissas e pendências"]};
 const MODLAST={};
-const modTabs=m=>m[3].filter(t=>(isAdmin()||(t[0]!=="par"&&t[0]!=="pd"))&&(isProg()||(t[0]!=="pr:pg"&&t[0]!=="pr:ap")));
+const modTabs=m=>m[3].filter(t=>(isDono()||(t[0]!=="par"&&t[0]!=="pd"))&&(isProg()||(t[0]!=="pr:pg"&&t[0]!=="pr:ap")));
 const tabKey=()=>TAB==="pr"?"pr:"+(PR.view||"op"):TAB;
 const modOf=k=>MODS.find(m=>m[3].some(t=>t[0]===k))||MODS[0];
 function goKey(k){ const a=k.split(":"); if(a[0]==="pr"&&a[1]){ PR.view=a[1]; try{ localStorage.setItem("aemco-kd18-prv",PR.view); }catch(e){} } go(a[0]); }
@@ -5675,7 +6031,7 @@ function chips(){
   }catch(e){}
 }
 function go(tab,soft){
-  if(!isAdmin()&&(tab==="par"||tab==="pd")) tab="ov";   // Rev14: parâmetros e premissas só para o administrador
+  if(!isDono()&&(tab==="par"||tab==="pd")) tab="ov";   // Rev27: parâmetros e premissas só para o João (os outros veem as Siglas)
   TAB=tab; try{ localStorage.setItem("aemco-kd4-tab",tab); }catch(e){}
   document.querySelectorAll('section.pane').forEach(s=>s.hidden=(s.id!=='p-'+tab));
   const t=TITLES[tab]||["",""]; document.getElementById('ptitle').textContent=t[1];
@@ -5690,6 +6046,8 @@ function go(tab,soft){
     par:()=>{ if(soft&&document.activeElement&&document.getElementById('p-par').contains(document.activeElement)) return; renderPar(); },
     im:()=>{ if(soft&&document.activeElement&&document.getElementById('p-im').contains(document.activeElement)) return; renderIM(); },
     man:()=>{ if(soft) return; renderMAN(); },
+    sg:()=>{ if(soft) return; renderSG(); },
+    cs:()=>{ if(soft&&document.activeElement&&document.getElementById('p-cs').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderCS(); },
     fx:()=>{ if(soft&&document.activeElement&&document.getElementById('p-fx').contains(document.activeElement)&&document.activeElement.tagName!=="BUTTON") return; renderFX(); },
     })[tab]();
   chips(); shellSync();
