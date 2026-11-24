@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev27"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev27b"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2376,7 +2376,8 @@ function renderOV0(){
 
 const FL={pa:{q:"",fam:"",cls:"",st:"",lim:1e9,esc:"sm"},us:{q:"",grp:"",cls:"",st:"",lim:1e9,esc:"sm"}};
 function renderList(kind){
-  const us=kind==="us", f=FL[kind];
+  const us=kind==="us", f=FL[kind], MET=isDono();   // Rev27b: colunas do dimensionamento só para o João
+  if(!MET){ f.cls=""; if(f.esc==="fast") f.esc=""; }
   const all=us?calcUS():calcPA();
   let rows=f.cls==="MTO"?all:all.filter(r=>r.cls!=="MTO");
   if(us){ if(f.esc==="sm") rows=rows.filter(r=>r.manter); else if(f.esc==="fora") rows=rows.filter(r=>!r.manter); }
@@ -2404,25 +2405,24 @@ function renderList(kind){
    <label class="f" for="${kind}-q">Buscar<input id="${kind}-q" type="search" value="${esc(f.q)}" placeholder="código ou descrição"></label>
    ${us?`<label class="f" for="us-grp">Grupo<select id="us-grp"><option value="">Todos</option>${opts.map(o=>`<option>${esc(o)}</option>`).join('')}</select></label>`
        :`<label class="f" for="pa-fam">Família<select id="pa-fam"><option value="">Todas</option>${opts.map(o=>`<option>${esc(o)}</option>`).join('')}</select></label>`}
-   <label class="f" for="${kind}-cls">Classe<select id="${kind}-cls"><option value="">MTS + ponto de pedido</option><option>MTS</option><option value="${us?CLS_US_BUF:CLS_PA_BUF}">Ponto de pedido</option><option>MTO</option></select></label>
+   ${MET?`<label class="f" for="${kind}-cls">Classe<select id="${kind}-cls"><option value="">MTS + ponto de pedido</option><option>MTS</option><option value="${us?CLS_US_BUF:CLS_PA_BUF}">Ponto de pedido</option><option>MTO</option></select></label>`:''}
    <label class="f" for="${kind}-esc">Escopo<select id="${kind}-esc">${us
       ?`<option value="sm">No supermercado (${all.filter(r=>r.manter&&r.cls!=="MTO").length})</option><option value="fora">Fora — vai por FIFO (${all.filter(r=>!r.manter&&r.cls!=="MTO").length})</option><option value="">Todos</option>`
-      :`<option value="">Todos</option><option value="fast">Só atendimento rápido AX/AY (${all.filter(r=>r.fast).length})</option>`}</select></label>
+      :`<option value="">Todos</option>${MET?`<option value="fast">Só atendimento rápido AX/AY (${all.filter(r=>r.fast).length})</option>`:''}`}</select></label>
    <label class="f" for="${kind}-st">Status<select id="${kind}-st"><option value="">Todos</option><option>Vermelho</option><option>Amarelo</option><option>Verde</option><option>Acima do máx</option><option>sem dado</option></select></label>
    <button class="btn" id="${kind}-csv">Salvar CSV</button>
   </div>
-  <div class="tw tall"><table><thead><tr><th>Código</th><th>Descrição</th><th>${us?'Grupo':'Família · tipo'}</th><th>ABC·XYZ</th><th>Classe</th>
-   <th class="num">D pç/dia</th><th class="num">Reserva</th><th class="num">LT</th><th class="num">EPEI${epeiBtn()}</th><th class="num">Verde</th><th class="num">Amarela</th><th class="num">Vermelha</th><th class="num">Máx</th><th class="num">Cob. d</th>
-   <th class="num">Lote</th><th class="num">Pç/cartão</th><th class="num">Cartões V/A/R</th><th>Cartões</th>
-   ${us?'<th>Por que está no supermercado</th><th class="num">Canais</th>':'<th>Papel no CD</th><th class="num">Cap./pos.</th><th class="num">Pos. V/A/R</th><th>Posições</th><th class="num">Ocup. hoje</th><th>End. proposto</th>'}
-   <th class="num">${us?'':'Pedido especial acima de'}</th><th class="num">Estoque</th><th>Status</th></tr></thead><tbody>`;
+  <div class="tw tall"><table><thead><tr><th>Código</th><th>Descrição</th><th>${us?'Grupo':'Família · tipo'}</th>${MET?`<th>ABC·XYZ</th><th>Classe</th>
+   <th class="num">D pç/dia</th><th class="num">Reserva</th><th class="num">LT</th><th class="num">EPEI${epeiBtn()}</th>`:''}<th class="num">Verde</th><th class="num">Amarela</th><th class="num">Vermelha</th><th class="num">Máx</th>${MET?'<th class="num">Cob. d</th><th class="num">Lote</th>':''}<th class="num">Pç/cartão</th><th class="num">Cartões V/A/R</th><th>Cartões</th>
+   ${us?(MET?'<th>Por que está no supermercado</th>':'')+'<th class="num">Canais</th>':'<th>Papel no CD</th><th class="num">Cap./pos.</th><th class="num">Pos. V/A/R</th><th>Posições</th><th class="num">Ocup. hoje</th><th>End. proposto</th>'}
+   ${MET?`<th class="num">${us?'':'Pedido especial acima de'}</th>`:''}<th class="num">Estoque</th><th>Status</th></tr></thead><tbody>`;
   for(const r of rows.slice(0,f.lim)){
-    h+=`<tr><td>${fotoImg(r.cod,28)}<b>${esc(r.cod)}</b></td><td class="desc">${esc(r.desc)}</td><td>${us?esc(r.grp):esc(r.fam)+'<br><span class="note">'+esc(r.sub)+' · '+esc(r.tipo)+'</span>'}</td><td>${r.abc}·${r.xyz}</td><td>${pill(r.cls)}${origTag(r)}</td>
-    <td class="num" title="${esc(r.fdem)} · histórico ${f1(r.Dh)} pç/dia">${f1(r.D)}${r.fdem&&r.fdem.startsWith('Histórico')?'<br><span class="note">hist.</span>':''}</td><td class="num cr" title="reserva contra variação (CV ${f2(r.cv)})">${f0(r.SS)}</td><td class="num">${f1(r.LT)}</td><td class="num">${f1(r.ep)}</td><td class="num cg">${f0(r.V)}</td><td class="num cy">${f0(r.A)}</td><td class="num cr">${f0(r.R)}</td><td class="num"><b>${f0(r.M)}</b></td><td class="num">${f1(r.cob)}</td>
-    <td class="num">${f0(r.lmin)}</td><td class="num">${f0(r.q)}</td><td class="num">${r.nk} = ${r.kv}/${r.ka}/${r.kr}</td><td>${contGraphic(r)}</td>
-    ${us?`<td class="note">${esc(r.motivo)}${r.ext?`<br><b style="color:var(--ky)">Processo externo: ${esc(r.ext)}</b>`:''}${r.shf>0?`<br><span class="note">${f0(r.shf*100)}% do volume já sai acabado no CD</span>`:''}</td><td class="num">${f0(r.canais)}</td>`
-        :`<td class="note">${r.fast?'<b style="color:var(--kg)">Atendimento rápido AX/AY</b>':esc(r.role||'Kanban')}</td><td class="num">${f0(r.cap)}</td><td class="num">${r.pm==null?'—':`${r.pm} = ${r.pv}/${r.pa}/${r.pr}`}</td><td>${r.pm==null?'<span class="note">posição inteira</span>':palGraphic(r)}</td><td class="num">${r.ocup==null?'—':r.ocup}</td><td class="note">${esc(r.endN||'sem posição')}</td>`}
-    <td class="num">${r.pg?f0(r.pg)+' pç':''}</td><td class="num" title="${!us?('estoque '+f0(r.est)+' · carteira '+f0(r.cart)+' ('+(STK.meta.cart?'importada':'base '+DATA.dataest)+') · disponível '+f0(Math.max(0,(r.est||0)-(r.cart||0)))):''}">${f0(r.est)}${!us&&r.cart>0?`<br><span class="note">carteira ${f0(r.cart)} · disp. ${f0(Math.max(0,(r.est||0)-r.cart))}</span>`:''}</td><td>${spill(r.st)}</td></tr>`;
+    h+=`<tr><td>${fotoImg(r.cod,28)}<b>${esc(r.cod)}</b></td><td class="desc">${esc(r.desc)}</td><td>${us?esc(r.grp):esc(r.fam)+'<br><span class="note">'+esc(r.sub)+' · '+esc(r.tipo)+'</span>'}</td>${MET?`<td>${r.abc}·${r.xyz}</td><td>${pill(r.cls)}${origTag(r)}</td>
+    <td class="num" title="${esc(r.fdem)} · histórico ${f1(r.Dh)} pç/dia">${f1(r.D)}${r.fdem&&r.fdem.startsWith('Histórico')?'<br><span class="note">hist.</span>':''}</td><td class="num cr" title="reserva contra variação (CV ${f2(r.cv)})">${f0(r.SS)}</td><td class="num">${f1(r.LT)}</td><td class="num">${f1(r.ep)}</td>`:''}<td class="num cg">${f0(r.V)}</td><td class="num cy">${f0(r.A)}</td><td class="num cr">${f0(r.R)}</td><td class="num"><b>${f0(r.M)}</b></td>${MET?`<td class="num">${f1(r.cob)}</td>
+    <td class="num">${f0(r.lmin)}</td>`:''}<td class="num">${f0(r.q)}</td><td class="num">${r.nk} = ${r.kv}/${r.ka}/${r.kr}</td><td>${contGraphic(r)}</td>
+    ${us?`${MET?`<td class="note">${esc(r.motivo)}${r.ext?`<br><b style="color:var(--ky)">Processo externo: ${esc(r.ext)}</b>`:''}${r.shf>0?`<br><span class="note">${f0(r.shf*100)}% do volume já sai acabado no CD</span>`:''}</td>`:''}<td class="num">${f0(r.canais)}</td>`
+        :`<td class="note">${r.fast?`<b style="color:var(--kg)">Atendimento rápido${MET?' AX/AY':''}</b>`:esc(r.role||'Kanban')}</td><td class="num">${f0(r.cap)}</td><td class="num">${r.pm==null?'—':`${r.pm} = ${r.pv}/${r.pa}/${r.pr}`}</td><td>${r.pm==null?'<span class="note">posição inteira</span>':palGraphic(r)}</td><td class="num">${r.ocup==null?'—':r.ocup}</td><td class="note">${esc(r.endN||'sem posição')}</td>`}
+    ${MET?`<td class="num">${r.pg?f0(r.pg)+' pç':''}</td>`:''}<td class="num" title="${!us?('estoque '+f0(r.est)+' · carteira '+f0(r.cart)+' ('+(STK.meta.cart?'importada':'base '+DATA.dataest)+') · disponível '+f0(Math.max(0,(r.est||0)-(r.cart||0)))):''}">${f0(r.est)}${!us&&r.cart>0?`<br><span class="note">carteira ${f0(r.cart)} · disp. ${f0(Math.max(0,(r.est||0)-r.cart))}</span>`:''}</td><td>${spill(r.st)}</td></tr>`;
   }
   h+=`</tbody></table></div><p class="note">${rows.length} SKU(s) listados — a tabela mostra todos, use o scroll horizontal e vertical.</p>`;
   el.innerHTML=h;
@@ -2430,9 +2430,9 @@ function renderList(kind){
   bind(kind+'-q','q','input'); bind(kind+'-cls','cls','change'); bind(kind+'-st','st','change'); bind(kind+'-esc','esc','change');
   if(us) bind('us-grp','grp','change'); else { bind('pa-fam','fam','change'); }
   document.getElementById(kind+'-csv').onclick=()=>{
-    if(!isAdmin()){   // Rev14: exportação operacional (sem as colunas do dimensionamento)
-      const H2=us?["codigo","descricao","grupo","classe","verde","amarela","vermelha","max","pc_por_cartao","cartoes","estoque","status"]:["codigo","descricao","familia","classe","verde","amarela","vermelha","max","pc_por_cartao","cartoes","end_proposto","estoque","status","carteira"];
-      const v2=r=>us?[r.cod,r.desc,r.grp,r.cls,r.V,r.A,r.R,r.M,r.q,r.nk,r.est??"",r.st]:[r.cod,r.desc,r.fam,r.cls,r.V,r.A,r.R,r.M,r.q,r.nk,r.endN,r.est??"",r.st,r.cart];
+    if(!MET){   // Rev14/Rev27b: exportação operacional (sem as colunas do dimensionamento) para todos, menos o João
+      const H2=us?["codigo","descricao","grupo","verde","amarela","vermelha","max","pc_por_cartao","cartoes","estoque","status"]:["codigo","descricao","familia","verde","amarela","vermelha","max","pc_por_cartao","cartoes","end_proposto","estoque","status","carteira"];
+      const v2=r=>us?[r.cod,r.desc,r.grp,r.V,r.A,r.R,r.M,r.q,r.nk,r.est??"",r.st]:[r.cod,r.desc,r.fam,r.V,r.A,r.R,r.M,r.q,r.nk,r.endN,r.est??"",r.st,r.cart];
       saveFile(us?"kanban_usinados_aemco.csv":"kanban_pa_aemco.csv","\ufeff"+[H2.join(";")].concat(rows.map(r=>v2(r).map(v=>typeof v==="number"?nf0.format(v).replace(/\./g,""):String(v??"").replace(/;/g,",")).join(";"))).join("\n")); return; }
     const H=us?["codigo","descricao","grupo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","canais","estoque","status","processo_externo","origem_classe","classe_modelo","anotacao_kandi","custo_material","custo_conversao","excesso_a_custo"]
               :["codigo","descricao","familia","subfamilia","tipo","abc","xyz","classe","D_dia","fonte_demanda","D_hist_dia","cv","reserva_variacao","LT","EPEI","lote_min","verde","amarela","vermelha","max","pc_por_cartao","cartoes","cartoes_v","cartoes_a","cartoes_r","cap_pos","pos_max","pos_v","pos_a","pos_r","ocup_hoje","end_proposto","pedido_especial_acima_de","preco_medio_venda_nf","estoque","status","carteira","disponivel","fonte_carteira","origem_classe","classe_modelo","anotacao_kandi","custo_material","custo_conversao","excesso_a_custo"];
@@ -2505,6 +2505,7 @@ function katuCSV(){
   const H=["codigo","descricao","familia","classe","posicoes_hoje","enderecos_hoje","posicoes_necessarias","enderecos_propostos","estoque","max","acao"];
   const L=KATU.rows.map(x=>[x.r.cod,x.r.desc,x.r.fam,x.r.cls,x.k,x.hoje.join(" "),x.need,x.novos.join(" "),x.r.est??"",Math.round(x.r.M),x.acao])
     .concat(KATU.sai.map(x=>[x.cod,x.desc,"",x.cls,x.addrs.length,x.addrs.join(" "),0,"",x.est??"",0,"Sai do CD: consumir o saldo (FIFO) e não repor; liberar a posição"]));
+  if(!isDono()){ H.splice(3,1); L.forEach(r=>r.splice(3,1)); }   // Rev27b: classe só para o João
   const txt=[H.join(";")].concat(L.map(r=>r.map(v=>typeof v==="number"?nf0.format(v).replace(/\./g,""):String(v).replace(/;/g,",")).join(";"))).join("\n");
   saveFile("transicao_cd_posicoes_atuais.csv","﻿"+txt);
 }
@@ -2695,7 +2696,7 @@ const CD3={ready:false,
     <dl class="kv"><dt>Nível</dt><dd>${s.niv} ${s.niv===2||s.niv===3?'(zona de ouro)':'(baixo giro)'}</dd>
     <dt>Hoje</dt><dd>${esc(s.cur||'vazia')}${s.max?` · Max. ${f0(s.max)}`:''}</dd>
     <dt>Proposto</dt><dd>${esc(s.nw||'livre')}</dd>
-    ${s.nw?`<dt>Família</dt><dd>${esc(s.fam)} · ${esc(s.sf)}</dd><dt>Faixa</dt><dd>${({V:'Verde',A:'Amarela',R:'Vermelha','*':'Posição inteira'})[s.band]||'—'}</dd><dt>ABC·XYZ</dt><dd>${esc(s.abc)} · ${esc(s.cls)}</dd>`:''}
+    ${s.nw?`<dt>Família</dt><dd>${esc(s.fam)} · ${esc(s.sf)}</dd><dt>Faixa</dt><dd>${({V:'Verde',A:'Amarela',R:'Vermelha','*':'Posição inteira'})[s.band]||'—'}</dd>${isDono()?`<dt>ABC·XYZ</dt><dd>${esc(s.abc)} · ${esc(s.cls)}</dd>`:''}`:''}
     ${r?`<dt>Separações/ano</dt><dd>${f0(r.nnf)}</dd><dt>V / A / R</dt><dd>${f0(r.V)} / ${f0(r.A)} / ${f0(r.R)} pç · ${r.nk} cartões</dd><dt>Estoque</dt><dd>${f0(r.est)} → ${esc(r.st)}</dd><dt>Endereços</dt><dd style="white-space:normal">${esc(r.endN)}</dd>`:''}</dl>`;
     document.getElementById('tip-x').onclick=()=>tip.hidden=true;
   },
@@ -2730,9 +2731,9 @@ const CD3={ready:false,
     el.innerHTML=`<div class="panel"><div class="head"><h3>Transição para os novos endereços — Kanban nas posições atuais</h3><button class="btn" id="kt-csv">Salvar lista (CSV)</button></div>
      <p class="note">Regra da transição: o Kanban começa a rodar onde o item já está. A cada <b>novo lote</b> produzido, o lote vai para o <b>endereço proposto</b>; o saldo da posição atual é consumido primeiro (FIFO) e a posição é liberada quando zerar. Itens que saem do CD (MTO) não são repostos.</p>
      <div class="fin"><div><small>Já no endereço proposto</small><b>${f0(ja)}</b><small>itens</small></div><div><small>Kanban roda na posição atual</small><b>${f0(roda)}</b><small>mudam no próximo lote</small></div><div><small>Posição atual não comporta o máximo</small><b>${f0(falta)}</b><small>próximo lote vai para o proposto</small></div><div><small>Sem posição hoje</small><b>${f0(sem)}</b><small>itens</small></div><div><small>Posições com itens que saem do CD</small><b>${f0(posS)}</b><small>${f0(KATU.sai.length)} itens a liberar</small></div></div>
-     <div class="tw" style="max-height:380px"><table><thead><tr><th>Código</th><th>Família</th><th>Classe</th><th class="num">Pos. hoje</th><th>Endereço hoje</th><th class="num">Pos. necessárias</th><th>Endereço proposto</th><th class="num">Estoque</th><th class="num">Máx</th><th>O que fazer</th></tr></thead><tbody>
-     ${R.map(x=>`<tr><td><b>${esc(x.r.cod)}</b></td><td>${esc(x.r.fam)}</td><td>${pill(x.r.cls)}</td><td class="num">${x.k}</td><td class="note">${esc(x.hoje.join(', ')||'—')}</td><td class="num">${x.need}</td><td class="note">${esc(x.novos.join(', ')||'—')}</td><td class="num">${f0(x.r.est)}</td><td class="num">${f0(x.r.M)}</td><td class="note">${esc(x.acao)}</td></tr>`).join('')}
-     ${KATU.sai.map(x=>`<tr style="opacity:.85"><td><b>${esc(x.cod)}</b></td><td>—</td><td>${pill(x.cls==='MTO'?'MTO':x.cls)}</td><td class="num">${x.addrs.length}</td><td class="note">${esc(x.addrs.join(', '))}</td><td class="num">0</td><td>—</td><td class="num">${f0(x.est)}</td><td class="num">0</td><td class="note">Sai do CD: consumir o saldo e não repor; liberar a posição</td></tr>`).join('')}
+     <div class="tw" style="max-height:380px"><table><thead><tr><th>Código</th><th>Família</th>${isDono()?'<th>Classe</th>':''}<th class="num">Pos. hoje</th><th>Endereço hoje</th><th class="num">Pos. necessárias</th><th>Endereço proposto</th><th class="num">Estoque</th><th class="num">Máx</th><th>O que fazer</th></tr></thead><tbody>
+     ${R.map(x=>`<tr><td><b>${esc(x.r.cod)}</b></td><td>${esc(x.r.fam)}</td>${isDono()?`<td>${pill(x.r.cls)}</td>`:''}<td class="num">${x.k}</td><td class="note">${esc(x.hoje.join(', ')||'—')}</td><td class="num">${x.need}</td><td class="note">${esc(x.novos.join(', ')||'—')}</td><td class="num">${f0(x.r.est)}</td><td class="num">${f0(x.r.M)}</td><td class="note">${esc(x.acao)}</td></tr>`).join('')}
+     ${KATU.sai.map(x=>`<tr style="opacity:.85"><td><b>${esc(x.cod)}</b></td><td>—</td>${isDono()?`<td>${pill(x.cls==='MTO'?'MTO':x.cls)}</td>`:''}<td class="num">${x.addrs.length}</td><td class="note">${esc(x.addrs.join(', '))}</td><td class="num">0</td><td>—</td><td class="num">${f0(x.est)}</td><td class="num">0</td><td class="note">Sai do CD: consumir o saldo e não repor; liberar a posição</td></tr>`).join('')}
      </tbody></table></div></div>`;
     document.getElementById('kt-csv').onclick=katuCSV;
   },
@@ -2743,11 +2744,11 @@ const CD3={ready:false,
     document.getElementById('cd-lists').innerHTML=`
     <div class="panel"><h3>Itens Kanban sem posição no CD atual (${f0(over.length)})</h3>
      <div class="legend">${Object.entries(byF).map(([k,v])=>`<span><b>${esc(k)}</b>: ${v}</span>`).join('')}</div>
-     <div class="tw" style="max-height:320px"><table><thead><tr><th>Código</th><th>Família</th><th>ABC·XYZ</th><th>Classe</th><th>Motivo</th></tr></thead><tbody>
-     ${over.slice(0,300).map(o=>`<tr><td>${esc(o[0])}</td><td>${esc(o[1])}</td><td>${esc(o[2])}</td><td>${pill(o[3])}</td><td class="note">${esc(o[4])}</td></tr>`).join('')}</tbody></table></div></div>
+     <div class="tw" style="max-height:320px"><table><thead><tr><th>Código</th><th>Família</th>${isDono()?'<th>ABC·XYZ</th><th>Classe</th>':''}<th>Motivo</th></tr></thead><tbody>
+     ${over.slice(0,300).map(o=>`<tr><td>${esc(o[0])}</td><td>${esc(o[1])}</td>${isDono()?`<td>${esc(o[2])}</td><td>${pill(o[3])}</td>`:''}<td class="note">${esc(o[4])}</td></tr>`).join('')}</tbody></table></div></div>
     <div class="panel"><h3>Posições liberadas (${f0(DATA.rel.length)})</h3><p class="note">Itens hoje endereçados que saíram como MTO (Make to Order, montados sob pedido) ou sem venda em 12 meses.</p>
-     <div class="tw" style="max-height:320px"><table><thead><tr><th>Endereço</th><th>Item hoje</th><th>Classe</th></tr></thead><tbody>
-     ${DATA.rel.map(o=>`<tr><td>${esc(o[0])}</td><td>${esc(o[1])}</td><td>${pill(o[2])}</td></tr>`).join('')}</tbody></table></div></div>`;
+     <div class="tw" style="max-height:320px"><table><thead><tr><th>Endereço</th><th>Item hoje</th>${isDono()?'<th>Classe</th>':''}</tr></thead><tbody>
+     ${DATA.rel.map(o=>`<tr><td>${esc(o[0])}</td><td>${esc(o[1])}</td>${isDono()?`<td>${pill(o[2])}</td>`:''}</tr>`).join('')}</tbody></table></div></div>`;
   }
 };
 window.CD3=CD3;
@@ -2884,7 +2885,7 @@ function cardHTML(o){
   <div class="kb">
    <div class="ka"><b>${o.a1t}</b><span>${esc(o.a1)}</span><b>Endereço</b><span>${esc(o.end||'a definir')}</span><b>Contêiner</b><span>${esc(o.cont)}</span></div>
    <div class="ka"><b>Código</b><div class="code">${esc(o.cod)}</div><span style="font-weight:500">${esc(o.desc)}</span><b>Quantidade por cartão</b><div class="qty">${f0(o.q)} pç</div></div>
-   <div class="ka"><b>${o.ret?'Ponto de uso':'Recurso'}</b><span>${esc(o.rec)}</span>${o.ret?'':`<b>Lote de produção</b><span>${f0(o.lmin)} pç</span><b>Tempo de produção</b><span>${o.tp==null?'—':f1(o.tp)+' min'}</span>`}<b>Classe</b><span>${esc(o.cls)} · ${esc(o.abc)}</span></div>
+   <div class="ka"><b>${o.ret?'Ponto de uso':'Recurso'}</b><span>${esc(o.rec)}</span>${o.ret?'':`<b>Lote de produção</b><span>${f0(o.lmin)} pç</span>${isDono()?`<b>Tempo de produção</b><span>${o.tp==null?'—':f1(o.tp)+' min'}</span>`:''}`}${isDono()?`<b>Classe</b><span>${esc(o.cls)} · ${esc(o.abc)}</span>`:''}</div>
   </div>
   <div class="kf ${o.fx}"><span>${o.fxl}</span><span>${esc(o.dest)}</span></div></div>`;
 }
@@ -2991,7 +2992,7 @@ function qslotGrid(b,cards){
   for(let i=0;i<cols*rows;i++){
     const c=cards[i];
     h+= c?`<div class="qslot full ${c.band}" data-cod="${esc(c.cod)}" title="${esc(c.cod)} — ${esc(c.desc)}\nProduzir ${f0(c.qtd)} pç = ${c.cards} contêiner(es) de ${f0(c.q)} pç\nEstoque ${f0(c.est)} · disparo em ${f0(c.disp)}">
-             <div class="qf">${fotoImg(c.cod,30)}<div class="qt"><b>${esc(c.cod)}</b><i>${esc(c.abc)}</i></div></div>
+             <div class="qf">${fotoImg(c.cod,30)}<div class="qt"><b>${esc(c.cod)}</b>${isDono()?`<i>${esc(c.abc)}</i>`:''}</div></div>
              <div class="qd">${esc(c.desc)}</div>
              <div class="qq">${f0(c.qtd)} pç<span>${c.cards}×${f0(c.q)}</span></div></div>`
         : `<div class="qslot" ${i<cap?'':'style="opacity:.35"'}></div>`;
@@ -3022,7 +3023,7 @@ function renderQD(){
      <dt>Capacidade do quadro de sinal</dt><dd>${f0(b.cap)} bolsos = ${b.scol} colunas × ${b.srow} linhas</dd>
      <dt>Tamanho físico do quadro</dt><dd>${f2(b.sL)} m × ${f2(b.sH)} m</dd>
      <dt>Quadro heijunka</dt><dd>${b.jan} janelas × ${b.lanes} raias = ${f2(b.hL)} m × ${f2(b.hH)} m</dd></dl>
-    <p class="note">Capacidade = soma, item a item, da fração do tempo em que ele fica pendurado — (LT + meia jornada de coleta) ÷ (dias entre dois disparos) — com 50% de folga para variabilidade e mínimo de 20 bolsos. Dias entre disparos = quantidade reposta ÷ demanda diária.</p></div>
+    ${isDono()?`<p class="note">Capacidade = soma, item a item, da fração do tempo em que ele fica pendurado — (LT + meia jornada de coleta) ÷ (dias entre dois disparos) — com 50% de folga para variabilidade e mínimo de 20 bolsos. Dias entre disparos = quantidade reposta ÷ demanda diária.</p>`:''}</div>
    <div class="panel"><div class="head"><h3>Situação agora</h3></div>
     <div class="stats">
      <div class="stat r"><div class="l">Na vermelha</div><div class="v">${f0(nb.r)}</div><div class="s">produzir já</div></div>
@@ -4784,7 +4785,7 @@ async function cmShare(L,T){
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev27", MAN_DATA="24/11/2026";
+const MAN_REV="Rev27b", MAN_DATA="24/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -5821,6 +5822,10 @@ function renderCS(){
     const rows=F.map(x=>[x.cod,x.desc,x.fam,SELO[x.s_D],SELO[x.s_nnf],SELO[x.s_preco],x.N,x.us.join(" "),Math.round(x.val),Math.round(x.pc)]);
     saveFile("sugestao_venda_excesso_AUS.csv","﻿"+[H].concat(rows).map(r=>r.map(v=>{ const s=String(v??""); return /[;"\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }).join(";")).join("\n"),"text/csv"); };
 }
+
+/* Rev27b: colorir o CD por classe ABC·XYZ só para o João */
+function cdSemMetodo(){ if(isDono()) return; const o=document.querySelector('#p-cd option[value="abc"]'); if(o){ const sel=o.parentElement; if(sel.value==="abc"){ sel.value=sel.options[0].value; sel.dispatchEvent(new Event("change")); } o.remove(); } }
+cdSemMetodo();
 
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,
