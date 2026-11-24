@@ -5741,6 +5741,7 @@ function nvAbertura(){
   o.ids=o.ids||{}; NEWS.filter(n=>n.rev<=from).forEach(n=>n.itens.forEach(it=>{ o.ids[it.id]=1; }));   // o que é de revisões já abertas não vira bandeira
   o.lastRev=cur; nvSet(o);
   NVS={from:last,cur,itens,fechado:false};
+  if(itens.length&&!NV_OFF()){ try{ localStorage.setItem("aemco-kd4-tab","ov"); }catch(e){} }   // com novidade, o app abre no Painel (tela inicial)
 }
 function newsCardHTML(){
   if(!NVS||NVS.fechado||!NVS.itens.length||NV_OFF()) return '';
