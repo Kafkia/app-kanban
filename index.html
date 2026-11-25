@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev31"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev32"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1713,6 +1713,43 @@ details.panel>summary{cursor:pointer;padding:2px 0}
 .pd-c.on{background:var(--navy);color:#fff}
 [data-theme="dark"] .pd-c{border-color:var(--line);color:var(--ink)} [data-theme="dark"] .pd-c.on{background:var(--gold,#B8942F);color:#15223B}
 #p-pdia .panel>.head,#p-pexp .panel>.head{flex-wrap:wrap;gap:8px}
+/* Rev32 */
+.pd-det{margin:6px 0 0}.pd-det summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--muted);min-height:32px;display:flex;align-items:center}
+.pd-vg .pd-k b{font-size:26px}
+tr.cap-lim td{background:var(--ky-soft)}
+.pill.vx{background:#5B2A86;color:#fff}
+button.btn.dng{background:var(--kr);border-color:var(--kr);color:#fff}
+.sq-n{font-style:normal;display:inline-block;min-width:26px;margin-right:6px;padding:0 5px;border-radius:999px;background:var(--navy);color:#fff;font:700 11px var(--mono);text-align:center;vertical-align:1px}
+[data-theme="dark"] .sq-n{background:var(--gold,#B8942F);color:#15223B}
+.sq-l{display:flex;flex-direction:column;gap:8px}
+.sq-r{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:8px}.sq-r:first-child{border-top:0;padding-top:0}
+.sq-m{border:1.5px solid var(--navy);background:var(--panel);color:var(--ink);border-radius:10px;padding:6px 10px;text-align:left;cursor:pointer;min-height:44px;font:inherit}
+.sq-m b{display:block;font:700 17px var(--display);letter-spacing:.03em}.sq-m span{display:block;font-size:11.5px;color:var(--muted);line-height:1.2}
+[data-theme="dark"] .sq-m{border-color:var(--line)}
+.sq-c{display:flex;align-items:center;gap:6px;overflow-x:auto;padding-bottom:4px}.sq-c em{font-style:normal;color:var(--muted);flex:0 0 auto}
+.sq-i{flex:0 0 auto;display:grid;grid-template-columns:auto 1fr;column-gap:7px;align-items:center;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:8px;padding:4px 9px 4px 7px;background:var(--panel);min-width:118px}
+.sq-i i{grid-row:1/3;font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--c);color:#fff;font:700 12px var(--mono);display:flex;align-items:center;justify-content:center}
+.sq-i b{font:700 13px var(--mono)}.sq-i small{font-size:11px;color:var(--muted);white-space:nowrap}
+.sq-i.faz{box-shadow:inset 0 0 0 1.5px var(--kb)}.sq-i.esp{opacity:.6}
+@media (max-width:700px){.sq-r{grid-template-columns:1fr}}
+.opv-area h4{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:2px solid var(--navy);padding-bottom:4px}
+.opv-area h4 b{font:700 18px var(--display);color:var(--ink);letter-spacing:.06em}.opv-area h4 span{font:600 12px var(--body);letter-spacing:0;text-transform:none}
+[data-theme="dark"] .opv-area h4{border-bottom-color:var(--line)}
+.opv-m em{display:block;margin-top:6px;font-style:normal;font:700 13px var(--mono);color:var(--ink)}.opv-m.faz{border-color:var(--kb);box-shadow:inset 0 0 0 1px var(--kb)}
+.opv-desf{display:block;width:100%;margin-top:10px;color:var(--ink);border-color:var(--line);min-height:48px}
+.mq-a h4{margin:14px 0 8px;font:700 14px var(--display);letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:4px}.mq-a:first-of-type h4{margin-top:0}
+.mq-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.mq{border:1.5px solid var(--line);border-left:6px solid var(--muted);background:var(--panel);color:var(--ink);border-radius:10px;padding:8px 10px;text-align:left;cursor:pointer;font:inherit;min-height:84px;display:flex;flex-direction:column;gap:2px}
+.mq b{font:700 18px var(--display);letter-spacing:.03em}.mq span{font-size:11.5px;color:var(--muted);line-height:1.2}.mq i{font-style:normal;font:700 13px var(--mono);margin-top:2px}.mq small{font-size:11.5px;color:var(--muted)}
+.mq-faz{border-left-color:var(--kb)}.mq-prox{border-left-color:var(--ky)}.mq-esp{border-left-color:var(--muted)}.mq-livre{opacity:.72}.mq-livre i{color:var(--muted);font-weight:600}
+.mq.vx{border-left-color:#5B2A86}
+.mq-l{font-weight:700;padding:0 6px;border-radius:6px;border-left:5px solid var(--muted)}.mq-l.faz{border-left-color:var(--kb)}.mq-l.prox{border-left-color:var(--ky)}
+.vsm .mqk{font-size:11px;font-weight:700;font-family:var(--mono)}.vsm .mqv{font-size:11px;font-family:var(--mono)}
+.vsm .vmq[data-fxm]{cursor:pointer}.vsm .vmq-h{fill:transparent}.vsm .vmq[data-fxm]:hover .vmq-h,.vsm .vmq[data-fxm]:focus .vmq-h{fill:var(--panel2)}.vsm .vmq:focus{outline:none}
+.vsm .vmq.faz .mqv{font-weight:700;fill:var(--kb)}.vsm .vmq.esp text{fill:var(--muted)}.vsm .vmq.mu text{fill:var(--muted);font-weight:400;font-family:var(--body)}.vsm .vmq.vx .mqv{fill:#8A4FBF}
+.cs-tab td:first-child{white-space:normal;min-width:210px;max-width:300px}.cs-tab thead th{white-space:normal;line-height:1.2;vertical-align:bottom}.cs-tab th:nth-child(7),.cs-tab th:nth-child(9){min-width:118px}.cs-tab td:nth-child(6) .note{display:inline-block;white-space:normal;max-width:160px;text-align:right;line-height:1.25}
+.cs-vf td{background:var(--panel2);white-space:normal}.cs-vf p{max-width:900px}
+details.sq-d>summary{cursor:pointer;list-style:none}details.sq-d>summary::-webkit-details-marker{display:none}details.sq-d>summary h3::before{content:'▸ '}details.sq-d[open]>summary h3::before{content:'▾ '}.cs-vf .filters{margin:0;align-items:flex-end}
 
 
 [hidden]{display:none!important}
@@ -3765,7 +3802,7 @@ function rotaOf(r){
   return [p0];
 }
 /* peças em cartões abertos (programados, em produção ou na fila de uma etapa seguinte) */
-function cartPc(tipo,cod){ let s=0; for(const c of CART) if(c.status!=="ok"&&c.tipo===tipo&&c.cod===cod) s+=c.q||0; return s; }
+function cartPc(tipo,cod){ let s=0; for(const c of CART) if(c.status!=="ok"&&!c.vx&&c.tipo===tipo&&c.cod===cod) s+=c.q||0; return s; }   // Rev32: cartão de venda do excesso é extra, não é reposição do Kanban
 /* tempo de ciclo do item no processo (s/pç); null = não informado */
 /* P3: a capacidade é a do grupo gargalo da usinagem (mesma conta da aba Capacidade) */
 function garg3(){ let best=null;
@@ -3802,7 +3839,7 @@ function gmPainel(p,dias,fila){
   const set=new Set(); fila.forEach(f=>{ const o=opsDe(f.cod,p,f.rota); if(o) o.forEach(x=>set.add(x[0])); });
   const Ld=dias.map(d=>cargaGM(p,d)); Ld.forEach(L=>Object.keys(L).forEach(k=>set.add(+k)));
   if(!set.size) return `<p class="note">Sem roteiro do ERP para os itens deste processo: vale a capacidade do processo acima.</p>`;
-  const gs=[...set].sort((a,b)=>String(GMS[a][0]).localeCompare(String(GMS[b][0]))), adm=isProg(), off=prgP().off;
+  const gs=[...set].sort((a,b)=>String(GMS[a][0]).localeCompare(String(GMS[b][0]))), adm=isJA(), off=prgP().off;   // Rev32: só o João e o Alex alteram esta tabela
   return `<div class="panel"><div class="head"><h3>Máquinas e carga por dia (TOD)</h3><span class="note">recursos do cadastro de centros de trabalho · tempo de ciclo e setup do roteiro do ERP</span></div>
    <div class="tw"><table><thead><tr><th>Grupo de máquina</th><th>Máquinas (clique para ligar ou desligar)</th><th class="num">Horas/dia</th><th class="num">Eficiência %</th><th class="num">TOD real h/dia</th>${dias.map(d=>`<th class="num">${dbr(deYMD(d))}</th>`).join('')}</tr></thead><tbody>
    ${gs.map(gi=>{ const g=GMS[gi], h=gmHoras(g[0]), cap=gmCap(gi), rs=recDe(g[0],true);
@@ -3813,7 +3850,7 @@ function gmPainel(p,dias,fila){
       <td class="num">${cap!=null?f1(cap):'—'}</td>
       ${Ld.map(L=>{ const x=L[gi]||0, pc=cap?x/cap:null; return `<td class="num" style="${pc!=null&&pc>1?'background:#FBE3E1;font-weight:700':(pc!=null&&pc>0.85?'background:#FFF4CC':'')}">${x?f1(x)+' h':'—'}${pc!=null&&x?`<br><span class="note">${f0(pc*100)}%</span>`:''}</td>`; }).join('')}</tr>`; }).join('')}
    </tbody></table></div>
-   <p class="note">O dia só recebe mais cartões enquanto todos os grupos do roteiro do item couberem no TOD real (máquinas ligadas × horas/dia × eficiência). Cada lote é mandado para a máquina menos carregada do grupo; a Operação vê a sequência por máquina. Operações sem setup no ERP usam o “setup por item” do processo. ${adm?'<button class="btn" id="gm-sv">Salvar horas e eficiência</button>':'Só o Programador altera.'}</p></div>`;
+   <p class="note">O dia só recebe mais cartões enquanto todos os grupos do roteiro do item couberem no TOD real (máquinas ligadas × horas/dia × eficiência). Cada lote é mandado para a máquina menos carregada do grupo; a Operação vê a sequência por máquina. Operações sem setup no ERP usam o “setup por item” do processo. ${adm?'<button class="btn" id="gm-sv">Salvar horas e eficiência</button>':'<b>Tabela bloqueada:</b> só o João Bosco e o Alex Bertino ligam ou desligam máquinas e alteram horas e eficiência.'}</p></div>`;
 }
 
 /* ---------- Rev18: recursos (centros de trabalho), parâmetros da programação e máquina de cada lote ---------- */
@@ -3886,7 +3923,7 @@ function opLotesProc(p){      // lotes de um processo que não têm máquina no 
     const g=m[key]||(m[key]={key,dia:c.dia,proc:c.proc,tipo:c.tipo,cod:c.cod,desc:c.desc,i:0,q:c.q,prio:c.prio==null?2:c.prio,seq:c.seq||0,cs:[],opn:procNome(p),tm:c.tc||0,sem:true});
     g.cs.push(c); g.prio=Math.min(g.prio,c.prio==null?2:c.prio); g.seq=Math.min(g.seq,c.seq||0); });
   return Object.values(m).map(g=>{ g.lib=g.cs; g.esp=[]; g.faz=g.cs.filter(c=>c.status==="prod"); const c0=g.cs[0], prox=c0.rota[(c0.et||0)+1];
-    g.dep=prox?{w:procNome(prox),n:"próxima etapa"}:{w:g.tipo==="pa"?"CD":"Supermercado de usinados",n:"guardar no endereço do item"}; g.ant=null; return g; })
+    g.dep=prox?{w:procNome(prox),n:"próxima etapa"}:{w:g.tipo==="pa"?"CD":"Supermercado de usinados",n:"guardar no endereço do item"}; g.ant=null; g.vx=g.cs.some(c=>c.vx); return g; })
     .sort((a,b)=>(b.faz.length?1:0)-(a.faz.length?1:0)||(a.dia<b.dia?-1:a.dia>b.dia?1:0)||(a.prio-b.prio)||(a.seq-b.seq));
 }
 function opvNome(W){ return W&&W[0]==="@"?[W.slice(1),procNome(W.slice(1))+" — sem máquina definida"]:[W,recNome(W)]; }
@@ -3901,7 +3938,7 @@ function opLotes(W){
     const c0=g.cs[0]; let nx=g.i+1; while(nx<c0.wc.length&&!c0.wc[nx]) nx++;
     const prox=c0.rota[(c0.et||0)+1];
     g.dep=nx<c0.wc.length?{w:c0.wc[nx],n:recNome(c0.wc[nx])}:(prox?{w:procNome(prox),n:"próxima etapa"}:{w:g.tipo==="pa"?"CD":"Supermercado de usinados",n:"guardar no endereço do item"});
-    let pv=g.i-1; while(pv>=0&&!c0.wc[pv]) pv--; g.ant=pv>=0?c0.wc[pv]:null;
+    let pv=g.i-1; while(pv>=0&&!c0.wc[pv]) pv--; g.ant=pv>=0?c0.wc[pv]:null; g.vx=g.cs.some(c=>c.vx);
     return g; }).sort((a,b)=>(b.faz.length?1:0)-(a.faz.length?1:0)||(b.lib.length?1:0)-(a.lib.length?1:0)||(a.dia<b.dia?-1:a.dia>b.dia?1:0)||(a.prio-b.prio)||(a.seq-b.seq));   // primeiro o que está fazendo, depois o que já pode fazer; o que ainda não chegou fica no fim
 }
 function opvDia(d){ const h=ymd(opHoje()); if(d===h) return "HOJE"; if(d<h) return "ATRASADO · "+dbr(deYMD(d)); const am=new Date(opHoje()); am.setDate(am.getDate()+1); if(d===ymd(am)) return "AMANHÃ"; return DIASEM[deYMD(d).getDay()].toUpperCase()+" "+dbr(deYMD(d)); }
@@ -3909,6 +3946,9 @@ async function opAcao(a,W,key){
   if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return; }
   const g=opLotes(W).find(x=>x.key===key); if(!g||!g.lib.length) return; const now=new Date().toISOString();
   if(a==="ini"){ for(const c of g.lib){ await cartUpd(c.id,{status:"prod",opn:g.i,inicio:c.inicio||now}); c.status="prod"; c.opn=g.i; } toast(`${g.cod}: começou na ${opvNome(W)[0]}`); }
+  if(a==="desf"){   // Rev32: volta uma etapa — o lote deixa de estar "fazendo" (na 1ª operação volta a programado; nas seguintes fica aguardando esta máquina)
+    for(const c of g.faz){ const prim=g.sem||g.i===opIni(c.wc), st=prim?"prog":"prod"; await cartUpd(c.id,{status:st,opn:null}); c.status=st; c.opn=null; }
+    toast(`${g.cod}: voltou para "a fazer" na ${opvNome(W)[0]}`); }
   let boaTot=null;
   if(a==="fim"){ const hj=ymd(opHoje()), ga=apLotes(g.dia>hj?g.dia:hj).find(x=>x.key===g.key);   // Rev20: TERMINEI também vira apontamento (tudo bom)
     if(ga){ boaTot=ga.boa+ga.rest; await aptAdd(aptRegistro(ga,ga.rest,0,true)); } }
@@ -3925,13 +3965,15 @@ function renderOPV(){
   const box=document.getElementById('opv'); if(!box) return;
   const cont={}; CART.forEach(c=>{ if((c.status!=="prog"&&c.status!=="prod")||!c.dia) return; if(!temMaq(c)){ (cont["@"+c.proc]=cont["@"+c.proc]||new Set()).add([c.dia,c.tipo,c.cod].join("|")); return; } const f=c.op||0; c.wc.forEach((w,i)=>{ if(w&&i>=f) (cont[w]=cont[w]||new Set()).add([c.dia,c.tipo,c.cod,i].join("|")); }); });
   if(!OPV.w||!(REC.some(r=>r[0]===OPV.w)||/^@P\d+$/.test(OPV.w))){
-    const tile=r=>{ const n=cont[r[0]]?cont[r[0]].size:0; return `<button type="button" class="opv-m${n?' tem':''}" data-maq="${esc(r[0])}"><b>${esc(r[0])}</b><span>${esc(r[1])}</span><i>${n?n+(n>1?' lotes':' lote'):'livre'}</i></button>`; };
-    const ord=(a,b)=>a[0].localeCompare(b[0]), com=REC.filter(r=>cont[r[0]]).sort(ord), sem=REC.filter(r=>!cont[r[0]]).sort(ord);
+    const tile=r=>{ const n=cont[r[0]]?cont[r[0]].size:0, s=n?maqAgora(r[0]):null, g=s&&s.g;
+      return `<button type="button" class="opv-m${n?' tem':''}${s&&s.st==="faz"?' faz':''}" data-maq="${esc(r[0])}"><b>${esc(r[0])}</b><span>${esc(r[1])}</span><i>${n?n+(n>1?' lotes':' lote'):'livre'}</i>${g?`<em>${s.st==="faz"?'▶ fazendo ':'próximo: '}${esc(g.cod)}</em>`:''}</button>`; };
     const prc=Object.keys(cont).filter(k=>k[0]==="@").sort().map(k=>[k,procNome(k.slice(1))]);
+    const AR=maqPorArea(), temServ=AR.some(x=>x.ms.some(r=>cont[r[0]]));
     box.innerHTML=`<div class="opv"><div class="opv-q">Qual é a sua máquina?</div>
-     ${com.length?`<div class="opv-g"><h4>Máquinas com serviço programado</h4><div class="opv-ms">${com.map(tile).join('')}</div></div>`:prc.length?'':`<div class="opv-vazio"><b>Nada programado</b><span>O Programador ainda não mandou lotes para as máquinas.</span></div>`}
+     ${!temServ&&!prc.length?`<div class="opv-vazio"><b>Nada programado</b><span>O Programador ainda não mandou lotes para as máquinas.</span></div>`:''}
      ${prc.length?`<div class="opv-g"><h4>Lotes sem máquina definida — escolha o processo</h4><div class="opv-ms">${prc.map(r=>`<button type="button" class="opv-m tem" data-maq="${esc(r[0])}"><b>${esc(r[0].slice(1))}</b><span>${esc(r[1])}</span><i>${cont[r[0]].size+(cont[r[0]].size>1?' lotes':' lote')}</i></button>`).join('')}</div></div>`:''}
-     ${sem.length?`<details class="apd"><summary>Outras máquinas (${sem.length}) — sem serviço agora</summary><div class="opv-ms">${sem.map(tile).join('')}</div></details>`:''}
+     ${AR.map(x=>{ const com=x.ms.filter(r=>cont[r[0]]), sem=x.ms.filter(r=>!cont[r[0]]);   /* Rev32: seções por área, na ordem do fluxo de valor; dentro da área, primeiro quem tem serviço */
+       return `<div class="opv-g opv-area"><h4><b>${esc(x.nome)}</b><span>${f0(com.length)} com serviço · ${f0(sem.length)} livre(s)</span></h4><div class="opv-ms">${com.concat(sem).map(tile).join('')}</div></div>`; }).join('')}
      ${window.KB?'<button type="button" class="opv-troca esc" id="opv-sync">🔄 Atualizar</button>':''}
      ${wcFaltam()?`<p class="note">${wcFaltam()} cartão(ões) programado(s) ainda sem máquina — o Programador precisa distribuir.</p>`:''}</div>`;
     opvSync();
@@ -3942,7 +3984,7 @@ function renderOPV(){
   const pcs=g=>g.lib.reduce((s,c)=>s+c.q,0), cx=g=>g.lib.length;
   box.innerHTML=`<div class="opv">
    <div class="opv-top"><div><small>${W[0]==="@"?'PROCESSO':'MÁQUINA'}</small><b>${esc(opvNome(W)[0])}</b><span>${esc(opvNome(W)[1])}</span></div><span class="opv-bts">${window.KB?'<button type="button" class="opv-troca" id="opv-sync">🔄 Atualizar</button>':''}<button type="button" class="opv-troca" id="opv-troca">Trocar máquina</button></span></div>
-   ${ag?(()=>{ const pr=OPPR(ag.prio), fz=ag.faz.length>0, esp=ag.esp.reduce((s,c)=>s+c.q,0);
+   ${ag?(()=>{ const pr=Object.assign({},OPPR(ag.prio)), fz=ag.faz.length>0, esp=ag.esp.reduce((s,c)=>s+c.q,0); if(ag.vx) pr.s="venda do excesso de estoque";
      return `<div class="opv-now" style="border-color:${pr.c}">
       <div class="opv-tag" style="background:${pr.c}">${fz?'FAZENDO AGORA':'FAÇA AGORA'} · ${pr.t}<small>${pr.s} · ${opvDia(ag.dia)}</small></div>
       <div class="opv-cod">${esc(ag.cod)}</div><div class="opv-desc">${esc(ag.desc||'')}</div>
@@ -3950,10 +3992,11 @@ function renderOPV(){
       <div class="opv-op"><small>O QUE FAZER</small>${esc(ag.opn||'Operação '+(ag.i+1))}</div>
       <div class="opv-op"><small>DEPOIS LEVE PARA</small><b>${esc(ag.dep.w)}</b> ${esc(ag.dep.n||'')}</div>
       ${esp?`<div class="opv-wait">⏳ mais ${f0(esp)} peças deste item ainda vão chegar da ${esc(ag.ant||'etapa anterior')}</div>`:''}
-      <button type="button" class="opv-btn ${fz?'fim':'ini'}" data-opa="${fz?'fim':'ini'}" data-key="${esc(ag.key)}">${fz?'✔ TERMINEI':'▶ COMECEI'}</button></div>`; })()
+      <button type="button" class="opv-btn ${fz?'fim':'ini'}" data-opa="${fz?'fim':'ini'}" data-key="${esc(ag.key)}">${fz?'✔ TERMINEI':'▶ COMECEI'}</button>
+      ${fz?`<button type="button" class="opv-troca opv-desf" data-opa="desf" data-key="${esc(ag.key)}">↩ Voltar: apertei COMECEI por engano</button>`:''}</div>`; })()
      :`<div class="opv-vazio"><b>${L.length?'Aguardando peças':'Nada para fazer agora'}</b><span>${L.length?'Os próximos lotes ainda estão na máquina anterior.':'Não há lote programado para esta máquina.'}</span></div>`}
    ${resto.length?`<h3 class="opv-h">DEPOIS, NESTA ORDEM</h3><div class="opv-list">${resto.slice(0,14).map((g,n)=>{ const pr=OPPR(g.prio), lib=g.lib.length>0, pc=g.cs.reduce((s,c)=>s+c.q,0);
-     return `<div class="opv-it${lib?'':' esp'}"><div class="opv-n" style="background:${pr.c}">${n+2}</div><div class="opv-ic"><b>${esc(g.cod)}</b><span>${esc(String(g.desc||'').slice(0,46))}</span><small>${opvDia(g.dia)} · ${esc(g.opn||'')}</small></div>
+     return `<div class="opv-it${lib?'':' esp'}"><div class="opv-n" style="background:${pr.c}">${n+2}</div><div class="opv-ic"><b>${esc(g.cod)}</b><span>${esc(String(g.desc||'').slice(0,46))}</span><small>${opvDia(g.dia)} · ${esc(g.opn||'')}${g.vx?' · FURA-FILA · venda do excesso':''}</small></div>
       <div class="opv-ip"><b>${f0(pc)}</b><span>peças</span></div>${lib?'':`<div class="opv-is">⏳ falta chegar da ${esc(g.ant||'etapa anterior')}</div>`}</div>`; }).join('')}</div>${resto.length>14?`<p class="note">e mais ${resto.length-14} lote(s).</p>`:''}`:''}
    </div>`;
   opvSync();
@@ -3995,7 +4038,7 @@ function pedFila(){
     return a.ff>0?{r:a.r,ff:true,need:a.ff,e}:{r:a.r,ff:false,need:Math.max(0,a.mto-e),e}; }).filter(d=>d.need>0);
 }
 function filaDe(p){
-  const abertos={}, abP={}; CART.forEach(c=>{ if(c.status!=="ok"){ const k=keyOf(c.tipo,c.cod); if(c.ped) abP[k]=(abP[k]||0)+1; else abertos[k]=(abertos[k]||0)+1; } });
+  const abertos={}, abP={}; CART.forEach(c=>{ if(c.status!=="ok"&&!c.vx){ const k=keyOf(c.tipo,c.cod); if(c.ped) abP[k]=(abP[k]||0)+1; else abertos[k]=(abertos[k]||0)+1; } });   // cartão de venda do excesso (vx) é extra: não conta como reposição
   const out=[]; let semDado=0;
   for(const r of prgItens()){
     const rota=rotaOf(r); if(rota[0]!==p) continue;
@@ -4011,12 +4054,16 @@ function filaDe(p){
   pedFila().forEach(d=>{ const r=d.r, rota=rotaOf(r); if(rota[0]!==p) return; const q=r.q>0?r.q:1, k=keyOf(r.k,r.cod);
     const n=Math.ceil(d.need/q-1e-9)-(abP[k]||0); if(n<=0) return;
     out.push({virt:true,ped:1,tipo:r.k,cod:r.cod,desc:r.desc,q,n,rota,prio:d.ff?0:0.5,st:d.ff?"Fura-fila":"MTO",est:d.e,M:r.M,cob:0,tc:tcAt(p,r),r}); });
+  // Rev32: venda do excesso do AUS registrada pelo Comercial e ainda sem cartão para todas as peças — fura-fila
+  if(typeof vendasAbertas==="function"){ const PAx={}; calcPA().forEach(r=>{ PAx[r.cod]=r; });
+    vendasAbertas().forEach(v=>{ const r=PAx[v.cod]; if(!r) return; const rota=rotaOf(r); if(rota[0]!==p) return; const q=r.q>0?r.q:1, rem=v.q-vendaCart(v); if(!(rem>0)) return;
+      out.push({virt:true,vx:v.id,rem,tipo:r.k,cod:r.cod,desc:r.desc,q,n:Math.ceil(rem/q-1e-9),rota,prio:0,st:"Fura-fila",est:estReal(r),M:r.M,cob:-1,tc:tcAt(p,r),r}); }); }
   // cartões que chegaram da etapa anterior (ex.: pintados aguardando embalagem)
   const vind={};
-  CART.filter(c=>c.proc===p&&c.status==="fila").forEach(c=>{ const k=keyOf(c.tipo,c.cod); (vind[k]=vind[k]||[]).push(c); });
+  CART.filter(c=>c.proc===p&&c.status==="fila").forEach(c=>{ const k=keyOf(c.tipo,c.cod)+(c.vx?"#"+c.vx:""); (vind[k]=vind[k]||[]).push(c); });
   const idx={}; prgItens().forEach(r=>idx[keyOf(r.k,r.cod)]=r);
-  Object.entries(vind).forEach(([k,cs])=>{ const r=idx[k]||{}; const c0=cs[0];
-    out.push({virt:false,ids:cs.map(c=>c.id),tipo:c0.tipo,cod:c0.cod,desc:c0.desc,q:c0.q,n:cs.length,rota:c0.rota,prio:c0.prio||2,st:r.st||"—",est:r.est,M:r.M,cob:0,tc:r.k?tcAt(p,r):null,de:c0.rota[c0.et-1],r}); });
+  Object.entries(vind).forEach(([k,cs])=>{ const c0=cs[0], r=idx[keyOf(c0.tipo,c0.cod)]||{};
+    out.push({virt:false,vx:c0.vx||null,pcs:cs.every(c=>c.q===c0.q)?0:cs.reduce((t,c)=>t+(c.q||0),0),ids:cs.map(c=>c.id),tipo:c0.tipo,cod:c0.cod,desc:c0.desc,q:c0.q,n:cs.length,rota:c0.rota,prio:c0.prio==null?2:c0.prio,st:r.st||"—",est:r.est,M:r.M,cob:0,tc:r.k?tcAt(p,r):null,de:c0.rota[c0.et-1],r}); });
   out.sort((a,b)=>a.prio-b.prio||(a.virt?1:0)-(b.virt?1:0)||a.cob-b.cob);
   return {fila:out,semDado};
 }
@@ -4046,25 +4093,33 @@ function capOk(p,dia,tc,q,cod,tipo,rota){
 /* programa n cartões de um item da fila */
 async function programar(p,f,n,diaFixo){
   if(!isProg()){ toast("Somente o Programador programa os cartões"); return 0; }
+  return programarCore(p,f,n,diaFixo,prgDias());
+}
+/* Rev32: núcleo da programação (também usado pela venda do excesso, que entra como fura-fila).
+   f.vx = venda de origem; f.rem = peças que faltam da venda (o último cartão leva só o resto) */
+async function programarCore(p,f,n,diaFixo,dias){
   if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return 0; }
-  const dias=prgDias(); let feitos=0; const now=new Date().toISOString();
+  let feitos=0, rem=f.rem>0?f.rem:null; const now=new Date().toISOString();
   let ids=f.virt?null:f.ids.slice();
   for(let i=0;i<n;i++){
+    const q=rem!=null?Math.min(f.q,rem):f.q; if(rem!=null&&!(q>0)) break;
     let dia=diaFixo||null;
-    if(!dia){ dia=dias.find(d=>capOk(p,d,f.tc,f.q,f.cod,f.tipo,f.rota)); if(!dia) break; }
-    const seq=Math.max(0,...CART.filter(c=>c.proc===p&&c.dia===dia).map(c=>c.seq||0))+1;
+    if(!dia){ dia=dias.find(d=>capOk(p,d,f.tc,q,f.cod,f.tipo,f.rota)); if(!dia) break; }
+    const sq=CART.filter(c=>c.proc===p&&c.dia===dia).map(c=>c.seq||0), seq=f.vx?Math.min(1,...sq)-1:Math.max(0,...sq)+1;   // venda do excesso entra na frente do dia
     if(f.virt){
-      const wc=wcEscolhe(p,dia,f.tipo,f.cod,f.rota,f.q);
-      const o={tipo:f.tipo,cod:f.cod,desc:f.desc,q:f.q,rota:f.rota,et:0,proc:p,status:"prog",dia,seq,prio:f.prio,ped:f.ped?1:0,tc:f.tc||null,criado:now,por:UID||"",wc,op:opIni(wc)};
+      const wc=wcEscolhe(p,dia,f.tipo,f.cod,f.rota,q);
+      const o={tipo:f.tipo,cod:f.cod,desc:f.desc,q,rota:f.rota,et:0,proc:p,status:"prog",dia,seq,prio:f.prio,ped:f.ped?1:0,tc:f.tc||null,criado:now,por:UID||"",wc,op:opIni(wc)};
+      if(f.vx) o.vx=f.vx;
       if(!await cartAdd(o)) break;
       if(!DB) {}                                     // local: CART já atualizado
       else CART.push(Object.assign({id:"tmp"+i+Math.random()},o));   // reflete já para o cálculo de capacidade
     } else {
       const id=ids.shift(); if(!id) break;
-      const wc=wcEscolhe(p,dia,f.tipo,f.cod,f.rota,f.q);
+      const wc=wcEscolhe(p,dia,f.tipo,f.cod,f.rota,q);
       await cartUpd(id,{status:"prog",dia,seq,tc:f.tc||null,wc,op:opIni(wc),opn:null});
       const c=CART.find(x=>x.id===id); if(c){ c.status="prog"; c.dia=dia; c.seq=seq; c.tc=f.tc||null; c.wc=wc; c.op=opIni(wc); c.opn=null; }
     }
+    if(rem!=null) rem-=q;
     feitos++;
   }
   return feitos;
@@ -4102,7 +4157,7 @@ async function grupoAcao(a,p,dia,tipo,cod){
 /* cartões de um dia agrupados por item, na sequência */
 function prgGrupos(p,dia){
   const m={};
-  CART.filter(c=>c.proc===p&&c.dia===dia&&(c.status!=="ok"||c.etDia===dia)).forEach(c=>{ const k=keyOf(c.tipo,c.cod); (m[k]=m[k]||{tipo:c.tipo,cod:c.cod,desc:c.desc,q:c.q,tc:c.tc,prio:c.prio,cs:[],seq:1e9}).cs.push(c); m[k].seq=Math.min(m[k].seq,c.seq||0); });
+  CART.filter(c=>c.proc===p&&c.dia===dia&&(c.status!=="ok"||c.etDia===dia)).forEach(c=>{ const k=keyOf(c.tipo,c.cod); (m[k]=m[k]||{tipo:c.tipo,cod:c.cod,desc:c.desc,q:c.q,tc:c.tc,prio:c.prio,cs:[],seq:1e9}).cs.push(c); m[k].seq=Math.min(m[k].seq,c.seq||0); if(c.vx) m[k].vx=1; if(c.prio!=null&&(m[k].prio==null||c.prio<m[k].prio)) m[k].prio=c.prio; });
   return Object.values(m).sort((a,b)=>a.seq-b.seq);
 }
 /* ---------- tela ---------- */
@@ -4112,7 +4167,7 @@ function prgResumo(){
     return {p,nf,nr,np,nprod}; });
 }
 function renderPRG(){
-  const box=document.getElementById('prg'); if(!box) return;
+  const box=document.getElementById('prg'); if(!box) return; if(typeof vendasFecha==="function") vendasFecha();
   const p=PRG.p, b=procB(p), cfg=procCfg(p), dias=prgDias(), {fila,semDado}=filaDe(p), res=prgResumo();
   const tcTxt=(()=>{ const t=cfg.tc>0?cfg.tc:(p==="P3"?garg3().t:p==="P7"?P.tcp:p==="P6"?P.tcpa.Cardans:null); return t?f1(t)+" s/pç":"não informado"; })();
   const nfTot=fila.reduce((s,f)=>s+f.n,0);
@@ -4140,15 +4195,17 @@ function renderPRG(){
    <label class="f" style="flex-direction:row;align-items:center;gap:6px" for="pg-sab"><input id="pg-sab" type="checkbox" ${PRG.sab?'checked':''}> Sábado</label>
    <button class="btn pri" id="pg-auto" ${fila.some(f=>f.prio<3)?'':'disabled'}>Programar fila automaticamente</button>
    <button class="btn" id="pg-csv">Excel (CSV)</button><button class="btn" id="pg-pdf">Imprimir / PDF</button>
+   ${isProg()?(()=>{ const n=limparAlvo().length, arm=PRG_LIMPA&&Date.now()-PRG_LIMPA<8000; return `<button class="btn${arm?' dng':''}" id="pg-limpa" ${n?'':'disabled'} title="Tira da programação todos os cartões ainda não iniciados, de todos os processos. O que já está em produção fica.">${arm?`Confirmar: tirar ${f0(n)} cartão(ões) programado(s) de todos os processos`:'🧹 Limpar toda a programação'}</button>`; })():''}
   </div>
+  ${seqMaqHTML(p,dias)}
   ${wcFaltam()?`<p class="note" style="color:var(--kr)"><b>${wcFaltam()} cartão(ões) programado(s) sem máquina.</b> <button class="btn pri" id="wc-dist">Distribuir nas máquinas</button></p>`:''}
   <div class="board" style="grid-template-columns:minmax(260px,1.1fr) repeat(${dias.length},minmax(220px,1fr));overflow-x:auto;display:grid">
    <div class="col"><h3>Fila · ${f0(nfTot)} cartões</h3>
     <p class="note" style="margin:0">Liberados pelo consumo (máximo − estoque, em contêineres). Vermelho primeiro.${semDado?` ${f0(semDado)} itens sem estoque apontado não entram.`:''}</p>
     ${fila.slice(0,150).map((f,i)=>`<div class="card" style="border-left-color:${f.prio<1?'#5B2A86':f.prio===1?'var(--kr)':f.prio===2?'var(--ky)':'var(--kg)'}">
-      <div class="t"><span>${esc(f.cod)}</span><span style="font-family:var(--mono)">${f.n} × ${f0(f.q)} pç</span></div>
+      <div class="t"><span>${esc(f.cod)}</span><span style="font-family:var(--mono)">${f.rem>0?f0(f.rem)+' pç':f.pcs>0?`${f.n} cx · ${f0(f.pcs)} pç`:`${f.n} × ${f0(f.q)} pç`}</span></div>
       <span class="note desc" style="white-space:normal">${esc(String(f.desc).slice(0,60))}</span>
-      <span class="note">${f.virt?`estoque ${f0(f.est)} / máx ${f0(f.M)} · ${f.prio===3?'verde · lote em formação':spill(f.st)}`:`vindo de ${esc(f.de||'')}`}${f.tc?` · ${f1(f.n*f.q*f.tc/3600)} h`:''}${f.rota.length>1?` · rota ${f.rota.join('→')}`:''}</span>
+      ${f.vx?'<span class="pill vx">FURA-FILA · venda do excesso</span>':''}<span class="note">${f.virt?`estoque ${f0(f.est)} / máx ${f0(f.M)} · ${f.prio===3?'verde · lote em formação':spill(f.st)}`:`vindo de ${esc(f.de||'')}`}${f.tc?` · ${f1(f.n*f.q*f.tc/3600)} h`:''}${f.rota.length>1?` · rota ${esc(f.rota.join('→'))}`:''}</span>
       <div class="acts"><select class="in" data-fd="${i}" style="max-width:120px"><option value="">1º dia livre</option>${dias.map(d=>`<option value="${d}">${dbr(deYMD(d))}</option>`).join('')}</select>
        <button class="btn" data-pg="${i}" data-n="1">+1</button><button class="btn pri" data-pg="${i}" data-n="${f.n}">Todos</button></div></div>`).join('')||'<span class="note">Nenhum cartão na fila.</span>'}
     ${fila.length>150?`<span class="note">+${fila.length-150} itens</span>`:''}
@@ -4158,11 +4215,11 @@ function renderPRG(){
      return `<div class="col"><h3>${DIASEM[deYMD(d).getDay()]} ${dbr(deYMD(d))}</h3>
       <div class="bar"><b style="width:${Math.min(100,oc*100)}%;background:${oc>1?'var(--kr)':oc>0.85?'var(--ky)':'var(--kg)'}"></b></div>
       <span class="note">${c.h>0?`${f1(c.h)} h de ${f1(cap)} h`:''}${c.semtc?` ${c.semtc} cartões sem TC (limite ${cartDia(p)}/dia)`:''}${!c.n?'livre':''}</span>
-      ${g.map(x=>{ const nP=x.cs.filter(c=>c.status==="prog").length, nE=x.cs.filter(c=>c.status==="prod").length, nO=x.cs.filter(c=>c.status==="ok").length;
-        const a=`data-d="${d}" data-t="${x.tipo}" data-c="${esc(x.cod)}"`;
+      ${g.map((x,j)=>{ const nP=x.cs.filter(c=>c.status==="prog").length, nE=x.cs.filter(c=>c.status==="prod").length, nO=x.cs.filter(c=>c.status==="ok").length;
+        const a=`data-d="${esc(d)}" data-t="${esc(x.tipo)}" data-c="${esc(x.cod)}"`;
         return `<div class="card" style="border-left-color:${nO&&!nP&&!nE?'var(--kg)':nE?'var(--kb)':x.prio<1?'#5B2A86':x.prio===1?'var(--kr)':'var(--ky)'};${nO&&!nP&&!nE?'opacity:.6':''}">
-         <div class="t"><span>${esc(x.cod)}</span><span style="font-family:var(--mono)">${x.cs.length} × ${f0(x.q)}</span></div>
-         <span class="note">${nP?nP+' programado(s) ':''}${nE?'<b>'+nE+' em produção</b> ':''}${nO?nO+' concluído(s)':''}${x.tc?` · ${f1(x.cs.length*x.q*x.tc/3600)} h`:''}</span>
+         <div class="t"><span><i class="sq-n" title="Posição na sequência do dia">${j+1}º</i>${esc(x.cod)}</span><span style="font-family:var(--mono)">${x.cs.every(c=>c.q===x.q)?`${x.cs.length} × ${f0(x.q)}`:`${x.cs.length} cx · ${f0(x.cs.reduce((t,c)=>t+c.q,0))} pç`}</span></div>
+         ${x.vx?'<span class="pill vx">FURA-FILA · venda do excesso</span>':''}<span class="note">${nP?nP+' programado(s) ':''}${nE?'<b>'+nE+' em produção</b> ':''}${nO?nO+' concluído(s)':''}${x.tc?` · ${f1(x.cs.reduce((t,c)=>t+(c.q||0),0)*x.tc/3600)} h`:''}</span>
          ${(()=>{ const ws=x.cs.filter(c=>c.status!=="ok"&&c.wc); if(!ws.length) return (nP||nE)&&opsDe(x.cod,p,x.cs[0].rota)?'<span class="note" style="color:var(--kr)">sem máquina — use “Distribuir nas máquinas”</span>':''; const c0=ws[0], fe=Math.min(...ws.map(c=>c.op||0)); return `<div class="wcl">${c0.wc.map((w,i)=>{ if(!w) return ''; const us=[...new Set(ws.map(c=>c.wc[i]).filter(Boolean))]; return `<button type="button" class="rchip${fe>i?' ok':''}" data-gm="${i}" ${a} title="${esc(us.map(u=>u+' '+recNome(u)).join(' · '))} — clique para trocar a máquina">${esc(us.join('+'))}</button>`; }).filter(Boolean).join('<i>→</i>')}</div>`; })()}
          ${nP||nE?`<div class="acts">
           <button class="btn" data-ga="sobe" ${a} title="Antes">▲</button><button class="btn" data-ga="desce" ${a} title="Depois">▼</button>
@@ -4174,11 +4231,11 @@ function renderPRG(){
   box.querySelectorAll('[data-proc]').forEach(b=>b.onclick=()=>{ PRG.p=b.dataset.proc; try{ localStorage.setItem("aemco-kd8-prgp",PRG.p); }catch(e){} renderPRG(); });
   const num=id=>{ const v=parseFloat(document.getElementById(id).value); return isNaN(v)?null:v; };
   if(!isProg()) ['pg-tc','pg-st','pg-h','pg-po','pg-cpd'].forEach(i=>{ const e=document.getElementById(i); if(e) e.disabled=true; });
-  const gmsv=document.getElementById('gm-sv'); if(gmsv) gmsv.onclick=async()=>{ const g=Object.assign({},prgP().gmc);
+  const gmsv=document.getElementById('gm-sv'); if(gmsv) gmsv.onclick=async()=>{ if(!isJA()) return; const g=Object.assign({},prgP().gmc);
     document.querySelectorAll('#p-pr .gm-h').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); delete g[k].m; if(v>0&&v!==P.tod) g[k].h=v; else delete g[k].h; });
     document.querySelectorAll('#p-pr .gm-e').forEach(e=>{ const k=e.dataset.g, v=parseFloat(e.value); g[k]=Object.assign({},g[k]||{}); if(v>0&&v<100) g[k].e=v; else delete g[k].e; });
     if(await savePrg({gmc:g})) toast("Horas e eficiência das máquinas salvas"); renderPRG(); };
-  box.querySelectorAll('[data-rec]').forEach(b=>b.onclick=async()=>{ const off=Object.assign({},prgP().off), k=b.dataset.rec; if(off[k]) delete off[k]; else off[k]=1;
+  box.querySelectorAll('[data-rec]').forEach(b=>b.onclick=async()=>{ if(!isJA()) return; const off=Object.assign({},prgP().off), k=b.dataset.rec; if(off[k]) delete off[k]; else off[k]=1;
     if(await savePrg({off})){ if(off[k]){ const n=await wcRealoca(k); toast(n<0?k+" desligada — é a única do grupo: os lotes dela ficam parados":k+" desligada"+(n>0?" · "+n+" cartão(ões) passaram para outra máquina do grupo":"")); } else toast(k+" ligada"); } renderPRG(); });
   box.querySelectorAll('[data-gm]').forEach(b=>b.onclick=()=>grupoMaq(p,b.dataset.d,b.dataset.t,b.dataset.c,+b.dataset.gm));
   const wd=document.getElementById('wc-dist'); if(wd) wd.onclick=wcDistribuir;
@@ -4190,6 +4247,9 @@ function renderPRG(){
   box.querySelectorAll('[data-pg]').forEach(bt=>bt.onclick=async()=>{ const f=fila[+bt.dataset.pg]; const sel=box.querySelector(`[data-fd="${bt.dataset.pg}"]`); const n=Math.min(f.n,+bt.dataset.n);
     const k=await programar(p,f,n,sel&&sel.value?sel.value:null); toast(k?`${f.cod}: ${k} cartão(ões) programado(s)`:"Sem capacidade no horizonte — aumente os dias ou a capacidade"); if(!DB||k) renderPRG(); });
   box.querySelectorAll('[data-ga]').forEach(bt=>bt.onclick=()=>grupoAcao(bt.dataset.ga,p,bt.dataset.d,bt.dataset.t,bt.dataset.c));
+  const lp=document.getElementById('pg-limpa'); if(lp) lp.onclick=()=>{ if(PRG_LIMPA&&Date.now()-PRG_LIMPA<8000){ lp.disabled=true; limparProgramacao(); } else { PRG_LIMPA=Date.now(); renderPRG(); setTimeout(()=>{ if(PRG_LIMPA&&Date.now()-PRG_LIMPA>=8000){ PRG_LIMPA=0; if(TAB==="pr"&&document.getElementById('pg-limpa')) renderPRG(); } },8200); } };
+  box.querySelectorAll('[data-sqm]').forEach(b=>b.onclick=()=>abrirMaq(b.dataset.sqm));
+  const sqd=document.getElementById('pg-seq'); if(sqd&&sqd.tagName==='DETAILS') sqd.ontoggle=()=>{ PRG.seqOff=!sqd.open; };
   document.getElementById('pg-csv').onclick=()=>prgExport(false);
   document.getElementById('pg-pdf').onclick=()=>prgExport(true);
 }
@@ -4567,7 +4627,7 @@ function renderEX(){
        `<div class="exc-a">📍 ${esc(rua(o)||'nenhum item com posição no CD')}</div>`}${tpChips(o)}
      ${k==="and"?`<div class="pk-prog sm"><div style="width:${o.nL?nOk/o.nL*100:0}%"></div></div><div class="note">${nOk}/${o.nL} linhas · ${o.sep.u?esc(quemNome(o.sep.u))+' · ':''}desde ${fmtDT(o.sep.t,true)}</div>${nPb?`<div class="exc-f">⚠ ${nPb} item(ns) com problema</div>`:''}`:''}
      ${k==="ok"?`<div class="note">separado ${fmtDT(o.sep.t,true)}${o.sep.u?' por '+esc(quemNome(o.sep.u)):''}</div>${o.sep.pend?`<div class="exc-f">⚠ concluído com ${o.sep.pend} pendência(s)</div>`:''}`:''}
-     <div class="exc-b">${k==="sep"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Separar ▶</button>`:k==="and"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Continuar ▶</button>`:k==="ok"?`<button class="btn pri" data-xa="exp" data-p="${esc(o.ped)}">🚚 Expedido</button><button class="btn" data-xa="pick" data-p="${esc(o.ped)}">Ver lista</button>`:`<button class="btn" data-xa="det" data-p="${esc(o.ped)}">Detalhe</button>`}<button class="btn" data-xa="cd" data-p="${esc(o.ped)}">CD 3D</button></div></div>`; };
+     <div class="exc-b">${k==="sep"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Separar ▶</button>`:k==="and"?`<button class="btn pri" data-xa="pick" data-p="${esc(o.ped)}">Continuar ▶</button>`:k==="ok"?`<button class="btn pri" data-xa="exp" data-p="${esc(o.ped)}">🚚 Expedido</button><button class="btn" data-xa="pick" data-p="${esc(o.ped)}">Ver lista</button>`:`<button class="btn" data-xa="det" data-p="${esc(o.ped)}">Detalhe</button>`}<button class="btn" data-xa="cd" data-p="${esc(o.ped)}">CD 3D</button>${k==="and"||k==="ok"?`<button class="btn${EXP.back===o.ped?' dng':''}" data-xa="back" data-p="${esc(o.ped)}" title="${k==="ok"?'Volta para Em separação (a coleta marcada continua)':'Volta para A separar (a coleta marcada é apagada)'}">${EXP.back===o.ped?'Confirmar: apaga a coleta':'↩ Voltar etapa'}</button>`:''}</div></div>`; };
   const sel=E.ords.find(o=>o.ped===EXP.sel);
   const stPill=o=>o.sep?(o.sep.st==="separado"?'<span class="pill" style="background:var(--kb);color:#fff">separado</span>':'<span class="pill" style="background:var(--ky);color:#15223B">em separação</span>'):(o.comp?'<span class="pill p-MTS">completo</span>':'<span class="pill p-MTO">incompleto</span>');
   const F=col==="inc"?expFaltas(E):null;
@@ -4618,6 +4678,10 @@ function renderEX(){
     else if(a==="cd") verNoCD(p);
     else if(a==="pick"&&o){ if(!o.sep) expSep(p,"separando",{ok:[]}); pkAbrir(p); }
     else if(a==="volta") expSep(p,null);
+    else if(a==="back"&&o&&o.sep){   // Rev32: volta uma etapa em caso de erro — Separado → Em separação (mantém a coleta) · Em separação → A separar (apaga a coleta, pede confirmação)
+      if(o.sep.st==="separado"){ EXP.back=""; expSep(p,"separando",{}); }
+      else if(EXP.back===p){ EXP.back=""; expSep(p,null); }
+      else { EXP.back=p; renderEX(); setTimeout(()=>{ if(EXP.back===p){ EXP.back=""; if(TAB==="ex") renderEX(); } },8000); } }
     else if(a==="exp") expMarcarExp(p,o);
     else if(a==="prt"&&o) pickPrint(o); else if(a==="pcsv"&&o) pickCSV(o); });
   faltaBind();
@@ -4808,7 +4872,7 @@ async function cmShare(L,T){
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev31", MAN_DATA="24/11/2026";
+const MAN_REV="Rev32", MAN_DATA="25/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -4829,15 +4893,15 @@ const MAN=[
   faq:[["O que significa vermelho, amarelo e verde?","Vermelho: urgente, pode faltar. Amarelo: hora de repor. Verde: tranquilo, pode esperar. Roxo é pedido de cliente que passa na frente."],["O que é supermercado?","É o estoque de peças prontas com quantidade máxima definida. O CD guarda o produto acabado e o AUS (almoxarifado de usinados) guarda as peças usinadas."],["O que é um cartão Kanban?","É o aviso de reposição. Cada cartão vale uma caixa com quantidade fixa de peças do item."],["Por que não posso produzir a mais?","Porque produzir o que ninguém pediu ocupa máquina, espaço e dinheiro, e atrasa o que está em falta. O Kanban repõe só o que saiu."],["O que é MTS e MTO?","MTS é item de estoque: tem supermercado e cartão. MTO é item feito só quando há pedido."]]},
  {id:"op",t:"Operação: Escolha a Sua Máquina",quem:"todos",tab:"pr",view:"op",tour:"op",
   lead:"No módulo **Produzir**, a aba **Operação** mostra o que cada máquina tem que fazer. É a tela do chão de fábrica.",
-  telas:[{t:"Escolher a máquina",img:"m19-op1.jpg",passos:["Toque em **Produzir**. A aba **Operação** já vem aberta.","Toque no quadro da **sua máquina**. O número mostra quantos lotes ela tem.","Máquina sem serviço fica em **Outras máquinas**."]}],
+  telas:[{t:"Escolher a máquina",img:"m19-op1.jpg",passos:["Toque em **Produzir**. A aba **Operação** já vem aberta.","As máquinas vêm separadas por **área**, na ordem do fluxo: Usinagem, Pintura, Montagem, Seladora, Serra e Furadeira. Dentro da área, primeiro as que têm serviço.","Toque no quadro da **sua máquina**. Ele mostra quantos lotes ela tem e o item que está fazendo ou o próximo."]}],
   dica:"O app lembra da máquina neste aparelho. Para mudar, toque em Trocar máquina.",
-  faq:[["Minha máquina não aparece.","Veja em Outras máquinas, no fim da lista. Se não estiver lá, avise o Programador: a máquina pode estar desligada ou fora do cadastro."],["Aparece 'Lotes sem máquina definida'.","São lotes que o Programador ainda não mandou para uma máquina, ou de processos sem máquina no cadastro. Toque no processo para ver e fazer esses lotes."],["Como troco de máquina?","Na tela Operação, toque em Trocar máquina e escolha outra."]]},
+  faq:[["Minha máquina não aparece.","Procure na área dela (Usinagem, Pintura, Montagem…). Máquina livre fica no fim da área, mais apagada. Se não estiver lá, avise o Programador: a máquina pode estar desligada ou fora do cadastro."],["Aparece 'Lotes sem máquina definida'.","São lotes que o Programador ainda não mandou para uma máquina, ou de processos sem máquina no cadastro. Toque no processo para ver e fazer esses lotes."],["Como troco de máquina?","Na tela Operação, toque em Trocar máquina e escolha outra."]]},
  {id:"op2",t:"Operação: Comecei e Terminei",quem:"todos",tab:"pr",view:"op",tour:"op",
   lead:"O quadro grande é o lote de **agora**. Embaixo vem a fila, **na ordem** em que deve ser feita.",
-  telas:[{t:"Faça agora",img:"m19-op2.jpg",passos:["Leia o **código**, quantas **peças** e **o que fazer**.","Toque em **COMECEI** quando iniciar o lote.","Acabou? Toque em **TERMINEI**. O app mostra **para onde levar** as peças."]},
+  telas:[{t:"Faça agora",img:"m19-op2.jpg",passos:["Leia o **código**, quantas **peças** e **o que fazer**.","Toque em **COMECEI** quando iniciar o lote.","Acabou? Toque em **TERMINEI**. O app mostra **para onde levar** as peças.","Tocou em COMECEI por engano? Toque em **↩ Voltar**, logo abaixo: o lote volta a ficar a fazer."]},
          {t:"Depois, nesta ordem",img:"m19-op3.jpg",passos:["A lista segue a ordem certa. **Não pule** lote.","Lote apagado com **⏳** ainda não chegou da máquina anterior.","Toque em **Atualizar** para ver o que os colegas acabaram de terminar."]}],
   dica:"Terminou a última operação? O app dá entrada das peças no supermercado sozinho.",
-  faq:[["Apertei COMECEI no lote errado.","Avise o Programador. Ele devolve o lote para a fila ou corrige a programação."],["O lote está apagado com uma ampulheta.","Ele ainda está na máquina anterior. Quando o colega tocar em TERMINEI lá, o lote libera aqui. Toque em Atualizar para conferir."],["Posso fazer o lote de baixo primeiro?","Não. A ordem da lista é a prioridade: primeiro o roxo e o vermelho. Se precisar mudar, fale com o Programador."],["O que acontece quando toco em TERMINEI?","O lote vai para a próxima máquina do roteiro. Se era a última operação, as peças entram no supermercado ou seguem para o próximo processo."],["Aparece 'Aguardando peças'.","Os lotes desta máquina ainda estão na máquina anterior. Não há nada liberado agora."]]},
+  faq:[["Apertei COMECEI no lote errado.","Toque em ↩ Voltar, embaixo do botão TERMINEI. O lote volta a ficar a fazer. Depois do TERMINEI não há volta pela tela: avise o Programador."],["O lote está apagado com uma ampulheta.","Ele ainda está na máquina anterior. Quando o colega tocar em TERMINEI lá, o lote libera aqui. Toque em Atualizar para conferir."],["Posso fazer o lote de baixo primeiro?","Não. A ordem da lista é a prioridade: primeiro o roxo e o vermelho. Se precisar mudar, fale com o Programador."],["O que acontece quando toco em TERMINEI?","O lote vai para a próxima máquina do roteiro. Se era a última operação, as peças entram no supermercado ou seguem para o próximo processo."],["Aparece 'Aguardando peças'.","Os lotes desta máquina ainda estão na máquina anterior. Não há nada liberado agora."]]},
  {id:"apont",t:"Apontamento: Produção Boa e Perdas",quem:"prog",tab:"pr",view:"ap",tour:"ap",
   lead:"No módulo **Produzir**, a aba **Apontamento** é onde o apontador registra, para **todas as máquinas**, quanto saiu **bom** e quanto foi **perda** em cada lote.",
   telas:[{t:"Apontar um lote",img:"m20-ap.jpg",passos:["Escolha o **dia da produção** e, se quiser, filtre pelo **processo**.","Em cada lote, digite as peças **boas** e a **perda**. O campo Boa já vem com o que falta.","Toque em **Apontar parcial** (o lote segue em andamento) ou em **Encerrar ✔** (fecha a operação)."]},
@@ -4847,14 +4911,15 @@ const MAN=[
  {id:"pg",t:"Programador: Fila e Dias",quem:"prog",tab:"pr",view:"pg",tour:"pg",
   lead:"Só o **Programador** vê esta tela. Ele decide o que entra em cada dia e em cada máquina.",
   telas:[{t:"Escolher o processo",img:"m19-pg1.jpg",passos:["Em **Planejar**, abra a aba **Programador** e escolha o **processo**. O número mostra os cartões na fila.","Confira a **capacidade** do processo: horas por dia e postos.","Veja as **máquinas** e quanto de cada dia já está ocupado."]},
-         {t:"Fila e dias",img:"m19-pg2.jpg",passos:["A **fila** traz os cartões liberados, do mais urgente para o menos. Toque em **Programar fila automaticamente** ou programe item a item.","Cada coluna é um **dia**. Use os botões do lote para mudar de dia, subir, descer, concluir ou **devolver para a fila**.","Toque na **máquina** do lote para trocar por outra do mesmo grupo."]}],
+         {t:"Fila e dias",img:"m19-pg2.jpg",passos:["A **fila** traz os cartões liberados, do mais urgente para o menos. Toque em **Programar fila automaticamente** ou programe item a item.","Cada coluna é um **dia**. Use os botões do lote para mudar de dia, subir, descer, concluir ou **devolver para a fila**.","Toque na **máquina** do lote para trocar por outra do mesmo grupo."]},
+         {t:"Sequência nas máquinas",img:"m32-seq.jpg",passos:["Acima dos dias, o quadro **Sequência nas máquinas** mostra uma linha por máquina, com os lotes **na ordem** que o operador vai ver: 1, 2, 3…","A cor é a prioridade (roxo = fura-fila ou pedido, vermelho, amarelo, verde). Nos cartões de cada dia, o número **1º, 2º, 3º** é a posição no dia.","**Limpar toda a programação** tira, de todos os processos, os cartões que ainda não começaram. Pede confirmação e não mexe no que está em produção."]}],
   dica:"O verde não entra sozinho: fica formando lote e só é programado quando o estoque chega no amarelo.",
-  faq:[["Quem pode programar?","Só quem tem a função Programador. O administrador liga e desliga essa função na nuvem ☁, em Pessoas com acesso."],["O app diz que não há capacidade.","Os dias do horizonte já estão cheios para alguma máquina do roteiro. Aumente os dias, ligue mais máquinas ou ajuste horas e eficiência."],["Como devolvo um lote para a fila?","Na tela Programador, no lote do dia, use o botão de devolver para a fila."],["Tenho cartões antigos sem máquina.","Na tela Programador aparece o aviso com o botão Distribuir nas máquinas. Ele manda cada lote para a máquina menos carregada do grupo."]]},
+  faq:[["Quem pode programar?","Só quem tem a função Programador. O administrador liga e desliga essa função na nuvem ☁, em Pessoas com acesso."],["O app diz que não há capacidade.","Os dias do horizonte já estão cheios para alguma máquina do roteiro. Aumente os dias, ligue mais máquinas ou ajuste horas e eficiência."],["Como devolvo um lote para a fila?","Na tela Programador, no lote do dia, use o botão de devolver para a fila."],["Como recomeço a programação do zero?","Toque em Limpar toda a programação e confirme. Os cartões não iniciados de todos os processos voltam para a fila; o que já está em produção fica."],["Onde vejo a ordem de cada máquina?","No quadro Sequência nas máquinas, acima dos dias. É a mesma ordem da tela da Operação. Toque na máquina para abrir a tela dela."],["O que é o cartão roxo de venda do excesso?","É um produto que o Comercial vendeu usando o excesso dos Usinados. Ele entra como fura-fila, na frente dos cartões do Kanban."],["Tenho cartões antigos sem máquina.","Na tela Programador aparece o aviso com o botão Distribuir nas máquinas. Ele manda cada lote para a máquina menos carregada do grupo."]]},
  {id:"pg2",t:"Programador: Máquinas e Capacidade",quem:"prog",tab:"pr",view:"pg",tour:"pg",
-  lead:"O quadro **Máquinas e carga por dia** mostra cada grupo de máquinas e quanto do dia já está ocupado.",
+  lead:"O quadro **Máquinas e carga por dia** mostra cada grupo de máquinas e quanto do dia já está ocupado. Só o **João Bosco** e o **Alex Bertino** alteram este quadro; para os demais ele fica bloqueado.",
   telas:[{t:"Ligar e desligar máquina",img:"m19-pg3.jpg",passos:["Cada **etiqueta** é uma máquina do cadastro. Parou? **Toque nela** para desligar: o que não começou vai para outra do grupo.","Ajuste as **Horas/dia** do grupo.","Ajuste a **Eficiência %** e toque em **Salvar horas e eficiência**, no fim do quadro."]}],
   dica:"Amarelo no quadro = dia quase cheio. Vermelho = passou do limite.",
-  faq:[["A máquina quebrou. O que faço?","Na tela Programador, toque na etiqueta da máquina para desligar. Os lotes que não começaram passam para outra máquina do mesmo grupo."],["Como o app calcula o limite do dia?","Máquinas ligadas × horas por dia × eficiência. O tempo de cada peça vem do roteiro do ERP."],["Desliguei a única máquina do grupo.","Os lotes dela ficam parados até você ligar de novo ou trocar a programação."]]},
+  faq:[["A máquina quebrou. O que faço?","Na tela Programador, toque na etiqueta da máquina para desligar. Os lotes que não começaram passam para outra máquina do mesmo grupo."],["Como o app calcula o limite do dia?","Máquinas ligadas × horas por dia × eficiência. O tempo de cada peça vem do roteiro do ERP."],["Desliguei a única máquina do grupo.","Os lotes dela ficam parados até você ligar de novo ou trocar a programação."],["Não consigo mudar horas, eficiência nem desligar máquina.","Esse quadro é alterado só pelo João Bosco e pelo Alex Bertino. Peça a um deles."]]},
  {id:"apontar",t:"Apontar Estoque: a Contagem",quem:"todos",tab:"pr",view:"op",
   lead:"Contou as peças no supermercado? Aponte no app. É o estoque que acende as cores e libera os cartões.",
   telas:[{t:"Apontar um item",img:"m19-ap.jpg",passos:["Em **Produzir**, na aba **Operação**, abra **Apontar estoque**.","Escolha o **supermercado** (PA ou Usinados) e digite o **código**.","Digite a **quantidade contada** e grave. As faixas do item aparecem na hora."]}],
@@ -4862,18 +4927,18 @@ const MAN=[
   faq:[["Como corrijo um estoque errado?","Aponte de novo o item com a quantidade certa. Vale sempre o último apontamento."],["Posso lançar vários itens de uma vez?","Sim. Em Apontar estoque, abra Colar inventário e cole uma linha por item: CODIGO;QUANTIDADE. Para o estoque inteiro, use Importar dados."]]},
  {id:"fx",t:"Fluxo de Valor: o Mapa da Fábrica em Tempo Real",quem:"todos",tab:"fx",tour:"fx",
   lead:"O **Fluxo de valor** mostra a fábrica como um mapa do fluxo de valor (VSM): fornecedores, processos, supermercados, expedição e clientes. Muda conforme os apontamentos.",
-  telas:[{t:"Ler o mapa",img:"m21-fx.jpg",passos:["Cada **caixa** é um processo, com os dados do dia: programado, conformes, perdas, em processo e cartões na fila. A etiqueta mostra a **aderência** em verde, amarelo ou vermelho.","Os **supermercados** de Usinados (AUS) e do CD mostram quanto do máximo está abastecido, as peças e os dias de consumo.","As setas tracejadas são o **kanban** voltando para a programação. Embaixo, a **linha do tempo** mostra os dias de estoque do fluxo."]}],
+  telas:[{t:"Ler o mapa",img:"m21-fx.jpg",passos:["Cada **caixa** é um processo, com os dados do dia: programado, conformes, perdas, em processo e cartões na fila. A etiqueta mostra a **aderência** em verde, amarelo ou vermelho.","Dentro da caixa, **Máquinas · agora** lista as máquinas da área com serviço e o item de cada uma: **▶** = fazendo agora. Toque na máquina para abrir a tela e a sequência dela.","Os **supermercados** de Usinados (AUS) e do CD mostram quanto do máximo está abastecido, as peças e os dias de consumo.","As setas tracejadas são o **kanban** voltando para a programação. Embaixo, a **linha do tempo** mostra os dias de estoque do fluxo."]},{t:"Máquinas agora",img:"m32-maq.jpg",passos:["Abaixo do mapa, o quadro **Máquinas agora** mostra todas as máquinas, por área.","A faixa colorida diz a situação: **fazendo**, **a fazer**, **aguarda peças** ou **livre**. Roxo = venda do excesso.","Toque na máquina para abrir a tela dela, com o lote de agora e os próximos."]}],
   dica:"A tela se atualiza sozinha a cada 1 minuto enquanto estiver aberta. Para ver na hora, toque em Atualizar. No celular, arraste o mapa para o lado.",
-  faq:[["O que é aderência?","É a produção boa dividida pelo programado do dia, em cada processo. 100% = fez tudo o que foi programado."],["O que são os dias de consumo no supermercado?","É por quantos dias o estoque do supermercado dura no ritmo médio de consumo."],["O que são os cartões na fila?","São os cartões liberados pelo consumo que esperam ser programados naquele processo."]]},
+  faq:[["O que é aderência?","É a produção boa dividida pelo programado do dia, em cada processo. 100% = fez tudo o que foi programado."],["O que são os dias de consumo no supermercado?","É por quantos dias o estoque do supermercado dura no ritmo médio de consumo."],["O que são os cartões na fila?","São os cartões liberados pelo consumo que esperam ser programados naquele processo."],["Como vejo o que cada máquina está fazendo agora?","No Fluxo de valor: dentro da caixa do processo e no quadro Máquinas agora, abaixo do mapa. Toque na máquina para abrir a sequência dela."]]},
  {id:"ind",t:"Indicadores: o Dia Contra a Linha de Base",quem:"todos",tab:"fx",
   lead:"Na mesma tela do **Fluxo de valor**, abaixo do mapa, os **indicadores** mostram se a fábrica melhorou desde o início.",
   telas:[{t:"Indicadores",img:"m21-ind.jpg",passos:["A tabela compara o dia com a **linha de base** (a posição antes do início).","Variação **verde** = melhorou; **vermelha** = piorou.","Em **Evolução dia a dia** você acompanha estoque, pedidos, expedição, produção e perdas."]}],
   faq:[["Por que o estoque de um dia aparece com traço?","O estoque do dia é gravado quando o saldo é importado ou apontado. Sem nenhum desses no dia, não há posição."],["Como mudo a linha de base?","Só o Programador: no Fluxo de valor, em Indicadores, troque a data da Linha de base."]]},
  {id:"ov",t:"Painel: Como Estão os Supermercados",quem:"todos",tab:"ov",
   lead:"O **Painel** é a primeira tela. Mostra, de uma olhada, se os supermercados e os pedidos estão bem.",
-  telas:[{t:"Produção do dia",img:"m29-pdia.jpg",passos:["No Painel, abra a aba **Produção do dia**. Ela é atualizada com o MPD132 todo dia às 9h.","No alto, quadros com luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim): produzido no último dia, ordens previstas na semana que terminaram, ordens atrasadas, refugo e OEE.","Logo abaixo, as metas: **mediana** dos dias úteis dos últimos 12 meses (ou de todo o histórico, se ainda não houver 12 meses), **takt** (tempo disponível ÷ demanda do S&OP) e **capacidade no mix** (quantas peças por dia cabem até a máquina mais carregada chegar a 100%).","No gráfico, escolha a etapa (**Total**, **Usinagem**, **Montagem**) e o **período** (últimos 30 dias ou um mês). Cada barra vem na cor da sua situação contra a mediana; as linhas mostram mediana, takt e capacidade."]},{t:"Expedição do dia",img:"m29-exp.jpg",passos:["No Painel, abra a aba **Expedição do dia**: peças faturadas por dia, pela aba Faturamento do MPD132.","Os quadros mostram o último dia, a mediana dos dias úteis, o **takt** da expedição e a **capacidade de embarque** informada no ERP.","Escolha o **grupo** (Terminais, Cruzetas, Cardans…) e o **período**. A tabela Por grupo mostra quanto cada grupo atendeu da demanda do S&OP."]},{t:"Evolução do abastecimento",img:"m27-ab.jpg",passos:["O gráfico mostra o **% abastecido** do **CD** (azul) e dos **Usinados** (laranja) a cada dia em que o estoque foi atualizado. A linha verde tracejada marca **80%** (bem).","Acima do gráfico, a tabela compara **hoje** com a **última atualização**, a **semana**, o **mês** e o **início**: ▲ verde = subiu, ▼ vermelho = desceu, em **p.p.** (pontos percentuais) e em peças abastecidas.","Escolha **7 dias**, **30 dias** ou **Desde o início**. Passe o mouse (ou toque) no gráfico para ver o dia.","Quando o app muda, o alto do Painel mostra **só o que é novo desde a última vez que você abriu**. O quadro aparece uma vez; **Me mostre** aponta cada novidade na tela."]},{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Pedidos completos dia a dia",img:"m25-ped.jpg",passos:["No Painel, o gráfico **Pedidos completos × incompletos · dia a dia** mostra cada dia desde o início: barra **verde** = pedidos completos, **vermelha** = incompletos.","A linha **verde** é o **% de pedidos completos**; a **azul tracejada** é o **% abastecido do CD** no mesmo dia.","Se as duas sobem juntas, encher os supermercados está aumentando os pedidos completos.","Dia em **cinza** = carteira importada incompleta: não compare esse dia."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Use os botões **Total**, **Sem pedido** e **Com pedido** para ver cada parte. Ao lado, o quadro **Hoje** mostra CD e Usinados divididos em sem pedido e com pedido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
+  telas:[{t:"Produção do dia",img:"m29-pdia.jpg",passos:["No Painel, abra a aba **Produção do dia**. Ela é atualizada com o MPD132 todo dia às 9h.","No alto, quadros com luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim): produzido no último dia, ordens previstas na semana que terminaram, ordens atrasadas, refugo e OEE.","Logo abaixo, as metas: **mediana** dos dias úteis dos últimos 12 meses (ou de todo o histórico, se ainda não houver 12 meses), **takt** (tempo disponível ÷ demanda dos itens que o Kanban repõe) e **capacidade no mix do Kanban** (quantas peças por dia cabem até o grupo de máquinas mais apertado chegar a 100%, já contando as trocas).","O gráfico de cima abre no **mês corrente**, dia a dia. Escolha a etapa (**Total**, **Usinagem**, **Montagem**) e, se quiser, outro mês ou os últimos 30 dias. Cada barra vem na cor da sua situação contra a mediana.","Embaixo, **Produção por mês** mostra o total de cada mês do ano. Barra riscada = mês em andamento."]},{t:"Expedição do dia",img:"m29-exp.jpg",passos:["No Painel, abra a aba **Expedição do dia**: notas emitidas por dia, pela aba Faturamento do MPD132.","No alto, o **valor expedido (R$)** no último dia, na semana e no mês. Abaixo, as peças: último dia, mediana, **takt** da expedição e **capacidade de embarque** do ERP.","O gráfico abre no **mês corrente**. Os botões **Peças** e **Valor (R$)** trocam o que as barras mostram. Escolha também o **grupo** (Terminais, Cruzetas, Cardans…) e o período.","Embaixo, **Expedição por mês** mostra o total de cada mês do ano, e as tabelas trazem o resultado **por semana**, por dia e por grupo."]},{t:"Evolução do abastecimento",img:"m27-ab.jpg",passos:["O gráfico mostra o **% abastecido** do **CD** (azul) e dos **Usinados** (laranja) a cada dia em que o estoque foi atualizado. A linha verde tracejada marca **80%** (bem).","Acima do gráfico, a tabela compara **hoje** com a **última atualização**, a **semana**, o **mês** e o **início**: ▲ verde = subiu, ▼ vermelho = desceu, em **p.p.** (pontos percentuais) e em peças abastecidas.","Escolha **7 dias**, **30 dias** ou **Desde o início**. Passe o mouse (ou toque) no gráfico para ver o dia.","Quando o app muda, o alto do Painel mostra **só o que é novo desde a última vez que você abriu**. O quadro aparece uma vez; **Me mostre** aponta cada novidade na tela."]},{t:"Ler o painel",img:"m21-ov.jpg",passos:["No alto, a **Situação agora**: cada quadro tem uma luz **verde** (bem), **amarela** (atenção) ou **vermelha** (ruim). Toque no quadro para abrir a tela dele. **Expedido no mês (R$)** e **Produzido no mês** levam à Expedição e à Produção do dia.","Abaixo ficam os quadros do **CD** e dos **Usinados**, o **semáforo** e as listas de **onde falta fabricar**, **onde está sobrando** e os **itens em risco**.","O quadro **De onde vem o acima do máximo** mostra, no CD e nos Usinados, quanto do excesso **tem pedido** e quanto está **livre**. Só o CD livre vai para o Comercial."]},{t:"Pedidos completos dia a dia",img:"m25-ped.jpg",passos:["No Painel, o gráfico **Pedidos completos × incompletos · dia a dia** mostra cada dia desde o início: barra **verde** = pedidos completos, **vermelha** = incompletos.","A linha **verde** é o **% de pedidos completos**; a **azul tracejada** é o **% abastecido do CD** no mesmo dia.","Se as duas sobem juntas, encher os supermercados está aumentando os pedidos completos.","Dia em **cinza** = carteira importada incompleta: não compare esse dia."]},{t:"Com pedido e livre",img:"m23-rec.jpg",passos:["No Painel, o quadro **De onde vem o acima do máximo** divide o excesso em **com pedido** e **sem pedido**.","**CD com pedido** já está vendido. **CD sem pedido** é o que aparece no **Comercial**.","**Usinados** são componentes: não vão para venda. Com pedido = serão usados na carteira; sem pedido = parar de fabricar até baixar."]},{t:"Linha do excesso",img:"m22-exc.jpg",passos:["Desça até **Evolução diária**. Abaixo das linhas de abastecimento fica o **Estoque acima do máximo**.","A linha **azul** soma o excesso do **CD** e dos **Usinados**, em peças, dia a dia. **Descendo** = o excesso está sendo consumido.","Use os botões **Total**, **Sem pedido** e **Com pedido** para ver cada parte. Ao lado, o quadro **Hoje** mostra CD e Usinados divididos em sem pedido e com pedido.","Ao lado do título aparece quanto **subiu** ou **desceu** desde o dia anterior. Passe o dedo ou o mouse no ponto para ver CD e Usinados separados.","A linha **tracejada** marca o dia em que a base de itens mudou: a partir dali o que conta como excesso pode mudar."]}],
   dica:"A data do estoque aparece no alto do menu. Estoque velho = painel velho: importe o saldo do dia.",
-  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que significam as cores dos gráficos?","Todo gráfico e quadro do app segue a mesma regra: verde = bem, amarelo = atenção, vermelho = ruim. O fundo dos gráficos mostra as três faixas, e os pontos e barras já vêm na cor da situação. Os limites de cada indicador estão em Como as cores são definidas, no Painel."],["O app ficou escuro à noite.","É o modo noturno automático: o app escurece no pôr do sol e clareia no nascer do sol. No alto da tela, o botão ☀/☾ troca entre automático, sempre claro e sempre escuro."],["O que é o takt?","É o ritmo que atende a demanda: tempo disponível no dia dividido pela demanda diária do S&OP. Ex.: 21 h × 3.600 s ÷ 9.000 pç/dia = 8,4 s por peça. A linha azul do gráfico mostra a mesma demanda em peças por dia."],["Como é calculada a capacidade no mix?","Para cada grupo de máquina, soma a carga da demanda do S&OP de cada item × o tempo de ciclo do roteiro do ERP. A capacidade é quantas peças por dia cabem, no mesmo mix, até o grupo mais carregado chegar a 100%. O tempo de setup não entra nesse cálculo."],["Por que a mediana usa 12 meses?","Para comparar o dia com um ritmo estável. Enquanto o histórico tiver menos de 12 meses, a mediana usa todo o período disponível, e o quadro avisa isso."],["O que é p.p.?","Ponto percentual: a diferença entre dois percentuais. De 36% para 41% são 5 p.p. a mais."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
+  faq:[["O que significam as luzes do Painel?","Verde: está bem. Amarelo: ponto de atenção. Vermelho: ruim, precisa de ação. O limite de cada luz está em Como as cores são definidas, no próprio Painel."],["O painel parece desatualizado.","Veja a data do estoque no alto do menu. Importe o saldo do dia em Importar dados ou aponte as contagens."],["O que significam as cores dos gráficos?","Todo gráfico e quadro do app segue a mesma regra: verde = bem, amarelo = atenção, vermelho = ruim. O fundo dos gráficos mostra as três faixas, e os pontos e barras já vêm na cor da situação. Os limites de cada indicador estão em Como as cores são definidas, no Painel."],["O app ficou escuro à noite.","É o modo noturno automático: o app escurece no pôr do sol e clareia no nascer do sol. No alto da tela, o botão ☀/☾ troca entre automático, sempre claro e sempre escuro."],["O que é o takt?","É o ritmo que atende a demanda: tempo disponível no dia dividido pela demanda diária dos itens que o Kanban repõe. Ex.: 21 h × 3.600 s ÷ 9.000 pç/dia = 8,4 s por peça. A linha azul do gráfico mostra a mesma demanda em peças por dia."],["Como é calculada a capacidade no mix do Kanban?","Cada item entra na proporção do que o Kanban repõe por dia. Para cada grupo de máquina, soma o tempo de ciclo do roteiro do ERP e o tempo de troca conforme o lote de cada item. A capacidade é quantas peças por dia cabem, nesse mesmo mix, até o grupo mais apertado chegar a 100%. Montagem e operações manuais dependem de pessoas e só entram como limite quando os postos reais são informados."],["De onde vem o valor expedido (R$)?","Da coluna Vr.Tot.Item da aba Faturamento do MPD132: é o valor dos itens das notas emitidas em cada dia. O valor começa a ser guardado a partir da primeira atualização depois desta revisão."],["O gráfico por mês compara o quê?","A barra é o total do mês. A cor compara a média por dia útil daquele mês com a mediana dos dias úteis. O mês em andamento aparece riscado, porque ainda não fechou."],["Por que a mediana usa 12 meses?","Para comparar o dia com um ritmo estável. Enquanto o histórico tiver menos de 12 meses, a mediana usa todo o período disponível, e o quadro avisa isso."],["O que é p.p.?","Ponto percentual: a diferença entre dois percentuais. De 36% para 41% são 5 p.p. a mais."],["O que é 'acima do máximo'?","É estoque além do que o supermercado precisa. É dinheiro parado: não deve ser produzido de novo até baixar."],["Como sei se o excesso está baixando?","No Painel, em Evolução diária, veja a linha azul do estoque acima do máximo. Ao lado do título aparece quanto subiu ou desceu desde o dia anterior com contagem."]]},
  {id:"qd",t:"Quadros Kanban e Modo TV",quem:"todos",tab:"qd",
   lead:"Cada **processo** tem o seu quadro, igual ao quadro físico da fábrica.",
   telas:[{t:"Ver o quadro",img:"m19-qd.jpg",passos:["Escolha o **processo** no alto.","O quadro mostra os itens daquele processo; **Situação agora** conta quantos estão em cada cor.","Toque em **Abrir este quadro no modo TV** para deixar numa televisão da área."]}],
@@ -4881,14 +4946,14 @@ const MAN=[
  {id:"ex",t:"Expedição: Pedidos Completos",quem:"todos",tab:"ex",
   lead:"A **Expedição** cruza os pedidos em aberto com o estoque do CD e mostra o que **já dá para separar**.",
   telas:[{t:"Separar",img:"m20-ex.jpg",passos:["Importe a **carteira de pedidos** e o **estoque de PA** em Importar dados.","Pedido **completo**: todas as linhas cabem no estoque. Pode separar.","Pedido **incompleto**: o app mostra **o que falta produzir** para completar."]},
-         {t:"Expedido (fim do dia)",img:"m20-exp.jpg",passos:["Pedido separado e carregado? Toque em **🚚 Expedido** no cartão do pedido.","Ele sai da fila e **não reserva mais estoque**.","Em **Expedidos**, no fim da tela, aparece o que saiu; **Desfazer** volta para separado."]}],
+         {t:"Expedido (fim do dia)",img:"m20-exp.jpg",passos:["Pedido separado e carregado? Toque em **🚚 Expedido** no cartão do pedido.","Ele sai da fila e **não reserva mais estoque**.","Em **Expedidos**, no fim da tela, aparece o que saiu; **↩ Voltar etapa** volta para separado.","Errou na separação? No cartão do pedido, **↩ Voltar etapa** leva de Separados para Em separação (a coleta marcada continua) e de Em separação para A separar (apaga a coleta e pede confirmação)."]}],
   dica:"O estoque é reservado primeiro para os pedidos com entrega mais cedo.",
-  faq:[["A Expedição está vazia.","Falta importar a carteira de pedidos e o estoque de PA. Vá em Importar dados."],["O que é pedido completo?","É o pedido em que todas as linhas cabem no estoque do CD, reservando primeiro os de entrega mais cedo."],["Quando marco Expedido?","Quando o pedido separado sai da fábrica. O apontador marca no fim do dia, junto com o inventário."],["Marquei Expedido por engano.","Em Expedidos, no fim da tela de Expedição, toque em Desfazer: o pedido volta para separado."]]},
+  faq:[["A Expedição está vazia.","Falta importar a carteira de pedidos e o estoque de PA. Vá em Importar dados."],["O que é pedido completo?","É o pedido em que todas as linhas cabem no estoque do CD, reservando primeiro os de entrega mais cedo."],["Quando marco Expedido?","Quando o pedido separado sai da fábrica. O apontador marca no fim do dia, junto com o inventário."],["Marquei Expedido por engano.","Em Expedidos, no fim da tela de Expedição, toque em ↩ Voltar etapa: o pedido volta para separado."],["Coloquei o pedido na etapa errada.","No cartão do pedido, toque em ↩ Voltar etapa. Cada toque volta uma etapa: Separados → Em separação → A separar."]]},
  {id:"cm",t:"Comercial: Pode Vender e Sugestão de Venda",quem:"todos",tab:"cm",
   lead:"O módulo **Comercial** tem duas telas. **Pode vender** mostra só as peças livres no CD, sem pedido e sem faltar para o Kanban. **Sugestão de venda** mostra produtos que, vendidos, consomem usinados parados acima do máximo no AUS.",
-  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},{t:"Sugestão de venda",img:"m27-cs.jpg",passos:["Abra **Comercial › Sugestão de venda**. No alto: quantas peças de usinado estão paradas sem pedido e quanto as sugestões alcançam.","Cada produto mostra selos de **Giro**, **Frequência** e **Valor**: **Alto**, **Médio** ou **Baixo**, comparando os produtos da lista entre si.","**Até (un.)** é quantas unidades completas saem só com o excesso: para no usinado que acaba primeiro (marcado em vermelho). O excesso é repartido na ordem de prioridade, então as unidades da lista podem ser somadas. **Receita** é essas unidades a **preço médio de venda** do produto acabado. **Excesso que consome** é o valor a custo desses usinados.","O quadro verde **Receita possível** soma as linhas da lista (o teto) e mostra também quanto seria em cerca de 3 meses de venda. O mesmo valor aparece no Resumo financeiro do Painel.","Os demais usinados do produto (sem excesso) saem do supermercado normal, que o Kanban repõe. Produto com peças livres no CD sai primeiro do CD."]}
+  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},{t:"Sugestão de venda",img:"m27-cs.jpg",passos:["Abra **Comercial › Sugestão de venda**. No alto: quantas peças de usinado estão paradas sem pedido e quanto as sugestões alcançam.","Cada produto mostra selos de **Giro**, **Frequência** e **Valor**: **Alto**, **Médio** ou **Baixo**, comparando os produtos da lista entre si.","**Até (un.)** é quantas unidades completas saem só com o excesso: para no usinado que acaba primeiro (marcado em vermelho). O excesso é repartido na ordem de prioridade, então as unidades da lista podem ser somadas. **Receita** é essas unidades a **preço médio de venda** do produto acabado. **Excesso que consome** é o valor a custo desses usinados.","O quadro verde **Receita possível** soma as linhas da lista (o teto) e mostra também quanto seria em cerca de 3 meses de venda. O mesmo valor aparece no Resumo financeiro do Painel.","Os demais usinados do produto (sem excesso) saem do supermercado normal, que o Kanban repõe. Produto com peças livres no CD sai primeiro do CD."]},{t:"Registrar a venda do excesso",img:"m32-venda.jpg",passos:["Quem tem o perfil **Comercial** vê o botão **Registrar venda** em cada produto da Sugestão de venda.","Informe as **unidades vendidas** (até o limite da linha) e, se quiser, o cliente ou pedido. Toque em **Registrar e programar**.","O app dá baixa no excesso (ele sai da lista) e programa o produto como **FURA-FILA · venda do excesso**, em roxo, no primeiro dia com capacidade.","Em **Vendas do excesso registradas** você acompanha: programada, em produção ou produzida. Cancelar é só com o Programador."]}
 ],
-  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista só as peças livres no CD: sem pedido e sem faltar para o Kanban."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."],["Todo o acima do máximo do Painel pode ser vendido?","Não. Uma parte já tem pedido e os Usinados são componentes, que não vão para venda. Só o CD sem pedido pode ser vendido, e é só isso que a tela Pode vender mostra. A conta completa está no Painel, no quadro De onde vem o acima do máximo."],["Para que serve a Sugestão de venda?","Para vender o que está parado nos Usinados. Usinado não é vendido sozinho: ele sai quando a montagem faz o produto. A tela lista os produtos que usam esse excesso, dos mais fáceis de vender para os menos."],["Por que não aparece o número de vendas?","A tela compara os produtos com selos Alto, Médio e Baixo. Para oferecer ao cliente, o selo basta."]]},
+  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista só as peças livres no CD: sem pedido e sem faltar para o Kanban."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."],["Todo o acima do máximo do Painel pode ser vendido?","Não. Uma parte já tem pedido e os Usinados são componentes, que não vão para venda. Só o CD sem pedido pode ser vendido, e é só isso que a tela Pode vender mostra. A conta completa está no Painel, no quadro De onde vem o acima do máximo."],["Para que serve a Sugestão de venda?","Para vender o que está parado nos Usinados. Usinado não é vendido sozinho: ele sai quando a montagem faz o produto. A tela lista os produtos que usam esse excesso, dos mais fáceis de vender para os menos."],["Por que não aparece o número de vendas?","A tela compara os produtos com selos Alto, Médio e Baixo. Para oferecer ao cliente, o selo basta."],["Quem pode registrar a venda do excesso?","Quem tem o perfil Comercial. O administrador marca esse perfil na nuvem ☁, em Pessoas com acesso."],["O que acontece quando registro a venda?","O excesso dos usinados fica reservado, o produto ganha cartões roxos de FURA-FILA e entra na programação no primeiro dia com capacidade. Se não couber nos próximos 10 dias úteis, fica na frente da fila do Programador."],["Registrei a venda errada.","Peça ao Programador: em Vendas do excesso registradas ele toca em Cancelar. Os cartões que ainda não começaram saem da programação e o excesso volta para a lista."]]},
  {id:"opd",t:"Ordem de Produção: o Plano do Dia",quem:"todos",tab:"op",
   lead:"Mostra o que produzir para **encher os supermercados**, dia a dia, e imprime os cartões de ordem.",
   telas:[{t:"Montar o plano",img:"m19-opd.jpg",passos:["Escolha o **início**, o número de **postos** e se o **sábado** produz.","Confira as ordens do dia: código, quantidade, contêineres e horas.","Toque em **Salvar plano (CSV)** ou **Imprimir** os cartões de ordem."]}],
@@ -4909,9 +4974,9 @@ const MAN=[
   faq:[["Onde vejo o máximo de um item?","Em Kanban PA (produto acabado) ou Kanban Usinados. Busque o código e veja as faixas e o máximo."],["Como acho o endereço de um item no CD?","Em CD em 3D, use Localizar item."]]},
  {id:"adm",t:"Para Administradores: Pessoas e Programador",quem:"adm",
   lead:"O administrador cuida de quem entra no app e de quem pode programar. Tudo fica na **nuvem ☁**.",
-  telas:[{t:"Pessoas com acesso",img:"m19-adm.jpg",passos:["Toque na **nuvem ☁** e em **Pessoas com acesso (PINs)**.","Para incluir: escreva o **nome**, toque em **Gerar PIN** e em **Salvar**. Entregue o PIN só para a pessoa.","Toque em **Programador** ao lado do nome para liberar (ou tirar) a programação."]},
+  telas:[{t:"Pessoas com acesso",img:"m19-adm.jpg",passos:["Toque na **nuvem ☁** e em **Pessoas com acesso (PINs)**.","Para incluir: escreva o **nome**, toque em **Gerar PIN** e em **Salvar**. Entregue o PIN só para a pessoa.","Toque em **Programador** ao lado do nome para liberar (ou tirar) a programação.","Marque **Perfil Comercial** ao cadastrar, ou toque em **Comercial** ao lado do nome: a pessoa passa a registrar a venda do excesso."]},
          {t:"Base e parâmetros",passos:["**Publicar nova base (.json)** troca a base de itens para todos.","**Parâmetros** e **Premissas** ficam no módulo Ajuda e ajustes, só para o administrador.","Quem não é administrador recebe só o resultado pronto, sem o método."]}],
-  faq:[["Como libero alguém para programar?","Na nuvem ☁, em Pessoas com acesso, toque em Programador ao lado do nome. Só o administrador faz isso."],["Como cadastro uma pessoa?","Na nuvem ☁, em Pessoas com acesso: nome, Gerar PIN e Salvar. O PIN é entregue só para a pessoa."]]},
+  faq:[["Como libero alguém para programar?","Na nuvem ☁, em Pessoas com acesso, toque em Programador ao lado do nome. Só o administrador faz isso."],["Como cadastro uma pessoa?","Na nuvem ☁, em Pessoas com acesso: nome, Gerar PIN e Salvar. O PIN é entregue só para a pessoa."],["Como dou o perfil Comercial a alguém?","Na nuvem ☁, em Pessoas com acesso, marque Perfil Comercial ao cadastrar, ou toque em Comercial ao lado do nome. Só o administrador faz isso."]]},
  {id:"exemplo",t:"Exemplo Simulado: Um Lote do Vermelho ao Supermercado",quem:"todos",
   lead:"Veja o caminho de um item de exemplo, do aviso até a peça pronta.",
   historia:[["O estoque baixou","A contagem do item caiu para a faixa **vermelha**. O app liberou os cartões para repor até o máximo."],["O Programador programou","Na tela Programador o lote entrou em **hoje**, com a máquina de cada operação."],["O operador fez","Na 1ª máquina o operador viu **FAÇA AGORA · URGENTE**, tocou em **COMECEI** e depois em **TERMINEI**. O lote liberou para a máquina seguinte."],["A peça chegou","Na última operação, **TERMINEI** deu entrada no supermercado. O item voltou para o **verde**."]],
@@ -5003,6 +5068,15 @@ function tourShow(){
 
 /* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
 const NEWS=[
+ {rev:32,quando:"25/11/2026",t:"Valor expedido, máquinas por área, sequência e venda do excesso",itens:[
+   {id:"32-val",man:"ov",tab:"pexp",sel:'#p-pexp .pd-vg, #p-pexp .pd-g',t:"Novo: valor expedido em R$",x:"A Expedição do dia mostra o valor das notas no último dia, na semana e no mês. Os botões Peças e Valor (R$) trocam o gráfico. O resumo do mês também aparece no Painel."},
+   {id:"32-mes",man:"ov",tab:"pdia",sel:'#pd-mes',t:"Novo: mês corrente e resultado por mês",x:"Produção e Expedição abrem no mês corrente, dia a dia. Embaixo, um gráfico mostra o total de cada mês do ano."},
+   {id:"32-cap",man:"ov",tab:"pdia",sel:'#p-pdia .pd-mg .pd-k:nth-child(3)',t:"Mudou: capacidade no mix do Kanban",x:"A capacidade agora considera o mix que o Kanban repõe e o tempo de troca. Montagem e operações manuais só limitam depois que os postos reais forem informados."},
+   {id:"32-seq",man:"pg",tab:"pr",view:"pg",so:"prog",sel:'#pg-seq',t:"Novo: sequência nas máquinas e limpar programação",x:"O Programador vê a ordem dos lotes em cada máquina e pode limpar toda a programação com um botão (pede confirmação)."},
+   {id:"32-area",man:"op",tab:"pr",view:"op",sel:'#opv .opv-area h4, #opv .opv-top',t:"Novo: máquinas por área",x:"Em Qual é a sua máquina?, as máquinas vêm separadas por área, na ordem do fluxo: Usinagem, Pintura, Montagem… Na tela do lote, ↩ Voltar desfaz um COMECEI por engano."},
+   {id:"32-fx",man:"fx",tab:"fx",sel:'#fx-maq, #p-fx .vsm-w',t:"Novo: máquinas no Fluxo de valor",x:"As caixas dos processos mostram as máquinas e o item que cada uma está fazendo agora. Toque na máquina para abrir a sequência dela."},
+   {id:"32-venda",man:"cm",tab:"cs",sel:'#p-cs [data-vd], #cs-vendas, #cs-stats',t:"Novo: venda do excesso vira fura-fila",x:"Quem tem o perfil Comercial registra a venda na Sugestão de venda. O app dá baixa no excesso e programa o produto como FURA-FILA · venda do excesso, em roxo."},
+   {id:"32-volta",man:"ex",tab:"ex",sel:'#p-ex .exb, #p-ex .head',t:"Novo: voltar uma etapa na Expedição",x:"No cartão do pedido, ↩ Voltar etapa corrige um erro: Separados volta para Em separação, e Em separação volta para A separar."}]},
  {rev:31,quando:"24/11/2026",t:"Sugestão de venda sem contar o mesmo excesso duas vezes",itens:[
    {id:"31-cs",man:"cm",tab:"cs",sel:'#p-cs .cs-tab thead',t:"Mudou: unidades da Sugestão de venda",x:"Cada produto agora para no usinado em excesso que acaba primeiro, e o excesso é repartido entre os produtos na ordem de prioridade: as unidades da lista podem ser somadas sem faltar peça."}]},
  {rev:30,quando:"24/11/2026",t:"Receita a preço de venda com o excesso do AUS",itens:[
@@ -5347,7 +5421,7 @@ function expedidosHTML(){
   const hoje=ymd(new Date()), h=L.filter(x=>x.ted===hoje);
   return `<details class="panel exp-ok" id="ex-expd"${h.length?' open':''}><summary><b>🚚 Expedidos</b> · hoje ${f0(h.length)} pedido(s) · ${f0(h.reduce((s,x)=>s+(+x.pcs||0),0))} pç · ${f0(L.length)} registrado(s) no total</summary>
    <div class="tw"><table><thead><tr><th>Dia</th><th>Pedido</th><th>Cliente</th><th class="num">Linhas</th><th class="num">Peças</th><th>Registrado por</th><th></th></tr></thead><tbody>
-   ${L.slice(0,120).map(x=>`<tr><td>${x.ted?dbr(deYMD(x.ted)):'—'}</td><td><b>${esc(x.ped)}</b></td><td>${esc(x.cli||'—')}</td><td class="num">${f0(x.nL||0)}</td><td class="num">${f0(x.pcs||0)}</td><td>${esc(typeof quemNome==="function"?quemNome(x.u||''):(x.u||''))}</td><td><button type="button" class="btn" data-xund="${esc(x.ped)}">Desfazer</button></td></tr>`).join('')}
+   ${L.slice(0,120).map(x=>`<tr><td>${x.ted?dbr(deYMD(x.ted)):'—'}</td><td><b>${esc(x.ped)}</b></td><td>${esc(x.cli||'—')}</td><td class="num">${f0(x.nL||0)}</td><td class="num">${f0(x.pcs||0)}</td><td>${esc(typeof quemNome==="function"?quemNome(x.u||''):(x.u||''))}</td><td><button type="button" class="btn" data-xund="${esc(x.ped)}" title="Volta o pedido para Separados">↩ Voltar etapa</button></td></tr>`).join('')}
    </tbody></table></div><p class="note">Pedido expedido sai da fila de separação e não reserva mais estoque. O estoque do CD baixa no inventário do fim do dia.</p></details>`;
 }
 
@@ -5371,8 +5445,8 @@ function sitHTML(){
   const t=(tt,v,h,s,p)=>`<button type="button" class="sit-t ${s}" data-sit="${p}"><span>${tt}</span><b>${v}</b>${sitLamp(s)}<small>${h}</small></button>`;
   return `<div class="sit-wrap" id="sit21">
   <div class="sit-h"><b>Situação agora</b><span class="sit-leg">${sitLamp('ok')}${sitLamp('warn')}${sitLamp('bad')}</span></div>
-  <div class="sit-g">${t('Supermercado do CD',f0(S.cd.pct)+'%','abastecido sobre o máximo',gyr(S.cd.pct,'sup'),'pa')}${t('Supermercado de Usinados',f0(S.us.pct)+'%','abastecido sobre o máximo',gyr(S.us.pct,'sup'),'us')}${pd==null?'':t('Pedidos completos',f0(pd)+'%',`${f0(S.ped.comp)} de ${f0(S.ped.comp+S.ped.inc)} pedidos`,gyr(pd,'ped'),'ex')}${t('Itens na vermelha',f0(vm),`de ${f0(n)} itens do Kanban`,gyr(pv,'verm'),'pr')}${t('Acima do máximo',f0(ex)+' pç','sobra nos dois supermercados',gyr(pe,'exc'),'cm')}</div>
-  <details class="sit-c"><summary>Como as cores são definidas</summary><ul><li>Supermercado: ${gyrLeg('sup')}.</li><li>Pedidos completos: ${gyrLeg('ped')}.</li><li>Itens na vermelha: ${gyrLeg('verm')} dos itens.</li><li>Acima do máximo: ${gyrLeg('exc')} do máximo.</li><li>A mesma regra vale para todos os gráficos do app: verde = bem, amarelo = atenção, vermelho = ruim.</li></ul></details></div>`;
+  <div class="sit-g">${t('Supermercado do CD',f0(S.cd.pct)+'%','abastecido sobre o máximo',gyr(S.cd.pct,'sup'),'pa')}${t('Supermercado de Usinados',f0(S.us.pct)+'%','abastecido sobre o máximo',gyr(S.us.pct,'sup'),'us')}${pd==null?'':t('Pedidos completos',f0(pd)+'%',`${f0(S.ped.comp)} de ${f0(S.ped.comp+S.ped.inc)} pedidos`,gyr(pd,'ped'),'ex')}${t('Itens na vermelha',f0(vm),`de ${f0(n)} itens do Kanban`,gyr(pv,'verm'),'pr')}${t('Acima do máximo',f0(ex)+' pç','sobra nos dois supermercados',gyr(pe,'exc'),'cm')}${typeof sitMes==='function'?sitMes(t):''}</div>
+  <details class="sit-c"><summary>Como as cores são definidas</summary><ul><li>Supermercado: ${gyrLeg('sup')}.</li><li>Pedidos completos: ${gyrLeg('ped')}.</li><li>Itens na vermelha: ${gyrLeg('verm')} dos itens.</li><li>Acima do máximo: ${gyrLeg('exc')} do máximo.</li><li>Expedido e produzido no mês: média por dia útil do mês contra a mediana dos dias úteis (${gyrLeg('exp')}).</li><li>A mesma regra vale para todos os gráficos do app: verde = bem, amarelo = atenção, vermelho = ruim.</li></ul></details></div>`;
 }
 const _renderOV21=renderOV;
 renderOV=function(){ _renderOV21();
@@ -5386,15 +5460,24 @@ const VSM_N={P1:"Recebimento",P2:"Serra",P3:"Usinagem",P4:"Furadeira",P5:"Cruzet
 function fxCob(){ const U=calcUS().filter(r=>r.manter&&r.cls!=="MTO"&&r.M>0), P=calcPA().filter(r=>r.cls!=="MTO"&&r.M>0), s=(R,k)=>R.reduce((a,r)=>a+(+r[k]||0),0), du=s(U,'D'), dp=s(P,'D'), eu=s(U,'est'), ep=s(P,'est');
   return {us:du?eu/du:null,cd:dp?ep/dp:null,eu,ep}; }
 function fxVSM(d,S,E,st){
-  const hoje=ymd(opHoje()), C=d===hoje?fxCob():{us:null,cd:null,eu:null,ep:null}, W=1240, H=764, bw=150;
+  const hoje=ymd(opHoje()), C=d===hoje?fxCob():{us:null,cd:null,eu:null,ep:null}, W=1240, bw=150;
+  /* Rev32: dentro da caixa de cada processo, as máquinas da área com o que estão fazendo agora (só no dia de hoje).
+     Cada linha de caixas cresce o que a caixa mais alta precisar; o resto do desenho desce junto. */
+  const MQ={}, MAXL=9; if(d===hoje&&typeof maqPorArea==="function"){ try{ maqPorArea().forEach(x=>{ if(x.a==="?") return; const L=x.ms.map(r=>({w:r[0],s:maqAgora(r[0])})), at=L.filter(o=>o.s.st!=="livre"), ord={faz:0,prox:1,esp:2};
+      at.sort((a,b)=>ord[a.s.st]-ord[b.s.st]||a.w.localeCompare(b.w)); MQ[x.a]={at:at.slice(0,MAXL),mais:Math.max(0,at.length-MAXL),livres:L.length-at.length,tot:L.length}; });
+      PROC_PRG.forEach(pp=>{ const n=opLotesProc(pp).length; if(n){ (MQ[pp]=MQ[pp]||{at:[],mais:0,livres:0,tot:0}).sem=n; } }); }catch(e){ console.error(e); } }
+  const mqN=p=>{ const m=MQ[p]; return m?(m.at.length+(m.mais?1:0)+(m.livres?1:0)+(m.sem?1:0)):0; }, mqH=p=>{ const n=mqN(p); return n?n*16+24:0; };
+  const h1=Math.max(mqH('P3'),mqH('P7'),mqH('P8')), h2=mqH('P6'), h3=Math.max(mqH('P1'),mqH('P2'),mqH('P4'),mqH('P5')), H=764+h1+h2+h3;
   const T=(x,y,t,c,a)=>`<text x="${x}" y="${y}" class="${c||''}"${a?` text-anchor="${a}"`:''}>${t}</text>`;
   const sc=(v,g,y)=>v==null?'nd':v>=g?'ok':v>=y?'warn':'bad';
+  const mqBox=(x,y,p)=>{ const m=MQ[p], n=mqN(p); if(!n) return ''; let k=0; const ln=(w,a,b,cls)=>{ const yy=y+33+k*16; k++; return `<g class="vmq ${cls||''}"${w?` data-fxm="${esc(w)}" tabindex="0" role="button" aria-label="Abrir ${esc(w)}"`:''}>${w?`<rect x="${x+2}" y="${yy-12}" width="${bw-4}" height="16" class="vmq-h"/>`:''}${T(x+8,yy,a,'mqk')}${T(x+bw-8,yy,b,'mqv','end')}</g>`; };
+      return `<rect x="${x}" y="${y}" width="${bw}" height="${n*16+24}" class="bx"/>${T(x+8,y+15,'MÁQUINAS · AGORA','pid')}${m.at.map(o=>{ const g=o.s.g, vx=g.cs.some(c=>c.vx); return ln(o.w,esc(o.w),(o.s.st==="faz"?'▶ ':o.s.st==="esp"?'⏳ ':'')+esc(String(g.cod).slice(0,13)),o.s.st+(vx?' vx':'')); }).join('')}${m.mais?ln('','+'+m.mais+' com serviço','','mu'):''}${m.livres?ln('',m.livres+' livre(s)','','mu'):''}${m.sem?ln('@'+p,'sem máquina',m.sem+(m.sem>1?' lotes':' lote'),'prox'):''}`; };
   const box=(x,y,id,nome,rows,stv,stt,tag)=>`<g><rect x="${x}" y="${y}" width="${bw}" height="42" class="bx"/><rect x="${x}" y="${y+42}" width="${bw}" height="${rows.length*17+8}" class="bx"/>
     ${T(x+8,y+16,esc(id),'pid')}${T(x+8,y+35,esc(nome),'pn')}
     ${stt===undefined?'':`<rect x="${x+bw-56}" y="${y+4}" width="50" height="18" rx="9" class="sx ${stv}"><title>Aderência ao programado no dia</title></rect>${T(x+bw-31,y+17,stt,'sv','middle')}`}
     ${rows.map((r,k)=>T(x+8,y+60+k*17,r[0],'dk')+T(x+bw-8,y+60+k*17,r[1],'dv','end')).join('')}</g>`;
   const proc=(p,x,y,tag)=>{ const q=fxProc(p,d), ad=q.prog>0?q.boa/q.prog*100:null;
-    return box(x,y,p,VSM_N[p]||procNome(p),[['Programado',f0(q.prog)+' pç'],['Conformes',f0(q.boa)+' pç'],['Perdas',f0(q.perda)+' pç'],['Em processo',f0(q.wip)+' pç'],['Cartões na fila',f0(q.nfila)]],sc(ad,90,70),ad==null?'—':f0(ad)+'%',tag); };
+    return box(x,y,p,VSM_N[p]||procNome(p),[['Programado',f0(q.prog)+' pç'],['Conformes',f0(q.boa)+' pç'],['Perdas',f0(q.perda)+' pç'],['Em processo',f0(q.wip)+' pç'],['Cartões na fila',f0(q.nfila)]],sc(ad,90,70),ad==null?'—':f0(ad)+'%',tag)+mqBox(x,y+135,p); };
   const sm=(x,y,nome,o,est,dias)=>{ const p=o?o.pct:null;
     return `<g><path d="M${x},${y} H${x+64} V${y+60} H${x} M${x},${y+20} H${x+64} M${x},${y+40} H${x+64}" class="ln"/>${T(x+32,y-9,nome,'smn','middle')}
      <rect x="${x-14}" y="${y+68}" width="92" height="22" rx="11" class="sx ${sc(p,80,60)}"/>${T(x+32,y+83,p==null?'sem saldo':f0(p)+'% do máx.','sv','middle')}
@@ -5403,7 +5486,7 @@ function fxVSM(d,S,E,st){
   const truck=(x,y)=>`<g><rect x="${x}" y="${y}" width="26" height="16" class="bx"/><path d="M${x+26},${y+5} h9 l7,6 v5 h-16 z" class="bx"/><circle cx="${x+8}" cy="${y+18}" r="4" class="bx"/><circle cx="${x+33}" cy="${y+18}" r="4" class="bx"/></g>`;
   const pull=(x,y)=>`<path d="M${x-8},${y+3} a8,8 0 1 1 8,8" class="ln" marker-end="url(#vsmA)"/>`;
   const card=(x,y)=>`<path d="M${x},${y} h9 l5,5 v13 h-14 z" class="bx"/>`;
-  const y1=176, y2=346, y3=530, pe=S&&S.ped?S.ped:null;
+  const y1=176, y2=346+h1, y3=530+h1+h2, yT=h1+h2+h3, pe=S&&S.ped?S.ped:null;
   const exRows=[['Pedidos completos',pe?f0(pe.comp):'—'],['Incompletos',pe?f0(pe.inc):'—'],['Separados',st?f0(st.sepOk):'—'],['Expedidos no dia',f0(E.n)],['Peças expedidas',f0(E.pcs)]];
   const lt=(C.us!=null&&C.cd!=null)?C.us+C.cd:null;
   return `<div class="vsm-w"><svg class="vsm" viewBox="0 0 ${W} ${H}" role="img" aria-label="Mapa do fluxo de valor em tempo real: fornecedores, processos, supermercados, expedição e clientes">
@@ -5416,7 +5499,7 @@ function fxVSM(d,S,E,st){
   <path d="M372,184 V119 H558" class="kb" marker-end="url(#vsmA)"/>${card(365,142)}${T(465,112,'cartões liberados','dk','middle')}
   <path d="M912,184 V119 H682" class="kb" marker-end="url(#vsmA)"/>${card(905,142)}${T(797,112,'cartões liberados','dk','middle')}
   <path d="M590,136 V152 H215 V174" class="inf" marker-end="url(#vsmA)"/><path d="M620,136 V160 H535 V174" class="inf" marker-end="url(#vsmA)"/><path d="M650,136 V152 H755 V174" class="inf" marker-end="url(#vsmA)"/>
-  <path d="M100,86 V587 H138" class="mf" marker-end="url(#vsmA)"/><path d="M100,216 H138" class="mf" marker-end="url(#vsmA)"/>${truck(78,120)}
+  <path d="M100,86 V${y3+57} H138" class="mf" marker-end="url(#vsmA)"/><path d="M100,216 H138" class="mf" marker-end="url(#vsmA)"/>${truck(78,120)}
   ${proc('P3',140,y1)}<path d="M290,216 H338" class="mf" marker-end="url(#vsmA)"/>
   ${sm(340,186,'Supermercado AUS',S&&S.us,C.eu!=null?C.eu:(S&&S.us?fxEst(S.us):null),C.us)}
   <path d="M406,216 H458" class="mf" marker-end="url(#vsmA)"/>${pull(432,186)}
@@ -5426,15 +5509,15 @@ function fxVSM(d,S,E,st){
   <path d="M946,216 H998" class="mf" marker-end="url(#vsmA)"/>${pull(972,186)}
   ${box(1000,y1,'Saída','Expedição',exRows)}
   <path d="M1150,216 H1175 V90" class="mf" marker-end="url(#vsmA)"/>${truck(1184,138)}
-  <path d="M406,236 H430 V401 H458" class="mf" marker-end="url(#vsmA)"/>${pull(444,372)}
-  ${proc('P6',460,y2)}<path d="M610,401 H755 V313" class="mf" marker-end="url(#vsmA)"/>${T(683,394,'FIFO →','pn','middle')}
+  <path d="M406,236 H430 V${y2+55} H458" class="mf" marker-end="url(#vsmA)"/>${pull(444,y2+26)}
+  ${proc('P6',460,y2)}<path d="M610,${y2+55} H755 V${313+mqH('P8')}" class="mf" marker-end="url(#vsmA)"/>${T(683,y2+48,'FIFO →','pn','middle')}
   ${proc('P1',140,y3)}${proc('P2',310,y3)}${proc('P4',480,y3)}${proc('P5',650,y3)}
-  <path d="M215,530 V512 M385,530 V512 M555,530 V512 M725,530 V512 M215,512 H860 V236 H878" class="mf" marker-end="url(#vsmA)"/>${T(538,504,'tubos, proteções, cruzetas e comprados repõem o CD','dk','middle')}
-  ${T(140,692,'Linha do tempo · dias de consumo parados em cada supermercado','dk')}
-  <path d="M140,742 H290 V714 H460 V742 H610 V714 H680 V742 H830 V714 H1000" class="ln"/>
-  ${T(375,708,C.us==null?'—':f1(C.us)+' dias','dv','middle')}${T(375,758,'AUS','dk','middle')}${T(645,708,'fila','dk','middle')}${T(915,708,C.cd==null?'—':f1(C.cd)+' dias','dv','middle')}${T(915,758,'CD','dk','middle')}
-  ${T(215,758,'Usinagem','dk','middle')}${T(535,758,'Pintura','dk','middle')}${T(755,758,'Seladora','dk','middle')}
-  <rect x="1020" y="706" width="200" height="44" class="bx"/>${T(1120,724,'Estoque no fluxo principal','dk','middle')}${T(1120,742,lt==null?'—':f1(lt)+' dias','pn','middle')}
+  <path d="M215,${y3} V${y3-18} M385,${y3} V${y3-18} M555,${y3} V${y3-18} M725,${y3} V${y3-18} M215,${y3-18} H860 V236 H878" class="mf" marker-end="url(#vsmA)"/>${T(538,y3-26,'tubos, proteções, cruzetas e comprados repõem o CD','dk','middle')}
+  ${T(140,692+yT,'Linha do tempo · dias de consumo parados em cada supermercado','dk')}
+  <path d="M140,${742+yT} H290 V${714+yT} H460 V${742+yT} H610 V${714+yT} H680 V${742+yT} H830 V${714+yT} H1000" class="ln"/>
+  ${T(375,708+yT,C.us==null?'—':f1(C.us)+' dias','dv','middle')}${T(375,758+yT,'AUS','dk','middle')}${T(645,708+yT,'fila','dk','middle')}${T(915,708+yT,C.cd==null?'—':f1(C.cd)+' dias','dv','middle')}${T(915,758+yT,'CD','dk','middle')}
+  ${T(215,758+yT,'Usinagem','dk','middle')}${T(535,758+yT,'Pintura','dk','middle')}${T(755,758+yT,'Seladora','dk','middle')}
+  <rect x="1020" y="${706+yT}" width="200" height="44" class="bx"/>${T(1120,724+yT,'Estoque no fluxo principal','dk','middle')}${T(1120,742+yT,lt==null?'—':f1(lt)+' dias','pn','middle')}
   </svg></div>
   <div class="vsm-leg"><span><svg viewBox="0 0 26 16"><rect x="1" y="1" width="24" height="14" class="bx"/></svg>processo e dados do dia</span><span><svg viewBox="0 0 26 16"><path d="M1,1 H25 V15 H1 M1,6 H25 M1,11 H25" class="ln"/></svg>supermercado</span><span><svg viewBox="0 0 26 16"><path d="M5,9 a6,6 0 1 1 6,6" class="ln"/></svg>retirada puxada</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H25" class="kb"/></svg>kanban</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H9 L7,13 L15,3 L13,8 H25" class="ln"/></svg>informação eletrônica</span><span><svg viewBox="0 0 26 16"><path d="M1,8 H25" class="mf"/></svg>material</span><span class="vsm-hint">No celular, arraste o desenho para o lado.</span></div>`;
 }
@@ -5680,9 +5763,9 @@ async function mpdAplicar(){
     if(window.KB&&KB.state&&!KB.state.pronto){ try{ await KB.syncNow(); }catch(e){} }   // Rev29: o histórico só é juntado depois de ler o servidor
     const sinc=!(window.KB&&KB.state&&!KB.state.pronto);
     const doServ=async p=>{ try{ if(!DB) return null; const s=await DB.doc(p).get(); return s&&s.exists?s.data():null; }catch(e){ return null; } };   // Rev29: junta com o que está no servidor, não só com a memória
-    const velhos=async(p,mem)=>{ const sv=await doServ(p); return Object.assign({},(sv&&sv.dias)||{},(mem&&mem.dias)||{}); };
+    const velhos=async(p,mem,k)=>{ k=k||"dias"; const sv=await doServ(p); return Object.assign({},(sv&&sv[k])||{},(mem&&mem[k])||{}); };
     if(sinc&&pk.prod&&pk.prod.dias){ PROD=Object.assign({},pk.prod,{dias:histJunta(await velhos("kanban/producao",PROD),pk.prod.dias),arquivo:pk.arquivo,data:pk.data,t:meta.t}); await writeDoc("kanban/producao",PROD); }   // Rev28: produção do dia · Rev29: histórico acumulado
-    if(sinc&&pk.exp&&pk.exp.dias){ EXPD=Object.assign({},pk.exp,{dias:histJunta(await velhos("kanban/expedicao",EXPD),pk.exp.dias),arquivo:pk.arquivo,data:pk.data,t:meta.t}); await writeDoc("kanban/expedicao",EXPD); }   // Rev29: expedição
+    if(sinc&&pk.exp&&pk.exp.dias){ EXPD=Object.assign({},pk.exp,{dias:histJunta(await velhos("kanban/expedicao",EXPD),pk.exp.dias),val:histJunta(await velhos("kanban/expedicao",EXPD,"val"),pk.exp.val||{}),arquivo:pk.arquivo,data:pk.data,t:meta.t}); await writeDoc("kanban/expedicao",EXPD); }   // Rev29: expedição
     try{ metasSync(true); }catch(e){}
     MPD.msg=`Pronto: CD, Usinados e carteira atualizados pelo ${pk.arquivo||"MPD132"}.${sinc?"":" Produção e expedição não foram gravadas porque o app ainda não sincronizou com o servidor: aplique de novo daqui a pouco."}`; MPD.pk=null; toast("MPD132 aplicado");
   }catch(e){ MPD.erro="Parou no meio: "+String(e&&e.message||e); }
@@ -5818,9 +5901,10 @@ renderOV=function(){ _renderOV27();
 nvAbertura();
 
 /* ---------- 5) Comercial · sugestão de venda pelo excesso do AUS ---------- */
-const CS={q:"",fam:"",ord:"prio"};
+const CS={q:"",fam:"",ord:"prio",vd:""};
 function csAus(){   // usinados com excesso SEM pedido
-  const m={}; for(const r of calcUS()){ const e=estReal(r), M=r.M>0?r.M:0, x=Math.max(0,e-M), ped=Math.min(x,r.cart||0), l=Math.floor(x-ped+1e-9); if(l<1) continue;
+  const RV=typeof vendasReserva==="function"?vendasReserva():{};   // Rev32: excesso já comprometido com venda registrada sai da oferta
+  const m={}; for(const r of calcUS()){ const e=estReal(r), M=r.M>0?r.M:0, x=Math.max(0,e-M), ped=Math.min(x,r.cart||0), l=Math.floor(x-ped-(RV[r.cod]||0)+1e-9); if(l<1) continue;
     const c=custoDe(r.cod); m[r.cod]={cod:r.cod,desc:r.desc,livre:l,cu:c?c.u:0}; }
   return m;
 }
@@ -5850,10 +5934,17 @@ const selo=s=>`<span class="selo s${s}" style="--c:${SELOC[s]}">${SELO[s]}</span
 function csFilt(R){ const q=CS.q.trim().toUpperCase();
   const L=R.filter(x=>(!CS.fam||x.fam===CS.fam)&&(!q||x.cod.toUpperCase().includes(q)||String(x.desc).toUpperCase().includes(q)||x.us.some(u=>u.toUpperCase().includes(q))));
   const o={prio:(a,b)=>a.ord-b.ord,rec:(a,b)=>b.rec-a.rec,val:(a,b)=>b.val-a.val,un:(a,b)=>b.N-a.N}[CS.ord]||((a,b)=>b.prio-a.prio); return L.sort(o); }
+function csVendaForm(x){ let p="", rr=null; try{ rr=calcPA().find(z=>z.cod===x.cod); if(rr) p=rotaOf(rr)[0]; }catch(e){}
+  return `<tr class="cs-vf"><td colspan="9"><div class="filters">
+    <label class="f" for="cs-vq">Unidades vendidas (até ${f0(x.N)})<input class="in" id="cs-vq" type="number" min="1" max="${x.N}" step="1" value="${x.N}" style="width:110px"></label>
+    <label class="f" for="cs-vc">Cliente ou pedido (opcional)<input class="in" id="cs-vc" maxlength="60" placeholder="ex.: pedido 123456" style="min-width:200px"></label>
+    <button type="button" class="btn pri" id="cs-vok">Registrar e programar</button><button type="button" class="btn" id="cs-vno">Cancelar</button></div>
+   <p class="note" style="margin:6px 0 0"><b>${esc(x.cod)}</b>: ao registrar, o excesso dos usinados fica reservado e o produto entra na programação${p?' de <b>'+esc(p)+' · '+esc(procNome(p))+'</b>':''} como <span class="pill vx">FURA-FILA · venda do excesso</span>, no primeiro dia com capacidade (próximos 10 dias úteis).${x.cd?` Há <b>${f0(x.cd)} pç livres no CD</b>: venda primeiro o que já está pronto (tela Pode vender) e programe aqui só o que faltar.`:''}</p></td></tr>`; }
 function renderCS(){
   const el=document.getElementById('p-cs'), {L,C,A,semVenda,semSaldo}=csRows(), F=csFilt(L.slice());
   const totU=Object.values(A), vU=totU.reduce((s,x)=>s+x.livre*x.cu,0), pU=totU.reduce((s,x)=>s+x.livre,0);
   const vCob=L.reduce((s,x)=>s+x.val,0);
+  const com=typeof isCom==="function"&&isCom();
   const fams=[...new Set(L.map(x=>x.fam))].sort(), PL=csPlano(C,A), PL3=csPlano(C,A,63);   // Rev30: receita a preço de venda, sem contar o mesmo usinado duas vezes
   el.innerHTML=`<div class="head"><h2>Sugestão de venda · excesso do supermercado AUS</h2><span class="note">produtos acabados que usam usinados parados acima do máximo, sem pedido</span></div>
    <div class="stats" id="cs-stats">
@@ -5866,9 +5957,11 @@ function renderCS(){
     <label class="f" for="cs-fam">Família<select id="cs-fam"><option value="">Todas</option>${fams.map(f=>`<option value="${esc(f)}" ${f===CS.fam?'selected':''}>${esc(f)}</option>`).join('')}</select></label>
     <label class="f" for="cs-ord">Ordenar<select id="cs-ord"><option value="prio" ${CS.ord==="prio"?'selected':''}>Prioridade (giro + frequência + valor)</option><option value="rec" ${CS.ord==="rec"?'selected':''}>Receita a preço de venda (R$)</option><option value="val" ${CS.ord==="val"?'selected':''}>Excesso que consome (R$ a custo)</option><option value="un" ${CS.ord==="un"?'selected':''}>Unidades</option></select></label>
     <button class="btn" id="cs-csv">Salvar CSV</button></div>
+   ${typeof vendasHTML==="function"?vendasHTML():''}
+   ${com?'':'<p class="note">Registrar a venda e mandar para a programação é do perfil <b>Comercial</b> (definido no cadastro de pessoas).</p>'}
    <div class="tw tall"><table class="cs-tab"><thead><tr><th>Produto</th><th>Família</th><th>Giro</th><th>Frequência</th><th>Valor</th><th class="num">Até (un.)</th><th class="num">Receita (preço de venda)</th><th>Usinados em excesso que usa</th><th class="num">Excesso que consome (a custo)</th></tr></thead><tbody>
-    ${F.slice(0,300).map(x=>`<tr><td><b>${esc(x.cod)}</b><br><span class="note">${esc(x.desc)}</span>${x.cd?`<br><span class="tag" title="Este produto já tem peças livres no CD (tela Pode vender): a venda sai primeiro do CD">${f0(x.cd)} pç livres no CD</span>`:''}</td><td>${esc(x.fam)}</td><td>${selo(x.s_D)}</td><td>${selo(x.s_nnf)}</td><td>${selo(x.s_preco)}</td><td class="num"><b>${f0(x.N)}</b>${x.N<x.Nmax?`<br><span class="note" title="O resto do excesso dos usinados deste produto já ficou para produtos de prioridade maior">de ${f0(x.Nmax)} · resto já usado por produtos de prioridade maior</span>`:''}</td><td class="num"><b>${x.preco>0?brl(x.rec):'—'}</b>${x.preco>0?`<br><span class="note">${brl(x.preco)}/un.</span>`:''}</td>
-      <td class="desc" style="white-space:normal;min-width:180px">${[x.lim,...x.us.filter(u=>u!==x.lim)].filter(Boolean).slice(0,3).map(u=>`<span class="cs-u${u===x.lim?' lim':''}" title="${esc(A[u].desc)} · ${f0(A[u].livre)} pç sem pedido acima do máximo${u===x.lim?' · é o que limita as unidades':''}">${esc(u)}</span>`).join(' ')}${x.us.length>3?` <span class="note">+${x.us.length-3}</span>`:''}${x.semExc.length?`<br><span class="note" title="${esc(x.semExc.join(', '))}">+ ${f0(x.semExc.length)} usinado${x.semExc.length>1?'s':''} sem excesso (sai do supermercado normal)</span>`:''}</td><td class="num"><b>${brl(x.val)}</b><br><span class="note">${f0(x.pc)} pç</span></td></tr>`).join('')||'<tr><td colspan="9" class="note">Nenhum produto com esse filtro.</td></tr>'}
+    ${F.slice(0,300).map(x=>`<tr><td><b>${esc(x.cod)}</b><br><span class="note">${esc(x.desc)}</span>${x.cd?`<br><span class="tag" title="Este produto já tem peças livres no CD (tela Pode vender): a venda sai primeiro do CD">${f0(x.cd)} pç livres no CD</span>`:''}${com?`<br><button type="button" class="btn${CS.vd===x.cod?'':' pri'}" data-vd="${esc(x.cod)}" style="margin-top:6px">${CS.vd===x.cod?'Fechar':'Registrar venda'}</button>`:''}</td><td>${esc(x.fam)}</td><td>${selo(x.s_D)}</td><td>${selo(x.s_nnf)}</td><td>${selo(x.s_preco)}</td><td class="num"><b>${f0(x.N)}</b>${x.N<x.Nmax?`<br><span class="note" title="O resto do excesso dos usinados deste produto já ficou para produtos de prioridade maior">de ${f0(x.Nmax)} · resto já usado por produtos de prioridade maior</span>`:''}</td><td class="num"><b>${x.preco>0?brl(x.rec):'—'}</b>${x.preco>0?`<br><span class="note">${brl(x.preco)}/un.</span>`:''}</td>
+      <td class="desc" style="white-space:normal;min-width:180px">${[x.lim,...x.us.filter(u=>u!==x.lim)].filter(Boolean).slice(0,3).map(u=>`<span class="cs-u${u===x.lim?' lim':''}" title="${esc(A[u].desc)} · ${f0(A[u].livre)} pç sem pedido acima do máximo${u===x.lim?' · é o que limita as unidades':''}">${esc(u)}</span>`).join(' ')}${x.us.length>3?` <span class="note">+${x.us.length-3}</span>`:''}${x.semExc.length?`<br><span class="note" title="${esc(x.semExc.join(', '))}">+ ${f0(x.semExc.length)} usinado${x.semExc.length>1?'s':''} sem excesso (sai do supermercado normal)</span>`:''}</td><td class="num"><b>${brl(x.val)}</b><br><span class="note">${f0(x.pc)} pç</span></td></tr>${com&&CS.vd===x.cod?csVendaForm(x):''}`).join('')||'<tr><td colspan="9" class="note">Nenhum produto com esse filtro.</td></tr>'}
    </tbody></table></div>
    ${F.length>300?`<p class="note">Mostrando 300 de ${f0(F.length)} — use a busca ou a família.</p>`:''}
    <div class="panel"><div class="head"><h3>Como ler</h3></div><ul class="note" style="margin:0;padding-left:18px">
@@ -5877,10 +5970,16 @@ function renderCS(){
     <li><b>Até (un.)</b>: quantas unidades completas saem só com o excesso: para no usinado em excesso que <b>acaba primeiro</b> (marcado em vermelho). O excesso é repartido na ordem de prioridade: o produto de cima fica com o que precisa e o de baixo só com o que sobrou, então <b>as unidades da lista podem ser somadas</b>.${semSaldo?` ${f0(semSaldo)} produtos ficaram fora porque o excesso que usariam já foi para produtos de prioridade maior.`:''} <b>Receita</b>: essas unidades vezes o <b>preço médio de venda</b> do produto acabado (notas fiscais). <b>Excesso que consome</b>: valor a custo dos usinados em excesso usados nessas unidades.</li>
     <li><b>Receita possível</b> (quadro verde): soma das linhas da lista. É o teto: supõe vender todas as unidades. "No ritmo de 3 meses de venda" limita cada produto ao que ele vende em cerca de 3 meses. A margem bruta estimada é receita menos o custo do produto acabado (material + conversão do ERP), só para os produtos que têm custo no cadastro.</li>
     <li>Os demais usinados do produto ("sem excesso") saem do supermercado normal, que o Kanban repõe.</li>
+    <li><b>Registrar venda</b> (perfil Comercial): informe as unidades vendidas. O app dá baixa no excesso (ele sai desta lista), cria os cartões do produto e programa no primeiro dia com capacidade como <b>FURA-FILA · venda do excesso</b>, na frente dos cartões do Kanban. Programação, Operação e Fluxo de valor mostram essa marca em roxo.</li>
     <li>Produto com <b>peças livres no CD</b> sai primeiro do CD (tela Pode vender); só depois a montagem consome os usinados.${semVenda?` ${f0(semVenda)} produtos que usam esse excesso ficaram fora por não terem venda no período.`:''}</li></ul></div>`;
   const q=document.getElementById('cs-q'); q.oninput=()=>{ CS.q=q.value; clearTimeout(renderCS.t); renderCS.t=setTimeout(()=>{ renderCS(); const n=document.getElementById('cs-q'); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } },250); };
   document.getElementById('cs-fam').onchange=e=>{ CS.fam=e.target.value; renderCS(); };
   document.getElementById('cs-ord').onchange=e=>{ CS.ord=e.target.value; renderCS(); };
+  el.querySelectorAll('[data-vd]').forEach(b=>b.onclick=()=>{ CS.vd=CS.vd===b.dataset.vd?"":b.dataset.vd; renderCS(); });
+  const vok=document.getElementById('cs-vok'); if(vok) vok.onclick=async()=>{ const x=L.find(z=>z.cod===CS.vd); if(!x) return; vok.disabled=true;
+    const r=await vendaRegistrar(x,document.getElementById('cs-vq').value,document.getElementById('cs-vc').value); if(r){ CS.vd=""; renderCS(); const d=document.getElementById('cs-vendas'); if(d){ d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'}); } } else vok.disabled=false; };
+  const vno=document.getElementById('cs-vno'); if(vno) vno.onclick=()=>{ CS.vd=""; renderCS(); };
+  el.querySelectorAll('[data-vcan]').forEach(b=>b.onclick=()=>{ if(VD_CAN===b.dataset.vcan){ VD_CAN=""; vendaCancelar(b.dataset.vcan); } else { VD_CAN=b.dataset.vcan; renderCS(); } });
   document.getElementById('cs-csv').onclick=()=>{ const H=["produto","descricao","familia","giro","frequencia","valor","ate_unidades","preco_medio_venda_rs","receita_rs","usinados_em_excesso","excesso_que_consome_rs","excesso_que_consome_pc"];
     const rows=F.map(x=>[x.cod,x.desc,x.fam,SELO[x.s_D],SELO[x.s_nnf],SELO[x.s_preco],x.N,Math.round(x.preco*100)/100,Math.round(x.rec),x.us.join(" "),Math.round(x.val),Math.round(x.pc)]);
     saveFile("sugestao_venda_excesso_AUS.csv","﻿"+[H].concat(rows).map(r=>r.map(v=>{ const s=String(v??""); return /[;"\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }).join(";")).join("\n"),"text/csv"); };
@@ -6052,18 +6151,19 @@ function histJunta(velho,novo,dias){ const out={}, ks=Object.keys(novo||{}).sort
 
 /* ---------- expedição: peças faturadas por dia e por grupo de família (MPD132) ---------- */
 function mpdExpedicao(F,AG,FI,ref){
-  const out={ref,dias:{},ult:null,top:[],cap:{},semGrupo:0};
+  const out={ref,dias:{},val:{},ult:null,top:[],cap:{},semGrupo:0};
   const ha=Array.from(AG[0]||[],x=>x||""), af=mpdCol(ha,"Familia"), ad=mpdCol(ha,"Descricao"), grp={};
   for(let i=1;i<AG.length;i++){ const r=AG[i], f=String(r[af]??"").trim(), g=String(r[ad]??"").trim(); if(f&&g) grp[f]=g; }
   const nomes=[...new Set(Object.values(grp))];
   if(FI&&FI.length){ const hf=Array.from(FI[0],x=>x||""), fn=mpdCol(hf,"Nome"), fc=mpdCol(hf,"Capacidade");
     for(let i=1;i<FI.length;i++){ const r=FI[i], n=nrmNome(String(r[fn]??"")), c=numBR(r[fc]); if(!n||!(c>0)) continue; const g=nomes.find(x=>nrmNome(x)===n); if(g) out.cap[g]=c; } }
-  const h=Array.from(F[0]||[],x=>x||""), ie=mpdCol(h,"Emissao"), ic=mpdCol(h,"Codigo"), iq=mpdCol(h,"Qtd.Fat","Qtd"), ifm=mpdCol(h,"Familia");
+  const h=Array.from(F[0]||[],x=>x||""), ie=mpdCol(h,"Emissao"), ic=mpdCol(h,"Codigo"), iq=mpdCol(h,"Qtd.Fat","Qtd"), ifm=mpdCol(h,"Familia"), iv=mpdCol(h,"Vr.Tot.Item");   // Rev32: valor da nota
   if(ie<0||iq<0||ifm<0) return out;
   const porItem={};
   for(let i=1;i<F.length;i++){ const r=F[i], g=grp[String(r[ifm]??"").trim()]; if(!g){ out.semGrupo++; continue; }
     const d=dataISO(r[ie]), q=numBR(r[iq]); if(!d||!isFinite(q)||d>=ref) continue;   // o dia do arquivo pode estar pela metade
-    const D=out.dias[d]||(out.dias[d]={}); D[g]=(D[g]||0)+q; const k=d+"|"+String(r[ic]??"").trim()+"|"+g; porItem[k]=(porItem[k]||0)+q; }
+    const D=out.dias[d]||(out.dias[d]={}); D[g]=(D[g]||0)+q; const k=d+"|"+String(r[ic]??"").trim()+"|"+g; porItem[k]=(porItem[k]||0)+q;
+    if(iv>=0){ const v=numBR(r[iv]); if(isFinite(v)){ const V=out.val[d]||(out.val[d]={}); V[g]=Math.round(((V[g]||0)+v)*100)/100; } } }
   const ds=Object.keys(out.dias).sort(); out.ult=ds.length?ds[ds.length-1]:null;
   if(out.ult) out.top=Object.entries(porItem).filter(([k])=>k.startsWith(out.ult+"|")).map(([k,q])=>{ const a=k.split("|"); return [a[1],a[2],Math.round(q)]; }).sort((a,b)=>b[2]-a[2]).slice(0,15);
   return out; }
@@ -6071,6 +6171,7 @@ function expOK(p){ try{ if(!p||typeof p!=="object"||!p.dias||typeof p.dias!=="ob
   if(!Object.keys(p.dias).every(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&p.dias[d]&&typeof p.dias[d]==="object"&&Object.values(p.dias[d]).every(v=>typeof v==="number"&&isFinite(v)))) return false;
   if(p.top!=null&&!(Array.isArray(p.top)&&p.top.every(t=>Array.isArray(t)&&t.length>=3))) return false;
   if(p.cap!=null&&!(typeof p.cap==="object"&&Object.values(p.cap).every(v=>typeof v==="number"&&isFinite(v)))) return false;
+  if(p.val!=null&&!(typeof p.val==="object"&&Object.keys(p.val).every(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&p.val[d]&&typeof p.val[d]==="object"&&Object.values(p.val[d]).every(v=>typeof v==="number"&&isFinite(v))))) return false;
   return true; }catch(e){ return false; } }
 let EXPD=null, METAS=null;
 function expLer(){ if(expLer.ok) return; if(!DB){ if((expLer.n=(expLer.n||0)+1)<40) setTimeout(expLer,1500); return; }
@@ -6079,21 +6180,36 @@ function expLer(){ if(expLer.ok) return; if(!DB){ if((expLer.n=(expLer.n||0)+1)<
     DB.doc("kanban/metas").onSnapshot(s=>{ METAS=s.exists?s.data():null; expLer.metasOk=true; rr("pexp"); rr("pdia"); },()=>{}); }catch(e){} }
 expLer();
 
-/* ---------- metas: takt e capacidade no mix do S&OP (calculadas no acesso do João; a equipe lê o resultado) ---------- */
+/* ---------- metas: takt e capacidade no mix de reposição do Kanban (calculadas no acesso do João; a equipe lê o resultado) ----------
+   Rev32: mix = cada item na proporção da demanda que o Kanban repõe por dia (itens de supermercado + sob pedido);
+   o tempo de troca entra conforme o lote do Kanban (lote = verde; item sob pedido = no máximo uma troca por dia);
+   grupos manuais (pessoas, não máquinas) só limitam quando os postos reais forem informados. */
 const hExp=()=>(P.hexp>0?P.hexp:P.tod);
-function capGM(code){ const o=(P.capgm||{})[code]; const m=o>0?o:gmMaq(code); if(!(m>0)) return null; return m*gmHoras(code)*gmEf(code)/100; }
+const GM_MANUAL=/manual|bancada/i;
+const gmEhManual=code=>{ const g=GMS.find(x=>x[0]===code); return !!(g&&GM_MANUAL.test(g[1]||"")); };
+function capGM(code){ const o=(P.capgm||{})[code]; if(!(o>0)&&gmEhManual(code)) return null;   // sem postos informados, operação manual não limita
+  const m=o>0?o:gmMaq(code); if(!(m>0)) return null; return m*gmHoras(code)*gmEf(code)/100; }
 function metasCalc(){
   if(!isDono()||typeof calcPA!=="function"||typeof calcUS!=="function") return null;
   const pa=calcPA(), us=calcUS(), gm={}, E={USI:{D:0,sem:0},MON:{D:0,sem:0}}, X={};
-  const add=(cod,D,et)=>{ const R=ROT[cod]; if(!R) return false; let ok=false;
-    R.forEach(o=>{ if(o[4]||!(o[1]>0)) return; const g=gm[o[0]]||(gm[o[0]]={h:0,et:{}}); g.h+=D*o[1]/3600; g.et[et]=1; ok=true; }); return ok; };
-  us.forEach(r=>{ if(!(r.D>0)) return; E.USI.D+=r.D; if(!add(r.cod,r.D,"USI")) E.USI.sem+=r.D; });
-  pa.forEach(r=>{ if(!(r.D>0)) return; X[r.fam]=(X[r.fam]||0)+r.D; if(r.comp) return; E.MON.D+=r.D; if(!add(r.cod,r.D,"MON")) E.MON.sem+=r.D; });   // comprado e vendido direto não passa pela montagem
-  const G=Object.entries(gm).map(([gi,v])=>{ const c=GMS[gi]||["?",""], cap=capGM(c[0]); return {c:c[0],n:c[1]||"",h:v.h,cap,oc:cap?v.h/cap:null,et:Object.keys(v.et)}; }).sort((a,b)=>(b.oc||0)-(a.oc||0)||b.h-a.h);
-  const lim=et=>G.find(g=>g.oc!=null&&(!et||g.et.includes(et)))||null;
-  const r3=v=>Math.round(v*1000)/1000, mk=(D,g)=>({D:r3(D),cap:g&&g.oc>0?r3(D/g.oc):null,garg:g?[g.c,g.n,r3(g.oc)]:null});
+  const epG=Math.max(1,(capUsinagem().ep)||1), excl=((DATA.capinfo&&DATA.capinfo.excl)||[]).map(String);
+  const foraRest=code=>excl.some(x=>code.indexOf("-"+x+"-")>=0);        // grupos que as premissas deixam fora da restrição (ex.: CFU)
+  const add=(r,et)=>{ const R=ROT[r.cod]; if(!R) return false; let ok=false; const D=r.D, rota=rotaOf(r);
+    const kb=r.cls!=="MTO", ciclo=r.ep>0?r.ep:epG;                    // item do Kanban: um lote a cada EPEI dele
+    const freq=kb?1/ciclo:Math.min(D,1/epG);                          // sob pedido: no máximo um lote por ciclo e nunca mais de uma troca por peça
+    R.forEach(o=>{ if(o[4]||!(o[1]>0)) return; const g=gm[o[0]]||(gm[o[0]]={h:0,s:0,et:{}}); g.h+=D*o[1]/3600;
+      const pr=(o[3]===1&&rota.length>1)?rota[rota.length-1]:rota[0], code=(GMS[o[0]]||[""])[0];
+      const st=o[2]>0?o[2]/3600:((kb&&!foraRest(code))?setupMin(pr)/60:0);   // troca do roteiro do ERP; sem ela, a troca padrão do processo só para item do Kanban em grupo que restringe
+      g.s+=freq*st; g.et[et]=1; ok=true; }); return ok; };
+  us.forEach(r=>{ if(!(r.D>0)) return; E.USI.D+=r.D; if(!add(r,"USI")) E.USI.sem+=r.D; });
+  pa.forEach(r=>{ if(!(r.D>0)) return; X[r.fam]=(X[r.fam]||0)+r.D; if(r.comp) return; E.MON.D+=r.D; if(!add(r,"MON")) E.MON.sem+=r.D; });   // comprado e vendido direto não passa pela montagem
+  const pin=GMS.findIndex(x=>/pintura/i.test(x[1]||"")&&gmMaq(x[0])!=null);   // cabine de pintura com máquina no cadastro if(pin>=0&&gm[pin]) gm[pin].s+=(P.trocas||0)*(P.setp||0)/60;   // pintura: campanha de cor por dia
+  const G=Object.entries(gm).map(([gi,v])=>{ const c=GMS[gi]||["?",""], cap=capGM(c[0]);
+    return {c:c[0],n:c[1]||"",h:v.h,s:v.s,cap,man:gmEhManual(c[0]),oc:cap?(v.h+v.s)/cap:null,k:cap&&v.h>0?Math.max(0,(cap-v.s)/v.h):null,et:Object.keys(v.et)}; }).sort((a,b)=>(b.oc||0)-(a.oc||0)||b.h-a.h);
+  const lim=et=>G.filter(g=>g.k!=null&&(!et||g.et.includes(et))).sort((a,b)=>a.k-b.k)[0]||null;   // quem limita: menor folga para crescer no mesmo mix
+  const r3=v=>Math.round(v*1000)/1000, mk=(D,g)=>({D:r3(D),cap:g?r3(D*g.k):null,garg:g?[g.c,g.n,r3(g.oc)]:null});
   const exp={}; for(const k in X) exp[k]=r3(X[k]);
-  return {G,out:{rev:String(DATA.rev||""),tod:P.tod,hexp:hExp(),prod:{USI:mk(E.USI.D,lim("USI")),MON:mk(E.MON.D,lim("MON")),TOT:mk(E.USI.D+E.MON.D,lim(null))},sem:{USI:r3(E.USI.sem),MON:r3(E.MON.sem)},exp}}; }
+  return {G,out:{rev:String(DATA.rev||""),v:2,tod:P.tod,hexp:hExp(),prod:{USI:mk(E.USI.D,lim("USI")),MON:mk(E.MON.D,lim("MON")),TOT:mk(E.USI.D+E.MON.D,lim(null))},sem:{USI:r3(E.USI.sem),MON:r3(E.MON.sem)},exp}}; }
 function metasSync(forca){ if(!isDono()) return null; let r=null; try{ r=metasCalc(); }catch(e){ return null; } if(!r) return null;
   const key=jsonEst(r.out), cur=METAS?jsonEst(Object.assign({},METAS,{t:undefined})):"";
   const pronto=!!(DB&&WRITE_OK&&(forca||expLer.metasOk)&&!(window.KB&&KB.state&&!KB.state.pronto));   // só grava depois de ler o que já está no servidor
@@ -6113,77 +6229,114 @@ function pdMed(ds,val){ const fim=ds[ds.length-1]; if(!fim) return {u:null,f:nul
   J.forEach(d=>{ const v=val(d); if(v>0) (pdFds(d)?f:u).push(v); });
   const de=J[0]||fim, meses=Math.max(1,Math.round((new Date(fim+"T12:00:00")-new Date(de+"T12:00:00"))/864e5/30.44));
   return {u:pdMediana(u),f:pdMediana(f),nu:u.filter(v=>v>0).length,nf:f.filter(v=>v>0).length,de,ate:fim,meses}; }
-function pdPeriodo(ds,per){ if(per&&/^\d{4}-\d{2}$/.test(per)) return ds.filter(d=>d.slice(0,7)===per); const fim=ds[ds.length-1]; if(!fim) return []; const ini=dLocal(new Date(new Date(fim+"T12:00:00").getTime()-29*864e5)); return ds.filter(d=>d>=ini); }   // 30 dias corridos até o último dia com dado
+/* Rev32: o período padrão é o mês do último dia com dado; "30" = 30 dias corridos até o último dia com dado */
+const pdPerDe=(per,ds)=>{ const fim=ds[ds.length-1]; return per||(fim?fim.slice(0,7):"30"); };
+const pdEhMes=per=>/^\d{4}-\d{2}$/.test(per||"");
+function pdPeriodo(ds,per){ if(pdEhMes(per)) return ds.filter(d=>d.slice(0,7)===per); const fim=ds[ds.length-1]; if(!fim) return []; const ini=dLocal(new Date(new Date(fim+"T12:00:00").getTime()-29*864e5)); return ds.filter(d=>d>=ini); }
+const pdEixo=per=>{ if(!pdEhMes(per)) return null; const n=new Date(+per.slice(0,4),+per.slice(5,7),0).getDate(); return Array.from({length:n},(_,i)=>per+"-"+String(i+1).padStart(2,"0")); };   // todos os dias do mês, mesmo os que ainda não chegaram
 function pdMeses(ds){ return [...new Set(ds.map(d=>d.slice(0,7)))].sort().reverse(); }
-const pdSel=(id,per,ds,extra)=>`<label class="pd-sel">Período <select id="${id}" aria-label="Período do gráfico"><option value="30"${per==="30"?" selected":""}>Últimos 30 dias</option>${pdMeses(ds).map(m=>`<option value="${m}"${per===m?" selected":""}>${mesNome(m)}</option>`).join('')}</select></label>${extra||''}`;
+const pdPerNome=per=>pdEhMes(per)?mesNome(per):'últimos 30 dias';
+const pdSel=(id,per,ds,extra)=>`<label class="pd-sel">Período <select id="${id}" aria-label="Período do gráfico">${pdMeses(ds).map(m=>`<option value="${m}"${per===m?" selected":""}>${mesNome(m)}</option>`).join('')}<option value="30"${per==="30"?" selected":""}>Últimos 30 dias</option></select></label>${extra||''}`;
+const fK=v=>v==null||!isFinite(v)?'—':(Math.abs(v)>=1e6?f1(v/1e6)+' mi':Math.abs(v)>=1e4?f0(v/1000)+' mil':Math.abs(v)>=1000?f1(v/1000).replace(/,0$/,'')+' mil':f0(v));
+const pdSegunda=d=>{ const t=new Date(d+"T12:00:00"), w=(t.getDay()+6)%7; return dLocal(new Date(t.getTime()-w*864e5)); };   // segunda-feira da semana do dia
 
-/* ---------- gráfico de barras com mediana e metas (sem textos em cima das barras) ---------- */
-function pdChart(o){   // o: {dias, val, med, lim, linhas:[{v,c,dash,t}], un}
-  const last=o.dias, W=760,H=270,L=56,R=16,T=24,B=30, iw=W-L-R, ih=H-T-B, medU=o.med.u;
-  const vs=last.map(o.val), base=Math.max(1,...vs.map(v=>Math.min(v,medU?medU*2.5:Infinity)),...o.linhas.filter(l=>l.v>0).map(l=>l.v));
+/* ---------- gráfico de barras por dia com mediana e metas (sem textos em cima das barras) ---------- */
+function pdChart(o){   // o: {dias, eixo, val, med, lim, linhas:[{v,c,dash,t}], un, fv}
+  const tem=new Set(o.dias), last=o.eixo||o.dias, W=760,H=270,L=56,R=16,T=24,B=30, iw=W-L-R, ih=H-T-B, medU=o.med.u, fv=o.fv||(v=>f0(v)+' '+(o.un||'pç'));
+  const vs=last.map(d=>tem.has(d)?o.val(d):0), base=Math.max(1,...vs.map(v=>Math.min(v,medU?medU*2.5:Infinity)),...o.linhas.filter(l=>l.v>0).map(l=>l.v));
   const mx=excNice((base*1.1||1)/4)*4, y=v=>T+(1-Math.min(v,mx)/mx)*ih, slot=iw/Math.max(1,last.length), bw=Math.max(3,Math.min(26,slot*.62));
   let g=medU?gyrBands(o.lim,L,L+iw,y,mx,medU/100):'';
-  for(let k=0;k<=4;k++){ const v=mx*k/4; g+=`<line x1="${L}" x2="${L+iw}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="${k?'3 5':''}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${v>=1000?f1(v/1000).replace(/,0$/,'')+' mil':f0(v)}</text>`; }
-  last.forEach((d,i)=>{ const v0=vs[i], md=pdFds(d)?o.med.f:o.med.u, s=gyr(md&&v0>0?v0/md*100:(md?0:null),o.lim), x=L+i*slot+(slot-bw)/2;
-    if(v0>mx) g+=`<text x="${(x+bw/2).toFixed(1)}" y="${T-8}" text-anchor="middle" font-size="10" fill="var(--ink)">${f0(v0/1000)} mil↑</text>`;
-    g+=`<rect x="${x.toFixed(1)}" y="${y(v0).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,T+ih-y(v0)).toFixed(1)}" rx="3" fill="${GYR_C[s]}"><title>${esc(dbr4(d))}${pdFds(d)?' (fim de semana)':''} · ${f0(v0)} ${o.un||'pç'}${md?' · '+f0(v0/md*100)+'% da mediana de '+(pdFds(d)?'fins de semana':'dias úteis'):''} · ${GYR_T[s]}</title></rect>`;
-    const stp=Math.max(1,Math.ceil(last.length/10)); if((i%stp===0&&i<=last.length-1-Math.ceil(stp*0.6))||i===last.length-1) g+=`<text x="${(x+bw/2).toFixed(1)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(dbr2(d))}</text>`; });
-  o.linhas.forEach(l=>{ if(!(l.v>0)) return; const yy=Math.max(T,y(l.v)); g+=`<line x1="${L}" x2="${L+iw}" y1="${yy}" y2="${yy}" stroke="${l.c}" stroke-width="${l.w||2}" stroke-dasharray="${l.dash||''}"><title>${esc(l.t)}</title></line>${l.v>mx?`<text x="${L+iw}" y="${T-8}" text-anchor="end" font-size="10" fill="${l.c}">${esc(l.curto||'')} ${f0(l.v)}↑</text>`:''}`; });
+  for(let k=0;k<=4;k++){ const v=mx*k/4; g+=`<line x1="${L}" x2="${L+iw}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="${k?'3 5':''}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${fK(v)}</text>`; }
+  const stp=Math.max(1,Math.ceil(last.length/10));
+  last.forEach((d,i)=>{ const x=L+i*slot+(slot-bw)/2;
+    if((i%stp===0&&i<=last.length-1-Math.ceil(stp*0.6))||i===last.length-1) g+=`<text x="${(x+bw/2).toFixed(1)}" y="${H-B+16}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(o.eixo?d.slice(8,10):dbr2(d))}</text>`;
+    if(!tem.has(d)) return;   // dia sem dado (ainda não chegou ou não houve movimento): só o rótulo do eixo
+    const v0=vs[i], md=pdFds(d)?o.med.f:o.med.u, s=gyr(md&&v0>0?v0/md*100:(md?0:null),o.lim);
+    if(v0>mx) g+=`<text x="${(x+bw/2).toFixed(1)}" y="${T-8}" text-anchor="middle" font-size="10" fill="var(--ink)">${fK(v0)}↑</text>`;
+    g+=`<rect x="${x.toFixed(1)}" y="${y(v0).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,T+ih-y(v0)).toFixed(1)}" rx="3" fill="${GYR_C[s]}"><title>${esc(dbr4(d))}${pdFds(d)?' (fim de semana)':''} · ${esc(fv(v0))}${md?' · '+f0(v0/md*100)+'% da mediana de '+(pdFds(d)?'fins de semana':'dias úteis'):''} · ${GYR_T[s]}</title></rect>`; });
+  o.linhas.forEach(l=>{ if(!(l.v>0)) return; const yy=Math.max(T,y(l.v)); g+=`<line x1="${L}" x2="${L+iw}" y1="${yy}" y2="${yy}" stroke="${l.c}" stroke-width="${l.w||2}" stroke-dasharray="${l.dash||''}"><title>${esc(l.t)}</title></line>${l.v>mx?`<text x="${L+iw}" y="${T-8}" text-anchor="end" font-size="10" fill="${l.c}">${esc(l.curto||'')} ${fK(l.v)}↑</text>`:''}`; });
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:300px;display:block" role="img" aria-label="${esc(o.aria||'Gráfico por dia')}">${g}</svg>
    <div class="pd-leg">${o.linhas.filter(l=>l.v>0).map(l=>`<span><i style="border-top:${l.w||2}px ${l.dash?'dashed':'solid'} ${l.c}"></i>${esc(l.t)}</span>`).join('')}
     <span><i class="sq" style="background:var(--kg)"></i>${esc(gyrLeg(o.lim))} da mediana</span></div>`; }
+
+/* ---------- Rev32: resultado por mês ao longo do ano (total do mês; cor pela média por dia útil contra a mediana) ---------- */
+function pdMesesAno(ds,val,ano,med){ const ini=ds[0], fim=ds[ds.length-1];
+  return MESN.map((n,i)=>{ const m=ano+"-"+String(i+1).padStart(2,"0"), J=ds.filter(d=>d.slice(0,7)===m); if(!J.length) return {m,n,tem:false};
+    const ut=J.filter(d=>!pdFds(d)&&val(d)>0), tot=J.reduce((s,d)=>s+val(d),0), mu=ut.length?ut.reduce((s,d)=>s+val(d),0)/ut.length:null;
+    const and=!!(fim&&fim.slice(0,7)===m), par=!!(ini&&ini.slice(0,7)===m&&ini.slice(8,10)>"05");   // em andamento · histórico começa no meio do mês
+    return {m,n,tem:true,tot,mu,nu:ut.length,and,par,pct:mu&&med.u?mu/med.u*100:null}; }); }
+function pdChartMes(o){   // o: {ds, val, ano, med, lim, fv, aria, sel}
+  const M=pdMesesAno(o.ds,o.val,o.ano,o.med), W=760,H=230,L=56,R=16,T=26,B=30, iw=W-L-R, ih=H-T-B, fv=o.fv||(v=>f0(v)+' pç');
+  const mx=excNice((Math.max(1,...M.map(x=>x.tem?x.tot:0))*1.12)/4)*4, y=v=>T+(1-Math.min(v,mx)/mx)*ih, slot=iw/12, bw=Math.min(40,slot*.62);
+  let g=`<defs><pattern id="pdm-h" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3" height="6" fill="var(--panel)" opacity=".6"/></pattern></defs>`;
+  for(let k=0;k<=4;k++){ const v=mx*k/4; g+=`<line x1="${L}" x2="${L+iw}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="${k?'3 5':''}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="var(--muted)">${fK(v)}</text>`; }
+  M.forEach((x,i)=>{ const cx=L+i*slot+slot/2, bx=cx-bw/2;
+    g+=`<text x="${cx.toFixed(1)}" y="${H-B+16}" text-anchor="middle" font-size="11.5" font-weight="${x.m===o.sel?700:400}" fill="${x.m===o.sel?'var(--ink)':'var(--muted)'}">${x.n}${x.and?'*':''}</text>`;
+    if(!x.tem) return; const s=gyr(x.pct,o.lim), yy=y(x.tot), hh=Math.max(0,T+ih-yy);
+    const tt=`${mesNome(x.m)} · ${fv(x.tot)}${x.mu!=null?' · média de '+fv(x.mu)+' por dia útil ('+f0(x.nu)+' dias)':''}${x.pct!=null?' · '+f0(x.pct)+'% da mediana · '+GYR_T[s]:''}${x.and?' · mês em andamento':''}${x.par?' · o histórico começa no meio deste mês':''}`;
+    g+=`<rect x="${bx.toFixed(1)}" y="${yy.toFixed(1)}" width="${bw.toFixed(1)}" height="${hh.toFixed(1)}" rx="3" fill="${GYR_C[s]}"><title>${esc(tt)}</title></rect>`;
+    if(x.and||x.par) g+=`<rect x="${bx.toFixed(1)}" y="${yy.toFixed(1)}" width="${bw.toFixed(1)}" height="${hh.toFixed(1)}" rx="3" fill="url(#pdm-h)" pointer-events="none"/>`;
+    g+=`<text x="${cx.toFixed(1)}" y="${(yy-6).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)">${fK(x.tot)}</text>`; });
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:260px;display:block" role="img" aria-label="${esc(o.aria||'Resultado por mês')}">${g}</svg>
+   <div class="pd-leg"><span><i class="sq" style="background:var(--kg)"></i>cor = média por dia útil do mês contra a mediana (${esc(gyrLeg(o.lim))})</span><span>* mês em andamento (barra riscada = mês incompleto)</span></div>`; }
+const pdMesTabela=(o)=>{ const M=pdMesesAno(o.ds,o.val,o.ano,o.med).filter(x=>x.tem), fv=o.fv||(v=>f0(v)+' pç');
+  return `<table><thead><tr><th>Mês</th><th class="num">${esc(o.col||'Total')}</th><th class="num">Média por dia útil</th><th class="num">Dias úteis</th><th>Contra a mediana</th></tr></thead><tbody>${M.slice().reverse().map(x=>`<tr><td><b>${esc(mesNome(x.m))}</b>${x.and?' <span class="note">em andamento</span>':''}${x.par?' <span class="note">incompleto</span>':''}</td><td class="num">${esc(fv(x.tot))}</td><td class="num">${x.mu==null?'—':esc(fv(x.mu))}</td><td class="num">${f0(x.nu)}</td><td>${x.pct==null?'—':gyrLamp(gyr(x.pct,o.lim),f0(x.pct)+'%')}</td></tr>`).join('')}</tbody></table>`; };
 const metaCard=(t,v,s,sub)=>`<div class="pd-k pd-m ${s}"><span>${t}</span><b>${v}</b>${gyrLamp(s)}<small>${sub}</small></div>`;
 const ftk=v=>v<100?f1(v):f0(v), C_TAKT="#2F6DB5", C_CAP="#8A4FBF";
 
 /* ---------- 1) Produção do dia ---------- */
-const PDS={per:"30",et:"TOT"};
+const PDS={per:null,et:"TOT"};
 const ET_NOME={TOT:"Total",USI:"Usinagem",MON:"Montagem"};
+const pdValProd=(P0,et)=>d=>{ const D=P0.dias[d]||{}; return et==="TOT"?Object.values(D).reduce((s,v)=>s+v,0):(D[et]||0); };
 const _renderPDIA28=renderPDIA;
 renderPDIA=function(){
   const el=document.getElementById('p-pdia'); if(!el) return; let GM=null;
   if(isDono()){ const r=metasSync(); GM=r&&r.G; }
   _renderPDIA28(); const P0=PROD; if(!P0||!P0.dias||!Object.keys(P0.dias).length||!prodOK(P0)) return;
-  const ds=Object.keys(P0.dias).sort(), et=PDS.et, val=d=>{ const D=P0.dias[d]||{}; return et==="TOT"?Object.values(D).reduce((s,v)=>s+v,0):(D[et]||0); };
+  const ds=Object.keys(P0.dias).sort(), et=PDS.et, val=pdValProd(P0,et);
   const med=pdMed(ds,val), ult=P0.ult||ds[ds.length-1], mdU=pdFds(ult)?med.f:med.u, hoje=val(ult), pctMed=mdU?hoje/mdU*100:null, sP=gyr(pctMed,"prod");
   const M=METAS&&METAS.prod&&METAS.prod[et], tod=(METAS&&METAS.tod)||P.tod, Dd=M&&M.D>0?M.D:null, cap=M&&M.cap>0?M.cap:null, takt=Dd?tod*3600/Dd:null;
-  const per=PDS.per, dias=pdPeriodo(ds,per), uteis=dias.filter(d=>!pdFds(d)&&val(d)>0), totP=dias.reduce((s,d)=>s+val(d),0), medP=uteis.length?uteis.reduce((s,d)=>s+val(d),0)/uteis.length:null;
+  const per=pdPerDe(PDS.per,ds), dias=pdPeriodo(ds,per), uteis=dias.filter(d=>!pdFds(d)&&val(d)>0), totP=dias.reduce((s,d)=>s+val(d),0), medP=uteis.length?uteis.reduce((s,d)=>s+val(d),0)/uteis.length:null;
   const sDem=gyr(Dd&&med.u?med.u/Dd*100:null,"dem"), sCap=gyr(cap&&Dd?Dd/cap*100:null,"ocup"), sPer=gyr(Dd&&medP?medP/Dd*100:null,"dem");
+  const ano=(pdEhMes(per)?per:ult).slice(0,4), nomeP=pdPerNome(per);
   /* 1º quadro: mesma lógica, agora contra a mediana de 12 meses e na etapa escolhida */
   const k1=el.querySelector('.pd-g .pd-k'); if(k1){ k1.className='pd-k '+sP; k1.innerHTML=`<span>Produzido no último dia${et!=="TOT"?' · '+ET_NOME[et]:''}</span><b>${f0(hoje)} pç</b>${gyrLamp(sP)}<small>${mdU?`${f0(pctMed)}% da mediana ${pdFds(ult)?'dos fins de semana':'dos dias úteis'} (${f0(mdU)} pç)`:'sem mediana ainda'}</small>`; }
   const metas=`<div class="pd-g pd-mg">
     ${metaCard('Mediana dos dias úteis',med.u?f0(med.u)+' pç':'—',sDem,`${med.de?`de ${dbr4(med.de)} a ${dbr4(med.ate)} · ${f0(med.nu)} dias úteis${med.meses<12?' (todo o histórico disponível)':' (12 meses)'}`:''}${Dd&&med.u?` · ${f0(med.u/Dd*100)}% da demanda`:''}`)}
-    ${metaCard('Takt (demanda do S&OP)',takt?ftk(takt)+' s/pç':'—',Dd?sDem:'nd',Dd?`demanda de ${f0(Dd)} pç/dia no mix do S&OP · ${f1(tod)} h/dia`:'aparece quando o João abrir esta tela')}
-    ${metaCard('Capacidade no mix',cap?f0(cap)+' pç/dia':'—',cap?sCap:'nd',cap?`gargalo ${esc(M.garg[0])} (${esc(M.garg[1])}) · demanda usa ${f0(Dd/cap*100)}% da capacidade`:(M?'sem roteiro ou máquinas para calcular':'aparece quando o João abrir esta tela'))}
-    ${metaCard(per==="30"?'Últimos 30 dias':mesNome(per),f0(totP)+' pç',medP?sPer:'nd',medP?`média de ${f0(medP)} pç por dia útil${Dd?' · '+f0(medP/Dd*100)+'% da demanda':''}`:'sem dias úteis com produção')}</div>`;
+    ${metaCard('Takt (demanda do Kanban)',takt?ftk(takt)+' s/pç':'—',Dd?sDem:'nd',Dd?`demanda de ${f0(Dd)} pç/dia · itens do supermercado + sob pedido · ${f1(tod)} h/dia`:'aparece quando o João abrir esta tela')}
+    ${metaCard('Capacidade no mix do Kanban',cap?f0(cap)+' pç/dia':'—',cap?sCap:'nd',cap?`quem limita: ${esc(M.garg[0])} (${esc(M.garg[1])}) · a demanda usa ${f0(Dd/cap*100)}% · trocas já descontadas`:(M&&M.garg&&M.cap===0?`as trocas já ocupam todo o tempo de ${esc(M.garg[0])}`:M?'sem roteiro ou máquinas para calcular':'aparece quando o João abrir esta tela'))}
+    ${metaCard(pdEhMes(per)?mesNome(per):'Últimos 30 dias',f0(totP)+' pç',medP?sPer:'nd',medP?`média de ${f0(medP)} pç por dia útil${Dd?' · '+f0(medP/Dd*100)+'% da demanda':''}`:'sem dias úteis com produção')}</div>`;
   const chips=`<div class="pd-et" role="group" aria-label="Etapa">${["TOT","USI","MON"].map(k=>`<button type="button" class="pd-c${et===k?' on':''}" data-pdet="${k}" aria-pressed="${et===k}">${ET_NOME[k]}</button>`).join('')}</div>`;
-  const chart=pdChart({dias,val,med,lim:"prod",aria:"Produção por dia",linhas:[{v:med.u,c:"var(--ink)",dash:"6 4",t:`mediana dos dias úteis ${f0(med.u)} pç`,curto:"mediana"},{v:Dd,c:C_TAKT,t:`takt ${ftk(takt)} s/pç = ${f0(Dd)} pç/dia (demanda do S&OP)`,curto:"takt",w:2.5},{v:cap,c:C_CAP,dash:"2 3",t:`capacidade no mix ${f0(cap)} pç/dia`,curto:"capacidade",w:2.5}]});
+  const chart=pdChart({dias,eixo:pdEixo(per),val,med,lim:"prod",aria:"Produção por dia",linhas:[{v:med.u,c:"var(--ink)",dash:"6 4",t:`mediana dos dias úteis ${f0(med.u)} pç`,curto:"mediana"},{v:Dd,c:C_TAKT,t:`takt ${ftk(takt)} s/pç = ${f0(Dd)} pç/dia (demanda do Kanban)`,curto:"takt",w:2.5},{v:cap,c:C_CAP,dash:"2 3",t:`capacidade no mix do Kanban ${f0(cap)} pç/dia`,curto:"capacidade",w:2.5}]});
+  const mesO={ds,val,ano,med,lim:"prod",sel:pdEhMes(per)?per:null,aria:"Produção por mês",col:"Produzido (pç)"};
+  const mesP=`<div class="panel" id="pd-mes"><div class="head"><h3>Produção por mês · ${esc(ano)}${et!=="TOT"?' · '+ET_NOME[et]:''}</h3><span class="note">total de cada mês · histórico de ${esc(dbr4(ds[0]))} a ${esc(dbr4(ds[ds.length-1]))}</span></div>${pdChartMes(mesO)}<details class="pd-det"><summary>Ver os números por mês</summary><div class="tw">${pdMesTabela(mesO)}</div></details></div>`;
   /* troca o gráfico antigo pelo novo */
   const pan=[...el.querySelectorAll('.panel')].find(p=>p.querySelector('svg[aria-label="Produção por dia"]'));
-  if(pan){ const hd=pan.querySelector('.head'); hd.innerHTML=`<h3>Produção por dia · ${per==="30"?'últimos 30 dias':mesNome(per)}${et!=="TOT"?' · '+ET_NOME[et]:''}</h3><div class="filters">${chips}${pdSel('pd-per',per,ds)}</div>`;
-    const sv=pan.querySelector('svg'); const box=document.createElement('div'); box.innerHTML=chart+`<p class="note">Barra = peças que entraram no estoque pelo apontamento do ERP. Cor: comparada com a mediana do mesmo tipo de dia (dia útil contra dias úteis, sábado e domingo contra fins de semana). Takt = ${f1(tod)} h/dia ÷ demanda diária do S&OP, com o mix (proporção de cada item) do S&OP. Capacidade no mix = quantas peças por dia cabem até o grupo de máquina mais carregado chegar a 100%, pelo tempo de ciclo do roteiro do ERP (sem o tempo de setup).</p>`; sv.replaceWith(box);
+  if(pan){ const hd=pan.querySelector('.head'); hd.innerHTML=`<h3>Produção por dia · ${esc(nomeP)}${et!=="TOT"?' · '+ET_NOME[et]:''}</h3><div class="filters">${chips}${pdSel('pd-per',per,ds)}</div>`;
+    const sv=pan.querySelector('svg'); const box=document.createElement('div'); box.innerHTML=chart+`<p class="note">Barra = peças que entraram no estoque pelo apontamento do ERP. Cor: comparada com a mediana do mesmo tipo de dia (dia útil contra dias úteis, sábado e domingo contra fins de semana). Takt = ${f1(tod)} h/dia ÷ demanda diária dos itens que o Kanban repõe (supermercado e sob pedido). Capacidade no mix do Kanban = quantas peças por dia cabem, mantendo a proporção de cada item, até o grupo de máquinas mais apertado chegar a 100%: tempo de ciclo do roteiro do ERP mais o tempo de troca conforme o lote de cada item. Montagem e operações manuais dependem de pessoas e só entram como limite depois que os postos reais forem informados.</p>`; sv.replaceWith(box);
     const tb=pan.querySelector('.tw'); if(tb&&per!=="30"){ const deps=[...new Set(dias.flatMap(d=>Object.keys(P0.dias[d]).filter(k=>P0.dias[d][k]>0)))]; tb.innerHTML=`<table><thead><tr><th>Dia</th>${deps.map(d=>`<th class="num">${esc(DEP_NOME[d]||d)}</th>`).join('')}<th class="num">Total</th></tr></thead><tbody>${dias.slice().reverse().map(d=>`<tr><td>${esc(dbr4(d))}</td>${deps.map(k=>`<td class="num">${f0(P0.dias[d][k]||0)}</td>`).join('')}<td class="num"><b>${f0(Object.values(P0.dias[d]).reduce((s,v)=>s+v,0))}</b></td></tr>`).join('')}</tbody></table>`; tb.style.maxHeight="360px"; }
-    pan.insertAdjacentHTML('beforebegin',metas); }
+    pan.insertAdjacentHTML('beforebegin',metas); pan.insertAdjacentHTML('afterend',mesP); }
   if(GM) el.insertAdjacentHTML('beforeend',capPainel(GM,P0,ds));
   el.querySelectorAll('[data-pdet]').forEach(b=>b.onclick=()=>{ PDS.et=b.dataset.pdet; renderPDIA(); });
   const sp=document.getElementById('pd-per'); if(sp) sp.onchange=()=>{ PDS.per=sp.value; renderPDIA(); };
   capPainelBind();
 };
 
-/* painel só do João: carga por grupo de máquina no mix do S&OP, postos e horas */
+/* painel só do João: carga por grupo de máquina no mix do Kanban (ciclo + trocas), postos e horas */
 function capPainel(G,P0,ds){
-  const real=et=>pdMed(ds,d=>{ const D=P0.dias[d]||{}; return et==="TOT"?Object.values(D).reduce((s,v)=>s+v,0):(D[et]||0); }).u;
-  const av=["USI","MON"].map(et=>{ const M=METAS&&METAS.prod&&METAS.prod[et], r=real(et); return M&&M.cap&&r&&r>M.cap*1.02?`<li><b>${ET_NOME[et]}</b>: a mediana real (${f0(r)} pç/dia) já passa da capacidade calculada (${f0(M.cap)} pç/dia). O cadastro do gargalo <b>${esc(M.garg[0])}</b> deve ter menos postos que a realidade: confira o número de postos abaixo.</li>`:''; }).join('');
-  const L=G.filter(g=>g.h>=0.05).slice(0,18), sem=(METAS&&METAS.sem)||{};
-  return `<div class="panel" id="cap-gm"><div class="head"><h3>Capacidade no mix · carga por grupo de máquina</h3><span class="tag">só você vê</span></div>
-   <p class="note">Carga = demanda diária do S&OP de cada item × tempo de ciclo de cada operação do roteiro do ERP. Capacidade = postos × horas/dia × eficiência. Postos = máquinas ativas no cadastro de centros de trabalho (Programador), a menos que você informe outro número aqui (útil para montagem e operações manuais, que dependem de pessoas). ${sem.USI||sem.MON?`Sem roteiro no ERP: ${f0(sem.USI||0)} pç/dia de usinados e ${f0(sem.MON||0)} pç/dia de produtos ficam fora da carga.`:''}</p>
+  const real=et=>pdMed(ds,pdValProd(P0,et)).u, MT=METAS&&METAS.prod&&METAS.prod.TOT, lim=MT&&MT.garg?MT.garg[0]:null;
+  const av=["USI","MON"].map(et=>{ const M=METAS&&METAS.prod&&METAS.prod[et], r=real(et); return M&&M.cap&&r&&r>M.cap*1.02?`<li><b>${ET_NOME[et]}</b>: a mediana real (${f0(r)} pç/dia) já passa da capacidade calculada (${f0(M.cap)} pç/dia). O cadastro de <b>${esc(M.garg[0])}</b> deve ter menos máquinas, horas ou eficiência que a realidade, ou o tempo de ciclo do roteiro está maior que o real: confira abaixo.</li>`:''; }).join('');
+  const G1=G.filter(g=>g.h>=0.05), L=G1.filter(g=>g.cap!=null).slice(0,14).concat(G1.filter(g=>g.cap==null).sort((x,y)=>y.h-x.h).slice(0,6)), sem=(METAS&&METAS.sem)||{}, nMan=L.filter(g=>g.man&&g.cap==null).length;   // primeiro quem limita (por uso), depois os grupos sem capacidade informada (por carga)
+  return `<div class="panel" id="cap-gm"><div class="head"><h3>Capacidade no mix do Kanban · carga por grupo de máquina</h3><span class="tag">só você vê</span></div>
+   <p class="note">Mix = cada item na proporção do que o Kanban repõe por dia (itens do supermercado e sob pedido). <b>Ciclo</b> = demanda diária × tempo de ciclo de cada operação do roteiro do ERP. <b>Trocas</b> = um lote de cada item a cada ciclo de reposição dele (EPEI), com o tempo de troca do roteiro; quando o roteiro não traz, vale a troca padrão do processo, só para itens do supermercado em grupos que restringem. <b>Capacidade</b> = postos × horas/dia × eficiência. <b>Cabe até</b> = quantas vezes a demanda de hoje cabe no grupo, mantendo o mix; o menor número é quem limita a fábrica. ${nMan?`<b>${f0(nMan)} grupo(s) manual(is)</b> não limitam: dependem de pessoas e o cadastro não traz os postos reais. Informe os postos para que passem a limitar. `:''}${sem.USI||sem.MON?`Sem roteiro no ERP: ${f0(sem.USI||0)} pç/dia de usinados e ${f0(sem.MON||0)} pç/dia de produtos ficam fora da carga.`:''}</p>
    ${av?`<ul class="note" style="color:var(--kr)">${av}</ul>`:''}
-   <div class="tw" style="max-height:440px"><table><thead><tr><th>Grupo de máquina</th><th>Etapa</th><th class="num">Carga h/dia</th><th class="num">Postos</th><th class="num">Horas/dia</th><th class="num">Eficiência %</th><th class="num">Capacidade h/dia</th><th>Uso</th></tr></thead><tbody>
-   ${L.map(g=>{ const cad=gmMaq(g.c), ov=(P.capgm||{})[g.c]; return `<tr><td><b>${esc(g.c)}</b><br><span class="note">${esc(g.n)}</span></td><td class="note">${g.et.map(e=>ET_NOME[e]).join(' + ')}</td><td class="num">${f1(g.h)}</td>
+   <div class="tw" style="max-height:440px"><table><thead><tr><th>Grupo de máquina</th><th>Etapa</th><th class="num">Ciclo h/dia</th><th class="num">Trocas h/dia</th><th class="num">Postos</th><th class="num">Horas/dia</th><th class="num">Eficiência %</th><th class="num">Capacidade h/dia</th><th>Uso</th><th class="num">Cabe até</th></tr></thead><tbody>
+   ${L.map(g=>{ const cad=gmMaq(g.c), ov=(P.capgm||{})[g.c]; return `<tr${g.c===lim?' class="cap-lim"':''}><td><b>${esc(g.c)}</b>${g.c===lim?' <span class="tag">limita</span>':''}<br><span class="note">${esc(g.n)}</span></td><td class="note">${g.et.map(e=>ET_NOME[e]).join(' + ')}</td><td class="num">${f1(g.h)}</td><td class="num">${g.s>=0.05?f1(g.s):'—'}</td>
      <td class="num"><input class="in" type="number" min="0" max="500" step="1" style="width:70px" data-capgm="${esc(g.c)}" value="${ov>0?ov:''}" placeholder="${cad==null?'—':cad}" aria-label="Postos de ${esc(g.c)}"></td>
-     <td class="num">${f1(gmHoras(g.c))}</td><td class="num">${f0(gmEf(g.c))}</td><td class="num">${g.cap==null?'<span class="note">sem máquina no cadastro · não limita</span>':f1(g.cap)}</td><td>${g.oc==null?'—':gyrLamp(gyr(g.oc*100,"ocup"),f0(g.oc*100)+'%')}</td></tr>`; }).join('')}</tbody></table></div>
+     <td class="num">${f1(gmHoras(g.c))}</td><td class="num">${f0(gmEf(g.c))}</td><td class="num">${g.cap==null?`<span class="note">${g.man?'manual · não limita sem os postos':'sem máquina no cadastro · não limita'}</span>`:f1(g.cap)}</td><td>${g.oc==null?'—':gyrLamp(gyr(g.oc*100,"ocup"),f0(g.oc*100)+'%')}</td><td class="num">${g.k==null?'—':f2(g.k)+'×'}</td></tr>`; }).join('')}</tbody></table></div>
    <div class="filters"><label class="pd-sel">Horas por dia da expedição <input class="in" id="cap-hexp" type="number" min="1" max="24" step="0.5" style="width:74px" value="${P.hexp>0?P.hexp:''}" placeholder="${f1(P.tod)}"></label>
     <button class="btn pri" id="cap-sv">Salvar postos e horas</button><button class="btn" id="cap-rs">Voltar ao cadastro</button></div>
-   <p class="note">Horas/dia e eficiência de cada grupo vêm do Programador. Campo de postos vazio = usa o cadastro. Ao salvar, o takt e a capacidade são recalculados e gravados para a equipe.</p></div>`; }
+   <p class="note">Horas/dia e eficiência de cada grupo vêm do Programador. Campo de postos vazio = usa o cadastro (grupo manual vazio = não limita). Ao salvar, o takt e a capacidade são recalculados e gravados para a equipe. Esta conta não altera saldos, máximos, cartões nem a base.</p></div>`; }
 function capPainelBind(){ const sv=document.getElementById('cap-sv'); if(!sv) return;
   sv.onclick=()=>{ const o={}; let ok=true; document.querySelectorAll('[data-capgm]').forEach(i=>{ if(i.value==="") return; const v=+i.value; if(!isFinite(v)||v<0||v>500){ ok=false; return; } if(v>0) o[i.dataset.capgm]=v; });
     const hx=document.getElementById('cap-hexp').value, h=+hx; if(hx!==""&&(!isFinite(h)||h<1||h>24)) ok=false;
@@ -6192,45 +6345,83 @@ function capPainelBind(){ const sv=document.getElementById('cap-sv'); if(!sv) re
     if(hx==="") delete P.hexp; else P.hexp=h; saveParams(); metasSync(true); toast("Postos e horas salvos"); renderPDIA(); };
   document.getElementById('cap-rs').onclick=()=>{ delete P.capgm; delete P.hexp; saveParams(); metasSync(true); toast("Voltou ao cadastro"); renderPDIA(); }; }
 
-/* ---------- 2) Expedição ---------- */
-const PES={per:"30",g:"*"};
+/* ---------- 2) Expedição (Rev32: valor das notas em R$, por dia, semana e mês) ---------- */
+const PES={per:null,g:"*",un:"pc"};
+const expSoma=o=>Object.values(o||{}).reduce((s,v)=>s+v,0);
+/* leitura do valor expedido: dia, semana (segunda até o último dia) e mês do último dia com nota */
+function expValores(E0,g){ if(!E0||!E0.val||typeof E0.val!=="object") return null; const dv=Object.keys(E0.val).sort(); if(!dv.length) return null;
+  const v=d=>g&&g!=="*"?((E0.val[d]||{})[g]||0):expSoma(E0.val[d]), q=d=>g&&g!=="*"?((E0.dias[d]||{})[g]||0):expSoma(E0.dias[d]);
+  const ult=dv[dv.length-1], med=pdMed(dv,v), seg=pdSegunda(ult), mes=ult.slice(0,7);
+  const faixa=J=>{ const ut=J.filter(d=>!pdFds(d)&&v(d)>0), tot=J.reduce((s,d)=>s+v(d),0), mu=ut.length?ut.reduce((s,d)=>s+v(d),0)/ut.length:null; return {tot,pc:J.reduce((s,d)=>s+q(d),0),mu,nu:ut.length,pct:mu&&med.u?mu/med.u*100:null,de:J[0],ate:J[J.length-1]}; };
+  const mdU=pdFds(ult)?med.f:med.u;
+  return {dv,v,ult,med,dia:{tot:v(ult),pc:q(ult),pct:mdU?v(ult)/mdU*100:null,fds:pdFds(ult),md:mdU},sem:faixa(dv.filter(d=>d>=seg)),mes:faixa(dv.filter(d=>d.slice(0,7)===mes)),mesN:mes,seg}; }
+/* semanas (segunda a domingo) que tocam os dias dados */
+function expSemanas(dias,q,v){ const S=new Map(); dias.forEach(d=>{ const k=pdSegunda(d), o=S.get(k)||{k,de:d,ate:d,pc:0,rs:0,nu:0}; o.ate=d; o.pc+=q(d); o.rs+=v?v(d):0; if(!pdFds(d)&&q(d)>0) o.nu++; S.set(k,o); }); return [...S.values()].sort((a,b)=>a.k<b.k?1:-1); }
 function renderPEXP(){
   const el=document.getElementById('p-pexp'); if(!el) return; if(isDono()) metasSync(); const E0=EXPD;
   if(!E0||!E0.dias||!Object.keys(E0.dias).length||!expOK(E0)){ el.innerHTML=`<div class="head"><h2>Expedição do dia</h2></div><div class="panel"><p class="note">Ainda não há dados de expedição. Eles chegam com a atualização pelo <b>MPD132</b> (aba Faturamento), todo dia às 9h.</p></div>`; return; }
-  const ds=Object.keys(E0.dias).sort(), soma=o=>Object.values(o||{}).reduce((s,v)=>s+v,0), tot={}; ds.forEach(d=>{ for(const k in E0.dias[d]) tot[k]=(tot[k]||0)+E0.dias[d][k]; });
+  const ds=Object.keys(E0.dias).sort(), soma=expSoma, tot={}; ds.forEach(d=>{ for(const k in E0.dias[d]) tot[k]=(tot[k]||0)+E0.dias[d][k]; });
   const grupos=Object.keys(tot).sort((a,b)=>tot[b]-tot[a]); if(PES.g!=="*"&&!grupos.includes(PES.g)) PES.g="*";
   const g=PES.g, val=d=>g==="*"?soma(E0.dias[d]):((E0.dias[d]||{})[g]||0), med=pdMed(ds,val), ult=E0.ult||ds[ds.length-1], mdU=pdFds(ult)?med.f:med.u, hoje=val(ult), pctMed=mdU?hoje/mdU*100:null;
   const XM=(METAS&&METAS.exp)||null, dOf=k=>{ if(!XM) return null; const n=nrmNome(k); let s=0, ach=false; for(const f in XM) if(nrmNome(f)===n){ s+=XM[f]; ach=true; } return ach?s:null; };
   const Dd=XM?(g==="*"?Object.values(XM).reduce((s,v)=>s+v,0):dOf(g)):null, hx=(METAS&&METAS.hexp)||P.hexp||P.tod, takt=Dd>0?hx*3600/Dd:null;
   const capG=E0.cap||{}, cap=g==="*"?(Object.keys(capG).length?soma(capG):null):(capG[g]||null);
-  const per=PES.per, dias=pdPeriodo(ds,per), uteis=dias.filter(d=>!pdFds(d)&&val(d)>0), totP=dias.reduce((s,d)=>s+val(d),0), medP=uteis.length?uteis.reduce((s,d)=>s+val(d),0)/uteis.length:null;
+  const per=pdPerDe(PES.per,ds), dias=pdPeriodo(ds,per), uteis=dias.filter(d=>!pdFds(d)&&val(d)>0), totP=dias.reduce((s,d)=>s+val(d),0), medP=uteis.length?uteis.reduce((s,d)=>s+val(d),0)/uteis.length:null;
   const sH=gyr(pctMed,"exp"), sDem=gyr(Dd&&med.u?med.u/Dd*100:null,"dem"), sCap=gyr(cap&&med.u?med.u/cap*100:null,"ocup"), sPer=gyr(Dd&&medP?medP/Dd*100:null,"dem");
   const card=(t,v,s,sub)=>`<div class="pd-k ${s}"><span>${t}</span><b>${v}</b>${gyrLamp(s)}<small>${sub}</small></div>`;
-  const nomeG=g==="*"?"todos os grupos":g;
+  const nomeG=g==="*"?"todos os grupos":g, nomeP=pdPerNome(per), ano=(pdEhMes(per)?per:ult).slice(0,4);
+  /* valor (R$) */
+  const VV=expValores(E0,g), rs=PES.un==="rs"&&!!VV, vOf=VV?VV.v:null, temV=d=>!!(VV&&E0.val[d]);
+  const diasV=VV?dias.filter(temV):[], totV=diasV.reduce((s,d)=>s+vOf(d),0), semV=VV&&diasV.length<dias.length;
+  const cardsV=VV?`<div class="pd-g pd-vg">
+    ${card('Valor expedido no último dia',brl(VV.dia.tot),gyr(VV.dia.pct,"exp"),`${esc(dbr4(VV.ult))} · ${f0(VV.dia.pc)} pç${VV.dia.md?` · ${f0(VV.dia.pct)}% da mediana ${VV.dia.fds?'dos fins de semana':'dos dias úteis'} (${brl(VV.dia.md)})`:''}`)}
+    ${card('Valor expedido na semana',brl(VV.sem.tot),gyr(VV.sem.pct,"exp"),`de ${esc(dbr2(VV.seg))} a ${esc(dbr2(VV.ult))} · ${f0(VV.sem.pc)} pç${VV.sem.mu!=null?` · média de ${brl(VV.sem.mu)} por dia útil`:''}`)}
+    ${card('Valor expedido no mês',brl(VV.mes.tot),gyr(VV.mes.pct,"exp"),`${esc(mesNome(VV.mesN))} · ${f0(VV.mes.pc)} pç${VV.mes.mu!=null?` · média de ${brl(VV.mes.mu)} por dia útil (${f0(VV.mes.nu)} dias)`:''}`)}
+    <div class="pd-k"><span>Mediana do valor por dia útil</span><b>${VV.med.u?brl(VV.med.u):'—'}</b><small>de ${esc(dbr4(VV.med.de))} a ${esc(dbr4(VV.med.ate))} · ${f0(VV.med.nu)} dias úteis com valor · é a régua das cores</small></div></div>`
+   :`<div class="panel"><p class="note"><b>Valor expedido (R$):</b> ainda sem dado. Ele passa a aparecer na próxima atualização pelo MPD132 (coluna "Vr.Tot.Item" da aba Faturamento).</p></div>`;
   const sel=`<label class="pd-sel">Grupo <select id="pe-g" aria-label="Grupo de família"><option value="*">Todos os grupos</option>${grupos.map(x=>`<option value="${esc(x)}"${g===x?' selected':''}>${esc(x)}</option>`).join('')}</select></label>`;
-  const chart=pdChart({dias,val,med,lim:"exp",aria:"Expedição por dia",linhas:[{v:med.u,c:"var(--ink)",dash:"6 4",t:`mediana dos dias úteis ${f0(med.u)} pç`,curto:"mediana"},{v:Dd,c:C_TAKT,t:`takt ${ftk(takt)} s/pç = ${f0(Dd)} pç/dia (demanda do S&OP)`,curto:"takt",w:2.5},{v:cap,c:C_CAP,dash:"2 3",t:`capacidade de embarque ${f0(cap)} pç/dia`,curto:"capacidade",w:2.5}]});
+  const un=VV?`<div class="pd-et" role="group" aria-label="Unidade do gráfico">${[["pc","Peças"],["rs","Valor (R$)"]].map(([k,t])=>`<button type="button" class="pd-c${(rs?"rs":"pc")===k?' on':''}" data-peun="${k}" aria-pressed="${(rs?"rs":"pc")===k}">${t}</button>`).join('')}</div>`:'';
+  const chart=rs?pdChart({dias:diasV,eixo:pdEixo(per),val:vOf,med:VV.med,lim:"exp",aria:"Expedição por dia",fv:v=>brl(v),linhas:[{v:VV.med.u,c:"var(--ink)",dash:"6 4",t:`mediana dos dias úteis ${brl(VV.med.u)}`,curto:"mediana"}]})
+    :pdChart({dias,eixo:pdEixo(per),val,med,lim:"exp",aria:"Expedição por dia",linhas:[{v:med.u,c:"var(--ink)",dash:"6 4",t:`mediana dos dias úteis ${f0(med.u)} pç`,curto:"mediana"},{v:Dd,c:C_TAKT,t:`takt ${ftk(takt)} s/pç = ${f0(Dd)} pç/dia (demanda do S&OP)`,curto:"takt",w:2.5},{v:cap,c:C_CAP,dash:"2 3",t:`capacidade de embarque ${f0(cap)} pç/dia`,curto:"capacidade",w:2.5}]});
+  const mesO=rs?{ds:VV.dv,val:vOf,ano,med:VV.med,lim:"exp",sel:pdEhMes(per)?per:null,aria:"Expedição por mês",fv:v=>brl(v),col:"Valor expedido"}:{ds,val,ano,med,lim:"exp",sel:pdEhMes(per)?per:null,aria:"Expedição por mês",col:"Expedido (pç)"};
   const linhasG=grupos.map(x=>{ const v=d=>(E0.dias[d]||{})[x]||0, ut=dias.filter(d=>!pdFds(d)&&v(d)>0), t=dias.reduce((s,d)=>s+v(d),0), m=ut.length?ut.reduce((s,d)=>s+v(d),0)/ut.length:null, D=dOf(x), c=capG[x]||null;
-    return {x,t,m,D,c}; }).filter(r=>r.t>0||r.D>0);
-  el.innerHTML=`<div class="head"><h2>Expedição do dia</h2><span class="note">MPD132 ${esc(E0.arquivo||'')} · peças faturadas (aba Faturamento) · último dia com nota: <b>${esc(dbr4(ult))}</b></span></div>
+    const r=VV?diasV.reduce((s,d)=>s+((E0.val[d]||{})[x]||0),0):null; return {x,t,m,D,c,r}; }).filter(r=>r.t>0||r.D>0);
+  const sems=expSemanas(dias,val,VV?(d=>temV(d)?vOf(d):0):null);
+  el.innerHTML=`<div class="head"><h2>Expedição do dia</h2><span class="note">MPD132 ${esc(E0.arquivo||'')} · notas emitidas (aba Faturamento) · último dia com nota: <b>${esc(dbr4(ult))}</b></span></div>
+   ${cardsV}
    <div class="pd-g">${card('Expedido no último dia',f0(hoje)+' pç',sH,mdU?`${f0(pctMed)}% da mediana ${pdFds(ult)?'dos fins de semana':'dos dias úteis'} (${f0(mdU)} pç) · ${esc(nomeG)}`:'sem mediana ainda')}
     ${card('Mediana dos dias úteis',med.u?f0(med.u)+' pç':'—',Dd?sDem:'nd',`${med.de?`de ${dbr4(med.de)} a ${dbr4(med.ate)} · ${f0(med.nu)} dias úteis${med.meses<12?' (todo o histórico disponível)':' (12 meses)'}`:''}${Dd&&med.u?` · ${f0(med.u/Dd*100)}% da demanda`:''}`)}
     ${card('Takt (demanda do S&OP)',takt?ftk(takt)+' s/pç':'—',Dd?sDem:'nd',Dd?`demanda de ${f0(Dd)} pç/dia · ${f1(hx)} h/dia de expedição`:(XM?'grupo sem demanda no S&OP':'aparece quando o João abrir esta tela'))}
     ${card('Capacidade de embarque',cap?f0(cap)+' pç/dia':'—',cap?sCap:'nd',cap?`a mediana usa ${f0(med.u/cap*100)}% da capacidade${g==="*"?` · soma de ${Object.keys(capG).length} famílias com capacidade no ERP`:''}`:'o ERP não traz capacidade para este grupo')}
-    ${card(per==="30"?'Últimos 30 dias':mesNome(per),f0(totP)+' pç',medP?sPer:'nd',medP?`média de ${f0(medP)} pç por dia útil${Dd?' · '+f0(medP/Dd*100)+'% da demanda':''}`:'sem dias úteis com expedição')}</div>
-   <div class="panel"><div class="head"><h3>Expedição por dia · ${per==="30"?'últimos 30 dias':mesNome(per)} · ${esc(nomeG)}</h3><div class="filters">${sel}${pdSel('pe-per',per,ds)}</div></div>
+    ${card(pdEhMes(per)?mesNome(per):'Últimos 30 dias',f0(totP)+' pç',medP?sPer:'nd',medP?`média de ${f0(medP)} pç por dia útil${Dd?' · '+f0(medP/Dd*100)+'% da demanda':''}`:'sem dias úteis com expedição')}</div>
+   <div class="panel"><div class="head"><h3>Expedição por dia · ${esc(nomeP)} · ${esc(nomeG)}${rs?' · valor':''}</h3><div class="filters">${un}${sel}${pdSel('pe-per',per,ds)}</div></div>
     ${chart}
-    <p class="note">Barra = peças faturadas no dia (data de emissão da nota), dos grupos de família do MPD132. Cor: comparada com a mediana do mesmo tipo de dia. Takt = ${f1(hx)} h/dia ÷ demanda diária do S&OP dos produtos do grupo. Capacidade = "Capacidade Diária Embarques" das famílias no MPD132.</p></div>
-   <div class="panel"><div class="head"><h3>Por grupo · ${per==="30"?'últimos 30 dias':mesNome(per)}</h3><span class="note">atendimento = média por dia útil ÷ demanda do S&OP · ${esc(gyrLeg("dem"))}</span></div>
-     <div class="tw" style="max-height:420px"><table><thead><tr><th>Grupo</th><th class="num">Expedido (pç)</th><th class="num">Média/dia útil</th><th class="num">Demanda pç/dia</th><th>Atendimento</th><th class="num">Capacidade pç/dia</th></tr></thead><tbody>
-     ${linhasG.map(r=>`<tr><td><b>${esc(r.x)}</b></td><td class="num">${f0(r.t)}</td><td class="num">${r.m==null?'—':f0(r.m)}</td><td class="num">${r.D>0?f0(r.D):'—'}</td><td>${r.D>0&&r.m!=null?gyrLamp(gyr(r.m/r.D*100,"dem"),f0(r.m/r.D*100)+'%'):'—'}</td><td class="num">${r.c?f0(r.c):'—'}${r.c&&r.m!=null?' '+gyrLamp(gyr(r.m/r.c*100,"ocup"),f0(r.m/r.c*100)+'%'):''}</td></tr>`).join('')}</tbody></table></div></div>
+    <p class="note">${rs?`Barra = valor das notas emitidas no dia ("Vr.Tot.Item" da aba Faturamento do MPD132), dos grupos de família. Cor: comparada com a mediana do valor no mesmo tipo de dia.${semV?' Parte dos dias deste período é anterior ao primeiro arquivo com valor e aparece sem barra.':''}`:`Barra = peças faturadas no dia (data de emissão da nota), dos grupos de família do MPD132. Cor: comparada com a mediana do mesmo tipo de dia. Takt = ${f1(hx)} h/dia ÷ demanda diária do S&OP dos produtos do grupo. Capacidade = "Capacidade Diária Embarques" das famílias no MPD132.`}</p></div>
+   <div class="panel" id="pe-mes"><div class="head"><h3>Expedição por mês · ${esc(ano)} · ${esc(nomeG)}${rs?' · valor':''}</h3><span class="note">total de cada mês · histórico de ${esc(dbr4(mesO.ds[0]))} a ${esc(dbr4(mesO.ds[mesO.ds.length-1]))}</span></div>${pdChartMes(mesO)}<details class="pd-det"><summary>Ver os números por mês</summary><div class="tw">${pdMesTabela(mesO)}</div></details></div>
    <div class="grid2">
-    <div class="panel"><div class="head"><h3>Mais expedidos no último dia</h3></div><div class="tw"><table><thead><tr><th>Item</th><th>Grupo</th><th class="num">Peças</th></tr></thead><tbody>
-     ${(E0.top||[]).map(t=>`<tr><td><b>${esc(t[0])}</b></td><td>${esc(t[1])}</td><td class="num">${f0(t[2])}</td></tr>`).join('')}</tbody></table></div></div>
-   <div class="panel"><div class="head"><h3>Dias do período</h3></div><div class="tw" style="max-height:420px"><table><thead><tr><th>Dia</th><th class="num">Expedido (pç)</th><th>Contra a mediana</th></tr></thead><tbody>
-    ${dias.slice().reverse().map(d=>{ const v=val(d), md=pdFds(d)?med.f:med.u; return `<tr><td>${esc(dbr4(d))}${pdFds(d)?' <span class="note">fim de semana</span>':''}</td><td class="num">${f0(v)}</td><td>${md?gyrLamp(gyr(v/md*100,"exp"),f0(v/md*100)+'%'):'—'}</td></tr>`; }).join('')}</tbody></table></div></div></div>`;
+    <div class="panel"><div class="head"><h3>Por semana · ${esc(nomeP)}</h3><span class="note">segunda a domingo</span></div><div class="tw" style="max-height:420px"><table><thead><tr><th>Semana</th><th class="num">Expedido (pç)</th>${VV?'<th class="num">Valor (R$)</th>':''}<th class="num">Dias úteis</th></tr></thead><tbody>
+     ${sems.map(s=>`<tr><td>${esc(dbr2(s.de))} a ${esc(dbr2(s.ate))}</td><td class="num">${f0(s.pc)}</td>${VV?`<td class="num">${s.rs>0?brl(s.rs):'—'}</td>`:''}<td class="num">${f0(s.nu)}</td></tr>`).join('')}</tbody></table></div></div>
+    <div class="panel"><div class="head"><h3>Dias do período</h3></div><div class="tw" style="max-height:420px"><table><thead><tr><th>Dia</th><th class="num">Expedido (pç)</th>${VV?'<th class="num">Valor (R$)</th>':''}<th>Contra a mediana</th></tr></thead><tbody>
+    ${dias.slice().reverse().map(d=>{ const v=val(d), md=pdFds(d)?med.f:med.u; return `<tr><td>${esc(dbr4(d))}${pdFds(d)?' <span class="note">fim de semana</span>':''}</td><td class="num">${f0(v)}</td>${VV?`<td class="num">${temV(d)?brl(vOf(d)):'—'}</td>`:''}<td>${md?gyrLamp(gyr(v/md*100,"exp"),f0(v/md*100)+'%'):'—'}</td></tr>`; }).join('')}</tbody></table></div></div></div>
+   <div class="panel"><div class="head"><h3>Por grupo · ${esc(nomeP)}</h3><span class="note">atendimento = média por dia útil ÷ demanda do S&OP · ${esc(gyrLeg("dem"))}</span></div>
+     <div class="tw" style="max-height:420px"><table><thead><tr><th>Grupo</th><th class="num">Expedido (pç)</th>${VV?'<th class="num">Valor (R$)</th>':''}<th class="num">Média/dia útil</th><th class="num">Demanda pç/dia</th><th>Atendimento</th><th class="num">Capacidade pç/dia</th></tr></thead><tbody>
+     ${linhasG.map(r=>`<tr><td><b>${esc(r.x)}</b></td><td class="num">${f0(r.t)}</td>${VV?`<td class="num">${r.r>0?brl(r.r):'—'}</td>`:''}<td class="num">${r.m==null?'—':f0(r.m)}</td><td class="num">${r.D>0?f0(r.D):'—'}</td><td>${r.D>0&&r.m!=null?gyrLamp(gyr(r.m/r.D*100,"dem"),f0(r.m/r.D*100)+'%'):'—'}</td><td class="num">${r.c?f0(r.c):'—'}${r.c&&r.m!=null?' '+gyrLamp(gyr(r.m/r.c*100,"ocup"),f0(r.m/r.c*100)+'%'):''}</td></tr>`).join('')}</tbody></table></div></div>
+   <div class="panel"><div class="head"><h3>Mais expedidos no último dia</h3></div><div class="tw"><table><thead><tr><th>Item</th><th>Grupo</th><th class="num">Peças</th></tr></thead><tbody>
+     ${(E0.top||[]).map(t=>`<tr><td><b>${esc(t[0])}</b></td><td>${esc(t[1])}</td><td class="num">${f0(t[2])}</td></tr>`).join('')}</tbody></table></div></div>`;
   const sg=document.getElementById('pe-g'); if(sg) sg.onchange=()=>{ PES.g=sg.value; renderPEXP(); };
   const sp=document.getElementById('pe-per'); if(sp) sp.onchange=()=>{ PES.per=sp.value; renderPEXP(); };
+  el.querySelectorAll('[data-peun]').forEach(b=>b.onclick=()=>{ PES.un=b.dataset.peun; renderPEXP(); });
 }
+
+/* ---------- Rev32: resumo do mês no Painel (clique leva à tela) ---------- */
+function sitMes(t){ let h='';
+  try{ const E0=EXPD; if(E0&&E0.dias&&expOK(E0)&&Object.keys(E0.dias).length){ const VV=expValores(E0,"*");
+      if(VV) h+=t('Expedido no mês (R$)',brl(VV.mes.tot).replace(/^R\$\s/,''),`${mesNome(VV.mesN)} · ${f0(VV.mes.pc)} pç · último dia ${brl(VV.dia.tot)}`,gyr(VV.mes.pct,'exp'),'pexp');
+      else { const ds=Object.keys(E0.dias).sort(), v=d=>expSoma(E0.dias[d]), u=ds[ds.length-1], m=u.slice(0,7), J=ds.filter(d=>d.slice(0,7)===m), ut=J.filter(d=>!pdFds(d)&&v(d)>0), md=pdMed(ds,v), mu=ut.length?ut.reduce((s,d)=>s+v(d),0)/ut.length:null;
+        h+=t('Expedido no mês',fK(J.reduce((s,d)=>s+v(d),0))+' pç',`${mesNome(m)} · valor em R$ na próxima atualização`,gyr(mu&&md.u?mu/md.u*100:null,'exp'),'pexp'); } } }catch(e){ console.error(e); }
+  try{ const P0=PROD; if(P0&&P0.dias&&prodOK(P0)&&Object.keys(P0.dias).length){ const ds=Object.keys(P0.dias).sort(), v=pdValProd(P0,"TOT"), u=P0.ult||ds[ds.length-1], m=u.slice(0,7), J=ds.filter(d=>d.slice(0,7)===m), ut=J.filter(d=>!pdFds(d)&&v(d)>0), md=pdMed(ds,v), mu=ut.length?ut.reduce((s,d)=>s+v(d),0)/ut.length:null;
+      h+=t('Produzido no mês',fK(J.reduce((s,d)=>s+v(d),0))+' pç',`${mesNome(m)} · média de ${mu==null?'—':f0(mu)} pç por dia útil`,gyr(mu&&md.u?mu/md.u*100:null,'prod'),'pdia'); } }catch(e){ console.error(e); }
+  return h; }
 
 /* ===================== Rev30 (Rev31: repartição do excesso) =====================
    Venda de produto acabado com o excesso do AUS, a preço de venda:
@@ -6258,6 +6449,139 @@ finPanel=function(PA,US){ const h=_finPanel30(PA,US), P=csPlanoPainel(); if(!P||
   const i=h.indexOf('<div class="gain">'), j=i<0?-1:h.indexOf('</div>',i); if(j<0) return h;
   const card=`<div class="gain gain2"><small>Vender produto acabado com o excesso do AUS <span class="tag pv">a preço de venda</span></small><b>${brl(P.rec)}</b><small>${f0(P.n)} produtos · consome ${brl(P.cus)} do excesso do AUS a custo${P.mg!=null?` · margem estimada ${brl(P.mg)}${P.nmg<P.n?` (${f0(P.nmg)} de ${f0(P.n)} produtos com custo)`:''}`:''} · em 3 meses de venda: ${brl(P.p3.rec)}</small></div>`;
   return h.slice(0,j+6)+card+h.slice(j+6); };
+
+/* ===================== Rev32 =====================
+   1) Perfis: tabela de máquinas do Programador só para o João e o Alex; perfil Comercial registra a venda do excesso
+   2) Máquinas por área (mesma divisão do mapa do fluxo de valor) e o que cada uma está fazendo agora
+   3) Sequência nas máquinas (Programação) e limpar toda a programação
+   4) Venda do excesso do AUS: registra, reserva o excesso e programa como FURA-FILA
+*/
+function isJA(){ if(window.KB&&KB.state) return KB.state.programa===true&&(isDono()||nrmNome(KB.state.nome)==="alex bertino"); return true; }   // quem altera a tabela de máquinas e carga (TOD)
+function isCom(){ if(window.KB&&KB.state) return KB.state.comercial===true; return true; }   // perfil Comercial (marcado no cadastro de pessoas)
+
+/* ---------- 2) máquinas por área ---------- */
+/* área de cada grupo de máquina = processo do mapa do fluxo de valor onde o grupo trabalha.
+   Regra: pelo nome do grupo quando ele já diz a área (pintura, embalagem, montagem, serra); senão, o processo em que o grupo mais aparece nos roteiros. */
+const AREA_REGRAS=[[/pintura/i,"P7"],[/embala|selad|arqu[ei]|\bfita\b/i,"P8"],[/montagem|montar|balancea/i,"P6"],[/serra/i,"P2"]];
+const AREA_ORD=["P3","P7","P6","P8","P2","P4","P5","P1"];
+function areaVotos(){ if(areaVotos.m) return areaVotos.m; const V={};
+  try{ calcPA().concat(calcUS()).forEach(r=>{ const rota=rotaOf(r); rota.forEach(pp=>{ const ops=opsDe(r.cod,pp,rota); if(!ops) return; ops.forEach(o=>{ const g=(GMS[o[0]]||[])[0]; if(!g) return; const v=V[g]||(V[g]={}); v[pp]=(v[pp]||0)+1; }); }); }); }catch(e){ console.error(e); }
+  const m={}; for(const g in V) m[g]=Object.entries(V[g]).sort((a,b)=>b[1]-a[1])[0][0]; if(Object.keys(m).length) areaVotos.m=m; return m; }
+function areaDeGM(gm){ const g=GMS.find(x=>x[0]===gm), r=REC.find(x=>x[2]===gm), n=String((g&&g[1])||(r&&r[3])||""); for(const [re,a] of AREA_REGRAS) if(re.test(n)) return a; return areaVotos()[gm]||"?"; }
+function areaDeMaq(w){ const r=REC.find(x=>x[0]===w); return r?areaDeGM(r[2]):"?"; }
+const areaNome=a=>a==="?"?"Outras máquinas":(VSM_N[a]||procNome(a));
+/* o que a máquina está fazendo agora: {st:'faz'|'prox'|'esp'|'livre', g, n} */
+function maqAgora(W,L){ L=L||opLotes(W); const fz=L.find(g=>g.faz.length), px=L.find(g=>g.lib.length);
+  return fz?{st:"faz",g:fz,n:L.length}:px?{st:"prox",g:px,n:L.length}:L.length?{st:"esp",g:L[0],n:L.length}:{st:"livre",g:null,n:0}; }
+const MAQ_T={faz:"fazendo",prox:"a fazer",esp:"aguarda peças",livre:"livre"};
+/* máquinas agrupadas por área, na ordem do fluxo */
+function maqPorArea(){ const m={}, off=prgP().off, tem=new Set(); CART.forEach(c=>{ if((c.status==="prog"||c.status==="prod")&&c.dia&&c.wc){ const f=c.op||0; c.wc.forEach((w,i)=>{ if(w&&i>=f) tem.add(w); }); } });
+  REC.forEach(r=>{ if(off[r[0]]&&!tem.has(r[0])) return; const a=areaDeMaq(r[0]); (m[a]=m[a]||[]).push(r); });   // máquina desligada só some se não tiver lote parado nela
+  return AREA_ORD.concat(Object.keys(m).filter(a=>!AREA_ORD.includes(a)).sort()).filter(a=>m[a]).map(a=>({a,nome:areaNome(a),ms:m[a].sort((x,y)=>x[0].localeCompare(y[0]))})); }
+function abrirMaq(W){ OPV.w=W; PR.view="op"; go('pr'); window.scrollTo(0,0); }
+/* quadro "máquinas agora" (HTML), usado no Fluxo de valor */
+function maqQuadroHTML(){ const A=maqPorArea(); if(!A.length) return '';
+  const tile=r=>{ const s=maqAgora(r[0]), g=s.g, vx=g&&g.cs.some(c=>c.vx);
+    return `<button type="button" class="mq mq-${s.st}${vx?' vx':''}" data-fxm="${esc(r[0])}" title="${esc(r[1])} · abrir a máquina e a sequência dela"><b>${esc(r[0])}</b><span>${esc(String(r[1]).slice(0,34))}</span>
+      <i>${s.st==="livre"?'livre':`${s.st==="faz"?'▶ ':''}${esc(g.cod)} · ${f0(g.cs.reduce((t,c)=>t+c.q,0))} pç`}</i><small>${s.st==="livre"?'sem lote programado':`${MAQ_T[s.st]}${g.opn?' · '+esc(String(g.opn).slice(0,26)):''}${s.n>1?' · +'+(s.n-1)+' na fila':''}${vx?' · venda do excesso':''}`}</small></button>`; };
+  return `<div class="panel" id="fx-maq"><div class="head"><h3>Máquinas agora · por área</h3><span class="note">clique na máquina para abrir a sequência dela · <b class="mq-l faz">fazendo</b> <b class="mq-l prox">a fazer</b> <b class="mq-l esp">aguarda peças</b> <b class="mq-l livre">livre</b></span></div>
+   ${A.map(x=>`<div class="mq-a"><h4>${esc(x.a==="?"?'':x.a+' · ')}${esc(x.nome)} <span class="note">${f0(x.ms.length)} máquina(s)</span></h4><div class="mq-g">${x.ms.map(tile).join('')}</div></div>`).join('')}</div>`; }
+const _renderFX31=renderFX;
+renderFX=function(){ _renderFX31(); const el=document.getElementById('p-fx'); if(!el) return;
+  try{ const w=el.querySelector('.vsm-leg'); if(w&&ymd(opHoje())===fxDia()) w.insertAdjacentHTML('afterend',maqQuadroHTML()); }catch(e){ console.error(e); }
+  el.querySelectorAll('[data-fxm]').forEach(b=>{ const f=()=>abrirMaq(b.dataset.fxm); b.onclick=f; b.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); f(); } }; }); };
+
+/* ---------- 3) Programação: sequência nas máquinas e limpar tudo ---------- */
+function seqMaqHTML(p,dias){
+  const ws=new Set(), semM=opLotesProc(p).filter(g=>dias.includes(g.dia)||g.dia<dias[0]);
+  CART.forEach(c=>{ if(c.proc!==p||(c.status!=="prog"&&c.status!=="prod")||!c.dia||!c.wc) return; const f=c.op||0; c.wc.forEach((w,i)=>{ if(w&&i>=f) ws.add(w); }); });
+  if(!ws.size&&!semM.length) return `<div class="panel" id="pg-seq"><div class="head"><h3>Sequência nas máquinas</h3></div><p class="note">Nada programado em ${esc(p)}: programe a fila e a ordem de cada máquina aparece aqui.</p></div>`;
+  const chip=(g,n)=>{ const pr=OPPR(g.prio), fz=g.faz.length>0, vx=g.cs.some(c=>c.vx);
+    return `<span class="sq-i${fz?' faz':''}${g.lib&&!g.lib.length?' esp':''}" style="--c:${pr.c}" title="${esc(g.desc||'')} · ${esc(g.opn||'')} · ${pr.t}${vx?' · venda do excesso':''}${fz?' · em produção':''}"><i>${n}</i><b>${esc(g.cod)}</b><small>${f0(g.cs.reduce((s,c)=>s+c.q,0))} pç · ${esc(opvDia(g.dia).toLowerCase())}${g.i>0?' · op '+(g.i+1):''}${fz?' · ▶ fazendo':''}${vx?' · venda':''}</small></span>`; };
+  const linha=(W,nome,L)=>`<div class="sq-r"><button type="button" class="sq-m" data-sqm="${esc(W)}" title="Abrir a tela desta máquina"><b>${esc(W[0]==="@"?W.slice(1):W)}</b><span>${esc(String(nome).slice(0,30))}</span></button><div class="sq-c">${L.slice(0,12).map((g,i)=>chip(g,i+1)).join('<em>→</em>')}${L.length>12?`<em>+${L.length-12}</em>`:''}</div></div>`;
+  const rows=[...ws].sort().map(W=>linha(W,recNome(W),opLotes(W))).join('')+(semM.length?linha("@"+p,"sem máquina definida",semM):'');
+  return `<details class="panel sq-d" id="pg-seq" ${PRG.seqOff?'':'open'}><summary><div class="head"><h3>Sequência nas máquinas · ${esc(p)}</h3><span class="note">${f0(ws.size)} máquina(s) · a ordem que o operador vê em cada uma · clique para abrir ou fechar</span></div></summary><div class="sq-l">${rows}</div>
+   <p class="note">Ordem: primeiro o que está em produção, depois por dia, prioridade e posição no dia. Cor = prioridade (roxo: fura-fila ou pedido · vermelho · amarelo · verde). "op 2" = segunda operação do item nessa máquina. Para mudar a ordem, use ▲ ▼ ◀ ▶ nos cartões do dia. Clique na máquina para abrir a tela dela.</p></details>`; }
+let PRG_LIMPA=0;
+function limparAlvo(){ return CART.filter(c=>c.status==="prog"); }
+async function limparProgramacao(){
+  if(!isProg()){ toast("Somente o Programador limpa a programação"); return; }
+  if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return; }
+  if(window.KB&&KB.syncNow){ try{ await KB.syncNow(); }catch(e){} }   // traz primeiro o que a Operação começou em outros aparelhos: lote em produção não é limpo
+  const cs=limparAlvo(); let del=0, volta=0;
+  for(const c of cs){ if((c.et||0)===0){ await cartDel(c.id); del++; } else { await cartUpd(c.id,{status:"fila",dia:"",seq:0,wc:null,op:0,opn:null}); volta++; } }
+  PRG_LIMPA=0; toast(`Programação limpa: ${del+volta} cartão(ões) voltaram para a fila`); if(!DB) renderPR(); else rerender(); }
+
+/* ---------- 4) Venda do excesso do AUS → programação fura-fila ---------- */
+let VENDAS=[];
+const VENDAS_LS="aemco-kd32-vendas";
+function vendasLer(){ if(vendasLer.ok) return; if(typeof DB==="undefined"||!DB){ if(window.KB){ if((vendasLer.n=(vendasLer.n||0)+1)<40) setTimeout(vendasLer,1500); return; }
+    vendasLer.ok=true; try{ VENDAS=JSON.parse(localStorage.getItem(VENDAS_LS)||"[]"); }catch(e){ VENDAS=[]; } return; }
+  vendasLer.ok=true; try{ DB.collection("vendas").onSnapshot(q=>{ VENDAS=q.docs.map(d=>Object.assign({id:d.id},d.data())); if(TAB==="cs"||TAB==="pr") rerender(); },()=>{}); }catch(e){} }
+vendasLer();
+const vendaOK=v=>!!(v&&typeof v.cod==="string"&&v.q>0&&Array.isArray(v.bom));
+const vendaFeito=v=>CART.reduce((s,c)=>s+(c.vx===v.id&&c.status==="ok"?(c.q||0):0),0);          // peças já produzidas
+const vendaCart=v=>CART.reduce((s,c)=>s+(c.vx===v.id?(c.q||0):0),0);                              // peças em cartão (qualquer situação)
+/* data do último saldo importado dos Usinados: a peça concluída depois dele ainda não baixou o usinado no estoque */
+const vendaTUS=()=>{ try{ const u=ultimaImp('us'); return (u&&u.t)||""; }catch(e){ return ""; } };
+const vendaBaixou=(c,t)=>!t||String(c.concl||"")<t;                                                // cartão concluído cujo consumo já está no saldo dos Usinados
+function vendasAbertas(){ return VENDAS.filter(v=>vendaOK(v)&&(v.st||"aberta")==="aberta"&&vendaFeito(v)<v.q-1e-9); }
+/* excesso do AUS comprometido com vendas registradas: {usinado: peças}. Vale até o saldo dos Usinados mostrar o consumo
+   (venda aberta: tudo o que ainda não baixou; produzida ou cancelada: o que está em cartão e ainda não baixou) */
+function vendasReserva(){ const R={}, t=vendaTUS();
+  VENDAS.forEach(v=>{ if(!vendaOK(v)) return; const st=v.st||"aberta", cs=CART.filter(c=>c.vx===v.id), okB=cs.reduce((s,c)=>s+(c.status==="ok"&&vendaBaixou(c,t)?(c.q||0):0),0);
+    const pend=st==="aberta"?Math.max(0,v.q-okB):cs.reduce((s,c)=>s+(c.status==="ok"?(vendaBaixou(c,t)?0:(c.q||0)):(st==="cancelada"&&c.status==="prog"&&(c.et||0)===0?0:(c.q||0))),0);
+    if(!(pend>0)) return; v.bom.forEach(b=>{ if(Array.isArray(b)&&b[1]>0) R[b[0]]=(R[b[0]]||0)+pend*b[1]; }); });
+  return R; }
+/* venda com todas as peças prontas fica marcada como produzida no próprio registro (os cartões concluídos saem da tela depois de 45 dias) */
+async function vendasFecha(){ if(!isProg()||(DB&&!WRITE_OK)||vendasFecha.busy) return; vendasFecha.busy=true;
+  try{ vendasFecha.ids=vendasFecha.ids||{}; for(const v of VENDAS){ if(!vendaOK(v)||(v.st||"aberta")!=="aberta"||vendasFecha.ids[v.id]) continue; const f=vendaFeito(v); if(f<v.q-1e-9) continue;
+      vendasFecha.ids[v.id]=1; const patch={st:"concluida",fim:new Date().toISOString(),feito:f}; if(DB){ try{ await DB.doc("vendas/"+v.id).update(patch); }catch(e){ delete vendasFecha.ids[v.id]; continue; } } Object.assign(v,patch);
+      if(!DB){ try{ localStorage.setItem(VENDAS_LS,JSON.stringify(VENDAS)); }catch(e){} } } }finally{ vendasFecha.busy=false; } }
+function vendaSit(v){ const st=v.st||"aberta"; if(st==="cancelada") return {k:"can",t:"cancelada"};
+  const cs=CART.filter(c=>c.vx===v.id), ok=vendaFeito(v), emC=vendaCart(v), prod=cs.filter(c=>c.status==="prod"), prog=cs.filter(c=>c.status==="prog"), fila=cs.filter(c=>c.status==="fila");
+  if(ok>=v.q-1e-9||st==="concluida") return {k:"ok",t:"produzida"+(v.fim?" em "+fmtDT(v.fim,true):"")};
+  const dia=cs.filter(c=>c.dia).map(c=>c.dia).sort()[0], p=[];
+  if(prod.length) p.push(`em produção (${f0(prod.reduce((s,c)=>s+c.q,0))} pç)`);
+  if(prog.length) p.push(`programada${dia?' para '+dbr(deYMD(dia)):''}`);
+  if(fila.length) p.push(`${f0(fila.length)} cartão(ões) aguardando a próxima etapa`);
+  if(ok>0) p.push(`${f0(ok)} pç prontas`);
+  if(emC<v.q-1e-9) p.push(`<b style="color:var(--kr)">${f0(v.q-emC)} pç na fila do Programador (sem capacidade nos próximos dias)</b>`);
+  return {k:prod.length?"prod":"prog",t:p.join(' · ')||'aguardando'}; }
+function diasUteisDe(n){ const out=[]; let d=primUtil(opHoje(),false); for(let i=0;i<n;i++){ out.push(ymd(d)); d=proxUtil(d,false); } return out; }
+async function vendaRegistrar(x,q,cli){
+  if(!isCom()){ toast("Só quem tem o perfil Comercial registra venda do excesso"); return null; }
+  if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return null; }
+  q=Math.floor(+q); if(!(q>=1)||q>x.N){ toast(`Quantidade de 1 a ${f0(x.N)}`); return null; }
+  const r=calcPA().find(z=>z.cod===x.cod); if(!r){ toast("Produto fora da base"); return null; }
+  const o={cod:x.cod,desc:String(x.desc||""),q,bom:x.bom.map(b=>[b[0],b[1]]),cli:String(cli||"").trim().slice(0,60),por:UID||"",nome:(window.KB&&KB.state&&KB.state.nome)||"",t:new Date().toISOString(),st:"aberta"};
+  let id; if(DB){ id=(await DB.collection("vendas").add(o)).id; } else id="v"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+  if(!VENDAS.some(v=>v.id===id)){ VENDAS.push(Object.assign({id},o)); if(!DB){ try{ localStorage.setItem(VENDAS_LS,JSON.stringify(VENDAS)); }catch(e){} } }
+  const rota=rotaOf(r), p=rota[0], qc=r.q>0?r.q:q;   // produto sem contêiner definido: um cartão só com a venda inteira
+  const n=await programarCore(p,{virt:true,vx:id,rem:q,tipo:r.k,cod:r.cod,desc:r.desc,q:qc,rota,prio:0,tc:tcAt(p,r)},Math.ceil(q/qc-1e-9),null,diasUteisDe(10));
+  const emC=vendaCart({id});
+  toast(emC>=q?`Venda registrada: ${f0(q)} un. de ${x.cod} programadas como fura-fila em ${p}`:`Venda registrada. ${f0(emC)} de ${f0(q)} un. programadas; o resto ficou na frente da fila do Programador`);
+  return {id,n,p}; }
+async function vendaCancelar(id){
+  if(!isProg()){ toast("Só o Programador cancela a venda do excesso"); return; }
+  if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return; }
+  if(window.KB&&KB.syncNow){ try{ await KB.syncNow(); }catch(e){} }   // não apaga lote que a Operação já começou em outro aparelho
+  const v=VENDAS.find(z=>z.id===id); if(!v) return;
+  for(const c of CART.filter(c=>c.vx===id&&c.status==="prog"&&(c.et||0)===0)) await cartDel(c.id);
+  const patch={st:"cancelada",canc:new Date().toISOString(),cpor:UID||""};
+  if(DB){ try{ await DB.doc("vendas/"+id).update(patch); }catch(e){ toast("Não gravou"); return; } }
+  Object.assign(v,patch); if(!DB){ try{ localStorage.setItem(VENDAS_LS,JSON.stringify(VENDAS)); }catch(e){} }
+  toast(`Venda de ${v.cod} cancelada: os cartões ainda não iniciados saíram da programação`); rerender(); if(!DB) renderCS(); }
+/* quadro das vendas registradas (Comercial › Sugestão de venda) */
+let VD_CAN="";
+function vendasHTML(){ const L=VENDAS.filter(vendaOK).sort((a,b)=>String(b.t||"").localeCompare(String(a.t||""))); if(!L.length) return '';
+  vendasFecha(); const ab=L.filter(v=>(v.st||"aberta")==="aberta"&&vendaFeito(v)<v.q-1e-9).length;
+  return `<details class="panel" id="cs-vendas" ${ab?'open':''}><summary><b>Vendas do excesso registradas</b> · ${f0(ab)} em andamento · ${f0(L.length)} no total</summary>
+   <div class="tw" style="max-height:320px"><table><thead><tr><th>Registrada em</th><th>Produto</th><th class="num">Unidades</th><th>Cliente / pedido</th><th>Por</th><th>Situação</th><th></th></tr></thead><tbody>
+   ${L.slice(0,80).map(v=>{ const s=vendaSit(v), podeC=isProg()&&s.k!=="can"&&s.k!=="ok";
+     return `<tr${s.k==="can"?' style="opacity:.55"':''}><td>${v.t?fmtDT(v.t,true):'—'}</td><td><b>${esc(v.cod)}</b><br><span class="note">${esc(String(v.desc||'').slice(0,50))}</span></td><td class="num"><b>${f0(v.q)}</b></td><td>${esc(v.cli||'—')}</td><td>${esc(v.nome||(typeof quemNome==="function"?quemNome(v.por||''):''))}</td>
+      <td><span class="pill vx">FURA-FILA · venda do excesso</span><br><span class="note">${s.t}</span></td><td>${podeC?`<button type="button" class="btn" data-vcan="${esc(v.id)}">${VD_CAN===v.id?'Confirmar cancelamento':'Cancelar'}</button>`:''}</td></tr>`; }).join('')}</tbody></table></div>
+   <p class="note">A venda registrada reserva o excesso dos usinados (ele deixa de ser oferecido na lista) e entra na programação como <b>FURA-FILA</b>, na frente dos cartões do Kanban. A reserva vale até o produto ficar pronto e o saldo dos Usinados ser atualizado com o consumo. Cancelar é do Programador e só tira os cartões que ainda não começaram. Lance o pedido também no ERP: é a carteira que reserva as peças prontas no CD para esse cliente.</p></details>`; }
 
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,
@@ -6557,7 +6881,7 @@ async function rpc(fn, body){
 
 /* ---------------- estado ---------------- */
 const ST = {
-  pin: LS.get("kb-pin") || null, nome: LS.get("kb-nome") || "", papel: LS.get("kb-papel") || "", cadastra: LS.get("kb-cad") === "1", programa: LS.get("kb-prg") === "1",
+  pin: LS.get("kb-pin") || null, nome: LS.get("kb-nome") || "", papel: LS.get("kb-papel") || "", cadastra: LS.get("kb-cad") === "1", programa: LS.get("kb-prg") === "1", comercial: LS.get("kb-com") === "1",
   since: LS.get("kb-since") || null, master: null,
   docs: {}, out: [], online: navigator.onLine, last: null, erro: "", syncing: false, bkDir: null, bkMsg: ""
 };
@@ -6591,7 +6915,7 @@ async function askPin(msg){
       try{
         const r = await rpc("kb_login", { p_pin: pin });
         if (r && (r.papel === "admin" || r.papel === "equipe")){
-          ST.pin = pin; ST.nome = r.nome; ST.papel = r.papel; ST.cadastra = !!r.cadastra; ST.programa = !!r.programa; LS.set("kb-prg", r.programa ? "1" : "0");
+          ST.pin = pin; ST.nome = r.nome; ST.papel = r.papel; ST.cadastra = !!r.cadastra; ST.programa = !!r.programa; LS.set("kb-prg", r.programa ? "1" : "0"); ST.comercial = !!r.comercial; LS.set("kb-com", r.comercial ? "1" : "0");
           LS.set("kb-pin", pin); LS.set("kb-nome", r.nome); LS.set("kb-papel", r.papel); LS.set("kb-cad", r.cadastra ? "1" : "0");
           res(true);
         } else {
@@ -6785,7 +7109,7 @@ async function syncNow(){
         if (pend.has(d.p)) continue;                      // alteração local ainda não enviada: vale a local
         ST.docs[d.p] = { d: d.d, x: d.x, t: d.t }; notify(d.p);
       }
-      ST.since = r.agora; if (r.papel && r.papel !== ST.papel){ ST.papel = r.papel; LS.set("kb-papel", r.papel); } if (r.nome && r.nome !== ST.nome){ ST.nome = r.nome; LS.set("kb-nome", r.nome); } if (typeof r.cadastra === "boolean" && r.cadastra !== ST.cadastra){ ST.cadastra = r.cadastra; LS.set("kb-cad", r.cadastra ? "1" : "0"); } if (typeof r.programa === "boolean" && r.programa !== ST.programa){ ST.programa = r.programa; LS.set("kb-prg", r.programa ? "1" : "0"); notify("kanban/prog"); }
+      ST.since = r.agora; if (r.papel && r.papel !== ST.papel){ ST.papel = r.papel; LS.set("kb-papel", r.papel); } if (r.nome && r.nome !== ST.nome){ ST.nome = r.nome; LS.set("kb-nome", r.nome); } if (typeof r.cadastra === "boolean" && r.cadastra !== ST.cadastra){ ST.cadastra = r.cadastra; LS.set("kb-cad", r.cadastra ? "1" : "0"); } if (typeof r.programa === "boolean" && r.programa !== ST.programa){ ST.programa = r.programa; LS.set("kb-prg", r.programa ? "1" : "0"); notify("kanban/prog"); } if (typeof r.comercial === "boolean" && r.comercial !== ST.comercial){ ST.comercial = r.comercial; LS.set("kb-com", r.comercial ? "1" : "0"); notify("kanban/prog"); }
       persist(); ST.last = new Date(); ST.online = true; ST.pronto = true;
       bkAuto();
     }
@@ -6881,27 +7205,36 @@ async function usersPanel(msg){
     <p class="kb-sub">Só quem está nesta lista abre o app. Cada pessoa tem o próprio PIN (6 a 12 números) e o nome dela fica gravado no que apontar.</p>
     ${msg ? `<p class="kb-msg"><b>${escH(msg)}</b></p>` : ""}
     ${!adm ? `<p class="kb-sub"><b>Você pode incluir novos integrantes</b> (perfil equipe). Trocar PIN, mudar perfil ou remover alguém continua só com o administrador.</p>` : ""}
-    ${lista.map(u => `<div class="kb-kv"><span>${escH(u.nome)}${u.nome === ST.nome ? " (você)" : ""}</span><b>${u.papel === "admin" ? "administrador" : "equipe" + (u.cadastra ? " · inclui pessoas" : "")}${u.programa ? " · programador" : ""}
+    ${lista.map(u => `<div class="kb-kv"><span>${escH(u.nome)}${u.nome === ST.nome ? " (você)" : ""}</span><b>${u.papel === "admin" ? "administrador" : "equipe" + (u.cadastra ? " · inclui pessoas" : "")}${u.programa ? " · programador" : ""}${u.comercial ? " · comercial" : ""}
       ${adm ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:6px" data-ed="${escH(u.nome)}" data-pp="${u.papel}">PIN</button>
       ${u.papel !== "admin" ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-cd="${escH(u.nome)}" data-on="${u.cadastra ? 0 : 1}">${u.cadastra ? "Tirar inclusão" : "Pode incluir"}</button>` : ""}
       <button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-pg="${escH(u.nome)}" data-on="${u.programa ? 0 : 1}">${u.programa ? "Tirar programação" : "Programador"}</button>
+      <button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-cm="${escH(u.nome)}" data-on="${u.comercial ? 0 : 1}">${u.comercial ? "Tirar Comercial" : "Comercial"}</button>
       ${u.nome !== ST.nome ? `<button class="kb-btn alt" style="padding:2px 8px;margin-left:4px" data-rm="${escH(u.nome)}">Remover</button>` : ""}` : ""}</b></div>`).join("")}
     <h3>${adm ? "Cadastrar ou trocar PIN" : "Incluir novo integrante"}</h3>
     ${falta.length ? `<div class="kb-row">${falta.map(n => `<button class="kb-btn alt" style="padding:4px 10px" data-sg="${escH(n)}">+ ${escH(n)}</button>`).join("")}</div>` : ""}
     <label>Nome<input id="kb-un" autocomplete="off" placeholder="Nome e sobrenome"></label>
     <label>PIN (6 a 12 números)<input id="kb-up" inputmode="numeric" autocomplete="off" placeholder="digite ou clique em Gerar"></label>
     <label${adm ? "" : " hidden"}>Acesso<select id="kb-ur"><option value="equipe">Equipe — aponta estoque e registra a produção (programar é só do Programador)</option>${adm ? '<option value="admin">Administrador — também publica base e gerencia PINs</option>' : ""}</select></label>
+    <label${adm ? "" : " hidden"} style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="kb-uc" style="width:auto"> Perfil Comercial — registra a venda do excesso e manda para a programação como fura-fila</label>
     <div class="kb-row"><button class="kb-btn alt" id="kb-ug">Gerar PIN</button><button class="kb-btn" id="kb-us2">Salvar</button><button class="kb-btn alt" id="kb-back">Voltar</button></div>
     <p class="kb-msg" id="kb-msg"></p>
     <p class="kb-sub">Anote o PIN e entregue pessoalmente. Depois de salvo, ele não aparece mais — se a pessoa esquecer, gere outro.</p>`);
   $("kb-back").onclick = panel;
-  document.querySelectorAll("[data-sg]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.sg; $("kb-ur").value = "equipe"; $("kb-up").focus(); });
-  document.querySelectorAll("[data-ed]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.ed; $("kb-ur").value = b.dataset.pp; $("kb-up").value = ""; $("kb-up").focus(); });
+  const ucSync = () => { const u = lista.find(u => u.nome === $("kb-un").value.trim()); $("kb-uc").checked = !!(u && u.comercial); };   // a caixa mostra sempre o perfil atual do nome digitado
+  $("kb-un").oninput = ucSync;
+  document.querySelectorAll("[data-sg]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.sg; $("kb-ur").value = "equipe"; ucSync(); $("kb-up").focus(); });
+  document.querySelectorAll("[data-ed]").forEach(b => b.onclick = () => { $("kb-un").value = b.dataset.ed; $("kb-ur").value = b.dataset.pp; $("kb-up").value = ""; ucSync(); $("kb-up").focus(); });
   $("kb-ug").onclick = () => { $("kb-up").value = pinRand(); };
   document.querySelectorAll("[data-pg]").forEach(b => b.onclick = async () => {
     try{ const r = await rpc("kb_usuario_programa", { p_pin: ST.pin, p_nome: b.dataset.pg, p_on: b.dataset.on === "1" }); if (r && r.erro){ $("kb-msg").innerHTML = '<b class="kb-err">' + errTxt(r.erro) + '</b>'; return; }
       if (b.dataset.pg === ST.nome){ ST.programa = b.dataset.on === "1"; LS.set("kb-prg", ST.programa ? "1" : "0"); }
       usersPanel(b.dataset.pg + (b.dataset.on === "1" ? " agora é Programador: programa os cartões e muda a capacidade." : " não programa mais.")); }
+    catch(e){ $("kb-msg").innerHTML = '<b class="kb-err">Sem conexão com a base online.</b>'; } });
+  document.querySelectorAll("[data-cm]").forEach(b => b.onclick = async () => {
+    try{ const r = await rpc("kb_usuario_comercial", { p_pin: ST.pin, p_nome: b.dataset.cm, p_on: b.dataset.on === "1" }); if (r && r.erro){ $("kb-msg").innerHTML = '<b class="kb-err">' + errTxt(r.erro) + '</b>'; return; }
+      if (b.dataset.cm === ST.nome){ ST.comercial = b.dataset.on === "1"; LS.set("kb-com", ST.comercial ? "1" : "0"); }
+      usersPanel(b.dataset.cm + (b.dataset.on === "1" ? " agora tem o perfil Comercial: registra a venda do excesso." : " não tem mais o perfil Comercial.")); }
     catch(e){ $("kb-msg").innerHTML = '<b class="kb-err">Sem conexão com a base online.</b>'; } });
   document.querySelectorAll("[data-cd]").forEach(b => b.onclick = async () => {
     try{ const r = await rpc("kb_usuario_cadastra", { p_pin: ST.pin, p_nome: b.dataset.cd, p_on: b.dataset.on === "1" }); if (r && r.erro){ $("kb-msg").innerHTML = '<b class="kb-err">' + errTxt(r.erro) + '</b>'; return; }
@@ -6922,7 +7255,10 @@ async function usersPanel(msg){
     if (!/^[0-9]{6,12}$/.test(pin)) return m("PIN inválido: use de 6 a 12 números.");
     $("kb-us2").disabled = true;
     try{ const r = await rpc("kb_usuario_salvar", { p_pin: ST.pin, p_nome: nome, p_novo: pin, p_papel: papel });
-      if (r && r.ok){ if (nome === ST.nome){ ST.pin = pin; LS.set("kb-pin", pin); } usersPanel(nome + ": PIN salvo."); return; }
+      if (r && r.ok){ if (nome === ST.nome){ ST.pin = pin; LS.set("kb-pin", pin); }
+        let cm = ""; const quer = adm && $("kb-uc").checked, tinha = !!(lista.find(u => u.nome === nome) || {}).comercial;
+        if (adm && quer !== tinha){ try{ const rc = await rpc("kb_usuario_comercial", { p_pin: ST.pin, p_nome: nome, p_on: quer }); if (rc && rc.ok){ cm = quer ? " Perfil Comercial ligado." : " Perfil Comercial desligado."; if (nome === ST.nome){ ST.comercial = quer; LS.set("kb-com", quer ? "1" : "0"); } } else cm = " O perfil Comercial não foi gravado: use o botão Comercial na lista."; }catch(e){ cm = " O perfil Comercial não foi gravado: use o botão Comercial na lista."; } }
+        usersPanel(nome + ": PIN salvo." + cm); return; }
       m(errTxt(r && r.erro)); }
     catch(e){ m("Sem conexão com a base online."); }
     $("kb-us2").disabled = false;
