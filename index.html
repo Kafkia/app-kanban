@@ -5813,7 +5813,8 @@ function mpdPacote(T,nome,mod){   // abas lidas → pacote {cd, aus, cart}
   for(let i=1;i<I.length;i++){ const r=I[i]; const q=numBR(r[kq]), c=String(r[ki]??"").trim(), p=String(r[kp]??"").trim(); if(!c||!p||isNaN(q)||q<=0) continue;
     cart.push([p,String(kc>=0?r[kc]??"":"").trim(),c,q,kd>=0?dataISO(r[kd]):""]); }
   const ref=mpdDataNome(nome)||(mod?dLocal(new Date(mod)):dLocal(new Date()));
-  const prod=(!T["Movimentos"]&&!T["Ordens"])?null:mpdProducao(T["Movimentos"],T["Ordens"],ref,T["OPs Abertas"]||T["OPs"]);   // Rev33: ordens abertas pela aba completa
+  const ORD=T["Ordens"]||T["OPs Ult 90d"], OAB=T["OPs Abertas"]||T["Ops Abertas"]||T["OPs"];   // Rev33b: o MPD132 de 25/11 (V4) renomeou Ordens → "OPs Ult 90d" e OPs → "Ops Abertas"
+  const prod=(!T["Movimentos"]&&!ORD)?null:mpdProducao(T["Movimentos"],ORD,ref,OAB);   // Rev33: ordens abertas pela aba completa
   const ucli=(T["Faturamento"]&&T["Agrupamento Familias"]&&typeof mpdUltCli==="function")?mpdUltCli(T["Faturamento"],T["Agrupamento Familias"],ref):null;   // Rev33: últimos clientes por item (só o Comercial vê)
   const exp=(T["Faturamento"]&&T["Agrupamento Familias"])?mpdExpedicao(T["Faturamento"],T["Agrupamento Familias"],T["Familias de Item"],ref):null;   // Rev29: expedição
   return {fonte:"MPD132",v:1,arquivo:nome||"",prod,exp,ucli,data:mpdDataNome(nome)||(mod?dLocal(new Date(mod)):""),mod:mod?new Date(mod).toISOString():"",gerado:new Date().toISOString(),dep:MPD_DEP,cd:cdm,aus,cart};
@@ -5830,7 +5831,7 @@ async function mpdArquivo(f){
   MPD.busy=true; MPD.erro=""; MPD.pk=null; MPD.msg="Lendo "+f.name+"…"; mpdCard();
   try{
     if(/\.json$/i.test(f.name)) MPD.pk=mpdValida(JSON.parse(await f.text()));
-    else { const T=await xlsxAbas(await f.arrayBuffer(),["Estoques","Pedido Itens","Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento","OPs Abertas","OPs"],MPD_FILTRO,["Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento","OPs Abertas","OPs"]); MPD.pk=mpdPacote(T,f.name,f.lastModified); }
+    else { const T=await xlsxAbas(await f.arrayBuffer(),["Estoques","Pedido Itens","Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento","OPs Abertas","Ops Abertas","OPs","OPs Ult 90d"],MPD_FILTRO,["Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento","OPs Abertas","Ops Abertas","OPs","OPs Ult 90d"]); MPD.pk=mpdPacote(T,f.name,f.lastModified); }
     MPD.msg="";
   }catch(e){ MPD.erro=String(e&&e.message||e); MPD.msg=""; }
   MPD.busy=false; mpdCard();
