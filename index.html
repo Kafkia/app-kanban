@@ -6917,7 +6917,8 @@ function prevReta(P,f){ const n=P.length; if(n<2) return null; const t0=P[0].t; 
 function prevUteis(a,b){ let n=0; for(let t=a+864e5;t<=b+1e3;t+=864e5){ const w=new Date(t).getDay(); if(w!==0&&w!==6) n++; } return n; }   // dias úteis depois de a, até b
 function prevSoma(t,n){ let k=0; while(k<n){ t+=864e5; const w=new Date(t).getDay(); if(w!==0&&w!==6) k++; } return t; }                  // t + n dias úteis
 function prevCalc(pts){
-  const all=pts.filter(p=>p&&p.d&&p.cd&&p.us&&!p.base).map(p=>Object.assign({t:new Date(p.d+"T12:00:00").getTime()},p)); if(all.length<2) return null;
+  const all=pts.filter(p=>p&&p.d&&p.cd&&p.us&&!p.base).map(p=>Object.assign({},p,{t:new Date(p.d+"T12:00:00").getTime()}));   // o ponto gravado já tem um campo t (hora da gravação): o dia tem de prevalecer
+  if(all.length<2) return null;
   const L=all[all.length-1], perto=(a,b)=>b>0&&Math.abs(a-b)/b<=0.01;
   const J=all.filter(p=>L.t-p.t<=PREV_JAN*864e5&&perto(p.cd.alvo,L.cd.alvo)&&perto(p.us.alvo,L.us.alvo)); if(J.length<2) return {L,J,S:null};
   const ser=(nome,cor,g)=>{ const a=g(L), alvo=a.alvo, util=a.util, pct=alvo?util/alvo*100:0, falta=Math.max(0,PREV_META/100*alvo-util);
