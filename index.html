@@ -4,7 +4,7 @@
 <link rel="icon" href="icons/icon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Kanban AEMCO"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev32"};</script>
+<script>window.KB_CFG={"url": "https://swrbiwtoupytmfhdaiaw.supabase.co", "key": "sb_publishable_7Tw5LvcV_doHpQVvLVgwvA_l0C7W3dD", "rev": "Rev33"};</script>
 <title>Kanban AEMCO</title>
 <meta name="theme-color" content="#1A335B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1750,6 +1750,80 @@ button.btn.dng{background:var(--kr);border-color:var(--kr);color:#fff}
 .cs-tab td:first-child{white-space:normal;min-width:210px;max-width:300px}.cs-tab thead th{white-space:normal;line-height:1.2;vertical-align:bottom}.cs-tab th:nth-child(7),.cs-tab th:nth-child(9){min-width:118px}.cs-tab td:nth-child(6) .note{display:inline-block;white-space:normal;max-width:160px;text-align:right;line-height:1.25}
 .cs-vf td{background:var(--panel2);white-space:normal}.cs-vf p{max-width:900px}
 details.sq-d>summary{cursor:pointer;list-style:none}details.sq-d>summary::-webkit-details-marker{display:none}details.sq-d>summary h3::before{content:'▸ '}details.sq-d[open]>summary h3::before{content:'▾ '}.cs-vf .filters{margin:0;align-items:flex-end}
+
+/* Rev33 · Comercial */
+.com-nav{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
+.com-nav .btn{flex:1 1 220px;min-height:44px}
+.cm-ex{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:4px}
+.cm-ct{background:var(--ky-soft);color:var(--ink)}.cm-ct.atr{box-shadow:inset 0 0 0 1.5px var(--kr)}
+button.lnk{background:none;border:0;padding:6px 0;color:var(--blue,#1f5fbf);font:600 12px var(--body);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+tr.cm-det>td{background:var(--panel2);white-space:normal}
+.com-det{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;padding:8px 2px}
+.com-det h4{margin:0 0 6px;font:700 13px var(--body)}
+.com-uc{width:100%}.com-uc td{padding:4px 10px 4px 0;border:0}
+.cs-uc{display:inline-block;margin-top:6px;white-space:normal;max-width:320px}
+.vd-aviso{border-left:5px solid #5B2A86}
+.vd-aviso ul{margin:4px 0 8px}
+@media (max-width:800px){.com-det{grid-template-columns:1fr}}
+.rep-dlg{border:0;border-radius:14px;padding:0;width:min(560px,94vw);box-shadow:0 20px 60px rgba(0,0,0,.35);color:var(--ink);background:var(--panel)}
+.rep-dlg::backdrop{background:rgba(10,16,30,.5)}
+.rep-f{padding:20px}.rep-f h3{margin:0 0 6px}
+.rep-f fieldset{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:6px 12px}
+.rep-f legend{font:700 12px var(--body);padding:0 6px;color:var(--muted)}
+.rep-op{display:flex;gap:10px;align-items:flex-start;padding:8px 2px;cursor:pointer;min-height:44px}
+.rep-op input{margin-top:3px;width:18px;height:18px;flex:none}
+.rep-op small{display:block;color:var(--muted);font-size:12px}
+.rep-b{display:flex;gap:8px;flex-wrap:wrap}.rep-b .btn{min-height:44px}
+#prt-rep{display:none}
+@media print{
+  @page rep{size:A4;margin:0 0 11mm 0;
+    @bottom-left{content:"AEMCO · Pindorama/SP · Quantidades sujeitas a alteração";font:7.5pt Arial,sans-serif;color:#667;padding-left:12mm}
+    @bottom-right{content:"Página " counter(page);font:7.5pt Arial,sans-serif;color:#667;padding-right:12mm}}
+  @page repc{size:A4;margin:0}
+  body.prt-rep>*:not(#prt-rep){display:none!important}
+  body.prt-rep #prt-rep{display:block!important}
+}
+#prt-rep{font-family:Montserrat,var(--body),Arial,sans-serif;color:#1b2140;-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#fff}
+.rp-capa{page:repc;position:relative;width:210mm;height:296.6mm;background:#1b2147;color:#fff;overflow:hidden;break-after:page;text-align:center;box-sizing:border-box}
+.rp-topo{position:absolute;left:0;right:0;top:38mm}
+.rp-k{font-size:13pt;font-weight:500;letter-spacing:.1em;opacity:.85}
+.rp-h{font-size:104pt;font-weight:800;line-height:1;color:#f6a51d;margin:9mm 0 5mm;letter-spacing:-.02em}
+.rp-s{font-size:17pt;font-weight:700}
+.rp-fio{width:24mm;height:1px;background:#f6a51d;margin:6mm auto}
+.rp-n{font-size:10.5pt;opacity:.85}
+.rp-base{position:absolute;left:0;right:0;bottom:0;height:148mm;background:#2a3162;border-top-right-radius:210mm 34mm;padding-top:26mm;box-sizing:border-box}
+.rp-t{font-size:27pt;font-weight:300;line-height:1.15}.rp-t b{font-weight:800}
+.rp-logo{width:60mm;margin:15mm auto 0;display:block}
+.rp-av{position:absolute;left:22mm;right:22mm;bottom:13mm;font-size:7.5pt;line-height:1.55;opacity:.8}
+.rp-lado{position:absolute;left:5mm;bottom:152mm;white-space:nowrap;writing-mode:vertical-rl;transform:rotate(180deg);font-size:7pt;opacity:.55;letter-spacing:.06em}
+.rp-int{position:absolute;top:13mm;left:0;right:0;font-size:9pt;font-weight:700;letter-spacing:.14em;color:#f6a51d}
+.rp-guia,.rp-pag{page:rep}
+.rp-faixa{display:flex;justify-content:space-between;align-items:center;background:#1b2147;color:#fff;padding:0 12mm;height:22mm;box-sizing:border-box;text-align:left}
+.rp-faixa img{height:13mm}
+.rp-faixa,.rp-faixa b,.rp-faixa span{text-transform:none;letter-spacing:0}
+.rp-guia{break-after:page}
+.rp-faixa div{text-align:right}.rp-faixa b{display:block;font-size:11pt;font-weight:700}.rp-faixa span{font-size:8pt;font-weight:400;color:#f6a51d}
+.rp-corpo{padding:7mm 12mm 0}
+.rp-passos{margin:0 0 6mm;padding-left:5mm;font-size:9pt;line-height:1.5}.rp-passos li{margin:0 0 1.6mm}
+.rp-cols{display:flex;gap:8mm}.rp-res{flex:1}.rp-res h3,.rp-h3{font-size:10pt;font-weight:800;color:#1b2147;margin:0 0 2mm;border-bottom:1.2pt solid #f6a51d;padding-bottom:1.2mm}
+.rp-h3{margin-top:6mm}
+.rp-nota{font-size:7.6pt;color:#556;margin:4mm 0 0;line-height:1.5}
+.rp-tab{width:100%;border-collapse:collapse;font-size:8.2pt;line-height:1.3}
+.rp-tab th{background:#1b2147;color:#fff;text-align:left;padding:2mm;font-weight:700;font-size:7.8pt}
+.rp-tab td{padding:1.7mm 2mm;border-bottom:.3pt solid #dfe3ee;vertical-align:top}
+.rp-tab .n{text-align:right;white-space:nowrap}.rp-tab .c{text-align:center}
+.rp-tab tbody tr:nth-child(even) td{background:#f2f4fa}
+.rp-tab tr.tot td{font-weight:800;border-top:1pt solid #1b2147;background:#fff!important}
+.rp-lista thead .rp-fx th{padding:0 0 5mm;background:#fff}
+.rp-lista .rp-cab th{border-bottom:1.4pt solid #f6a51d}
+.rp-lista td.rp-m,.rp-lista .rp-cab td.rp-m{width:12mm;padding:0;border:0;background:#fff!important}
+.rp-lista tr{break-inside:avoid}
+.rp-lista tr.rp-fam td{background:#e2e6f2!important;font-weight:800;color:#1b2147;font-size:7.8pt;letter-spacing:.05em;text-transform:uppercase;border-bottom:0;break-after:avoid}
+.rp-lista tr.rp-fam td.n{text-transform:none;letter-spacing:0;font-weight:600}
+.rp-lista tr.rp-fam td.rp-m{background:#fff!important}
+.rp-ex{font-size:7.2pt;color:#445;margin-top:.8mm}
+.rp-selo{display:inline-block;min-width:11mm;padding:.4mm 1.6mm;border-radius:6mm;font-size:7.2pt;font-weight:700}
+.rp-selo.s2{background:#dff3e6;color:#17663a}.rp-selo.s1{background:#fff1cc;color:#7a5600}.rp-selo.s0{background:#eceef3;color:#5b6679}
 
 
 [hidden]{display:none!important}
@@ -4171,7 +4245,7 @@ function renderPRG(){
   const p=PRG.p, b=procB(p), cfg=procCfg(p), dias=prgDias(), {fila,semDado}=filaDe(p), res=prgResumo();
   const tcTxt=(()=>{ const t=cfg.tc>0?cfg.tc:(p==="P3"?garg3().t:p==="P7"?P.tcp:p==="P6"?P.tcpa.Cardans:null); return t?f1(t)+" s/pç":"não informado"; })();
   const nfTot=fila.reduce((s,f)=>s+f.n,0);
-  box.innerHTML=`
+  box.innerHTML=`${typeof vendasAviso==="function"?vendasAviso():''}
   <div class="chips" style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px">
    ${res.map(x=>`<button class="btn${x.p===p?' pri':''}" data-proc="${x.p}" title="${esc(procNome(x.p))}">${x.p} · ${esc(procNome(x.p).split(' / ')[0].split(' — ')[0])}
      ${x.nf?`<span class="pill" style="margin-left:4px;background:${x.nr?'var(--kr)':'var(--ky)'};color:${x.nr?'#fff':'#111'}">${x.nf}</span>`:''}${x.np+x.nprod?`<span class="pill" style="margin-left:3px;background:var(--kb);color:#fff">${x.np+x.nprod}</span>`:''}</button>`).join('')}
@@ -4771,14 +4845,14 @@ function pedPanelBind(){
    Rev23 (decisão do João, 23/11): o Comercial vê SÓ o que pode vender. Excesso com pedido não aparece (nem como
    número), para não gerar dúvida. A quantidade é o principal; o valor é secundário. A conta completa do
    "acima do máximo" (com e sem pedido, CD e Usinados) fica no Painel. */
-const CM={q:"",fam:"",ord:"pecas",vw:"tab"};
+const CM={q:"",fam:"",ord:"pecas",vw:"tab",ab:""};
 function cmRows(){
   const out=[];
   for(const r of calcPA()){
     const e=estReal(r), M=r.M>0?r.M:0, ex=Math.max(0,e-M); if(ex<=0) continue;
     const vend=Math.min(ex,r.cart||0), disp=Math.floor(ex-vend+1e-9); if(disp<=0) continue;
     const p=r.preco>0?r.preco:0;
-    out.push({cod:r.cod,desc:r.desc,fam:r.fam||"Outros",sub:r.sub||"",disp,p,valor:disp*p,nnf:r.nnf||0,dias:r.D>0?disp/r.D:null,cont:r.cont||"",q:r.q||0});
+    out.push({cod:r.cod,desc:r.desc,fam:r.fam||"Outros",sub:r.sub||"",disp,p,valor:disp*p,nnf:r.nnf||0,D:r.D||0,cart:r.cart||0,dias:r.D>0?disp/r.D:null,cont:r.cont||"",q:r.q||0});
   }
   return out;
 }
@@ -4799,19 +4873,21 @@ function cmBars(L,lab,txt,click){
 }
 function renderCM(){
   const el=document.getElementById('p-cm'); if(!el) return;
-  const R=cmRows(), L=cmFilt(R), pa=ultimaImp('pa'), ct=ultimaImp('cart');
+  const R=typeof cmSelos==="function"?cmSelos(cmRows()):cmRows(), L=cmFilt(R), pa=ultimaImp('pa'), ct=ultimaImp('cart'), r33=typeof comNav==="function";
   const sum=(A,f)=>A.reduce((s,x)=>s+f(x),0);
   const T={n:L.length,pc:sum(L,x=>x.disp),val:sum(L,x=>x.valor),semp:L.filter(x=>!(x.p>0)).length};
   const F={}; R.forEach(x=>{ const f=F[x.fam]||(F[x.fam]={fam:x.fam,val:0,n:0,pc:0}); f.val+=x.valor; f.n++; f.pc+=x.disp; });
   const FL=Object.values(F).sort((a,b)=>b.pc-a.pc);
   const fams=FL.map(f=>f.fam);
   el.innerHTML=`
-  <div class="head"><h2>Comercial — o que pode ser vendido</h2><span class="note">só o que está livre: sem pedido e sem faltar para o Kanban</span></div>
+  ${r33?comNav('cm'):''}
+  <div class="head"><h2>Comercial — o que pode ser vendido</h2><span class="note">só o que está livre: sem pedido e sem faltar para o Kanban · <b>embarque em até 48 horas</b></span></div>
   <p class="note">Estoque do CD ${pa?'importado em <b>'+fmtDT(pa.t,true)+'</b>':'da posição de '+esc(DATA.dataest)} · carteira ${ct?'importada em <b>'+fmtDT(ct.t,true)+'</b>':'da base'}.</p>
   <div class="stats" id="cm-stats">
    <div class="stat g"><div class="l">Peças para vender</div><div class="v">${f0(T.pc)}</div><div class="s">em ${f0(T.n)} códigos${CM.fam||CM.q?' (no filtro)':''}</div></div>
    <div class="stat"><div class="l">Valor estimado</div><div class="v" style="font-size:22px">${brl(T.val)}</div><div class="s">referência: preço médio das notas${T.semp?` · ${f0(T.semp)} sem preço`:''}</div></div>
   </div>
+  ${r33?livreHTML():''}
   <div class="grid2">
    <div class="panel"><div class="head"><h3>Peças para vender por família</h3><span class="note">toque para filtrar</span></div>${cmBars(FL.slice(0,10),f=>f.fam,f=>`${f0(f.n)} códigos · ${brl(f.val)}`,f=>f.fam)}</div>
    <div class="panel"><div class="head"><h3>Top 10 itens para oferecer</h3><span class="note">mais peças${CM.fam?' · '+esc(CM.fam):''}</span></div>${cmBars(L.slice(0,10).map(x=>({fam:x.cod,pc:x.disp,x})),o=>o.fam,o=>`${esc(String(o.x.desc).slice(0,34))}${o.x.valor>0?' · '+brl(o.x.valor):''}`,null)}</div>
@@ -4820,17 +4896,21 @@ function renderCM(){
    <label class="f" for="cm-q" style="flex:1 1 180px">Buscar<input id="cm-q" type="search" value="${esc(CM.q)}" placeholder="código ou descrição"></label>
    <label class="f" for="cm-fam">Família<select id="cm-fam"><option value="">Todas</option>${fams.map(f=>`<option>${esc(f)}</option>`).join('')}</select></label>
    <label class="f" for="cm-ord">Ordenar<select id="cm-ord"><option value="pecas">Mais peças</option><option value="valor">Maior valor</option><option value="cod">Código</option></select></label>
-   <span class="cm-exp"><button class="btn pri" id="cm-csv">Excel (CSV)</button><button class="btn" id="cm-pdf">PDF / Imprimir</button><button class="btn" id="cm-sh">Compartilhar</button></span>
+   <span class="cm-exp">${r33?'<button class="btn pri" data-rep="48">Lista para representantes</button>':''}<button class="btn${r33?'':' pri'}" id="cm-csv">Excel (CSV)</button><button class="btn" id="cm-pdf">PDF / Imprimir</button><button class="btn" id="cm-sh">Compartilhar</button></span>
   </div>
-  <div class="tw tall cm-tab"><table><thead><tr><th>Código</th><th>Descrição</th><th>Família</th><th class="num">Pode vender (pç)</th><th class="num">Valor estimado</th></tr></thead><tbody>
-   ${L.slice(0,500).map(x=>`<tr><td><b>${esc(x.cod)}</b></td><td class="desc">${esc(String(x.desc).slice(0,60))}</td><td>${esc(x.fam)}</td><td class="num"><b style="font-size:15px">${f0(x.disp)}</b></td><td class="num note" title="${x.p>0?'preço médio R$ '+nf2.format(x.p)+'/pç'+(x.nnf<5?' · menos de 5 notas no período':''):'sem preço nas notas'}">${cmVal(x)}</td></tr>`).join('')||'<tr><td colspan="5" class="note">Nenhum item com esse filtro.</td></tr>'}
+  <div class="tw tall cm-tab"><table><thead><tr><th>Código</th><th>Descrição</th><th>Família</th>${r33?'<th>Giro</th><th>Frequência</th>':''}<th class="num">Pode vender (pç)</th><th class="num">Valor estimado</th></tr></thead><tbody>
+   ${L.slice(0,500).map(x=>`<tr><td><b>${esc(x.cod)}</b></td><td class="desc">${esc(String(x.desc).slice(0,60))}${r33?cmExtra(x):''}</td><td>${esc(x.fam)}</td>${r33?`<td>${selo(x.s_D)}</td><td>${selo(x.s_nnf)}</td>`:''}<td class="num"><b style="font-size:15px">${f0(x.disp)}</b></td><td class="num note" title="${x.p>0?'preço médio R$ '+nf2.format(x.p)+'/pç'+(x.nnf<5?' · menos de 5 notas no período':''):'sem preço nas notas'}">${cmVal(x)}</td></tr>${r33&&CM.ab===x.cod?`<tr class="cm-det"><td colspan="7">${comDet(x.cod)}</td></tr>`:''}`).join('')||'<tr><td colspan="7" class="note">Nenhum item com esse filtro.</td></tr>'}
   </tbody></table></div>
   <div class="cm-crd">${L.slice(0,150).map(x=>`<div class="cmc" style="border-left-color:var(--kg)"><div class="cmc-h">${fotoImg(x.cod,48)}<div style="min-width:0"><b>${esc(x.cod)}</b><div class="note">${esc(String(x.desc).slice(0,56))}</div></div></div>
     <div class="cmc-n" style="grid-template-columns:1fr 1fr"><span><small>Pode vender</small><b style="font-size:20px">${f0(x.disp)} pç</b></span><span><small>Valor estimado</small><b class="note">${cmVal(x)}</b></span></div>
-    <div class="note">${esc(x.fam)}</div></div>`).join('')||'<p class="note">Nenhum item com esse filtro.</p>'}</div>
+    <div class="note">${esc(x.fam)}${r33?` · giro ${selo(x.s_D)} · frequência ${selo(x.s_nnf)}`:''}</div>${r33?cmExtra(x)+(CM.ab===x.cod?comDet(x.cod):''):''}</div>`).join('')||'<p class="note">Nenhum item com esse filtro.</p>'}</div>
   <p class="note">${f0(L.length)} item(ns) no filtro${L.length>500?' — a tabela mostra os 500 primeiros; o Excel leva todos':''}.</p>
   <div class="panel"><div class="head"><h3>Como ler</h3></div><ul class="clean note">
    <li><b>Pode vender</b> = peças livres no CD: já descontados os pedidos em aberto e o que o Kanban precisa guardar. Vender isso não deixa faltar para nenhum cliente.</li>
+   <li><b>Embarque em até 48 horas</b>: a peça está pronta no CD. O que depende de montagem está na outra tela do módulo (embarque em 72 horas).</li>
+   <li><b>Giro</b> e <b>Frequência</b> comparam os itens da lista entre si (Alto, Médio, Baixo): giro = quanto o item vende; frequência = em quantas vendas aparece.</li>
+   <li><b>Carteira e clientes</b>: abre os pedidos em aberto do item (cliente, quantidade, entrega e se está atrasado) e, para o perfil Comercial, os últimos clientes que compraram.</li>
+   <li><b>Lista para representantes</b>: gera o documento com capa e tabela por família, para enviar. A versão de uso interno acrescenta carteira e últimos clientes.</li>
    <li>Item que não está na lista <b>não tem peça livre</b> para oferecer agora.</li>
    <li>Peça que o CD usa para <b>montar kits</b> (ex.: o pino do kit de engate) fica guardada para os kits; aqui aparece só o que sobrar.</li>
    <li><b>Valor estimado</b> = peças × preço médio das notas fiscais (set/25 a ago/26). É uma <b>referência</b>: confirme o preço na tabela comercial.</li></ul></div>`;
@@ -4839,12 +4919,14 @@ function renderCM(){
   $('cm-fam').onchange=e=>{ CM.fam=e.target.value; renderCM(); }; $('cm-ord').onchange=e=>{ CM.ord=e.target.value; renderCM(); };
   const qi=$('cm-q'); qi.oninput=()=>{ CM.q=qi.value; renderCM(); const n=$('cm-q'); n.focus(); n.setSelectionRange(n.value.length,n.value.length); };
   el.querySelectorAll('[data-cmf]').forEach(b=>{ const f=()=>{ CM.fam=CM.fam===b.dataset.cmf?"":b.dataset.cmf; renderCM(); }; b.onclick=f; b.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); f(); } }; });
+  if(r33){ comBind(el); el.querySelectorAll('[data-cmab]').forEach(b=>b.onclick=()=>{ CM.ab=CM.ab===b.dataset.cmab?"":b.dataset.cmab; renderCM(); }); }
   $('cm-csv').onclick=()=>cmCSV(L); $('cm-pdf').onclick=()=>cmPrint(L,T); $('cm-sh').onclick=()=>cmShare(L,T);
 }
 function cmCSV(L){
-  const H=["codigo","descricao","familia","pode_vender_pc","valor_estimado_RS","preco_medio_venda_RS","embalagem","pc_por_conteiner"];
+  const r33=typeof cartResumo==="function", cli=r33&&comVeCli();
+  const H=["codigo","descricao","familia","pode_vender_pc","valor_estimado_RS","preco_medio_venda_RS","embalagem","pc_por_conteiner"].concat(r33?["prazo_embarque_h","giro","frequencia","em_carteira_pc","pedidos_em_aberto"]:[]).concat(cli?["ultimos_clientes"]:[]);
   const n2=v=>v==null?"":String(Math.round(v*100)/100).replace('.',',');
-  const rows=L.map(x=>[x.cod,x.desc,x.fam,Math.round(x.disp),n2(x.valor||null),n2(x.p||null),x.cont,x.q]);
+  const rows=L.map(x=>{ const r=[x.cod,x.desc,x.fam,Math.round(x.disp),n2(x.valor||null),n2(x.p||null),x.cont,x.q]; if(r33){ const C=cartResumo(x.cod); r.push(48,SELO[x.s_D||0],SELO[x.s_nnf||0],Math.round(C.pc),C.n); if(cli) r.push(ucliTxt(x.cod)); } return r; });
   const pa=ultimaImp('pa');
   saveFile("itens_para_vender_"+hojeISO()+".csv","﻿"+[`Lean Up · AEMCO — itens que podem ser vendidos (peças livres no CD) · estoque ${pa?fmtDT(pa.t,true):DATA.dataest} · valor = preço médio das NFs set/25-ago/26 (referência)`,H.join(";")].concat(rows.map(r=>r.map(v=>String(v??'').replace(/;/g,',').replace(/\n/g,' ')).join(";"))).join("\n"));
 }
@@ -4868,11 +4950,15 @@ async function cmShare(L,T){
   try{ if(navigator.share){ await navigator.share({title:"Itens para vender · AEMCO",text:t}); return; } }catch(e){ if(e&&e.name==="AbortError") return; }
   try{ await navigator.clipboard.writeText(t); toast("Lista copiada — cole no WhatsApp ou no e-mail"); }catch(e){ saveFile("itens_para_vender.txt",t); }
 }
+function cmExtra(x){   // Rev33: carteira do item e últimos clientes, sob a descrição
+  const C=cartResumo(x.cod), U=ucliDe(x.cod), ab=CM.ab===x.cod;
+  return `<div class="cm-ex">${C.pc?`<span class="pill cm-ct${C.atr?' atr':''}" title="Pedidos em aberto deste item: já estão reservados">em carteira: ${f0(C.pc)} pç · ${f0(C.n)} pedido${C.n>1?'s':''}${C.atr?' · com atraso':''}</span>`:''}${U.length?`<span class="note">último: ${esc(U[0][0].slice(0,28))} (${mesAno(U[0][1])})</span>`:''}
+   <button type="button" class="lnk" data-cmab="${esc(x.cod)}" aria-expanded="${ab}">${ab?'Fechar':'Carteira e clientes'}</button></div>`; }
 
 /* ===== Rev19 · AJUDA: manual do app, guia de novidades (bandeiras na tela) e assistente =====
    Regra de manutenção: toda revisão nova atualiza MAN (manual) e ganha um bloco em NEWS (novidades).
    Nada aqui explica o dimensionamento (fica no núcleo privado): o manual ensina a USAR o app. */
-const MAN_REV="Rev32", MAN_DATA="25/11/2026";
+const MAN_REV="Rev33", MAN_DATA="25/11/2026";
 const MAN=[
  {id:"entrar",t:"Como Entrar e Salvar o App no Celular",quem:"todos",
   lead:"O app abre pelo link, no celular, no tablet ou no computador. Cada pessoa entra com o seu **PIN**.",
@@ -4950,10 +5036,10 @@ const MAN=[
   dica:"O estoque é reservado primeiro para os pedidos com entrega mais cedo.",
   faq:[["A Expedição está vazia.","Falta importar a carteira de pedidos e o estoque de PA. Vá em Importar dados."],["O que é pedido completo?","É o pedido em que todas as linhas cabem no estoque do CD, reservando primeiro os de entrega mais cedo."],["Quando marco Expedido?","Quando o pedido separado sai da fábrica. O apontador marca no fim do dia, junto com o inventário."],["Marquei Expedido por engano.","Em Expedidos, no fim da tela de Expedição, toque em ↩ Voltar etapa: o pedido volta para separado."],["Coloquei o pedido na etapa errada.","No cartão do pedido, toque em ↩ Voltar etapa. Cada toque volta uma etapa: Separados → Em separação → A separar."]]},
  {id:"cm",t:"Comercial: Pode Vender e Sugestão de Venda",quem:"todos",tab:"cm",
-  lead:"O módulo **Comercial** tem duas telas. **Pode vender** mostra só as peças livres no CD, sem pedido e sem faltar para o Kanban. **Sugestão de venda** mostra produtos que, vendidos, consomem usinados parados acima do máximo no AUS.",
-  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},{t:"Sugestão de venda",img:"m27-cs.jpg",passos:["Abra **Comercial › Sugestão de venda**. No alto: quantas peças de usinado estão paradas sem pedido e quanto as sugestões alcançam.","Cada produto mostra selos de **Giro**, **Frequência** e **Valor**: **Alto**, **Médio** ou **Baixo**, comparando os produtos da lista entre si.","**Até (un.)** é quantas unidades completas saem só com o excesso: para no usinado que acaba primeiro (marcado em vermelho). O excesso é repartido na ordem de prioridade, então as unidades da lista podem ser somadas. **Receita** é essas unidades a **preço médio de venda** do produto acabado. **Excesso que consome** é o valor a custo desses usinados.","O quadro verde **Receita possível** soma as linhas da lista (o teto) e mostra também quanto seria em cerca de 3 meses de venda. O mesmo valor aparece no Resumo financeiro do Painel.","Os demais usinados do produto (sem excesso) saem do supermercado normal, que o Kanban repõe. Produto com peças livres no CD sai primeiro do CD."]},{t:"Registrar a venda do excesso",img:"m32-venda.jpg",passos:["Quem tem o perfil **Comercial** vê o botão **Registrar venda** em cada produto da Sugestão de venda.","Informe as **unidades vendidas** (até o limite da linha) e, se quiser, o cliente ou pedido. Toque em **Registrar e programar**.","O app dá baixa no excesso (ele sai da lista) e programa o produto como **FURA-FILA · venda do excesso**, em roxo, no primeiro dia com capacidade.","Em **Vendas do excesso registradas** você acompanha: programada, em produção ou produzida. Cancelar é só com o Programador."]}
+  lead:"O módulo **Comercial** tem duas telas, com um botão no alto para trocar de uma para a outra. **Pode vender** mostra só as peças livres no CD, sem pedido e sem faltar para o Kanban: **embarque em até 48 horas**. **Sugestão de venda** mostra produtos que, vendidos, consomem usinados parados acima do máximo no AUS: **embarque em até 72 horas**. Quem tem só o perfil Comercial abre o app direto neste módulo.",
+  telas:[{t:"Usar a lista",img:"m19-cm.jpg",passos:["Veja as **peças para vender por família** e os **10 itens com mais peças**.","Na lista, **Pode vender** é a quantidade; o **valor** é uma referência. **Giro** e **Frequência** (Alto, Médio, Baixo) mostram o que sai mais fácil.","Use **Buscar** para achar um item. Item fora da lista não tem peça livre agora.","Leve a lista em **Lista para representantes**, **Excel (CSV)**, **PDF / Imprimir** ou **Compartilhar**."]},{t:"Carteira, últimos clientes e evolução",img:"m33-cart.jpg",passos:["O quadro **Evolução do que está livre para venda** mostra, a cada atualização do estoque, quanto **entrou** (verde), quanto **saiu** (vermelho) e o total livre (linha).","Item com pedido em aberto traz a marca **em carteira**. Toque em **Carteira e clientes** para ver pedido, quantidade, entrega e se está atrasado (o nome do cliente aparece para o perfil Comercial).","Quem tem o perfil **Comercial** vê também os **últimos clientes que compraram** o item, pelas notas fiscais."]},{t:"Lista para representantes",img:"m33-lista.jpg",passos:["Toque em **Lista para representantes**. Escolha o prazo (**48 horas**, **72 horas** ou as duas) e para quem é.","**Representantes**: capa, orientação de uso, resumo por família e a tabela com código, descrição, giro, frequência e quantidade. Sem preço, cliente ou carteira.","**Uso interno do Comercial**: a mesma lista com a carteira e os últimos clientes de cada item.","Toque em **Gerar PDF** e, na impressão, escolha **Salvar como PDF**. O botão **Excel (CSV)** leva os mesmos dados em planilha."]},{t:"Sugestão de venda",img:"m27-cs.jpg",passos:["Abra **Comercial › Sugestão de venda**. No alto: quantas peças de usinado estão paradas sem pedido e quanto as sugestões alcançam.","Cada produto mostra selos de **Giro**, **Frequência** e **Valor**: **Alto**, **Médio** ou **Baixo**, comparando os produtos da lista entre si.","**Até (un.)** é quantas unidades completas saem só com o excesso: para no usinado que acaba primeiro (marcado em vermelho). O excesso é repartido na ordem de prioridade, então as unidades da lista podem ser somadas. **Receita** é essas unidades a **preço médio de venda** do produto acabado. **Excesso que consome** é o valor a custo desses usinados.","O quadro verde **Receita possível** soma as linhas da lista (o teto) e mostra também quanto seria em cerca de 3 meses de venda. O mesmo valor aparece no Resumo financeiro do Painel.","Os demais usinados do produto (sem excesso) saem do supermercado normal, que o Kanban repõe. Produto com peças livres no CD sai primeiro do CD."]},{t:"Registrar a venda do excesso",img:"m32-venda.jpg",passos:["Quem tem o perfil **Comercial** vê o botão **Vendido** em cada produto da Sugestão de venda.","Informe as **unidades vendidas** (até o limite da linha), a **campanha** e, se quiser, o cliente ou pedido. Toque em **Confirmar venda e programar**.","O app dá baixa no excesso (ele sai da lista) e programa o produto como **FURA-FILA · venda do excesso**, em roxo, no primeiro dia com capacidade.","Em **Vendas do excesso registradas** você acompanha: programada, em produção ou produzida. Cancelar é só com o Programador.","O Programador recebe um **aviso de venda nova** no alto da Programação, com produto, unidades, campanha e quem vendeu."]}
 ],
-  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista só as peças livres no CD: sem pedido e sem faltar para o Kanban."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."],["Todo o acima do máximo do Painel pode ser vendido?","Não. Uma parte já tem pedido e os Usinados são componentes, que não vão para venda. Só o CD sem pedido pode ser vendido, e é só isso que a tela Pode vender mostra. A conta completa está no Painel, no quadro De onde vem o acima do máximo."],["Para que serve a Sugestão de venda?","Para vender o que está parado nos Usinados. Usinado não é vendido sozinho: ele sai quando a montagem faz o produto. A tela lista os produtos que usam esse excesso, dos mais fáceis de vender para os menos."],["Por que não aparece o número de vendas?","A tela compara os produtos com selos Alto, Médio e Baixo. Para oferecer ao cliente, o selo basta."],["Quem pode registrar a venda do excesso?","Quem tem o perfil Comercial. O administrador marca esse perfil na nuvem ☁, em Pessoas com acesso."],["O que acontece quando registro a venda?","O excesso dos usinados fica reservado, o produto ganha cartões roxos de FURA-FILA e entra na programação no primeiro dia com capacidade. Se não couber nos próximos 10 dias úteis, fica na frente da fila do Programador."],["Registrei a venda errada.","Peça ao Programador: em Vendas do excesso registradas ele toca em Cancelar. Os cartões que ainda não começaram saem da programação e o excesso volta para a lista."]]},
+  faq:[["Como sei o que posso oferecer ao cliente?","Abra a tela Comercial. Ela lista só as peças livres no CD: sem pedido e sem faltar para o Kanban."],["O que é 'disponível'?","É o que sobra no CD depois de guardar o máximo do Kanban e os pedidos em aberto. Pode ser vendido sem faltar para ninguém."],["Todo o acima do máximo do Painel pode ser vendido?","Não. Uma parte já tem pedido e os Usinados são componentes, que não vão para venda. Só o CD sem pedido pode ser vendido, e é só isso que a tela Pode vender mostra. A conta completa está no Painel, no quadro De onde vem o acima do máximo."],["Para que serve a Sugestão de venda?","Para vender o que está parado nos Usinados. Usinado não é vendido sozinho: ele sai quando a montagem faz o produto. A tela lista os produtos que usam esse excesso, dos mais fáceis de vender para os menos."],["Por que não aparece o número de vendas?","A tela compara os produtos com selos Alto, Médio e Baixo. Para oferecer ao cliente, o selo basta."],["Quem pode registrar a venda do excesso?","Quem tem o perfil Comercial. O administrador marca esse perfil na nuvem ☁, em Pessoas com acesso."],["Qual é o prazo de embarque?","Pode vender: até 48 horas, a peça está pronta no CD. Sugestão de venda: até 72 horas, a fábrica monta com componentes que já estão prontos."],["Como mando a lista para os representantes?","Toque em Lista para representantes, escolha o prazo e Representantes, depois Gerar PDF e Salvar como PDF. O arquivo sai com capa e tabela por família, sem preço, cliente ou carteira."],["Quem vê os últimos clientes de cada item?","Só quem tem o perfil Comercial e o administrador. Os nomes vêm das notas fiscais do MPD132 e aparecem depois da atualização do estoque."],["O que é entrou e saiu na evolução?","Entrou: peças que ficaram livres de um dia para o outro (produção acima do máximo ou pedido cancelado). Saiu: peças que deixaram de estar livres (pedido novo ou nota emitida). A conta compara o retrato de cada atualização do estoque."],["A campanha que eu preciso não está na lista.","Escolha Outra (escrever) e digite o nome. O cadastro de campanhas pelo Comercial fica para uma próxima revisão."],["O que acontece quando registro a venda?","O excesso dos usinados fica reservado, o produto ganha cartões roxos de FURA-FILA e entra na programação no primeiro dia com capacidade. Se não couber nos próximos 10 dias úteis, fica na frente da fila do Programador."],["Registrei a venda errada.","Peça ao Programador: em Vendas do excesso registradas ele toca em Cancelar. Os cartões que ainda não começaram saem da programação e o excesso volta para a lista."]]},
  {id:"opd",t:"Ordem de Produção: o Plano do Dia",quem:"todos",tab:"op",
   lead:"Mostra o que produzir para **encher os supermercados**, dia a dia, e imprime os cartões de ordem.",
   telas:[{t:"Montar o plano",img:"m19-opd.jpg",passos:["Escolha o **início**, o número de **postos** e se o **sábado** produz.","Confira as ordens do dia: código, quantidade, contêineres e horas.","Toque em **Salvar plano (CSV)** ou **Imprimir** os cartões de ordem."]}],
@@ -5068,6 +5154,13 @@ function tourShow(){
 
 /* ---------- novidades: aviso na 1ª entrada após a atualização + bandeiras na tela ---------- */
 const NEWS=[
+ {rev:33,quando:"25/11/2026",t:"Comercial: prazos, carteira, últimos clientes e lista para representantes",itens:[
+   {id:"33-prazo",man:"cm",tab:"cm",sel:'#p-cm .com-nav',t:"Novo: prazo de embarque nas duas telas",x:"Pode vender é embarque em até 48 horas (peça pronta no CD). Sugestão de venda é embarque em até 72 horas. Os botões no alto trocam de uma tela para a outra."},
+   {id:"33-lista",man:"cm",tab:"cm",sel:'#p-cm [data-rep]',t:"Novo: lista para representantes",x:"Gera o documento com capa e tabela por família, pronto para salvar em PDF e enviar. A versão de uso interno acrescenta carteira e últimos clientes."},
+   {id:"33-cart",man:"cm",tab:"cm",sel:'#p-cm .cm-ex, #p-cm .cm-tab thead',t:"Novo: carteira e últimos clientes do item",x:"Cada item mostra se tem pedido em aberto. Em Carteira e clientes aparecem pedido, quantidade, entrega e atraso; o perfil Comercial vê também o cliente e quem comprou por último."},
+   {id:"33-evol",man:"cm",tab:"cm",sel:'#cm-evol',t:"Novo: evolução do que está livre",x:"A cada atualização do estoque, o app compara o que está livre item a item e mostra quanto entrou e quanto saiu."},
+   {id:"33-vend",man:"cm",tab:"cs",sel:'#p-cs [data-vd], #p-cs .com-nav',t:"Mudou: botão Vendido com campanha",x:"O botão Registrar venda agora se chama Vendido e pede a campanha da venda. O Programador recebe um aviso de venda nova no alto da Programação."},
+   {id:"33-ops",man:"ov",tab:"pdia",sel:'#p-pdia .pd-g',t:"Mudou: ordens abertas atrasadas",x:"Quando o MPD132 traz a aba OPs Abertas, a conta usa todas as ordens abertas do ERP, e não só as emitidas nos últimos 90 dias."}]},
  {rev:32,quando:"25/11/2026",t:"Valor expedido, máquinas por área, sequência e venda do excesso",itens:[
    {id:"32-val",man:"ov",tab:"pexp",sel:'#p-pexp .pd-vg, #p-pexp .pd-g',t:"Novo: valor expedido em R$",x:"A Expedição do dia mostra o valor das notas no último dia, na semana e no mês. Os botões Peças e Valor (R$) trocam o gráfico. O resumo do mês também aparece no Painel."},
    {id:"32-mes",man:"ov",tab:"pdia",sel:'#pd-mes',t:"Novo: mês corrente e resultado por mês",x:"Produção e Expedição abrem no mês corrente, dia a dia. Embaixo, um gráfico mostra o total de cada mês do ano."},
@@ -5720,9 +5813,10 @@ function mpdPacote(T,nome,mod){   // abas lidas → pacote {cd, aus, cart}
   for(let i=1;i<I.length;i++){ const r=I[i]; const q=numBR(r[kq]), c=String(r[ki]??"").trim(), p=String(r[kp]??"").trim(); if(!c||!p||isNaN(q)||q<=0) continue;
     cart.push([p,String(kc>=0?r[kc]??"":"").trim(),c,q,kd>=0?dataISO(r[kd]):""]); }
   const ref=mpdDataNome(nome)||(mod?dLocal(new Date(mod)):dLocal(new Date()));
-  const prod=(!T["Movimentos"]&&!T["Ordens"])?null:mpdProducao(T["Movimentos"],T["Ordens"],ref);
+  const prod=(!T["Movimentos"]&&!T["Ordens"])?null:mpdProducao(T["Movimentos"],T["Ordens"],ref,T["OPs Abertas"]||T["OPs"]);   // Rev33: ordens abertas pela aba completa
+  const ucli=(T["Faturamento"]&&T["Agrupamento Familias"]&&typeof mpdUltCli==="function")?mpdUltCli(T["Faturamento"],T["Agrupamento Familias"],ref):null;   // Rev33: últimos clientes por item (só o Comercial vê)
   const exp=(T["Faturamento"]&&T["Agrupamento Familias"])?mpdExpedicao(T["Faturamento"],T["Agrupamento Familias"],T["Familias de Item"],ref):null;   // Rev29: expedição
-  return {fonte:"MPD132",v:1,arquivo:nome||"",prod,exp,data:mpdDataNome(nome)||(mod?dLocal(new Date(mod)):""),mod:mod?new Date(mod).toISOString():"",gerado:new Date().toISOString(),dep:MPD_DEP,cd:cdm,aus,cart};
+  return {fonte:"MPD132",v:1,arquivo:nome||"",prod,exp,ucli,data:mpdDataNome(nome)||(mod?dLocal(new Date(mod)):""),mod:mod?new Date(mod).toISOString():"",gerado:new Date().toISOString(),dep:MPD_DEP,cd:cdm,aus,cart};
 }
 function mpdValida(pk){ const obj=o=>o&&typeof o==="object"&&!Array.isArray(o)&&Object.values(o).every(v=>typeof v==="number"&&isFinite(v));
   if(!pk||pk.fonte!=="MPD132"||!obj(pk.cd)||!obj(pk.aus)||!Array.isArray(pk.cart)) throw new Error("não é um pacote do MPD132");
@@ -5730,12 +5824,13 @@ function mpdValida(pk){ const obj=o=>o&&typeof o==="object"&&!Array.isArray(o)&&
   if(!pk.cart.every(l=>Array.isArray(l)&&l.length>=5&&typeof l[3]==="number"&&isFinite(l[3])&&(!l[4]||/^\d{4}-\d{2}-\d{2}$/.test(l[4])))) throw new Error("linhas da carteira inválidas");
   if(pk.prod!=null&&!(typeof pk.prod==="object"&&pk.prod.dias&&typeof pk.prod.dias==="object"&&Object.keys(pk.prod.dias).every(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&pk.prod.dias[d]&&typeof pk.prod.dias[d]==="object"&&Object.values(pk.prod.dias[d]).every(v=>typeof v==="number"&&isFinite(v)))&&prodOK(pk.prod))) pk.prod=null;
   if(pk.exp!=null&&!expOK(pk.exp)) pk.exp=null;
+  if(pk.ucli!=null&&!(typeof ucliOK==="function"&&ucliOK(pk.ucli))) pk.ucli=null;
   pk.arquivo=String(pk.arquivo||""); pk.cart=pk.cart.map(l=>[String(l[0]),String(l[1]),String(l[2]),l[3],String(l[4]||"")]); return pk; }
 async function mpdArquivo(f){
   MPD.busy=true; MPD.erro=""; MPD.pk=null; MPD.msg="Lendo "+f.name+"…"; mpdCard();
   try{
     if(/\.json$/i.test(f.name)) MPD.pk=mpdValida(JSON.parse(await f.text()));
-    else { const T=await xlsxAbas(await f.arrayBuffer(),["Estoques","Pedido Itens","Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento"],MPD_FILTRO,["Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento"]); MPD.pk=mpdPacote(T,f.name,f.lastModified); }
+    else { const T=await xlsxAbas(await f.arrayBuffer(),["Estoques","Pedido Itens","Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento","OPs Abertas","OPs"],MPD_FILTRO,["Movimentos","Ordens","Agrupamento Familias","Familias de Item","Faturamento","OPs Abertas","OPs"]); MPD.pk=mpdPacote(T,f.name,f.lastModified); }
     MPD.msg="";
   }catch(e){ MPD.erro=String(e&&e.message||e); MPD.msg=""; }
   MPD.busy=false; mpdCard();
@@ -5766,6 +5861,7 @@ async function mpdAplicar(){
     const velhos=async(p,mem,k)=>{ k=k||"dias"; const sv=await doServ(p); return Object.assign({},(sv&&sv[k])||{},(mem&&mem[k])||{}); };
     if(sinc&&pk.prod&&pk.prod.dias){ PROD=Object.assign({},pk.prod,{dias:histJunta(await velhos("kanban/producao",PROD),pk.prod.dias),arquivo:pk.arquivo,data:pk.data,t:meta.t}); await writeDoc("kanban/producao",PROD); }   // Rev28: produção do dia · Rev29: histórico acumulado
     if(sinc&&pk.exp&&pk.exp.dias){ EXPD=Object.assign({},pk.exp,{dias:histJunta(await velhos("kanban/expedicao",EXPD),pk.exp.dias),val:histJunta(await velhos("kanban/expedicao",EXPD,"val"),pk.exp.val||{}),arquivo:pk.arquivo,data:pk.data,t:meta.t}); await writeDoc("kanban/expedicao",EXPD); }   // Rev29: expedição
+    if(sinc&&typeof comAposImport==="function"){ try{ await comAposImport(pk,meta); }catch(e){} }   // Rev33: últimos clientes e retrato do que está livre para venda
     try{ metasSync(true); }catch(e){}
     MPD.msg=`Pronto: CD, Usinados e carteira atualizados pelo ${pk.arquivo||"MPD132"}.${sinc?"":" Produção e expedição não foram gravadas porque o app ainda não sincronizou com o servidor: aplique de novo daqui a pouco."}`; MPD.pk=null; toast("MPD132 aplicado");
   }catch(e){ MPD.erro="Parou no meio: "+String(e&&e.message||e); }
@@ -5938,7 +6034,8 @@ function csVendaForm(x){ let p="", rr=null; try{ rr=calcPA().find(z=>z.cod===x.c
   return `<tr class="cs-vf"><td colspan="9"><div class="filters">
     <label class="f" for="cs-vq">Unidades vendidas (até ${f0(x.N)})<input class="in" id="cs-vq" type="number" min="1" max="${x.N}" step="1" value="${x.N}" style="width:110px"></label>
     <label class="f" for="cs-vc">Cliente ou pedido (opcional)<input class="in" id="cs-vc" maxlength="60" placeholder="ex.: pedido 123456" style="min-width:200px"></label>
-    <button type="button" class="btn pri" id="cs-vok">Registrar e programar</button><button type="button" class="btn" id="cs-vno">Cancelar</button></div>
+    ${typeof CAMPANHAS!=="undefined"?`<label class="f" for="cs-vp">Campanha<select id="cs-vp"><option value="">Sem campanha</option>${CAMPANHAS.map(c=>`<option>${esc(c)}</option>`).join('')}<option value="__o">Outra (escrever)</option></select></label><label class="f" for="cs-vpo" id="cs-vpo-l" hidden>Qual campanha<input class="in" id="cs-vpo" maxlength="40" style="min-width:160px"></label>`:''}
+    <button type="button" class="btn pri" id="cs-vok">Confirmar venda e programar</button><button type="button" class="btn" id="cs-vno">Cancelar</button></div>
    <p class="note" style="margin:6px 0 0"><b>${esc(x.cod)}</b>: ao registrar, o excesso dos usinados fica reservado e o produto entra na programação${p?' de <b>'+esc(p)+' · '+esc(procNome(p))+'</b>':''} como <span class="pill vx">FURA-FILA · venda do excesso</span>, no primeiro dia com capacidade (próximos 10 dias úteis).${x.cd?` Há <b>${f0(x.cd)} pç livres no CD</b>: venda primeiro o que já está pronto (tela Pode vender) e programe aqui só o que faltar.`:''}</p></td></tr>`; }
 function renderCS(){
   const el=document.getElementById('p-cs'), {L,C,A,semVenda,semSaldo}=csRows(), F=csFilt(L.slice());
@@ -5946,7 +6043,8 @@ function renderCS(){
   const vCob=L.reduce((s,x)=>s+x.val,0);
   const com=typeof isCom==="function"&&isCom();
   const fams=[...new Set(L.map(x=>x.fam))].sort(), PL=csPlano(C,A), PL3=csPlano(C,A,63);   // Rev30: receita a preço de venda, sem contar o mesmo usinado duas vezes
-  el.innerHTML=`<div class="head"><h2>Sugestão de venda · excesso do supermercado AUS</h2><span class="note">produtos acabados que usam usinados parados acima do máximo, sem pedido</span></div>
+  const r33=typeof comNav==="function";
+  el.innerHTML=`${r33?comNav('cs'):''}<div class="head"><h2>Sugestão de venda · excesso do supermercado AUS</h2><span class="note">produtos acabados que usam usinados parados acima do máximo, sem pedido · <b>embarque em até 72 horas</b></span></div>
    <div class="stats" id="cs-stats">
     <div class="stat"><div class="l">Usinados parados (sem pedido)</div><div class="v">${f0(pU)} pç</div><div class="s">${f0(totU.length)} códigos · ${brl(vU)} a custo</div></div>
     <div class="stat g"><div class="l">Produtos sugeridos</div><div class="v">${f0(L.length)}</div><div class="s">vendendo, consomem esse excesso</div></div>
@@ -5956,11 +6054,11 @@ function renderCS(){
     <label class="f" for="cs-q">Buscar<input class="in" id="cs-q" value="${esc(CS.q)}" placeholder="código, descrição ou usinado"></label>
     <label class="f" for="cs-fam">Família<select id="cs-fam"><option value="">Todas</option>${fams.map(f=>`<option value="${esc(f)}" ${f===CS.fam?'selected':''}>${esc(f)}</option>`).join('')}</select></label>
     <label class="f" for="cs-ord">Ordenar<select id="cs-ord"><option value="prio" ${CS.ord==="prio"?'selected':''}>Prioridade (giro + frequência + valor)</option><option value="rec" ${CS.ord==="rec"?'selected':''}>Receita a preço de venda (R$)</option><option value="val" ${CS.ord==="val"?'selected':''}>Excesso que consome (R$ a custo)</option><option value="un" ${CS.ord==="un"?'selected':''}>Unidades</option></select></label>
-    <button class="btn" id="cs-csv">Salvar CSV</button></div>
+    ${r33?'<button class="btn pri" data-rep="72">Lista para representantes</button>':''}<button class="btn" id="cs-csv">Salvar CSV</button></div>
    ${typeof vendasHTML==="function"?vendasHTML():''}
    ${com?'':'<p class="note">Registrar a venda e mandar para a programação é do perfil <b>Comercial</b> (definido no cadastro de pessoas).</p>'}
    <div class="tw tall"><table class="cs-tab"><thead><tr><th>Produto</th><th>Família</th><th>Giro</th><th>Frequência</th><th>Valor</th><th class="num">Até (un.)</th><th class="num">Receita (preço de venda)</th><th>Usinados em excesso que usa</th><th class="num">Excesso que consome (a custo)</th></tr></thead><tbody>
-    ${F.slice(0,300).map(x=>`<tr><td><b>${esc(x.cod)}</b><br><span class="note">${esc(x.desc)}</span>${x.cd?`<br><span class="tag" title="Este produto já tem peças livres no CD (tela Pode vender): a venda sai primeiro do CD">${f0(x.cd)} pç livres no CD</span>`:''}${com?`<br><button type="button" class="btn${CS.vd===x.cod?'':' pri'}" data-vd="${esc(x.cod)}" style="margin-top:6px">${CS.vd===x.cod?'Fechar':'Registrar venda'}</button>`:''}</td><td>${esc(x.fam)}</td><td>${selo(x.s_D)}</td><td>${selo(x.s_nnf)}</td><td>${selo(x.s_preco)}</td><td class="num"><b>${f0(x.N)}</b>${x.N<x.Nmax?`<br><span class="note" title="O resto do excesso dos usinados deste produto já ficou para produtos de prioridade maior">de ${f0(x.Nmax)} · resto já usado por produtos de prioridade maior</span>`:''}</td><td class="num"><b>${x.preco>0?brl(x.rec):'—'}</b>${x.preco>0?`<br><span class="note">${brl(x.preco)}/un.</span>`:''}</td>
+    ${F.slice(0,300).map(x=>`<tr><td><b>${esc(x.cod)}</b><br><span class="note">${esc(x.desc)}</span>${x.cd?`<br><span class="tag" title="Este produto já tem peças livres no CD (tela Pode vender): a venda sai primeiro do CD">${f0(x.cd)} pç livres no CD</span>`:''}${com?`<br><button type="button" class="btn${CS.vd===x.cod?'':' pri'}" data-vd="${esc(x.cod)}" style="margin-top:6px">${CS.vd===x.cod?'Fechar':'Vendido'}</button>`:''}${r33&&ucliDe(x.cod).length?`<br><span class="note cs-uc">Últimos clientes: ${esc(ucliTxt(x.cod))}</span>`:''}</td><td>${esc(x.fam)}</td><td>${selo(x.s_D)}</td><td>${selo(x.s_nnf)}</td><td>${selo(x.s_preco)}</td><td class="num"><b>${f0(x.N)}</b>${x.N<x.Nmax?`<br><span class="note" title="O resto do excesso dos usinados deste produto já ficou para produtos de prioridade maior">de ${f0(x.Nmax)} · resto já usado por produtos de prioridade maior</span>`:''}</td><td class="num"><b>${x.preco>0?brl(x.rec):'—'}</b>${x.preco>0?`<br><span class="note">${brl(x.preco)}/un.</span>`:''}</td>
       <td class="desc" style="white-space:normal;min-width:180px">${[x.lim,...x.us.filter(u=>u!==x.lim)].filter(Boolean).slice(0,3).map(u=>`<span class="cs-u${u===x.lim?' lim':''}" title="${esc(A[u].desc)} · ${f0(A[u].livre)} pç sem pedido acima do máximo${u===x.lim?' · é o que limita as unidades':''}">${esc(u)}</span>`).join(' ')}${x.us.length>3?` <span class="note">+${x.us.length-3}</span>`:''}${x.semExc.length?`<br><span class="note" title="${esc(x.semExc.join(', '))}">+ ${f0(x.semExc.length)} usinado${x.semExc.length>1?'s':''} sem excesso (sai do supermercado normal)</span>`:''}</td><td class="num"><b>${brl(x.val)}</b><br><span class="note">${f0(x.pc)} pç</span></td></tr>${com&&CS.vd===x.cod?csVendaForm(x):''}`).join('')||'<tr><td colspan="9" class="note">Nenhum produto com esse filtro.</td></tr>'}
    </tbody></table></div>
    ${F.length>300?`<p class="note">Mostrando 300 de ${f0(F.length)} — use a busca ou a família.</p>`:''}
@@ -5970,15 +6068,19 @@ function renderCS(){
     <li><b>Até (un.)</b>: quantas unidades completas saem só com o excesso: para no usinado em excesso que <b>acaba primeiro</b> (marcado em vermelho). O excesso é repartido na ordem de prioridade: o produto de cima fica com o que precisa e o de baixo só com o que sobrou, então <b>as unidades da lista podem ser somadas</b>.${semSaldo?` ${f0(semSaldo)} produtos ficaram fora porque o excesso que usariam já foi para produtos de prioridade maior.`:''} <b>Receita</b>: essas unidades vezes o <b>preço médio de venda</b> do produto acabado (notas fiscais). <b>Excesso que consome</b>: valor a custo dos usinados em excesso usados nessas unidades.</li>
     <li><b>Receita possível</b> (quadro verde): soma das linhas da lista. É o teto: supõe vender todas as unidades. "No ritmo de 3 meses de venda" limita cada produto ao que ele vende em cerca de 3 meses. A margem bruta estimada é receita menos o custo do produto acabado (material + conversão do ERP), só para os produtos que têm custo no cadastro.</li>
     <li>Os demais usinados do produto ("sem excesso") saem do supermercado normal, que o Kanban repõe.</li>
-    <li><b>Registrar venda</b> (perfil Comercial): informe as unidades vendidas. O app dá baixa no excesso (ele sai desta lista), cria os cartões do produto e programa no primeiro dia com capacidade como <b>FURA-FILA · venda do excesso</b>, na frente dos cartões do Kanban. Programação, Operação e Fluxo de valor mostram essa marca em roxo.</li>
+    <li><b>Embarque em até 72 horas</b>: é o prazo para a fábrica montar com os componentes que já estão prontos. <b>Últimos clientes</b> (perfil Comercial): quem comprou o produto por último, pelas notas fiscais.</li>
+    <li><b>Vendido</b> (perfil Comercial): informe as unidades vendidas e a campanha. O app dá baixa no excesso (ele sai desta lista), cria os cartões do produto e programa no primeiro dia com capacidade como <b>FURA-FILA · venda do excesso</b>, na frente dos cartões do Kanban. Programação, Operação e Fluxo de valor mostram essa marca em roxo.</li>
     <li>Produto com <b>peças livres no CD</b> sai primeiro do CD (tela Pode vender); só depois a montagem consome os usinados.${semVenda?` ${f0(semVenda)} produtos que usam esse excesso ficaram fora por não terem venda no período.`:''}</li></ul></div>`;
   const q=document.getElementById('cs-q'); q.oninput=()=>{ CS.q=q.value; clearTimeout(renderCS.t); renderCS.t=setTimeout(()=>{ renderCS(); const n=document.getElementById('cs-q'); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } },250); };
   document.getElementById('cs-fam').onchange=e=>{ CS.fam=e.target.value; renderCS(); };
   document.getElementById('cs-ord').onchange=e=>{ CS.ord=e.target.value; renderCS(); };
   el.querySelectorAll('[data-vd]').forEach(b=>b.onclick=()=>{ CS.vd=CS.vd===b.dataset.vd?"":b.dataset.vd; renderCS(); });
   const vok=document.getElementById('cs-vok'); if(vok) vok.onclick=async()=>{ const x=L.find(z=>z.cod===CS.vd); if(!x) return; vok.disabled=true;
-    const r=await vendaRegistrar(x,document.getElementById('cs-vq').value,document.getElementById('cs-vc').value); if(r){ CS.vd=""; renderCS(); const d=document.getElementById('cs-vendas'); if(d){ d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'}); } } else vok.disabled=false; };
+    const vp=document.getElementById('cs-vp'), camp=vp?(vp.value==="__o"?document.getElementById('cs-vpo').value:vp.value):"";
+    const r=await vendaRegistrar(x,document.getElementById('cs-vq').value,document.getElementById('cs-vc').value,camp); if(r){ CS.vd=""; renderCS(); const d=document.getElementById('cs-vendas'); if(d){ d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'}); } } else vok.disabled=false; };
   const vno=document.getElementById('cs-vno'); if(vno) vno.onclick=()=>{ CS.vd=""; renderCS(); };
+  const vp0=document.getElementById('cs-vp'); if(vp0) vp0.onchange=()=>{ const l=document.getElementById('cs-vpo-l'); l.hidden=vp0.value!=="__o"; if(!l.hidden) document.getElementById('cs-vpo').focus(); };
+  if(r33) comBind(el);
   el.querySelectorAll('[data-vcan]').forEach(b=>b.onclick=()=>{ if(VD_CAN===b.dataset.vcan){ VD_CAN=""; vendaCancelar(b.dataset.vcan); } else { VD_CAN=b.dataset.vcan; renderCS(); } });
   document.getElementById('cs-csv').onclick=()=>{ const H=["produto","descricao","familia","giro","frequencia","valor","ate_unidades","preco_medio_venda_rs","receita_rs","usinados_em_excesso","excesso_que_consome_rs","excesso_que_consome_pc"];
     const rows=F.map(x=>[x.cod,x.desc,x.fam,SELO[x.s_D],SELO[x.s_nnf],SELO[x.s_preco],x.N,Math.round(x.preco*100)/100,Math.round(x.rec),x.us.join(" "),Math.round(x.val),Math.round(x.pc)]);
@@ -6036,7 +6138,25 @@ renderPar=function(){ _renderPar28(); if(!isDono()) return; const el=document.ge
 const MPD_FILTRO={ Movimentos:(l,h)=>{ if(MPD_FILTRO.h!==h){ MPD_FILTRO.h=h; MPD_FILTRO.i=mpdCol(h,"esp_docto_sigla"); } const i=MPD_FILTRO.i; return i>=0&&String(l[i]??"").trim().toUpperCase()==="ACA"; } };
 const ORD_FIM=new Set(["terminada","finalizada"]), ORD_FORA=new Set(["manutencao","ativo fixo"]);
 const UN_PC=new Set(["pc","pç","pca","peca","peça","un","und"]);
-function mpdProducao(M,O,ref){
+function mpdEstab(T,nome){   // estabelecimento mais frequente da aba (a fábrica do arquivo), sem código fixo no app
+  if(!T||!T.length) return ""; const i=mpdCol(Array.from(T[0],x=>x||""),nome); if(i<0) return ""; const n={};
+  for(let k=1;k<T.length;k++){ const v=String(T[k][i]??"").trim(); if(v) n[v]=(n[v]||0)+1; }
+  return Object.keys(n).sort((a,b)=>n[b]-n[a]||(a<b?-1:1))[0]||""; }
+function mpdOrdAbertas(OA,ref,estab){   // Rev33: ordens abertas e atrasadas pela aba "OPs Abertas" (só a fábrica do arquivo)
+  if(!OA||OA.length<2) return null;
+  const h=Array.from(OA[0],x=>x||""), c=n=>mpdCol(h,n), inr=c("nr_op"), ic=c("cod_item"), ies=c("estabelecimento"), idt=c("dt_termino"), ist=c("status"), ie=c("estado"), itp=c("descricao_tipo_op"), iqo=c("qtd_ordem"), iqp=c("qtd_produzida"), iet=c("etapa");
+  if(inr<0||idt<0) return null;
+  const S={abertas:0,atrasadas:0,porEtapa:{},lista:[]};
+  for(let i=1;i<OA.length;i++){ const r=OA[i]; if(!String(r[inr]??"").trim()) continue;
+    if(estab&&ies>=0&&String(r[ies]??"").trim()!==estab) continue;
+    if(itp>=0&&ORD_FORA.has(nrmNome(String(r[itp]??"")))) continue;
+    if((ie>=0&&ORD_FIM.has(nrmNome(String(r[ie]??""))))||(ist>=0&&/^conclu/.test(nrmNome(String(r[ist]??""))))) continue;
+    const dt=dataISO(r[idt]), et=(iet>=0?String(r[iet]??"").trim():"")||"—", E=S.porEtapa[et]||(S.porEtapa[et]={abertas:0,atrasadas:0});
+    S.abertas++; E.abertas++;
+    if(dt&&dt<ref){ S.atrasadas++; E.atrasadas++; const dias=Math.round((new Date(ref+"T12:00:00")-new Date(dt+"T12:00:00"))/864e5), qo=iqo>=0?(numBR(r[iqo])||0):0, qp=iqp>=0?(numBR(r[iqp])||0):0;
+      S.lista.push([String(r[inr]??"").trim(),ic>=0?String(r[ic]??"").trim():"",et,Math.max(0,Math.round(qo-qp)),dt,dias,ie>=0?String(r[ie]??"").trim():""]); } }
+  S.lista.sort((a,b)=>b[5]-a[5]||b[3]-a[3]); S.lista=S.lista.slice(0,300); return S; }
+function mpdProducao(M,O,ref,OA){   // Rev33: OA = aba "OPs Abertas" (todas as ordens abertas, sem o corte de 90 dias da aba Ordens)
   const out={ref,dias:{},ult:null,top:[],unOutras:0,ord:null};
   const lim=d=>{ const t=new Date(ref+"T12:00:00").getTime()-d*864e5; return dLocal(new Date(t)); };
   if(M&&M.length){ const h=Array.from(M[0],x=>x||""), ic=mpdCol(h,"it_codigo"), idt=mpdCol(h,"dt_trans"), iq=mpdCol(h,"quantidade"), iu=mpdCol(h,"un"), idp=mpdCol(h,"cod_depos"), it=mpdCol(h,"tipo_trans_desc");
@@ -6057,7 +6177,13 @@ function mpdProducao(M,O,ref){
         S.lista.push([String(r[inr]??"").trim(),String(r[ic]??"").trim(),et,Math.max(0,Math.round(qo-qp)),dt,dias,String(r[ie]??"").trim()]); } }
       if(dt&&dt>d7&&dt<=ref){ S.semana.prev++; if(fim) S.semana.term++; }
       if(fim&&dt&&dt>d30&&dt<=ref){ S.refugo.prod+=qp; S.refugo.ref+=qr; E.prod+=qp; E.ref+=qr; } }
-    S.lista.sort((a,b)=>b[5]-a[5]||b[3]-a[3]); S.lista=S.lista.slice(0,300); out.ord=S; }
+    S.lista.sort((a,b)=>b[5]-a[5]||b[3]-a[3]); S.lista=S.lista.slice(0,300); S.fonte="Ordens"; out.ord=S; }
+  const A=mpdOrdAbertas(OA,ref,mpdEstab(O,"cod_estabel")||mpdEstab(OA,"estabelecimento"));
+  if(A&&(!out.ord||A.abertas>=out.ord.abertas)){   // a lista completa de ordens abertas nunca é menor que o recorte de 90 dias
+    const S=out.ord||(out.ord={abertas:0,atrasadas:0,porEtapa:{},semana:{prev:0,term:0},refugo:{prod:0,ref:0},lista:[]});
+    S.abertas=A.abertas; S.atrasadas=A.atrasadas; S.lista=A.lista; S.fonte="OPs Abertas";
+    for(const e of Object.keys(S.porEtapa)){ S.porEtapa[e].abertas=0; S.porEtapa[e].atrasadas=0; }
+    for(const [e,v] of Object.entries(A.porEtapa)){ const E=S.porEtapa[e]||(S.porEtapa[e]={abertas:0,atrasadas:0,prod:0,ref:0}); E.abertas=v.abertas; E.atrasadas=v.atrasadas; } }
   return out;
 }
 let PROD=null;
@@ -6091,7 +6217,7 @@ function renderPDIA(){
   el.innerHTML=`<div class="head"><h2>Produção do dia</h2><span class="note">MPD132 ${esc(P0.arquivo||'')} · último dia com produção apontada no ERP: <b>${esc(fmtDT(ult+'T12:00:00').slice(0,10))}</b></span></div>
    <div class="pd-g">${card('Produzido no último dia',f0(hoje)+' pç',sP,med?`${f0(pctMed)}% da mediana ${fds(ult)?'dos fins de semana':'dos dias úteis'} (${f0(med)} pç)`:'sem média ainda')}
     ${card('Ordens previstas na semana e terminadas',cump==null?'—':f0(cump)+'%',sC,O.semana?`${f0(O.semana.term)} de ${f0(O.semana.prev)} ordens com término previsto nos últimos 7 dias`:'')}
-    ${card('Ordens abertas atrasadas',f0(O.atrasadas||0),sA,atr==null?'':`${f1(atr)}% das ${f0(O.abertas)} ordens abertas`)}
+    ${card('Ordens abertas atrasadas',f0(O.atrasadas||0),sA,atr==null?'':`${f1(atr)}% das ${f0(O.abertas)} ordens abertas${O.fonte==="OPs Abertas"?' · todas as ordens abertas do ERP':O.fonte==="Ordens"?' · só ordens emitidas nos últimos 90 dias':''}`)}
     ${card('Refugo nos últimos 30 dias',ref==null?'—':f1(ref)+'%',sR,O.refugo?`${f0(O.refugo.ref)} pç refugadas · ${f0(O.refugo.prod)} pç boas`:'')}
     ${card('OEE','—','nd','aguardando o registro de paradas de máquina')}</div>
    <div class="panel"><div class="head"><h3>Produção por dia · últimos 30 dias</h3><span class="note">barra = peças que entraram no estoque pelo apontamento do ERP · cor: ${esc(gyrLeg("prod"))} da mediana (dia útil contra dias úteis, sábado contra fins de semana)</span></div>
@@ -6549,12 +6675,13 @@ function vendaSit(v){ const st=v.st||"aberta"; if(st==="cancelada") return {k:"c
   if(emC<v.q-1e-9) p.push(`<b style="color:var(--kr)">${f0(v.q-emC)} pç na fila do Programador (sem capacidade nos próximos dias)</b>`);
   return {k:prod.length?"prod":"prog",t:p.join(' · ')||'aguardando'}; }
 function diasUteisDe(n){ const out=[]; let d=primUtil(opHoje(),false); for(let i=0;i<n;i++){ out.push(ymd(d)); d=proxUtil(d,false); } return out; }
-async function vendaRegistrar(x,q,cli){
+async function vendaRegistrar(x,q,cli,camp){
   if(!isCom()){ toast("Só quem tem o perfil Comercial registra venda do excesso"); return null; }
   if(DB&&!WRITE_OK){ toast("Seu acesso é só leitura"); return null; }
   q=Math.floor(+q); if(!(q>=1)||q>x.N){ toast(`Quantidade de 1 a ${f0(x.N)}`); return null; }
   const r=calcPA().find(z=>z.cod===x.cod); if(!r){ toast("Produto fora da base"); return null; }
   const o={cod:x.cod,desc:String(x.desc||""),q,bom:x.bom.map(b=>[b[0],b[1]]),cli:String(cli||"").trim().slice(0,60),por:UID||"",nome:(window.KB&&KB.state&&KB.state.nome)||"",t:new Date().toISOString(),st:"aberta"};
+  camp=String(camp||"").trim().slice(0,40); if(camp) o.camp=camp;   // Rev33: campanha da venda
   let id; if(DB){ id=(await DB.collection("vendas").add(o)).id; } else id="v"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
   if(!VENDAS.some(v=>v.id===id)){ VENDAS.push(Object.assign({id},o)); if(!DB){ try{ localStorage.setItem(VENDAS_LS,JSON.stringify(VENDAS)); }catch(e){} } }
   const rota=rotaOf(r), p=rota[0], qc=r.q>0?r.q:q;   // produto sem contêiner definido: um cartão só com a venda inteira
@@ -6579,9 +6706,199 @@ function vendasHTML(){ const L=VENDAS.filter(vendaOK).sort((a,b)=>String(b.t||""
   return `<details class="panel" id="cs-vendas" ${ab?'open':''}><summary><b>Vendas do excesso registradas</b> · ${f0(ab)} em andamento · ${f0(L.length)} no total</summary>
    <div class="tw" style="max-height:320px"><table><thead><tr><th>Registrada em</th><th>Produto</th><th class="num">Unidades</th><th>Cliente / pedido</th><th>Por</th><th>Situação</th><th></th></tr></thead><tbody>
    ${L.slice(0,80).map(v=>{ const s=vendaSit(v), podeC=isProg()&&s.k!=="can"&&s.k!=="ok";
-     return `<tr${s.k==="can"?' style="opacity:.55"':''}><td>${v.t?fmtDT(v.t,true):'—'}</td><td><b>${esc(v.cod)}</b><br><span class="note">${esc(String(v.desc||'').slice(0,50))}</span></td><td class="num"><b>${f0(v.q)}</b></td><td>${esc(v.cli||'—')}</td><td>${esc(v.nome||(typeof quemNome==="function"?quemNome(v.por||''):''))}</td>
+     return `<tr${s.k==="can"?' style="opacity:.55"':''}><td>${v.t?fmtDT(v.t,true):'—'}</td><td><b>${esc(v.cod)}</b><br><span class="note">${esc(String(v.desc||'').slice(0,50))}</span></td><td class="num"><b>${f0(v.q)}</b></td><td>${esc(v.cli||'—')}${v.camp?`<br><span class="pill" style="background:var(--panel2);color:var(--ink)">campanha: ${esc(v.camp)}</span>`:''}</td><td>${esc(v.nome||(typeof quemNome==="function"?quemNome(v.por||''):''))}</td>
       <td><span class="pill vx">FURA-FILA · venda do excesso</span><br><span class="note">${s.t}</span></td><td>${podeC?`<button type="button" class="btn" data-vcan="${esc(v.id)}">${VD_CAN===v.id?'Confirmar cancelamento':'Cancelar'}</button>`:''}</td></tr>`; }).join('')}</tbody></table></div>
    <p class="note">A venda registrada reserva o excesso dos usinados (ele deixa de ser oferecido na lista) e entra na programação como <b>FURA-FILA</b>, na frente dos cartões do Kanban. A reserva vale até o produto ficar pronto e o saldo dos Usinados ser atualizado com o consumo. Cancelar é do Programador e só tira os cartões que ainda não começaram. Lance o pedido também no ERP: é a carteira que reserva as peças prontas no CD para esse cliente.</p></details>`; }
+
+/* ---------- Rev33 · Comercial (pedido do Danilo e do time comercial, 25/11/2026) ----------
+   Prazo de embarque nas duas telas (48 h o que está pronto no CD, 72 h o que a montagem faz com usinado parado),
+   carteira do item, últimos clientes que compraram (só perfil Comercial e administrador), evolução do que está
+   livre para venda (entrou × saiu), lista de estoque disponível com capa (para representantes e uso interno),
+   botão Vendido com campanha e aviso ao PCP na Programação. */
+const COM_PRAZO={cm:48,cs:72};
+const CAMPANHAS=["Excesso de estoque","Giro 7","Slow Mover","No Mover","AUS","Cruzetas"];   // lista inicial; o cadastro de campanhas pelo Comercial fica para uma próxima revisão
+let UCLI=null, LIVRE={dias:{}};
+const UCLI_LS="aemco-com-ucli", LIVRE_LS="aemco-com-livre";
+const comVeCli=()=>(typeof isCom==="function"&&isCom())||isAdmin();
+const comPuro=()=>!!(window.KB&&KB.state&&KB.state.comercial&&KB.state.papel!=="admin"&&!KB.state.programa&&!KB.state.cadastra);
+try{ if(comPuro()) localStorage.setItem("aemco-kd4-tab","cm"); }catch(e){}   // quem é só Comercial abre direto no módulo Comercial
+
+function ucliOK(u){ try{ return !!(u&&typeof u==="object"&&u.it&&typeof u.it==="object"&&!Array.isArray(u.it)&&Object.values(u.it).every(L=>Array.isArray(L)&&L.length<=3&&L.every(x=>Array.isArray(x)&&typeof x[0]==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(x[1])&&typeof x[2]==="number"&&isFinite(x[2])))); }catch(e){ return false; } }
+function livreOK(l){ try{ return !!(l&&typeof l==="object"&&l.dias&&typeof l.dias==="object"&&Object.keys(l.dias).every(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&l.dias[d]&&typeof l.dias[d]==="object"&&Object.values(l.dias[d]).every(v=>typeof v==="number"&&isFinite(v)))); }catch(e){ return false; } }
+function comLer(){ if(comLer.ok) return;
+  if(typeof DB==="undefined"||!DB){ if(window.KB){ if((comLer.n=(comLer.n||0)+1)<40) setTimeout(comLer,1500); return; }
+    comLer.ok=true; try{ const u=JSON.parse(localStorage.getItem(UCLI_LS)||"null"); if(ucliOK(u)) UCLI=u; const l=JSON.parse(localStorage.getItem(LIVRE_LS)||"null"); if(livreOK(l)) LIVRE=l; }catch(e){} return; }
+  comLer.ok=true;
+  try{ DB.doc("comercial/ultcli").onSnapshot(s=>{ const d=s.exists?s.data():null; UCLI=ucliOK(d)?d:null; if(TAB==="cm"||TAB==="cs") rerender(); },()=>{}); }catch(e){}
+  try{ DB.doc("comercial/livre").onSnapshot(s=>{ const d=s.exists?s.data():null; LIVRE=livreOK(d)?d:{dias:{}}; if(TAB==="cm") rerender(); },()=>{}); }catch(e){} }
+comLer();
+
+/* últimos clientes por item, pela aba Faturamento (mesmo cálculo do ult_clientes do mpd_pacote.py) */
+function mpdUltCli(F,AG,ref){
+  const ha=Array.from(AG[0]||[],x=>x||""), af=mpdCol(ha,"Familia"), ad=mpdCol(ha,"Descricao"), grp={};
+  for(let i=1;i<AG.length;i++){ const r=AG[i], f=String(r[af]??"").trim(), g=String(r[ad]??"").trim(); if(f&&g) grp[f]=g; }
+  const h=Array.from(F[0]||[],x=>x||""), ie=mpdCol(h,"Emissao"), ic=mpdCol(h,"Codigo"), iq=mpdCol(h,"Qtd.Fat","Qtd"), ifm=mpdCol(h,"Familia"), inm=mpdCol(h,"Nome Cliente");
+  if(ie<0||ic<0||iq<0||ifm<0||inm<0) return null;
+  const M={}; let de="";
+  for(let i=1;i<F.length;i++){ const r=F[i]; if(!grp[String(r[ifm]??"").trim()]) continue;
+    const d=dataISO(r[ie]), q=numBR(r[iq]), cod=String(r[ic]??"").trim(), cli=String(r[inm]??"").trim();
+    if(!d||d>ref||!cod||!cli||!isFinite(q)||q<=0) continue;
+    const C=M[cod]||(M[cod]={}), x=C[cli]||(C[cli]={d:"",q:0});
+    if(d>x.d){ x.d=d; x.q=q; } else if(d===x.d) x.q+=q;
+    if(!de||d<de) de=d; }
+  const it={};
+  for(const cod of Object.keys(M)){ it[cod]=Object.entries(M[cod]).map(([n,x])=>[n.slice(0,40),x.d,Math.round(x.q)])
+    .sort((a,b)=>(a[1]>b[1]?-1:a[1]<b[1]?1:0)||b[2]-a[2]||(a[0]<b[0]?-1:a[0]>b[0]?1:0)).slice(0,3); }
+  return {ref,de,n:Object.keys(it).length,it};
+}
+const mesAno=d=>{ const M=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"]; return d&&d.length>=7?M[+d.slice(5,7)-1]+"/"+d.slice(2,4):""; };
+function ucliDe(cod){ if(!UCLI||!UCLI.it||!comVeCli()) return []; return UCLI.it[cod]||[]; }
+function ucliTxt(cod){ return ucliDe(cod).map(c=>`${c[0]} (${mesAno(c[1])})`).join(" · "); }
+
+/* retrato diário do que está livre para venda no CD: a diferença entre dois dias mostra o que entrou e o que saiu */
+function livreEvol(){ const ds=Object.keys(LIVRE.dias||{}).sort(), out=[];
+  for(let i=0;i<ds.length;i++){ const A=i?LIVRE.dias[ds[i-1]]:null, B=LIVRE.dias[ds[i]]; let ent=0, sai=0, saldo=0;
+    for(const c of Object.keys(B)) saldo+=B[c];
+    if(A){ const K=new Set(Object.keys(A).concat(Object.keys(B))); for(const c of K){ const dl=(B[c]||0)-(A[c]||0); if(dl>0) ent+=dl; else sai-=dl; } }
+    out.push({d:ds[i],saldo,ent:A?ent:null,sai:A?sai:null,n:Object.keys(B).length}); }
+  return out; }
+async function comAposImport(pk,meta){   // chamado ao aplicar o MPD132
+  const quando=(meta&&meta.t)||new Date().toISOString(), dia=(pk&&pk.data)||hojeISO();
+  if(pk&&pk.ucli&&ucliOK(pk.ucli)){ const K=new Set(DATA.pa.map(x=>x[0])), it={}; for(const c of Object.keys(pk.ucli.it)) if(K.has(c)) it[c]=pk.ucli.it[c];   // só itens da base
+    UCLI={t:quando,arquivo:pk.arquivo||"",ref:pk.ucli.ref||"",de:pk.ucli.de||"",n:Object.keys(it).length,it};
+    if(DB){ if(isAdmin()||isProg()) await writeDoc("comercial/ultcli",UCLI); } else { try{ localStorage.setItem(UCLI_LS,JSON.stringify(UCLI)); }catch(e){} } }
+  const m={}; cmRows().forEach(x=>{ m[x.cod]=x.disp; });
+  let srv=null; if(DB){ try{ const sn=await DB.doc("comercial/livre").get(); srv=sn&&sn.exists?sn.data():null; }catch(e){} }   // junta com o que já está gravado, para não perder o histórico
+  const dias=Object.assign({},(livreOK(srv)&&srv.dias)||{},LIVRE.dias||{}); dias[dia]=m;
+  const ks=Object.keys(dias).sort(); while(ks.length>40) delete dias[ks.shift()];
+  LIVRE={t:quando,dias};
+  if(DB){ if(isAdmin()||isProg()) await writeDoc("comercial/livre",LIVRE); } else { try{ localStorage.setItem(LIVRE_LS,JSON.stringify(LIVRE)); }catch(e){} }
+}
+function livreHTML(){ const E=livreEvol(); if(!E.length) return '';
+  const u=E[E.length-1], dd=d=>d.slice(8,10)+'/'+d.slice(5,7);
+  if(E.length<2) return `<div class="panel" id="cm-evol"><div class="head"><h3>Evolução do que está livre para venda</h3><span class="note">entrou × saiu</span></div><p class="note">O acompanhamento começou em <b>${esc(dd(u.d))}</b> com ${f0(u.saldo)} pç livres. A comparação aparece a partir da próxima atualização do estoque.</p></div>`;
+  const L=E.slice(-30), mx=Math.max(1,...L.map(x=>Math.max(x.ent||0,x.sai||0))), ms=Math.max(1,...L.map(x=>x.saldo));
+  const W=720, H=210, P={l:44,r:12,t:14,b:26}, iw=W-P.l-P.r, mid=P.t+(H-P.t-P.b)/2, hh=(H-P.t-P.b)/2-4, slot=iw/L.length, bw=Math.min(22,slot*0.55);
+  let g=`<line x1="${P.l}" x2="${W-P.r}" y1="${mid}" y2="${mid}" stroke="var(--line)"/>`, pts=[];
+  L.forEach((x,i)=>{ const cx=P.l+i*slot+slot/2;
+    if(x.ent!=null){ const he=x.ent/mx*hh, hs=x.sai/mx*hh;
+      g+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${(mid-he).toFixed(1)}" width="${bw.toFixed(1)}" height="${he.toFixed(1)}" rx="2" fill="var(--kg)"><title>${dd(x.d)} · entrou ${f0(x.ent)} pç</title></rect>`;
+      g+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${mid}" width="${bw.toFixed(1)}" height="${hs.toFixed(1)}" rx="2" fill="var(--kr)"><title>${dd(x.d)} · saiu ${f0(x.sai)} pç</title></rect>`; }
+    pts.push([cx,P.t+(1-x.saldo/ms)*(H-P.t-P.b)]);
+    if(i%Math.max(1,Math.ceil(L.length/10))===0||i===L.length-1) g+=`<text x="${cx.toFixed(1)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--muted)">${dd(x.d)}</text>`; });
+  g+=`<polyline points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="none" stroke="var(--ink)" stroke-width="2" opacity=".75"/>`+pts.map((p,i)=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3" fill="var(--ink)"><title>${dd(L[i].d)} · livre ${f0(L[i].saldo)} pç</title></circle>`).join('');
+  const per=L.filter(x=>x.ent!=null), sE=per.reduce((s,x)=>s+x.ent,0), sS=per.reduce((s,x)=>s+x.sai,0);
+  return `<details class="panel" id="cm-evol" open><summary><b>Evolução do que está livre para venda</b> · entrou × saiu · desde ${esc(dd(L[0].d))}</summary>
+   <div class="stats" style="margin-top:10px">
+    <div class="stat"><div class="l">Livre hoje</div><div class="v">${f0(u.saldo)} pç</div><div class="s">${f0(u.n)} códigos · posição de ${esc(dd(u.d))}</div></div>
+    <div class="stat g"><div class="l">Entrou desde ${esc(dd(E[E.length-2].d))}</div><div class="v">+${f0(u.ent)} pç</div><div class="s">no período: +${f0(sE)} pç</div></div>
+    <div class="stat"><div class="l">Saiu desde ${esc(dd(E[E.length-2].d))}</div><div class="v" style="color:var(--kr)">−${f0(u.sai)} pç</div><div class="s">no período: −${f0(sS)} pç</div></div></div>
+   <svg viewBox="0 0 ${W} ${H}" width="100%" style="max-height:230px;display:block" role="img" aria-label="Entrou e saiu do que está livre para venda, por dia">${g}</svg>
+   <p class="note"><b style="color:var(--kg)">Entrou</b> = peças que ficaram livres de um dia para o outro (produção acima do máximo do Kanban ou pedido cancelado). <b style="color:var(--kr)">Saiu</b> = peças que deixaram de estar livres (pedido novo ou nota emitida). A linha é o total livre. A conta compara o retrato de cada atualização do estoque, item a item.</p></details>`; }
+
+/* carteira do item (pedidos em aberto) */
+function cartDe(cod){ return (PED.linhas||[]).filter(l=>l[2]===cod).sort((a,b)=>(a[4]||"9999")<(b[4]||"9999")?-1:1); }
+function cartResumo(cod){ const L=cartDe(cod); return {n:new Set(L.map(l=>l[0])).size,pc:L.reduce((s,l)=>s+(+l[3]||0),0),atr:L.filter(l=>l[4]&&l[4]<hojeISO()).length,L}; }
+function cartTab(cod){ const C=cartResumo(cod); if(!C.L.length) return '<p class="note">Sem pedido em aberto para este item.</p>';
+  const hj=hojeISO(), vc=comVeCli();   // nome do cliente só para o perfil Comercial e o administrador
+  return `<div class="tw" style="max-height:220px"><table><thead><tr><th>Pedido</th>${vc?'<th>Cliente</th>':''}<th class="num">Em aberto (pç)</th><th>Entrega</th><th>Situação</th></tr></thead><tbody>${C.L.slice(0,40).map(l=>`<tr><td><b>${esc(l[0])}</b></td>${vc?`<td>${esc(l[1]||'—')}</td>`:''}<td class="num">${f0(l[3])}</td><td>${l[4]?esc(fmtDT(l[4]+'T12:00:00')):'sem data'}</td><td>${!l[4]?'<span class="note">sem data</span>':l[4]<hj?'<span class="pill" style="background:var(--kr);color:#fff">atrasado</span>':'<span class="pill" style="background:var(--kg-soft);color:var(--ink)">no prazo</span>'}</td></tr>`).join('')}</tbody></table></div>${C.L.length>40?`<p class="note">Mostrando 40 de ${f0(C.L.length)} linhas.</p>`:''}`; }
+function comDet(cod){   // detalhe do item: carteira e últimos clientes
+  const U=ucliDe(cod);
+  return `<div class="com-det"><div><h4>Carteira deste item</h4>${cartTab(cod)}<p class="note">Estas peças já estão reservadas: não entram no que pode ser vendido.</p></div>
+   ${comVeCli()?`<div><h4>Últimos clientes que compraram</h4>${U.length?`<table class="com-uc"><tbody>${U.map(c=>`<tr><td><b>${esc(c[0])}</b></td><td>${esc(fmtDT(c[1]+'T12:00:00'))}</td><td class="num">${f0(c[2])} pç</td></tr>`).join('')}</tbody></table><p class="note">Pelas notas fiscais do MPD132${UCLI&&UCLI.de?' desde '+esc(fmtDT(UCLI.de+'T12:00:00')):''}. Só o perfil Comercial vê esta parte.</p>`:`<p class="note">${UCLI?'Sem nota fiscal deste item no período do MPD132.':'Ainda sem dados: aparecem depois da próxima atualização pelo MPD132.'}</p>`}</div>`:''}</div>`; }
+function comNav(tab){ return `<div class="com-nav" role="tablist" aria-label="Módulo Comercial">
+  <button type="button" role="tab" aria-selected="${tab==='cm'}" class="btn${tab==='cm'?' pri':''}" data-go="cm">Pronta entrega · embarque em 48 h</button>
+  <button type="button" role="tab" aria-selected="${tab==='cs'}" class="btn${tab==='cs'?' pri':''}" data-go="cs">Monta sob pedido · embarque em 72 h</button></div>`; }
+function comBind(el){ el.querySelectorAll('.com-nav [data-go]').forEach(b=>b.onclick=()=>{ if(b.dataset.go!==TAB) go(b.dataset.go); });
+  const r=el.querySelector('[data-rep]'); if(r) r.onclick=()=>repAbrir(r.dataset.rep); }
+function cmSelos(R){ const terc=k=>{ const v=R.map(x=>x[k]).filter(x=>x>0).sort((a,b)=>a-b), q=f=>v.length?v[Math.min(v.length-1,Math.floor(f*v.length))]:0, a=q(2/3), b=q(1/3);
+    R.forEach(x=>{ x["s_"+k]=x[k]>0&&x[k]>=a?2:(x[k]>0&&x[k]>=b?1:0); }); };
+  terc("D"); terc("nnf"); return R; }
+
+/* aviso ao PCP: venda nova registrada pelo Comercial */
+const VD_VISTO_LS="aemco-vd-visto";
+function vendasVistas(){ try{ const v=JSON.parse(localStorage.getItem(VD_VISTO_LS)||"[]"); return new Set(Array.isArray(v)?v:[]); }catch(e){ return new Set(); } }
+function vendasNovas(){ const v=vendasVistas();   // pelo id da venda, não pela hora: relógio de aparelho e venda feita sem internet não fazem perder o aviso
+  return VENDAS.filter(x=>vendaOK(x)&&(x.st||"aberta")==="aberta"&&!v.has(x.id)&&vendaFeito(x)<x.q-1e-9).sort((a,b)=>String(b.t||"").localeCompare(String(a.t||""))); }
+function vendasAviso(){ if(!isProg()) return ''; const L=vendasNovas(); if(!L.length) return '';
+  return `<div class="panel vd-aviso" id="vd-aviso" role="status"><div class="head"><h3>${f0(L.length)} venda${L.length>1?'s':''} nova${L.length>1?'s':''} do Comercial</h3><button type="button" class="btn" id="vd-ciente">Ciente</button></div>
+   <ul class="clean">${L.slice(0,6).map(v=>`<li><b>${esc(v.cod)}</b> · ${f0(v.q)} un.${v.camp?' · campanha <b>'+esc(v.camp)+'</b>':''}${v.cli?' · '+esc(v.cli):''} <span class="note">— ${esc(v.nome||'')} em ${v.t?fmtDT(v.t,true):'—'}</span></li>`).join('')}</ul>
+   <p class="note">Já estão na programação como <span class="pill vx">FURA-FILA · venda do excesso</span>. Confira a sequência do processo e o prazo de embarque de 72 h.</p></div>`; }
+const _renderPRG33=renderPRG;
+renderPRG=function(){ _renderPRG33(); const b=document.getElementById('vd-ciente'); if(b) b.onclick=()=>{ try{ const v=vendasVistas(); vendasNovas().forEach(x=>v.add(x.id)); localStorage.setItem(VD_VISTO_LS,JSON.stringify([...v].slice(-300))); }catch(e){} renderPRG(); }; };
+
+/* ---------- lista de estoque disponível (modelo do Comercial: capa + tabela) ---------- */
+const REP={tipo:"48",ver:"rep"};
+function repDados(tipo){   // linhas por prazo
+  if(tipo==="48") return cmSelos(cmRows()).map(x=>({cod:x.cod,desc:x.desc,fam:x.fam,g:x.s_D,f:x.s_nnf,q:x.disp}));
+  return csRows().L.map(x=>({cod:x.cod,desc:x.desc,fam:x.fam,g:x.s_D,f:x.s_nnf,q:x.N}));
+}
+function repFams(R){ const F={}; R.forEach(x=>{ const f=F[x.fam]||(F[x.fam]={fam:x.fam,n:0,pc:0,L:[]}); f.n++; f.pc+=x.q; f.L.push(x); });
+  const o=Object.values(F).sort((a,b)=>b.pc-a.pc||(a.fam<b.fam?-1:1)); o.forEach(f=>f.L.sort((a,b)=>b.g-a.g||b.f-a.f||b.q-a.q||(a.cod<b.cod?-1:1))); return o; }
+function repPos(){ const pa=ultimaImp('pa'); return pa?fmtDT(pa.t,true):String(DATA.dataest||""); }
+function repCapa(tipo,R,interno){ const pc=R.reduce((s,x)=>s+x.q,0), h48=tipo==="48";
+  return `<section class="rp-capa"><div class="rp-lado">Posição ${esc(repPos())}</div>${interno?'<div class="rp-int">USO INTERNO · não encaminhar a representantes</div>':''}
+   <div class="rp-topo"><div class="rp-k">${h48?'PRONTA ENTREGA':'PRAZO DE EMBARQUE'}</div><div class="rp-h">${tipo}h</div><div class="rp-s">Embarque em até ${tipo} horas</div><div class="rp-fio"></div>
+    <div class="rp-n">${f0(R.length)} itens · ${h48?'':'até '}${f0(pc)} peças disponíveis${h48?' no CD':''}</div></div>
+   <div class="rp-base"><div class="rp-t">Lista de estoque<br><b>disponível para venda</b></div><img class="rp-logo" src="${REP_LOGO}" alt="AEMCO">
+    <div class="rp-av">Posição de ${esc(repPos())}, válida até a próxima atualização do estoque.<br>Quantidades sujeitas a alteração conforme pedidos confirmados. Consulte disponibilidade antes de fechar.<br>O conteúdo deste material é confidencial e de propriedade da AEMCO.</div></div></section>`; }
+const repSelo=s=>`<span class="rp-selo s${s}">${SELO[s]}</span>`;
+function repGuia(S,interno){   // página de orientação: como usar, resumo por família e itens de saída mais rápida
+  const bloco=s=>{ const F=repFams(s.R), pc=s.R.reduce((a,x)=>a+x.q,0);
+    return `<div class="rp-res"><h3>Embarque em ${s.tipo} horas</h3><table class="rp-tab"><thead><tr><th>Família</th><th class="n">Itens</th><th class="n">Peças</th></tr></thead><tbody>${F.slice(0,11).map(f=>`<tr><td>${esc(f.fam)}</td><td class="n">${f0(f.n)}</td><td class="n"><b>${f0(f.pc)}</b></td></tr>`).join('')}${F.length>11?`<tr><td>Outras ${f0(F.length-11)} famílias</td><td class="n">${f0(F.slice(11).reduce((a,f)=>a+f.n,0))}</td><td class="n"><b>${f0(F.slice(11).reduce((a,f)=>a+f.pc,0))}</b></td></tr>`:''}
+     <tr class="tot"><td>Total</td><td class="n">${f0(s.R.length)}</td><td class="n">${f0(pc)}</td></tr></tbody></table></div>`; };
+  const top=S.map(s=>s.R.filter(x=>x.g===2&&x.f>=1).sort((a,b)=>b.f-a.f||b.q-a.q).slice(0,S.length>1?4:8).map(x=>Object.assign({tipo:s.tipo},x))).flat();
+  return `<section class="rp-guia">${repFaixa("Como usar esta lista",S.map(s=>s.tipo+" horas").join(" e "))}
+   <div class="rp-corpo"><ol class="rp-passos">
+     <li><b>Ofereça primeiro o que tem giro e frequência altos.</b> São os itens que o cliente já compra: a conversa é sobre entrega rápida.</li>
+     <li><b>Confirme a quantidade antes de fechar.</b> A lista é a posição de ${esc(repPos())} e muda a cada pedido confirmado.</li>
+     <li><b>Informe o prazo certo.</b> ${S.some(s=>s.tipo==="48")?'48 horas: peça pronta no CD. ':''}${S.some(s=>s.tipo==="72")?'72 horas: a fábrica monta com componentes que já estão prontos; a coluna "Até" é o limite de peças nesse prazo.':''}</li>
+     <li><b>No pedido, informe a campanha</b> combinada com o Comercial, para a venda ser acompanhada.</li>
+     <li><b>Item fora da lista não tem peça livre agora:</b> segue o prazo normal de fabricação.</li></ol>
+    <div class="rp-cols">${S.map(bloco).join('')}</div>
+    ${top.length?`<h3 class="rp-h3">Itens de saída mais rápida</h3><table class="rp-tab"><thead><tr><th>Código</th><th>Descrição</th><th>Família</th><th class="c">Giro</th><th class="c">Frequência</th><th class="c">Prazo</th><th class="n">Peças</th></tr></thead><tbody>${top.map(x=>`<tr><td><b>${esc(x.cod)}</b></td><td>${esc(String(x.desc).slice(0,52))}</td><td>${esc(x.fam)}</td><td class="c">${repSelo(x.g)}</td><td class="c">${repSelo(x.f)}</td><td class="c">${x.tipo} h</td><td class="n"><b>${f0(x.q)}</b></td></tr>`).join('')}</tbody></table>`:''}
+    <p class="rp-nota"><b>Giro</b> = quanto o item vende. <b>Frequência</b> = em quantas vendas ele aparece. Alto, Médio e Baixo comparam os itens desta lista entre si.${interno?' <b>Uso interno:</b> esta versão traz a carteira e os últimos clientes de cada item.':''}</p></div></section>`; }
+function repFaixa(t,sub){ return `<div class="rp-faixa"><img src="${REP_LOGO}" alt="AEMCO"><div><b>${esc(t)}</b><span>${esc(sub)}</span></div></div>`; }
+function repTabela(tipo,R,interno){ const F=repFams(R), h48=tipo==="48", nc=7, M='<td class="rp-m"></td>';   // 1ª e última colunas são as margens da página
+  return `<table class="rp-tab rp-lista"><thead><tr class="rp-fx"><th colspan="${nc}">${repFaixa("Estoque disponível para venda",`Embarque ${tipo} horas · posição ${repPos()}${interno?' · USO INTERNO':''}`)}</th></tr>
+   <tr class="rp-cab">${M}<th>Código</th><th>Descrição</th><th class="c">Giro</th><th class="c">Frequência</th><th class="n">${h48?'Qtd. disponível (pç)':'Até (pç)'}</th>${M}</tr></thead>
+   ${F.map(f=>`<tbody><tr class="rp-fam">${M}<td colspan="3">${esc(f.fam)}</td><td class="n" colspan="2">${f0(f.n)} ${f.n>1?'itens':'item'} · ${f0(f.pc)} pç</td>${M}</tr>
+    ${f.L.map(x=>{ let ex=""; if(interno){ const C=cartResumo(x.cod), U=ucliTxt(x.cod); ex=(C.pc?`<div class="rp-ex">Em carteira: <b>${f0(C.pc)} pç</b> em ${f0(C.n)} pedido${C.n>1?'s':''}${C.atr?' · '+f0(C.atr)+' linha'+(C.atr>1?'s':'')+' em atraso':''}</div>`:'')+(U?`<div class="rp-ex">Últimos clientes: ${esc(U)}</div>`:''); }
+      return `<tr>${M}<td><b>${esc(x.cod)}</b></td><td>${esc(String(x.desc).slice(0,64))}${ex}</td><td class="c">${repSelo(x.g)}</td><td class="c">${repSelo(x.f)}</td><td class="n"><b>${f0(x.q)}</b></td>${M}</tr>`; }).join('')}</tbody>`).join('')}</table>`; }
+function repHTML(tipo,ver){ const interno=ver==="int"&&comVeCli(), T=tipo==="ambos"?["48","72"]:[tipo];
+  const S=T.map(t=>({tipo:t,R:repDados(t)})).filter(s=>s.R.length); if(!S.length) return '';
+  return repCapa(S[0].tipo,S[0].R,interno)+repGuia(S,interno)+S.map((s,i)=>(i?repCapa(s.tipo,s.R,interno):'')+`<section class="rp-pag">${repTabela(s.tipo,s.R,interno)}</section>`).join(''); }
+function repNome(tipo,ver){ return "AEMCO_Estoque_Disponivel_Embarque_"+(tipo==="ambos"?"48h_72h":tipo+"h")+(ver==="int"?"_Interno":"")+"_"+hojeISO(); }
+function repImprimir(tipo,ver){
+  const h=repHTML(tipo,ver); if(!h){ toast("Nada para listar agora"); return; }
+  let el=document.getElementById('prt-rep'); if(!el){ el=document.createElement('div'); el.id='prt-rep'; document.body.appendChild(el); }
+  el.innerHTML=h; const tit=document.title; document.title=repNome(tipo,ver);   // o PDF salvo sai com este nome
+  document.body.classList.add('prt-rep');
+  const fim=()=>{ document.body.classList.remove('prt-rep'); document.title=tit; window.removeEventListener('afterprint',fim); };
+  window.addEventListener('afterprint',fim);
+  setTimeout(()=>{ window.print(); setTimeout(fim,1500); },120);
+}
+function repCSV(tipo,ver){ const interno=ver==="int"&&comVeCli(), T=tipo==="ambos"?["48","72"]:[tipo];
+  const H=["prazo_embarque_h","codigo","descricao","familia","giro","frequencia","pecas"].concat(interno?["em_carteira_pc","pedidos_em_aberto","ultimos_clientes"]:[]);
+  const rows=[]; T.forEach(t=>repFams(repDados(t)).forEach(f=>f.L.forEach(x=>{ const r=[t,x.cod,x.desc,x.fam,SELO[x.g],SELO[x.f],Math.round(x.q)]; if(interno){ const C=cartResumo(x.cod); r.push(Math.round(C.pc),C.n,ucliTxt(x.cod)); } rows.push(r); })));
+  saveFile(repNome(tipo,ver)+".csv","﻿"+[H].concat(rows).map(r=>r.map(v=>{ const s=String(v??""); return /[;"\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }).join(";")).join("\n"),"text/csv"); }
+function repAbrir(tipo){ if(tipo) REP.tipo=tipo;
+  let d=document.getElementById('rep-dlg'); if(!d){ d=document.createElement('dialog'); d.id='rep-dlg'; d.className='rep-dlg'; document.body.appendChild(d); }
+  const op=(nome,val,txt,sub)=>`<label class="rep-op"><input type="radio" name="${nome}" value="${val}" ${REP[nome==='rep-t'?'tipo':'ver']===val?'checked':''}><span><b>${txt}</b><small>${sub}</small></span></label>`;
+  const n48=repDados("48").length, n72=repDados("72").length;
+  d.innerHTML=`<form method="dialog" class="rep-f"><h3>Lista de estoque disponível</h3><p class="note">Documento com capa e tabela por família, no padrão do Comercial. Abre a impressão: escolha <b>Salvar como PDF</b>.</p>
+   <fieldset><legend>Prazo de embarque</legend>${op('rep-t','48','48 horas · pronta entrega',f0(n48)+' itens prontos no CD')}${op('rep-t','72','72 horas · monta sob pedido',f0(n72)+' produtos com componentes parados')}${op('rep-t','ambos','As duas listas em um documento','48 h e 72 h, uma depois da outra')}</fieldset>
+   <fieldset><legend>Para quem</legend>${op('rep-v','rep','Representantes','código, descrição, família, giro, frequência e quantidade. Sem preço, cliente ou carteira')}${comVeCli()?op('rep-v','int','Uso interno do Comercial','acrescenta a carteira e os últimos clientes de cada item'):''}</fieldset>
+   <div class="rep-b"><button type="button" class="btn pri" id="rep-pdf">Gerar PDF</button><button type="button" class="btn" id="rep-csv">Excel (CSV)</button><button type="button" class="btn" id="rep-x">Fechar</button></div></form>`;
+  const le=()=>{ REP.tipo=(d.querySelector('input[name="rep-t"]:checked')||{}).value||"48"; REP.ver=(d.querySelector('input[name="rep-v"]:checked')||{}).value||"rep"; };
+  d.querySelector('#rep-x').onclick=()=>d.close();
+  d.querySelector('#rep-pdf').onclick=()=>{ le(); d.close(); repImprimir(REP.tipo,REP.ver); };
+  d.querySelector('#rep-csv').onclick=()=>{ le(); repCSV(REP.tipo,REP.ver); };
+  if(typeof d.showModal==="function"){ if(!d.open) d.showModal(); } else d.setAttribute('open','');
+}
+
+/* Rev33: marca da AEMCO (branca, fundo transparente) para a capa e o cabeçalho da lista de estoque disponível */
+const REP_LOGO="data:image/png;base64,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";
 
 /* ---------- Rev05: verificação de WebGL e vistas 2D de reserva ----------
    Notebooks corporativos costumam vir com a aceleração de hardware desligada: o three.js carrega,
